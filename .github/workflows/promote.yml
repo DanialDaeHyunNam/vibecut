@@ -106,11 +106,12 @@ jobs:
 
       - name: Push stable tag
         env:
-          TOKEN: ${{ secrets.OPENSCREEN_RELEASE_TOKEN }}
+          # Use GITHUB_TOKEN for the tag push: a tag is a ref, not a file change, so
+          # the workflows:write permission isn't needed, and GITHUB_TOKEN pushes do
+          # trigger downstream workflows (build.yml). PAT pushes silently do NOT.
           STABLE_TAG: ${{ steps.version.outputs.stable_tag }}
         run: |
           set -euo pipefail
-          git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git fetch origin main
           git checkout main
           git reset --hard origin/main
