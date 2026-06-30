@@ -93,26 +93,30 @@ gh api /repos/getopenscreen/openscreen/rulesets/18060803 --jq '.bypass_actors'
 
 Bot token from a Discord application added to the OpenScreen Discord server with the `bot` scope and at minimum:
 
-- `Send Messages` in `#rc-testing` and the release-announcement channel
+- `Send Messages` in any text channels where the bot posts
 - `Manage Messages` if you want the roadmap-sync workflow to pin its message
 - `Read Message History` (usually default)
 
 Stored as a repository secret.
 
-### `DISCORD_RC_TESTING_CHANNEL_ID`
+### `DISCORD_RC_TESTING_WEBHOOK_URL` (preferred) or `DISCORD_RC_TESTING_CHANNEL_ID` (fallback)
 
-Snowflake ID of the Discord channel where release candidates are announced. Set as a **repository variable** (not a secret — it's not sensitive).
+A **Discord webhook** for the `#rc-testing` channel. Each pre-release creates a new thread in the forum. Preferred because the channel is a forum and webhooks can create threads there, while a bot cannot post messages directly to a forum channel.
+
+To create: in Discord, channel ⚙️ → Integrations → Webhooks → New Webhook → name it (e.g. "OpenScreen Releases") → Copy URL. Set as a **repository variable** (not a secret if it's a per-channel URL, but you can also set it as a secret if you want it private):
 
 ```bash
-gh variable set DISCORD_RC_TESTING_CHANNEL_ID --body "1521416826146263051" --repo getopenscreen/openscreen
+gh variable set DISCORD_RC_TESTING_WEBHOOK_URL --body "https://discord.com/api/webhooks/<id>/<token>" --repo getopenscreen/openscreen
 ```
 
-### `DISCORD_RELEASE_CHANNEL_ID`
+If a webhook is not set, the script falls back to `DISCORD_BOT_TOKEN` + `DISCORD_RC_TESTING_CHANNEL_ID` (bot message in a text channel). Forum channels will not work via this fallback — it returns Discord error `50008 Cannot send messages in a non-text channel`.
 
-Snowflake ID of the channel where stable releases are announced. Repository variable.
+### `DISCORD_RELEASE_WEBHOOK_URL` (preferred) or `DISCORD_RELEASE_CHANNEL_ID` (fallback)
+
+Same pattern as above, for the stable release announcement channel. Each stable release creates a new thread in the forum.
 
 ```bash
-gh variable set DISCORD_RELEASE_CHANNEL_ID --body "<id>" --repo getopenscreen/openscreen
+gh variable set DISCORD_RELEASE_WEBHOOK_URL --body "https://discord.com/api/webhooks/<id>/<token>" --repo getopenscreen/openscreen
 ```
 
 ### `DISCORD_ROADMAP_CHANNEL_ID` and `DISCORD_ROADMAP_MESSAGE_ID`
