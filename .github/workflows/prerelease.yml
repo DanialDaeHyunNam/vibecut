@@ -124,8 +124,9 @@ jobs:
       - name: Push RC tag
         env:
           # Use GITHUB_TOKEN for the tag push: a tag is a ref, not a file change, so
-          # the workflows:write permission isn't needed, and GITHUB_TOKEN pushes do
-          # trigger downstream workflows (build.yml). PAT pushes silently do NOT.
+          # the workflows:write permission isn't needed.
+          # Note: GITHUB_TOKEN tag pushes do NOT trigger build.yml in this org's setup,
+          # so we explicitly trigger it via gh workflow run right after.
           RC_TAG: ${{ steps.version.outputs.rc_tag }}
         run: |
           set -euo pipefail
@@ -139,6 +140,20 @@ jobs:
           git tag -d "$RC_TAG" 2>/dev/null || true
           git tag "$RC_TAG"
           git push origin "$RC_TAG"
+
+      - name: Trigger build workflow
+        env:
+          GH_TOKEN: ${{ secrets.OPENSCREEN_RELEASE_TOKEN }}
+          RC_TAG: ${{ steps.version.outputs.rc_tag }}
+        run: |
+          set -euo pipefail
+          # GITHUB_TOKEN tag pushes don't fire the build.yml trigger in this setup,
+          # so dispatch it explicitly. The PAT ensures the build's release creation
+          # propagates to Tier 3 (homebrew/winget/nix/aur) via release: published.
+          gh workflow run build.yml \
+            -f release_tag="${RC_TAG}" \
+            -f arch=both \
+            --repo "$GITHUB_REPOSITORY"
 
       - name: Announce RC on Discord (#rc-testing)
         if: success()
