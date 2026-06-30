@@ -125,7 +125,16 @@ jobs:
         env:
           TOKEN: ${{ secrets.OPENSCREEN_RELEASE_TOKEN }}
           RC_TAG: ${{ steps.version.outputs.rc_tag }}
-        run: git push "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$RC_TAG"
+        run: |
+          set -euo pipefail
+          # After gh pr merge --rebase, the bump commit is on origin/main. Refresh the
+          # local main and tag the resulting HEAD so the tag points at the merged commit.
+          git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+          git tag "$RC_TAG"
+          git push origin "$RC_TAG"
 
       - name: Announce RC on Discord (#rc-testing)
         if: success()

@@ -108,7 +108,14 @@ jobs:
         env:
           TOKEN: ${{ secrets.OPENSCREEN_RELEASE_TOKEN }}
           STABLE_TAG: ${{ steps.version.outputs.stable_tag }}
-        run: git push "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$STABLE_TAG"
+        run: |
+          set -euo pipefail
+          git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+          git tag "$STABLE_TAG"
+          git push origin "$STABLE_TAG"
 
       - name: Announce stable on Discord
         if: success()
