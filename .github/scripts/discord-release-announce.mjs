@@ -1,5 +1,6 @@
 import { info, warning } from "@actions/core";
 import { context, getOctokit } from "@actions/github";
+import { createForumThread, postChannelMessage } from "./discord-bot-api.mjs";
 
 const botToken = (process.env.DISCORD_BOT_TOKEN || "").trim();
 const channelId = (
@@ -61,7 +62,7 @@ const isRc = kind === "rc";
 const embedTitle = isRc
 	? `🧪 ${stableTag} release candidate ready for testing`
 	: `🚀 ${stableTag} released`;
-const threadName = isRc ? `${stableTag} RC — testing` : `${stableTag} released`;
+const threadName = (isRc ? `${stableTag} RC — testing` : `${stableTag} released`).slice(0, 100);
 const color = isRc ? 15844367 : 5814783;
 
 const description = [
@@ -72,6 +73,17 @@ const description = [
 ]
 	.filter(Boolean)
 	.join("\n");
+
+const embed = {
+	title: embedTitle,
+	url: releaseUrl,
+	description,
+	color,
+	timestamp: new Date().toISOString(),
+};
+
+// Discord channel types that require a thread wrapper (no top-level messages).
+const FORUM_LIKE_TYPES = new Set([15, 16]); // 15 = GUILD_FORUM, 16 = GUILD_MEDIA
 
 async function fetchChannelType() {
 	const res = await fetch(`https://discord.com/api/v10/channels/${channelId}`, {
@@ -85,75 +97,45 @@ async function fetchChannelType() {
 	return res.json();
 }
 
-async function postToForum() {
-	// Forum channel (type 15): create a thread, the first message is the announcement.
-	const body = {
-		name: threadName.slice(0, 100),
-		message: {
-			embeds: [
-				{
-					title: embedTitle,
-					url: releaseUrl,
-					description,
-					color,
-					timestamp: new Date().toISOString(),
-				},
-			],
+async function announceToForum() {
+	const thread = await createForumThread({
+		botToken,
+		forumChannelId: channelId,
+		payload: {
+			name: threadName,
+			auto_archive_duration: 4320,
+			message: {
+				embeds: [embed],
+				allowed_mentions: { parse: [] },
+			},
+		},
+	});
+	info(`📣 ${kind} announcement posted to forum thread ${thread.id}.`);
+}
+
+async function announceToText() {
+	const result = await postChannelMessage({
+		botToken,
+		channelId,
+		payload: {
+			embeds: [embed],
 			allowed_mentions: { parse: [] },
 		},
-	};
-	const res = await fetch(`https://discord.com/api/v10/channels/${channelId}/threads`, {
-		method: "POST",
-		headers: { Authorization: `Bot ${botToken}`, "Content-Type": "application/json" },
-		body: JSON.stringify(body),
 	});
-	if (!res.ok) {
-		const txt = await res.text();
-		warning(`Discord forum thread create failed ${res.status}: ${txt}`);
-		return false;
-	}
-	const data = await res.json();
-	info(`📣 ${kind} announcement posted to forum thread ${data.id}.`);
-	return true;
+	info(`📣 ${kind} announcement posted to text channel (id=${result.id}).`);
 }
-
-async function postToText() {
-	const body = {
-		embeds: [
-			{
-				title: embedTitle,
-				url: releaseUrl,
-				description,
-				color,
-				timestamp: new Date().toISOString(),
-			},
-		],
-		allowed_mentions: { parse: [] },
-	};
-	const res = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages`, {
-		method: "POST",
-		headers: { Authorization: `Bot ${botToken}`, "Content-Type": "application/json" },
-		body: JSON.stringify(body),
-	});
-	if (!res.ok) {
-		const txt = await res.text();
-		warning(`Discord message POST failed ${res.status}: ${txt}`);
-		return false;
-	}
-	info(`📣 ${kind} announcement posted to text channel.`);
-	return true;
-}
-
-// Discord channel types that require a thread wrapper (no top-level messages).
-const FORUM_LIKE_TYPES = new Set([15, 16]); // 15 = GUILD_FORUM, 16 = GUILD_MEDIA
 
 const channel = await fetchChannelType();
 if (!channel) {
 	process.exit(0);
 }
 
-if (FORUM_LIKE_TYPES.has(channel.type)) {
-	await postToForum();
-} else {
-	await postToText();
+try {
+	if (FORUM_LIKE_TYPES.has(channel.type)) {
+		await announceToForum();
+	} else {
+		await announceToText();
+	}
+} catch (err) {
+	warning(`Discord announce failed: ${err?.message ?? err}`);
 }
