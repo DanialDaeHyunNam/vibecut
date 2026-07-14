@@ -1,0 +1,18 @@
+# Omniscitus migration config — tune as the project evolves.
+
+# Directories whose contents should NOT be tracked in blueprints.
+# cinerec is an OpenScreen fork: static assets, CI, and packaging noise
+# are excluded so blueprints stay focused on source code.
+excluded_directories:
+  - public/          # 60 static assets (images, demo media)
+  - icons/           # 11 app icon variants
+  - .github/         # 29 upstream CI workflow files
+  - .harness/        # 9 upstream harness files
+  - nix/             # 3 nix packaging files
+
+# blueprint_splits: how deep to split each top-level directory into
+# separate yaml files under .omniscitus/blueprints/.
+# src/ has 316 files (i18n 94, components 91, lib 76) — depth 2 keeps
+# every yaml well under the 300-entry hotspot threshold.
+blueprint_splits:
+  src: 2

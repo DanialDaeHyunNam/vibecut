@@ -1,0 +1,10 @@
+target: src/components/launch/openSourceSelectorFlow.ts
+language: typescript
+framework: vitest
+test_file: src/components/launch/openSourceSelectorFlow.test.ts
+suites:
+  - "openSourceSelectorWithPermissionRetry"
+cases:
+  - title: "returns immediately when the source selector opens on the first attempt"
+  - title: "retries opening after macOS screen permission becomes granted"
+  - title: "stops retrying once macOS permission is explicitly denied"

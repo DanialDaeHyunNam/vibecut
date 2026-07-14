@@ -1,0 +1,15 @@
+target: src/lib/exporter/audioTimeStretch.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/audioTimeStretch.test.ts
+suites:
+  - "WsolaTimeStretcher"
+cases:
+  - title: "compresses duration by the speed factor"
+  - title: "preserves pitch when speeding up 4x"
+  - title: "preserves pitch at an extreme 50x speed-up"
+  - title: "expands duration when slowing down below 1x"
+  - title: "passes 1x audio through untouched (per channel)"
+  - title: "keeps output bounded to roughly unit amplitude (constant-overlap-add)"
+  - title: "samples across a short high-speed region instead of only its first grain"
+  - title: "does not fade in from silence at the start of a segment"

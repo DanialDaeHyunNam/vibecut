@@ -1,0 +1,27 @@
+target: src/components/video-editor/projectPersistence.ts
+language: typescript
+framework: vitest
+test_file: src/components/video-editor/projectPersistence.test.ts
+suites:
+  - "projectPersistence media compatibility"
+  - "wallpaper legacy normalization"
+cases:
+  - title: "accepts legacy projects with a single videoPath"
+  - title: "creates version 2 projects with explicit media"
+  - title: "normalizes webcam mask shape values safely"
+  - title: "normalizes webcam mirroring safely"
+  - title: "normalizes blur region type and mosaic block size safely"
+  - title: "accepts the dual frame webcam layout preset"
+  - title: "falls back from dual frame to picture in picture for portrait aspect ratios"
+  - title: "clears webcamPosition when the normalized preset is not picture in picture"
+  - title: "creates stable snapshots for identical project state"
+  - title: "detects unsaved changes from differing snapshots"
+  - title: "rewrites pre-fix packaged paths (resources/assets/wallpapers/…)"
+  - title: "rewrites new packaged layout (resources/wallpapers/…)"
+  - title: "rewrites unpackaged dev layout (public/wallpapers/…)"
+  - title: "rewrites Windows-style file URLs with drive letter"
+  - title: "leaves canonical relative paths untouched"
+  - title: "leaves data URIs untouched"
+  - title: "leaves colors and gradients untouched"
+  - title: "does NOT rewrite user files outside the known install layout"
+  - title: "falls back to default for bundled paths outside WALLPAPER_PATHS"

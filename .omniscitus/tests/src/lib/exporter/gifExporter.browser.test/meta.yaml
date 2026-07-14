@@ -1,0 +1,10 @@
+target: src/lib/exporter/gifExporter.browser.test.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/gifExporter.browser.test.ts
+suites:
+  - "GifExporter (real browser)"
+cases:
+  - title: "exports a valid GIF blob from a real video"
+  - title: "exports successfully with an image wallpaper (served by Vite dev server)"
+  - title: "throws BackgroundLoadError when wallpaper fails to load (no silent black fallback)"

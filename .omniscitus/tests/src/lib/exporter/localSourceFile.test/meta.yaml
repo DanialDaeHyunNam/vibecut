@@ -1,0 +1,23 @@
+target: src/lib/exporter/localSourceFile.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/localSourceFile.test.ts
+suites:
+  - "materializeLocalSourceFile (small file path)"
+  - "materializeLocalSourceFile (large file OPFS path)"
+  - "materializeLocalSourceFile (in-flight dedup & abort)"
+  - "materializeLocalSourceFile (MIME inference)"
+cases:
+  - title: "reads a small file in one shot and returns a File with its bytes"
+  - title: "does not stream a small file through readFileChunk"
+  - title: "throws when the file cannot be stat-ed"
+  - title: "throws when the single-shot read fails"
+  - title: "streams a large file into OPFS in chunks and returns the exact bytes"
+  - title: "reuses the cached copy on a second call without re-streaming"
+  - title: "keeps a cache entry that is still referenced by another active source"
+  - title: "prunes a cache entry once it has been released"
+  - title: "removes the partial cache entry when a chunk read fails mid-copy"
+  - title: "does not prune an entry that is still being written by a concurrent copy"
+  - title: "deduplicates concurrent copies of the same entry into one stream"
+  - title: "aborts the copy via the AbortSignal and cleans up the partial entry"
+  - title: "keeps the shared copy alive while another joined caller is still interested"

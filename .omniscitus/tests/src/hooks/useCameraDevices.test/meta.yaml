@@ -1,0 +1,12 @@
+target: src/hooks/useCameraDevices.ts
+language: typescript
+framework: vitest
+test_file: src/hooks/useCameraDevices.test.ts
+suites:
+  - "useCameraDevices"
+cases:
+  - title: "should list video input devices"
+  - title: "should set first device as default"
+  - title: "should use device ID as fallback label when label is missing"
+  - title: "should set error state when enumeration fails"
+  - title: "should fall back to first available device when selected device is unplugged"

@@ -1,0 +1,9 @@
+target: src/lib/exporter/timestampedVideoFrameQueue.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/timestampedVideoFrameQueue.test.ts
+suites:
+  - "TimestampedVideoFrameQueue"
+cases:
+  - title: "samples the latest webcam frame at or before the requested source timestamp"
+  - title: "waits for a newer frame before falling back to the held frame while open"

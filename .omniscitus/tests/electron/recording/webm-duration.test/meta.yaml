@@ -1,0 +1,10 @@
+target: electron/recording/webm-duration.ts
+language: typescript
+framework: vitest
+test_file: electron/recording/webm-duration.test.ts
+suites:
+  - "webm-duration patching"
+cases:
+  - title: "patches small WebM files under 2MB in memory successfully"
+  - title: "patches large WebM files over 2MB using the optimized streaming method successfully"
+  - title: "falls back to in-memory patching if no Cluster section is found in the large file header chunk"

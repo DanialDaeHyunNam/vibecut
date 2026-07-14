@@ -1,0 +1,1704 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/lib/__tests__/frameStepNavigation.test.ts":
+    status: active
+    source: "user:theaiagent"
+    created: "2026-04-03"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Tests for frameStepNavigation."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: edit
+        source: "user"
+        message: "feat: add arrow key frame-by-frame playhead navigation (#302)"
+      - date: "2026-04-03"
+        action: write
+        source: "user"
+        message: "test: add unit tests for frame step time computation"
+  "src/lib/annotationTextAnimation.test.ts":
+    status: active
+    source: "user:Justice Entsie"
+    created: "2026-05-28"
+    last_modified: "2026-05-28"
+    change_count: 1
+    purpose: "Tests for annotationTextAnimation."
+    change_log:
+      - date: "2026-05-28"
+        action: write
+        source: "user"
+        message: "Add text animation presets for annotations"
+  "src/lib/annotationTextAnimation.ts":
+    status: active
+    source: "user:Justice Entsie"
+    created: "2026-05-28"
+    last_modified: "2026-05-30"
+    change_count: 2
+    purpose: "Renderer library module — annotationTextAnimation.ts."
+    change_log:
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "Refactor text animation options to use translation keys for localization"
+      - date: "2026-05-28"
+        action: write
+        source: "user"
+        message: "Add text animation presets for annotations"
+  "src/lib/assetPath.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 8
+    purpose: "Renderer library module — assetPath.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "resolve asset base path synchronously from preload"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "harden wallpaper resolver against traversal, PII, and SSOT drift"
+      - date: "2026-03-14"
+        action: edit
+        source: "user"
+        message: "normalize paths on all OS"
+      - date: "2026-03-13"
+        action: edit
+        source: "user"
+        message: "fix: stabilize lint/typecheck and shortcut typing"
+  "src/lib/blurEffects.test.ts":
+    status: active
+    source: "user:LorenzoLancia"
+    created: "2026-04-12"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Tests for blurEffects."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-05-07"
+        action: edit
+        source: "user"
+        message: "fix: tests + how to write them"
+      - date: "2026-04-29"
+        action: edit
+        source: "user"
+        message: "misc: remove misc changes"
+      - date: "2026-04-29"
+        action: edit
+        source: "user"
+        message: "feat: all changes"
+  "src/lib/blurEffects.ts":
+    status: active
+    source: "user:LorenzoLancia"
+    created: "2026-04-12"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Renderer library module — blurEffects.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-04-12"
+        action: write
+        source: "user"
+        message: "feat: add mosaic blur with black shading"
+  "src/lib/captioning/annotationsFromCaptions.test.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-14"
+    last_modified: "2026-05-14"
+    change_count: 3
+    purpose: "Tests for annotationsFromCaptions."
+    change_log:
+      - date: "2026-05-14"
+        action: edit
+        source: "user"
+        message: "fix: time-slice single-group phrase captions into lines"
+      - date: "2026-05-14"
+        action: edit
+        source: "user"
+        message: "fix: address PR review for auto captions and locales"
+      - date: "2026-05-14"
+        action: write
+        source: "user"
+        message: "fix: improve auto-caption timing and pause handling"
+  "src/lib/captioning/annotationsFromCaptions.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "AI captions (local Whisper STT) — annotationsFromCaptions.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-14"
+        action: edit
+        source: "user"
+        message: "fix: time-slice single-group phrase captions into lines"
+      - date: "2026-05-14"
+        action: edit
+        source: "user"
+        message: "fix: address PR review for auto captions and locales"
+      - date: "2026-05-14"
+        action: edit
+        source: "user"
+        message: "fix: improve auto-caption timing and pause handling"
+      - date: "2026-05-13"
+        action: write
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+  "src/lib/captioning/captionConstants.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-05-13"
+    change_count: 1
+    purpose: "AI captions (local Whisper STT) — captionConstants.ts."
+    change_log:
+      - date: "2026-05-13"
+        action: write
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+  "src/lib/captioning/extractMono16k.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-07-06"
+    change_count: 7
+    purpose: "AI captions (local Whisper STT) — extractMono16k.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: key OPFS cache refcount by cache entry, not source URL"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: guard OPFS source cache and surface copy progress"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: stream >2GB recordings into OPFS so long videos can export"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+  "src/lib/captioning/extractMono16kWebDemuxer.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-07-06"
+    change_count: 5
+    purpose: "AI captions (local Whisper STT) — extractMono16kWebDemuxer.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address review — prune race, chunk cap, MIME, streaming waveform"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-14"
+        action: edit
+        source: "user"
+        message: "fix: address PR review for auto captions and locales"
+      - date: "2026-05-13"
+        action: write
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+  "src/lib/captioning/index.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-05-13"
+    change_count: 1
+    purpose: "AI captions (local Whisper STT) — index.ts."
+    change_log:
+      - date: "2026-05-13"
+        action: write
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+  "src/lib/captioning/leadingSilence.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-05-14"
+    change_count: 2
+    purpose: "AI captions (local Whisper STT) — leadingSilence.ts."
+    change_log:
+      - date: "2026-05-14"
+        action: edit
+        source: "user"
+        message: "fix: address PR review for auto captions and locales"
+      - date: "2026-05-13"
+        action: write
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+  "src/lib/captioning/transcribe.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-06-05"
+    change_count: 8
+    purpose: "AI captions (local Whisper STT) — transcribe.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "bundle tts"
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+      - date: "2026-05-15"
+        action: edit
+        source: "user"
+        message: "fix(captioning): narrow ORT node shim, trim retries, and abort checks"
+      - date: "2026-05-15"
+        action: edit
+        source: "user"
+        message: "feat(editor): polish auto-caption loading toasts"
+  "src/lib/captioning/transcribe.worker.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-01"
+    last_modified: "2026-06-05"
+    change_count: 3
+    purpose: "AI captions (local Whisper STT) — transcribe.worker.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "bundle tts"
+      - date: "2026-06-01"
+        action: write
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+  "src/lib/captioning/transcribeCore.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-01"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "AI captions (local Whisper STT) — transcribeCore.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-01"
+        action: write
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+  "src/lib/compositeLayout.test.ts":
+    status: active
+    source: "user:Marcus Schiesser"
+    created: "2026-03-19"
+    last_modified: "2026-06-05"
+    change_count: 9
+    purpose: "Tests for compositeLayout."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "Clarify MP4 export resolution presets"
+      - date: "2026-04-11"
+        action: edit
+        source: "user"
+        message: "feat: add dual frame webcam layout preset (#347)"
+      - date: "2026-04-11"
+        action: edit
+        source: "user"
+        message: "revert: undo local merge of PR #347"
+  "src/lib/compositeLayout.ts":
+    status: active
+    source: "user:Marcus Schiesser"
+    created: "2026-03-19"
+    last_modified: "2026-06-05"
+    change_count: 16
+    purpose: "Renderer library module — compositeLayout.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-05-26"
+        action: edit
+        source: "user"
+        message: "fix: increase rounding snap tolerance to 4px to prevent background line bleed when padding is 0"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "Clarify MP4 export resolution presets"
+  "src/lib/cursor/cursorPathSmoothing.test.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-04"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "Tests for cursorPathSmoothing."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: write
+        source: "user"
+        message: "improved cursor smoothing"
+  "src/lib/cursor/cursorPathSmoothing.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-04"
+    last_modified: "2026-06-05"
+    change_count: 3
+    purpose: "Cursor effects & telemetry — cursorPathSmoothing.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "remove oversmooth"
+      - date: "2026-06-04"
+        action: write
+        source: "user"
+        message: "improved cursor smoothing"
+  "src/lib/cursor/cursorThemes.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-04"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "Cursor effects & telemetry — cursorThemes.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: write
+        source: "user"
+        message: "custom cursors"
+  "src/lib/cursor/nativeCursor.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-07-07"
+    change_count: 7
+    purpose: "Tests for nativeCursor."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "fix(export): address review feedback"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix(export): project native cursor onto cropped rect, not mask rect"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: capture native cursor bitmaps on macOS"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/lib/cursor/nativeCursor.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-06-05"
+    change_count: 16
+    purpose: "Cursor effects & telemetry — nativeCursor.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "improved cursor smoothing"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add macOS editable cursor overlay support"
+  "src/lib/cursorTelemetryBuffer.test.ts":
+    status: active
+    source: "user:shaun0927"
+    created: "2026-04-16"
+    last_modified: "2026-06-05"
+    change_count: 7
+    purpose: "Tests for cursorTelemetryBuffer."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-28"
+        action: edit
+        source: "user"
+        message: "fix: key cursor telemetry batches by recordingId for safe discard"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "docs: correct cx/cy units and sanitize buffer option limits"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "docs: document cursor telemetry buffer API and surface drop events"
+  "src/lib/cursorTelemetryBuffer.ts":
+    status: active
+    source: "user:shaun0927"
+    created: "2026-04-16"
+    last_modified: "2026-06-05"
+    change_count: 7
+    purpose: "Renderer library module — cursorTelemetryBuffer.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-28"
+        action: edit
+        source: "user"
+        message: "fix: key cursor telemetry batches by recordingId for safe discard"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "docs: correct cx/cy units and sanitize buffer option limits"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "docs: document cursor telemetry buffer API and surface drop events"
+  "src/lib/customFonts.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-02-06"
+    last_modified: "2026-06-05"
+    change_count: 4
+    purpose: "Renderer library module — customFonts.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-06"
+        action: write
+        source: "user"
+        message: "google fonts"
+  "src/lib/exporter/annotationRenderer.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-06-05"
+    change_count: 12
+    purpose: "Export/encoding pipeline — annotationRenderer.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "chore: format codebase and update i18n locale files"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "Add text animation presets for annotations"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "fix(annotations): use Unicode script properties for CJK detection"
+  "src/lib/exporter/asyncVideoFrameQueue.ts":
+    status: active
+    source: "user:Marcus Schiesser"
+    created: "2026-03-17"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Export/encoding pipeline — asyncVideoFrameQueue.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-17"
+        action: write
+        source: "user"
+        message: "Add webcam recording overlay support"
+  "src/lib/exporter/audioEncoder.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-06"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Tests for audioEncoder."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "fix: preserve Windows system audio on export"
+      - date: "2026-05-06"
+        action: write
+        source: "user"
+        message: "fix: downmix multichannel export audio"
+  "src/lib/exporter/audioEncoder.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-07"
+    last_modified: "2026-07-09"
+    change_count: 19
+    purpose: "Export/encoding pipeline — audioEncoder.ts."
+    change_log:
+      - date: "2026-07-09"
+        action: edit
+        source: "user"
+        message: "fix: place offline audio at its true source-time (leading segment-0 silence)"
+      - date: "2026-07-09"
+        action: edit
+        source: "user"
+        message: "fix: address review feedback (webcam freeze, O(1) audio accumulator)"
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/lib/exporter/audioTimeStretch.test.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-07"
+    last_modified: "2026-07-07"
+    change_count: 1
+    purpose: "Tests for audioTimeStretch."
+    change_log:
+      - date: "2026-07-07"
+        action: write
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+  "src/lib/exporter/audioTimeStretch.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-07"
+    last_modified: "2026-07-07"
+    change_count: 1
+    purpose: "Export/encoding pipeline — audioTimeStretch.ts."
+    change_log:
+      - date: "2026-07-07"
+        action: write
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+  "src/lib/exporter/frameRenderer.test.ts":
+    status: active
+    source: "user:AjTheSpidey"
+    created: "2026-05-22"
+    last_modified: "2026-05-23"
+    change_count: 2
+    purpose: "Tests for frameRenderer."
+    change_log:
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "fix: polish webcam mirror toggle"
+      - date: "2026-05-22"
+        action: write
+        source: "user"
+        message: "feat: add webcam mirror toggle"
+  "src/lib/exporter/frameRenderer.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-07"
+    change_count: 64
+    purpose: "Export/encoding pipeline — frameRenderer.ts."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "fix(export): address review feedback"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix(export): project native cursor onto cropped rect, not mask rect"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "fix auto focus export sync"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "cleanup follow effect"
+  "src/lib/exporter/gifExporter.browser.test.ts":
+    status: active
+    source: "user:Marc Diaz"
+    created: "2026-04-07"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Tests for gifExporter.browser."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "harden wallpaper resolver against traversal, PII, and SSOT drift"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "fix: wallpaper backgrounds black in exported video (#376)"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "fix: just use one test"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "fix: lint"
+  "src/lib/exporter/gifExporter.test.ts":
+    status: active
+    source: "user:Nikhil Solanki"
+    created: "2025-12-25"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Tests for gifExporter."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-17"
+        action: write
+        source: "user"
+        message: "fix 231"
+      - date: "2026-02-27"
+        action: delete
+        source: "user"
+        message: "rm testing files"
+      - date: "2026-01-20"
+        action: edit
+        source: "user"
+        message: "fix build errors"
+      - date: "2025-12-25"
+        action: write
+        source: "user"
+        message: "Add GIF export feature to video editor"
+  "src/lib/exporter/gifExporter.ts":
+    status: active
+    source: "user:Nikhil Solanki"
+    created: "2025-12-25"
+    last_modified: "2026-06-05"
+    change_count: 37
+    purpose: "Export/encoding pipeline — gifExporter.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "feat: add webcam mirror toggle"
+  "src/lib/exporter/gradientParser.test.ts":
+    status: active
+    source: "user:JH"
+    created: "2026-03-18"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Tests for gradientParser."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-18"
+        action: write
+        source: "user"
+        message: "fix: fix gradient background export rendering"
+  "src/lib/exporter/gradientParser.ts":
+    status: active
+    source: "user:JH"
+    created: "2026-03-18"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Export/encoding pipeline — gradientParser.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-18"
+        action: write
+        source: "user"
+        message: "fix: fix gradient background export rendering"
+  "src/lib/exporter/index.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 8
+    purpose: "Export/encoding pipeline — index.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "Clarify MP4 export resolution presets"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-13"
+        action: edit
+        source: "user"
+        message: "demuxer and CFR conversion"
+      - date: "2025-12-25"
+        action: edit
+        source: "user"
+        message: "Add GIF export feature to video editor"
+  "src/lib/exporter/localSourceFile.test.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-06"
+    last_modified: "2026-07-06"
+    change_count: 5
+    purpose: "Tests for localSourceFile."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address review — prune race, chunk cap, MIME, streaming waveform"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: key OPFS cache refcount by cache entry, not source URL"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: guard OPFS source cache and surface copy progress"
+      - date: "2026-07-06"
+        action: write
+        source: "user"
+        message: "fix: stream >2GB recordings into OPFS so long videos can export"
+  "src/lib/exporter/localSourceFile.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-06"
+    last_modified: "2026-07-06"
+    change_count: 5
+    purpose: "Export/encoding pipeline — localSourceFile.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address review — prune race, chunk cap, MIME, streaming waveform"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: key OPFS cache refcount by cache entry, not source URL"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: guard OPFS source cache and surface copy progress"
+      - date: "2026-07-06"
+        action: write
+        source: "user"
+        message: "fix: stream >2GB recordings into OPFS so long videos can export"
+  "src/lib/exporter/mp4ExportSettings.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Tests for mp4ExportSettings."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: write
+        source: "user"
+        message: "Clarify MP4 export resolution presets"
+  "src/lib/exporter/mp4ExportSettings.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Export/encoding pipeline — mp4ExportSettings.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: write
+        source: "user"
+        message: "Clarify MP4 export resolution presets"
+  "src/lib/exporter/muxer.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 7
+    purpose: "Export/encoding pipeline — muxer.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "fix: address maintainer platform regressions"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+  "src/lib/exporter/planarChunkQueue.test.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-09"
+    last_modified: "2026-07-09"
+    change_count: 1
+    purpose: "Tests for planarChunkQueue."
+    change_log:
+      - date: "2026-07-09"
+        action: write
+        source: "user"
+        message: "fix: address review feedback (webcam freeze, O(1) audio accumulator)"
+  "src/lib/exporter/planarChunkQueue.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-09"
+    last_modified: "2026-07-09"
+    change_count: 1
+    purpose: "Export/encoding pipeline — planarChunkQueue.ts."
+    change_log:
+      - date: "2026-07-09"
+        action: write
+        source: "user"
+        message: "fix: address review feedback (webcam freeze, O(1) audio accumulator)"
+  "src/lib/exporter/sourceFileLimits.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-06"
+    last_modified: "2026-07-06"
+    change_count: 2
+    purpose: "Export/encoding pipeline — sourceFileLimits.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: lower in-memory source threshold and skip waveform for huge files"
+      - date: "2026-07-06"
+        action: write
+        source: "user"
+        message: "fix: guard OPFS source cache and surface copy progress"
+  "src/lib/exporter/streamingDecoder.test.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-17"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Tests for streamingDecoder."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-29"
+        action: edit
+        source: "user"
+        message: "misc: remove misc changes"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "fix: just use one test"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "fix: handle NaN in zero-scan fallback and symmetric divergence check"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "fix: validate export duration and fix audio trim in speed-aware path"
+  "src/lib/exporter/streamingDecoder.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-02-13"
+    last_modified: "2026-07-07"
+    change_count: 43
+    purpose: "Export/encoding pipeline — streamingDecoder.ts."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address review — prune race, chunk cap, MIME, streaming waveform"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: lower in-memory source threshold and skip waveform for huge files"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: key OPFS cache refcount by cache entry, not source URL"
+  "src/lib/exporter/threeDPass.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-05-03"
+    last_modified: "2026-06-05"
+    change_count: 3
+    purpose: "Export/encoding pipeline — threeDPass.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: write
+        source: "user"
+        message: "3d iso,tilt"
+  "src/lib/exporter/timelineSegments.test.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-07"
+    last_modified: "2026-07-08"
+    change_count: 2
+    purpose: "Tests for timelineSegments."
+    change_log:
+      - date: "2026-07-08"
+        action: edit
+        source: "user"
+        message: "fix: keep trim cursor monotonic for nested/overlapping trims"
+      - date: "2026-07-07"
+        action: write
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+  "src/lib/exporter/timelineSegments.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-07"
+    last_modified: "2026-07-08"
+    change_count: 2
+    purpose: "Export/encoding pipeline — timelineSegments.ts."
+    change_log:
+      - date: "2026-07-08"
+        action: edit
+        source: "user"
+        message: "fix: keep trim cursor monotonic for nested/overlapping trims"
+      - date: "2026-07-07"
+        action: write
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+  "src/lib/exporter/timestampedVideoFrameQueue.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-22"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Tests for timestampedVideoFrameQueue."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Address webcam sidecar review feedback"
+      - date: "2026-05-22"
+        action: write
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+  "src/lib/exporter/timestampedVideoFrameQueue.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-22"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Export/encoding pipeline — timestampedVideoFrameQueue.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Address webcam sidecar review feedback"
+      - date: "2026-05-22"
+        action: write
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+  "src/lib/exporter/types.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 10
+    purpose: "Export/encoding pipeline — types.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: guard OPFS source cache and surface copy progress"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-29"
+        action: edit
+        source: "user"
+        message: "feat: all changes"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+  "src/lib/exporter/videoDecoder.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "Export/encoding pipeline — videoDecoder.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/lib/exporter/videoExporter.browser.test.ts":
+    status: active
+    source: "user:Marc Diaz"
+    created: "2026-04-07"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Tests for videoExporter.browser."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "harden wallpaper resolver against traversal, PII, and SSOT drift"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "fix: wallpaper backgrounds black in exported video (#376)"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "fix: just use one test"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "fix: lint"
+  "src/lib/exporter/videoExporter.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-06"
+    last_modified: "2026-07-09"
+    change_count: 10
+    purpose: "Tests for videoExporter."
+    change_log:
+      - date: "2026-07-09"
+        action: edit
+        source: "user"
+        message: "fix: address review feedback (webcam freeze, O(1) audio accumulator)"
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-06-20"
+        action: edit
+        source: "user"
+        message: "Remove redundant stall-timeout test, clarify regression rationale"
+      - date: "2026-06-20"
+        action: edit
+        source: "user"
+        message: "Add regression test for encoder stall timeout"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/lib/exporter/videoExporter.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-07"
+    change_count: 60
+    purpose: "Export/encoding pipeline — videoExporter.ts."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: guard OPFS source cache and surface copy progress"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: stream >2GB recordings into OPFS so long videos can export"
+      - date: "2026-06-20"
+        action: edit
+        source: "user"
+        message: "Add regression test for encoder stall timeout"
+      - date: "2026-06-02"
+        action: edit
+        source: "user"
+        message: "Fix video export stall when trim regions cause long decoder gaps"
+  "src/lib/exporter/webcamFrameDrawing.ts":
+    status: active
+    source: "user:AjTheSpidey"
+    created: "2026-05-22"
+    last_modified: "2026-05-23"
+    change_count: 2
+    purpose: "Export/encoding pipeline — webcamFrameDrawing.ts."
+    change_log:
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "fix: polish webcam mirror toggle"
+      - date: "2026-05-22"
+        action: write
+        source: "user"
+        message: "feat: add webcam mirror toggle"
+  "src/lib/frameStep.ts":
+    status: active
+    source: "user:theaiagent"
+    created: "2026-04-03"
+    last_modified: "2026-06-05"
+    change_count: 4
+    purpose: "Renderer library module — frameStep.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: edit
+        source: "user"
+        message: "fix: read live video.currentTime for rapid frame steps and add JSDoc"
+      - date: "2026-04-03"
+        action: write
+        source: "user"
+        message: "feat: add arrow key frame-by-frame playhead navigation (#302)"
+  "src/lib/nativeMacRecording.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-11"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Tests for nativeMacRecording."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-11"
+        action: write
+        source: "user"
+        message: "feat: scaffold macOS native capture pipeline"
+  "src/lib/nativeMacRecording.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-11"
+    last_modified: "2026-06-27"
+    change_count: 5
+    purpose: "Renderer library module — nativeMacRecording.ts."
+    change_log:
+      - date: "2026-06-27"
+        action: edit
+        source: "user"
+        message: "refactor(macos): address review — drop captureBounds validator and ready-event field"
+      - date: "2026-06-23"
+        action: edit
+        source: "user"
+        message: "fix(macos): correct cursor offset in single-window capture"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add macos screencapturekit helper"
+      - date: "2026-05-11"
+        action: write
+        source: "user"
+        message: "feat: scaffold macOS native capture pipeline"
+  "src/lib/nativeWindowsRecording.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Renderer library module — nativeWindowsRecording.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: resolve selected Windows microphone"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: support DirectShow virtual webcams"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: honor selected native Windows webcam"
+  "src/lib/recordingSession.ts":
+    status: active
+    source: "user:Marcus Schiesser"
+    created: "2026-03-17"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "Renderer library module — recordingSession.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-25"
+        action: edit
+        source: "user"
+        message: "fix: stream long recordings to disk and patch WebM duration on save"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+      - date: "2026-03-17"
+        action: write
+        source: "user"
+        message: "Add webcam recording overlay support"
+  "src/lib/requestCameraAccess.ts":
+    status: active
+    source: "user:Marcus Schiesser"
+    created: "2026-03-19"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Renderer library module — requestCameraAccess.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-04"
+        action: edit
+        source: "user"
+        message: "fix: camera light flashes and turns off when clicking webcam button (#308)"
+      - date: "2026-03-19"
+        action: edit
+        source: "user"
+        message: "fix: handle export and camera access edge cases"
+      - date: "2026-03-19"
+        action: write
+        source: "user"
+        message: "fix: improve camera permission handling"
+  "src/lib/shortcuts.ts":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-02-26"
+    last_modified: "2026-06-26"
+    change_count: 13
+    purpose: "Renderer library module — shortcuts.ts."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+  "src/lib/userPreferences.test.ts":
+    status: active
+    source: "user:AbhinRustagi"
+    created: "2026-05-02"
+    last_modified: "2026-05-29"
+    change_count: 4
+    purpose: "Tests for userPreferences."
+    change_log:
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: Add projectFolder to user preferences"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-02"
+        action: write
+        source: "user"
+        message: "fix: resolve comments"
+  "src/lib/userPreferences.ts":
+    status: active
+    source: "user:JasonOA888"
+    created: "2026-04-04"
+    last_modified: "2026-06-05"
+    change_count: 12
+    purpose: "Renderer library module — userPreferences.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: Add projectFolder to user preferences"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Improve tray layout documentation"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+  "src/lib/utils.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Renderer library module — utils.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/lib/vite-stubs/empty-node-module.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "Renderer library module — empty-node-module.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-13"
+        action: write
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+  "src/lib/vite-stubs/onnxruntime-node-stub.ts":
+    status: active
+    source: "user:parse-nip"
+    created: "2026-05-13"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "Renderer library module — onnxruntime-node-stub.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-13"
+        action: write
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+  "src/lib/wallpaper.test.ts":
+    status: active
+    source: "user:Enriquefft"
+    created: "2026-04-24"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Tests for wallpaper."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "clean review nits: typed prefix sentinel, instanceof narrowing, drop dead re-export"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "address review audit: persist canonical wallpaper, dedupe types, tighten edge cases"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "resolve asset base path synchronously from preload"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "harden wallpaper resolver against traversal, PII, and SSOT drift"
+  "src/lib/wallpaper.ts":
+    status: active
+    source: "user:Enriquefft"
+    created: "2026-04-24"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Renderer library module — wallpaper.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "clean review nits: typed prefix sentinel, instanceof narrowing, drop dead re-export"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "tighten legacy normalizer and guard against BackgroundLoadError double-wrap"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "address review audit: persist canonical wallpaper, dedupe types, tighten edge cases"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "resolve asset base path synchronously from preload"
+  "src/lib/webcamMaskShapes.ts":
+    status: active
+    source: "user:Ivan"
+    created: "2026-04-03"
+    last_modified: "2026-06-05"
+    change_count: 3
+    purpose: "Renderer library module — webcamMaskShapes.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: write
+        source: "user"
+        message: "Add webcam mask shape support"

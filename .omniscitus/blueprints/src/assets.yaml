@@ -1,0 +1,440 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/assets/cursors/Cursor=App-Starting.svg":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=App-Starting.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: complete windows cursor assets"
+  "src/assets/cursors/Cursor=Beachball.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Beachball.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Cross.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Cross.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Default.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Default.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Hand-(Grabbing).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Hand-(Grabbing).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Hand-(Open).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Hand-(Open).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Hand-(Pointing).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Hand-(Pointing).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Help.svg":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Help.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: complete windows cursor assets"
+  "src/assets/cursors/Cursor=Menu.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Menu.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Move.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Move.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Not-Allowed.svg":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Not-Allowed.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: complete windows cursor assets"
+  "src/assets/cursors/Cursor=Resize-(Down).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-(Down).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-(Left).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-(Left).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-(Left-Right).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-(Left-Right).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-(Right).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-(Right).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-(Up).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-(Up).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-(Up-Down).svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-(Up-Down).svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-North-East-South-West.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-North-East-South-West.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-North-South.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-North-South.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-North-West-South-East.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-North-West-South-East.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Resize-West-East.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Resize-West-East.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Text-Cursor.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Text-Cursor.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Up-Arrow.svg":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Up-Arrow.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: complete windows cursor assets"
+  "src/assets/cursors/Cursor=Wait.svg":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Wait.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: complete windows cursor assets"
+  "src/assets/cursors/Cursor=Zoom-In.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Zoom-In.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/cursors/Cursor=Zoom-Out.svg":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Asset — Cursor=Zoom-Out.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/assets/react.svg":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Asset — react.svg."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"

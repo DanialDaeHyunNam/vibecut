@@ -1,0 +1,11 @@
+target: src/lib/exporter/audioEncoder.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/audioEncoder.test.ts
+suites:
+  - "AudioProcessor.selectSupportedExportCodec"
+  - "downmixPlanarChannelsForExport"
+cases:
+  - title: "falls back to stereo when the source channel count cannot be encoded"
+  - title: "preserves non-front Windows system audio channels when exporting stereo"
+  - title: "duplicates mono microphone audio when exporting stereo"

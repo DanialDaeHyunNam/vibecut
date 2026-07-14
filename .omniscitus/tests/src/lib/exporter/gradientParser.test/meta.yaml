@@ -1,0 +1,12 @@
+target: src/lib/exporter/gradientParser.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/gradientParser.test.ts
+suites:
+  - "parseCssGradient"
+  - "gradient geometry"
+cases:
+  - title: "parses rgba-based gradient presets without splitting inside color functions"
+  - title: "fills missing stop positions for simple hex gradients"
+  - title: "maps linear directions to canvas endpoints"
+  - title: "uses radial positions from the descriptor"

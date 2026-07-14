@@ -1,0 +1,14 @@
+target: src/components/video-editor/regionPlacement.ts
+language: typescript
+framework: vitest
+test_file: src/components/video-editor/regionPlacement.test.ts
+suites:
+  - "findFreeGapAt"
+cases:
+  - title: "returns the gap to the end when there are no regions"
+  - title: "rejects a playhead that lands inside an existing region"
+  - title: "clamps the gap to the next region"
+  - title: "rejects placement with no room before the end"
+  - title: "rejects placement that lands exactly on a region"
+  - title: "allows placement adjacent to (exactly at the end of) an existing region"
+  - title: "sorts unordered regions before computing the next gap"

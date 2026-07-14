@@ -1,0 +1,14 @@
+target: src/lib/__tests__/frameStepNavigation.test.ts
+language: typescript
+framework: vitest
+test_file: src/lib/__tests__/frameStepNavigation.test.ts
+suites:
+  - "computeFrameStepTime"
+cases:
+  - title: "moves forward by one frame from the middle"
+  - title: "moves backward by one frame from the middle"
+  - title: "clamps to 0 when stepping backward at the beginning"
+  - title: "clamps to 0 when stepping backward near the beginning"
+  - title: "clamps to duration when stepping forward at the end"
+  - title: "clamps to duration when stepping forward near the end"
+  - title: "handles duration of 0 gracefully"

@@ -1,0 +1,10 @@
+target: src/lib/annotationTextAnimation.ts
+language: typescript
+framework: vitest
+test_file: src/lib/annotationTextAnimation.test.ts
+suites:
+  - "annotation text animations"
+cases:
+  - title: "normalizes unknown animation values to none"
+  - title: "returns a settled state when animation is disabled"
+  - title: "eases rise animations into place over time"

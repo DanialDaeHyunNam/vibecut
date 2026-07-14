@@ -1,0 +1,9 @@
+target: src/components/launch/SourceSelector.tsx
+language: typescript
+framework: vitest
+test_file: src/components/launch/SourceSelector.test.tsx
+suites:
+  - "SourceSelector"
+cases:
+  - title: "shows a retry state when no capture sources are available"
+  - title: "reloads capture sources from the empty state"

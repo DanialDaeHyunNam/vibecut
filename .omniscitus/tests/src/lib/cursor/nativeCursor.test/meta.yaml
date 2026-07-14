@@ -1,0 +1,25 @@
+target: src/lib/cursor/nativeCursor.ts
+language: typescript
+framework: vitest
+test_file: src/lib/cursor/nativeCursor.test.ts
+suites:
+  - "native cursor click bounce"
+  - "custom cursor themes"
+  - "projectNativeCursorToLocal"
+cases:
+  - title: "keeps click progress visible across several frames"
+  - title: "applies a visible press and rebound scale at high intensity"
+  - title: "uses the default cursor asset for telemetry-only macOS recordings"
+  - title: "renders the natively captured cursor bitmap for untyped macOS samples"
+  - title: "applies click bounce to telemetry-only macOS recordings"
+  - title: "substitutes the themed art for an overridden cursor type"
+  - title: "classifies an untyped macOS arrow bitmap (top-left hotspot) as the themed arrow"
+  - title: "classifies an untyped macOS hand bitmap (upper-center hotspot) as the themed pointer"
+  - title: "leaves an untyped text/crosshair bitmap (centered hotspot) as the real captured cursor"
+  - title: "keeps the default art for the default theme id"
+  - title: "falls back to default art for a cursor type the theme does not override"
+  - title: "maps a sample onto the supplied painted rectangle 1:1 with no crop"
+  - title: "maps a sample into the cropped region of the painted rectangle"
+  - title: "projects onto the cropped (cover-overflowing) painted rect, not the mask rect"
+  - title: "returns null for a sample outside the cropped region"
+  - title: "returns null for a degenerate (zero-size) crop region"

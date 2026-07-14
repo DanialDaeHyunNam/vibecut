@@ -1,0 +1,13 @@
+target: electron/diagnostics/main-log-buffer.ts
+language: typescript
+framework: vitest
+test_file: electron/diagnostics/main-log-buffer.test.ts
+suites:
+  - "MainLogBuffer"
+cases:
+  - title: "captures every console level and routes to original"
+  - title: "stringifies non-string args"
+  - title: "drops oldest entries past capacity"
+  - title: "uninstall restores originals"
+  - title: "clear empties the buffer"
+  - title: "install is idempotent"

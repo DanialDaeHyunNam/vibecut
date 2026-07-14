@@ -1,0 +1,21 @@
+target: src/lib/userPreferences.ts
+language: typescript
+framework: vitest
+test_file: src/lib/userPreferences.test.ts
+suites:
+  - "parentDirectoryOf"
+  - "projectFolder preference"
+  - "user preferences"
+cases:
+  - title: "returns the directory for a POSIX path"
+  - title: "returns the directory for a Windows path"
+  - title: "preserves the POSIX root when the file is at /"
+  - title: "preserves the Windows drive root with its trailing separator"
+  - title: "returns null when no separator is present"
+  - title: "defaults to null when nothing is persisted"
+  - title: "round-trips a saved project folder"
+  - title: "ignores non-string persisted values and falls back to the default"
+  - title: "ignores empty-string persisted values and falls back to the default"
+  - title: "is independent of exportFolder"
+  - title: "persists the tray layout preference"
+  - title: "falls back to the default tray layout for invalid stored values"

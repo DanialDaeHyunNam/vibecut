@@ -1,0 +1,23 @@
+target: src/lib/cursorTelemetryBuffer.ts
+language: typescript
+framework: vitest
+test_file: src/lib/cursorTelemetryBuffer.test.ts
+suites:
+  - "createCursorTelemetryBuffer"
+cases:
+  - title: "stores samples captured during an active session"
+  - title: "trims active samples past maxActiveSamples (ring behaviour)"
+  - title: "preserves earlier pending batches when a new session starts before store"
+  - title: "returns null when nothing is pending"
+  - title: "drops empty sessions instead of queuing empty batches"
+  - title: "caps the pending queue at maxPendingBatches to bound memory"
+  - title: "starting a new session clears in-progress samples but keeps pending batches"
+  - title: "discardBatch(id) drops only the batch produced by that recording id"
+  - title: "discardBatch(id) targets the correct batch even when a later recording sits in front of it"
+  - title: "discardBatch(id) is a no-op (returns false) when the id is unknown or already drained"
+  - title: "prependBatch() re-inserts a batch at the front of the queue"
+  - title: "prependBatch() ignores empty batches"
+  - title: "endSession() returns the number of dropped batches and warns when the cap is exceeded"
+  - title: "prependBatch() defensively trims and warns when it would exceed the cap"
+  - title: "sanitizes non-finite or non-positive option values to safe defaults"
+  - title: "reset() clears both active and pending state"

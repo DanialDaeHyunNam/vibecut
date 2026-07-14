@@ -1,0 +1,2188 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/components/launch/CountdownOverlay.tsx":
+    status: active
+    source: "user:Galactic99"
+    created: "2026-04-16"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Recording launch UI — CountdownOverlay.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "fix:hide handler actually hides window instead of just clearing value"
+      - date: "2026-04-17"
+        action: edit
+        source: "user"
+        message: "fix:improve ui of the countdown by adding a low opacity circle background"
+      - date: "2026-04-16"
+        action: edit
+        source: "user"
+        message: "fix:prevent stale countdown IPC updates from repainting overlay"
+      - date: "2026-04-16"
+        action: edit
+        source: "user"
+        message: "fix:flickering, stale runs, macOS bugs provided by coderabbit and thread countdown token"
+  "src/components/launch/LaunchWindow.module.css":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 9
+    purpose: "Recording launch UI — LaunchWindow.module.css."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "feat(i18n): auto-discover valid locales and harden language menu"
+      - date: "2026-03-12"
+        action: edit
+        source: "user"
+        message: "refactor: enhance LaunchWindow styles and structure for improved UX"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+  "src/components/launch/LaunchWindow.test.tsx":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-06-19"
+    last_modified: "2026-07-06"
+    change_count: 8
+    purpose: "Tests for LaunchWindow."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "refactor(launch): drop hardcoded top-8 and trim prompt test bloat"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "fix(launch): backfill prompt observer and make sizing test deterministic"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "fix(launch): resize HUD overlay to fit system language prompt"
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "Keep HUD interactive on Linux so the drag handle can receive pointer events"
+  "src/components/launch/LaunchWindow.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 87
+    purpose: "Recording launch UI — LaunchWindow.tsx."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address CodeRabbit review feedback"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Chore: Upgrade to Tiptap for enhanced note-taking functionality"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Update NotesWindow integration and improve accessibility"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Notes is working, and not showing in the screen recorder"
+  "src/components/launch/NotesToolbar.tsx":
+    status: active
+    source: "user:itzadetunji"
+    created: "2026-07-03"
+    last_modified: "2026-07-03"
+    change_count: 2
+    purpose: "Recording launch UI — NotesToolbar.tsx."
+    change_log:
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-07-03"
+        action: write
+        source: "user"
+        message: "Refactor: Adjust NotesWindow dimensions and update styling"
+  "src/components/launch/NotesWindow.module.css":
+    status: active
+    source: "user:itzadetunji"
+    created: "2026-07-03"
+    last_modified: "2026-07-03"
+    change_count: 2
+    purpose: "Recording launch UI — NotesWindow.module.css."
+    change_log:
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Refactor: Adjust NotesWindow dimensions and update styling"
+      - date: "2026-07-03"
+        action: write
+        source: "user"
+        message: "Chore: Upgrade to Tiptap for enhanced note-taking functionality"
+  "src/components/launch/NotesWindow.tsx":
+    status: active
+    source: "user:itzadetunji"
+    created: "2026-06-26"
+    last_modified: "2026-07-03"
+    change_count: 8
+    purpose: "Recording launch UI — NotesWindow.tsx."
+    change_log:
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Refactor: Clean up NotesWindow content handling"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Refactor: Adjust NotesWindow dimensions and update styling"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Chore: Upgrade to Tiptap for enhanced note-taking functionality"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Update NotesWindow integration and improve accessibility"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Replace useEffect with useLayoutEffect in NotesWindow"
+  "src/components/launch/SourceSelector.module.css":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 9
+    purpose: "Recording launch UI — SourceSelector.module.css."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-04-15"
+        action: edit
+        source: "user"
+        message: "Update src/components/launch/SourceSelector.module.css"
+      - date: "2026-04-15"
+        action: edit
+        source: "user"
+        message: "feat(ui): add squircle corner shape to SourceSelector and polish sources spinner ui"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+  "src/components/launch/SourceSelector.test.tsx":
+    status: active
+    source: "user:seungryk"
+    created: "2026-05-25"
+    last_modified: "2026-05-31"
+    change_count: 2
+    purpose: "Tests for SourceSelector."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "test: import jest-dom matchers in SourceSelector test"
+      - date: "2026-05-25"
+        action: write
+        source: "user"
+        message: "Fix screen source selection recovery flow"
+  "src/components/launch/SourceSelector.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-25"
+    change_count: 14
+    purpose: "Recording launch UI — SourceSelector.tsx."
+    change_log:
+      - date: "2026-05-25"
+        action: edit
+        source: "user"
+        message: "Fix screen source selection recovery flow"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-21"
+        action: edit
+        source: "user"
+        message: "test: expose source selector hooks"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "test: add Windows native checklist smoke test"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+  "src/components/launch/openSourceSelectorFlow.test.ts":
+    status: active
+    source: "user:seungryk"
+    created: "2026-05-25"
+    last_modified: "2026-05-25"
+    change_count: 1
+    purpose: "Tests for openSourceSelectorFlow."
+    change_log:
+      - date: "2026-05-25"
+        action: write
+        source: "user"
+        message: "Fix screen source selection recovery flow"
+  "src/components/launch/openSourceSelectorFlow.ts":
+    status: active
+    source: "user:seungryk"
+    created: "2026-05-25"
+    last_modified: "2026-05-25"
+    change_count: 1
+    purpose: "Recording launch UI — openSourceSelectorFlow.ts."
+    change_log:
+      - date: "2026-05-25"
+        action: write
+        source: "user"
+        message: "Fix screen source selection recovery flow"
+  "src/components/ui/accordion.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-01-20"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Reusable UI primitive — accordion.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-01-20"
+        action: write
+        source: "user"
+        message: "accordion & settings cleanup"
+  "src/components/ui/audio-level-meter.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-07"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Reusable UI primitive — audio-level-meter.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-03-07"
+        action: write
+        source: "user"
+        message: "audio recording and settings"
+  "src/components/ui/button.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Reusable UI primitive — button.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/ui/card.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Reusable UI primitive — card.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  "src/components/ui/color-picker.tsx":
+    status: active
+    source: "user:BaptisteAuscher"
+    created: "2026-04-07"
+    last_modified: "2026-06-05"
+    change_count: 6
+    purpose: "Reusable UI primitive — color-picker.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "small fix: color block handles transparent values"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "code rabbit"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "handle transparent values for the color wheel"
+  "src/components/ui/content-clamp.tsx":
+    status: active
+    source: "user:Yiyang Suen"
+    created: "2025-12-09"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Reusable UI primitive — content-clamp.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-09"
+        action: edit
+        source: "user"
+        message: "feat: remove content clamp popover content box shadow"
+      - date: "2025-12-09"
+        action: write
+        source: "user"
+        message: "feat: add content-clamp component to show clamped text"
+  "src/components/ui/dialog.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Reusable UI primitive — dialog.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-06"
+        action: edit
+        source: "user"
+        message: "google fonts"
+  "src/components/ui/dropdown-menu.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Reusable UI primitive — dropdown-menu.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "feat(i18n): auto-discover valid locales and harden language menu"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+  "src/components/ui/input.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-02-06"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Reusable UI primitive — input.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-06"
+        action: write
+        source: "user"
+        message: "google fonts"
+  "src/components/ui/item-content.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Reusable UI primitive — item-content.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/ui/label.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-02-06"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Reusable UI primitive — label.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-06"
+        action: write
+        source: "user"
+        message: "google fonts"
+  "src/components/ui/popover.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Reusable UI primitive — popover.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-09"
+        action: edit
+        source: "user"
+        message: "feat: add content-clamp component to show clamped text"
+  "src/components/ui/select.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-05-24"
+    change_count: 8
+    purpose: "Reusable UI primitive — select.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-04-06"
+        action: edit
+        source: "user"
+        message: "feat(launch): refine recording HUD and language switching UX"
+  "src/components/ui/slider.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Reusable UI primitive — slider.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/ui/sonner.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Reusable UI primitive — sonner.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-15"
+        action: edit
+        source: "user"
+        message: "feat(editor): polish auto-caption loading toasts"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/ui/switch.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-04"
+    change_count: 5
+    purpose: "Reusable UI primitive — switch.tsx."
+    change_log:
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "fix toggles"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/ui/tabs.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Reusable UI primitive — tabs.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  "src/components/ui/toggle-group.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Reusable UI primitive — toggle-group.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  "src/components/ui/toggle.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Reusable UI primitive — toggle.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  "src/components/ui/tooltip.tsx":
+    status: active
+    source: "user:Prayas Lashkari"
+    created: "2026-03-12"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Reusable UI primitive — tooltip.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-03-12"
+        action: write
+        source: "user"
+        message: "refactor: integrate Tooltip component and enhance LaunchWindow with tooltips"
+  "src/components/video-editor/AddCustomFontDialog.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-02-06"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "Video editor — AddCustomFontDialog.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-21"
+        action: edit
+        source: "user"
+        message: "lang support"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-06"
+        action: write
+        source: "user"
+        message: "google fonts"
+  "src/components/video-editor/AnnotationOverlay.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-06-05"
+    change_count: 10
+    purpose: "Video editor — AnnotationOverlay.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "Add text animation presets for annotations"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "feat: add mosaic blur with black shading"
+  "src/components/video-editor/AnnotationSettingsPanel.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-07-04"
+    change_count: 21
+    purpose: "Video editor — AnnotationSettingsPanel.tsx."
+    change_log:
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-07-01"
+        action: edit
+        source: "user"
+        message: "fix: restore README screenshots and localize image read errors"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "Refactor text animation options to use translation keys for localization"
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "chore: format codebase and update i18n locale files"
+  "src/components/video-editor/ArrowSvgs.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-12-01"
+    last_modified: "2026-06-05"
+    change_count: 4
+    purpose: "Video editor — ArrowSvgs.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  "src/components/video-editor/BlurSettingsPanel.tsx":
+    status: active
+    source: "user:Lorenzo Lancia"
+    created: "2026-04-08"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Video editor — BlurSettingsPanel.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "feat: add mosaic blur with black shading"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+      - date: "2026-04-08"
+        action: write
+        source: "user"
+        message: "feat: add blur selection (rectangle, oval)"
+  "src/components/video-editor/CropControl.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 10
+    purpose: "Video editor — CropControl.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-18"
+        action: edit
+        source: "user"
+        message: "refactor: centralize editor defaults"
+      - date: "2026-03-13"
+        action: edit
+        source: "user"
+        message: "fix: stabilize lint/typecheck and shortcut typing"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-03-04"
+        action: edit
+        source: "user"
+        message: "Add precise crop controls with numeric inputs, aspect ratio presets, and drag-to-move"
+  "src/components/video-editor/EditorEmptyState.tsx":
+    status: active
+    source: "user:makaradam"
+    created: "2026-05-31"
+    last_modified: "2026-06-05"
+    change_count: 3
+    purpose: "Video editor — EditorEmptyState.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "fix: pass getProjectFolder to loadProjectFile in EditorEmptyState"
+      - date: "2026-05-31"
+        action: write
+        source: "user"
+        message: "feat(editor): Studio Dashboard empty state + project lifecycle"
+  "src/components/video-editor/ExportDialog.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 16
+    purpose: "Video editor — ExportDialog.tsx."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: guard OPFS source cache and surface copy progress"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "Wrap export error diagnostics"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "Improve export failure diagnostics"
+  "src/components/video-editor/FormatSelector.tsx":
+    status: active
+    source: "user:Nikhil Solanki"
+    created: "2025-12-25"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Video editor — FormatSelector.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-21"
+        action: edit
+        source: "user"
+        message: "lang support"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-25"
+        action: write
+        source: "user"
+        message: "Add GIF export feature to video editor"
+  "src/components/video-editor/GifOptionsPanel.tsx":
+    status: active
+    source: "user:Nikhil Solanki"
+    created: "2025-12-25"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Video editor — GifOptionsPanel.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-25"
+        action: write
+        source: "user"
+        message: "Add GIF export feature to video editor"
+  "src/components/video-editor/KeyboardShortcutsHelp.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-03"
+    change_count: 15
+    purpose: "Video editor — KeyboardShortcutsHelp.tsx."
+    change_log:
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "rm blur"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: edit
+        source: "user"
+        message: "fix: expand arrow key guard for form controls and wire i18n for fixed shortcuts"
+      - date: "2026-03-21"
+        action: edit
+        source: "user"
+        message: "lang support"
+      - date: "2026-03-13"
+        action: edit
+        source: "user"
+        message: "fix: stabilize lint/typecheck and shortcut typing"
+  "src/components/video-editor/PlaybackControls.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-03"
+    change_count: 8
+    purpose: "Video editor — PlaybackControls.tsx."
+    change_log:
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "fix variant class"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-22"
+        action: edit
+        source: "user"
+        message: "feat: Implement `PlaybackControls` component and add i18n files for common terms in English, Spanish, and Chinese."
+      - date: "2026-03-22"
+        action: edit
+        source: "user"
+        message: "feat: add fullscreen video player"
+      - date: "2026-03-21"
+        action: edit
+        source: "user"
+        message: "lang support"
+  "src/components/video-editor/SettingsPanel.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-07"
+    change_count: 102
+    purpose: "Video editor — SettingsPanel.tsx."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-06-19"
+        action: edit
+        source: "user"
+        message: "Fix issue 3 app launch and UI bugs"
+      - date: "2026-06-15"
+        action: edit
+        source: "user"
+        message: "Update repository links for maintained fork"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+  "src/components/video-editor/ShortcutsConfigDialog.tsx":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-02-26"
+    last_modified: "2026-06-03"
+    change_count: 12
+    purpose: "Video editor — ShortcutsConfigDialog.tsx."
+    change_log:
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "rm blur"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: remove conflicting hover style from shortcuts reset button"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: keep shortcuts dialog open on registration failure"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/components/video-editor/TutorialHelp.tsx":
+    status: active
+    source: "user:AP Solanki"
+    created: "2025-12-18"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Video editor — TutorialHelp.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-21"
+        action: edit
+        source: "user"
+        message: "lang support"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-18"
+        action: write
+        source: "user"
+        message: "feat: add tutorial help component for video trimming guidance"
+  "src/components/video-editor/UnsavedChangesDialog.tsx":
+    status: active
+    source: "user:makaradam"
+    created: "2026-05-02"
+    last_modified: "2026-05-31"
+    change_count: 6
+    purpose: "Video editor — UnsavedChangesDialog.tsx."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(editor): Studio Dashboard empty state + project lifecycle"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "fix: use relative path for logo so it resolves in packaged app"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "fix: use getAssetPath for logo so it resolves correctly in packaged app"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "fix: address code review feedback on custom close dialog"
+  "src/components/video-editor/VideoEditor.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-28"
+    change_count: 133
+    purpose: "Video editor — VideoEditor.tsx."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Update blur handling"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+  "src/components/video-editor/VideoPlayback.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-12"
+    change_count: 80
+    purpose: "Video editor — VideoPlayback.tsx."
+    change_log:
+      - date: "2026-07-12"
+        action: edit
+        source: "user"
+        message: "refactor(cursor): use DEFAULT_CROP_REGION constant, drop redundant default"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): correct cursor drift after cropping"
+      - date: "2026-07-09"
+        action: edit
+        source: "user"
+        message: "fix: address review feedback (webcam freeze, O(1) audio accumulator)"
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+  "src/components/video-editor/backgroundImageUpload.test.ts":
+    status: active
+    source: "user:Sunwood-ai-labs"
+    created: "2026-05-03"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Tests for backgroundImageUpload."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: write
+        source: "user"
+        message: "Allow PNG custom background uploads"
+  "src/components/video-editor/backgroundImageUpload.ts":
+    status: active
+    source: "user:Sunwood-ai-labs"
+    created: "2026-05-03"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Video editor — backgroundImageUpload.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: write
+        source: "user"
+        message: "Allow PNG custom background uploads"
+  "src/components/video-editor/customPlaybackSpeed.test.ts":
+    status: active
+    source: "user:AjTheSpidey"
+    created: "2026-05-23"
+    last_modified: "2026-07-07"
+    change_count: 3
+    purpose: "Tests for customPlaybackSpeed."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: write
+        source: "user"
+        message: "fix: accept decimal custom speeds"
+  "src/components/video-editor/customPlaybackSpeed.ts":
+    status: active
+    source: "user:AjTheSpidey"
+    created: "2026-05-23"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Video editor — customPlaybackSpeed.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: write
+        source: "user"
+        message: "fix: accept decimal custom speeds"
+  "src/components/video-editor/editorDefaults.test.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-05-18"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Tests for editorDefaults."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-18"
+        action: write
+        source: "user"
+        message: "refactor: centralize editor defaults"
+  "src/components/video-editor/editorDefaults.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-05-18"
+    last_modified: "2026-06-04"
+    change_count: 4
+    purpose: "Video editor — editorDefaults.ts."
+    change_log:
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "improve waveform"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-18"
+        action: write
+        source: "user"
+        message: "refactor: centralize editor defaults"
+  "src/components/video-editor/featureFlags.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-03"
+    last_modified: "2026-06-03"
+    change_count: 1
+    purpose: "Video editor — featureFlags.ts."
+    change_log:
+      - date: "2026-06-03"
+        action: write
+        source: "user"
+        message: "rm blur"
+  "src/components/video-editor/index.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Video editor — index.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/video-editor/projectPersistence.test.ts":
+    status: active
+    source: "user:Marcus Schiesser"
+    created: "2026-03-17"
+    last_modified: "2026-05-24"
+    change_count: 17
+    purpose: "Tests for projectPersistence."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "feat: add webcam mirror toggle"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "cover Windows drive-letter file URLs in legacy wallpaper normalizer test"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "tighten legacy normalizer and guard against BackgroundLoadError double-wrap"
+  "src/components/video-editor/projectPersistence.ts":
+    status: active
+    source: "user:Yusuf Mohsinally"
+    created: "2026-02-28"
+    last_modified: "2026-06-05"
+    change_count: 43
+    purpose: "Video editor — projectPersistence.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "global auto toggle"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "Add text animation presets for annotations"
+  "src/components/video-editor/regionClipboard.test.ts":
+    status: active
+    source: "user:446f6e6e79"
+    created: "2026-06-25"
+    last_modified: "2026-06-26"
+    change_count: 2
+    purpose: "Tests for regionClipboard."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: write
+        source: "user"
+        message: "First implementation of copy"
+  "src/components/video-editor/regionClipboard.ts":
+    status: active
+    source: "user:446f6e6e79"
+    created: "2026-06-25"
+    last_modified: "2026-06-26"
+    change_count: 3
+    purpose: "Video editor — regionClipboard.ts."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Update blur handling"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: write
+        source: "user"
+        message: "First implementation of copy"
+  "src/components/video-editor/regionPlacement.test.ts":
+    status: active
+    source: "user:446f6e6e79"
+    created: "2026-06-26"
+    last_modified: "2026-06-28"
+    change_count: 2
+    purpose: "Tests for regionPlacement."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+  "src/components/video-editor/regionPlacement.ts":
+    status: active
+    source: "user:446f6e6e79"
+    created: "2026-06-26"
+    last_modified: "2026-06-26"
+    change_count: 2
+    purpose: "Video editor — regionPlacement.ts."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Update blur handling"
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+  "src/components/video-editor/timeline/BackgroundWaveform.tsx":
+    status: active
+    source: "user:Davide Mendolia"
+    created: "2026-05-24"
+    last_modified: "2026-06-05"
+    change_count: 9
+    purpose: "Video editor — BackgroundWaveform.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "improve waveform"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "revert(timeline): restore polygon waveform, remove per-column bar approach"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix(timeline): correct waveform vertical alignment and silent baseline"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix(timeline): draw waveform within item bounds, not CSS canvas bounds"
+  "src/components/video-editor/timeline/Item.module.css":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Video editor — Item.module.css."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/video-editor/timeline/Item.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 19
+    purpose: "Video editor — Item.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "feat: add custom zoom slider with continuous scale control (#513)"
+      - date: "2026-04-26"
+        action: edit
+        source: "user"
+        message: "auto zoom marker"
+  "src/components/video-editor/timeline/ItemGlass.module.css":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Video editor — ItemGlass.module.css."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-28"
+        action: edit
+        source: "user"
+        message: "feat: speed thing"
+      - date: "2026-02-12"
+        action: edit
+        source: "user"
+        message: "UX improved for timeline"
+  "src/components/video-editor/timeline/KeyframeMarkers.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Video editor — KeyframeMarkers.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-06"
+        action: edit
+        source: "user"
+        message: "keyframe snap and move"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/video-editor/timeline/Row.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 7
+    purpose: "Video editor — Row.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-12"
+        action: edit
+        source: "user"
+        message: "more timeline ux qol improvements:"
+  "src/components/video-editor/timeline/Subrow.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Video editor — Subrow.tsx."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/video-editor/timeline/TimelineEditor.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-26"
+    change_count: 44
+    purpose: "Video editor — TimelineEditor.tsx."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "rm blur"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "global auto toggle"
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+  "src/components/video-editor/timeline/TimelineWrapper.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 14
+    purpose: "Video editor — TimelineWrapper.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-11"
+        action: edit
+        source: "user"
+        message: "fix: resolve comments"
+      - date: "2026-05-11"
+        action: edit
+        source: "user"
+        message: "fix: update snap guide color"
+      - date: "2026-04-09"
+        action: edit
+        source: "user"
+        message: "fix: clamp trim handle end position to timeline boundary"
+  "src/components/video-editor/timeline/zoomSuggestionUtils.ts":
+    status: active
+    source: "user:Yusuf Mohsinally"
+    created: "2026-02-28"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "Video editor — zoomSuggestionUtils.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "global auto toggle"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-02-28"
+        action: write
+        source: "user"
+        message: "refactor: move zoom suggestion logic into timeline util"
+  "src/components/video-editor/types.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-07"
+    change_count: 33
+    purpose: "Video editor — types.ts."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "global auto toggle"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "Add text animation presets for annotations"
+  "src/components/video-editor/videoPlayback/constants.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 8
+    purpose: "Video editor — constants.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "fix auto focus export sync"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: edit
+        source: "user"
+        message: "✨ feat: enhance adaptive smoothing for auto-follow zoom in video playback"
+      - date: "2026-04-01"
+        action: edit
+        source: "user"
+        message: "✨ feat: smooth auto-follow zoom with export parity"
+  "src/components/video-editor/videoPlayback/cursorFollowUtils.ts":
+    status: active
+    source: "user:xKeCo"
+    created: "2026-04-01"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "Video editor — cursorFollowUtils.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "fix auto focus export sync"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: edit
+        source: "user"
+        message: "✨ feat: enhance adaptive smoothing for auto-follow zoom in video playback"
+      - date: "2026-04-01"
+        action: write
+        source: "user"
+        message: "✨ feat: smooth auto-follow zoom with export parity"
+  "src/components/video-editor/videoPlayback/cursorRenderer.test.ts":
+    status: active
+    source: "user:Zhihao Fang"
+    created: "2026-07-03"
+    last_modified: "2026-07-03"
+    change_count: 1
+    purpose: "Tests for cursorRenderer."
+    change_log:
+      - date: "2026-07-03"
+        action: write
+        source: "user"
+        message: "fix(video-editor): correct cursor drift after cropping"
+  "src/components/video-editor/videoPlayback/cursorRenderer.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-07-12"
+    change_count: 6
+    purpose: "Video editor — cursorRenderer.ts."
+    change_log:
+      - date: "2026-07-12"
+        action: edit
+        source: "user"
+        message: "refactor(cursor): use DEFAULT_CROP_REGION constant, drop redundant default"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): correct cursor drift after cropping"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+  "src/components/video-editor/videoPlayback/focusUtils.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Video editor — focusUtils.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "zoom precision position"
+      - date: "2026-04-03"
+        action: edit
+        source: "user"
+        message: "✨ feat: enhance adaptive smoothing for auto-follow zoom in video playback"
+      - date: "2026-03-15"
+        action: edit
+        source: "user"
+        message: "feat: narrow PR to zoom transitions and motion blur"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+  "src/components/video-editor/videoPlayback/index.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Video editor — index.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/components/video-editor/videoPlayback/layoutUtils.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 17
+    purpose: "Video editor — layoutUtils.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-18"
+        action: edit
+        source: "user"
+        message: "feat(cursor): clip native cursor to camera-aware video bounds in preview and export"
+      - date: "2026-04-11"
+        action: edit
+        source: "user"
+        message: "feat: add dual frame webcam layout preset (#347)"
+      - date: "2026-04-11"
+        action: edit
+        source: "user"
+        message: "revert: undo local merge of PR #347"
+  "src/components/video-editor/videoPlayback/mathUtils.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 6
+    purpose: "Video editor — mathUtils.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: edit
+        source: "user"
+        message: "feat: narrow PR to zoom transitions and motion blur"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  "src/components/video-editor/videoPlayback/motionSmoothing.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Video editor — motionSmoothing.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/components/video-editor/videoPlayback/overlayUtils.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Video editor — overlayUtils.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "feat: add custom zoom slider with continuous scale control (#513)"
+      - date: "2026-04-01"
+        action: edit
+        source: "user"
+        message: "✨ feat: smooth auto-follow zoom with export parity"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  "src/components/video-editor/videoPlayback/uploadedCursorAssets.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-15"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Video editor — uploadedCursorAssets.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-15"
+        action: write
+        source: "user"
+        message: "feat: add cursor overlay pipeline"
+  "src/components/video-editor/videoPlayback/videoEventHandlers.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-07"
+    change_count: 8
+    purpose: "Video editor — videoEventHandlers.ts."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "preview intentional perf optimizations"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+  "src/components/video-editor/videoPlayback/zoomRegionUtils.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 16
+    purpose: "Video editor — zoomRegionUtils.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "feat: add custom zoom slider with continuous scale control (#513)"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "3d iso,tilt"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "preview intentional perf optimizations"
+  "src/components/video-editor/videoPlayback/zoomSpring.test.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-04"
+    last_modified: "2026-06-04"
+    change_count: 1
+    purpose: "Tests for zoomSpring."
+    change_log:
+      - date: "2026-06-04"
+        action: write
+        source: "user"
+        message: "cleanup follow effect"
+  "src/components/video-editor/videoPlayback/zoomSpring.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-04"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "Video editor — zoomSpring.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: write
+        source: "user"
+        message: "cleanup follow effect"
+  "src/components/video-editor/videoPlayback/zoomTransform.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 9
+    purpose: "Video editor — zoomTransform.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-11"
+        action: edit
+        source: "user"
+        message: "fix: zoom focus now matches indicator position including wallpaper edges"
+      - date: "2026-03-16"
+        action: edit
+        source: "user"
+        message: "fix: increase motion blur intensity range"
+      - date: "2026-03-15"
+        action: edit
+        source: "user"
+        message: "feat: narrow PR to zoom transitions and motion blur"

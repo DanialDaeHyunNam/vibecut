@@ -1,0 +1,272 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/hooks/audioPeaksWorker.ts":
+    status: active
+    source: "user:Davide Mendolia"
+    created: "2026-05-24"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "React hook — audioPeaksWorker.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/hooks/recorderHandle.test.ts":
+    status: active
+    source: "user:neurot1cal"
+    created: "2026-05-26"
+    last_modified: "2026-05-26"
+    change_count: 3
+    purpose: "Tests for recorderHandle."
+    change_log:
+      - date: "2026-05-26"
+        action: edit
+        source: "user"
+        message: "fix: don't stream when the append IPC is unavailable"
+      - date: "2026-05-26"
+        action: edit
+        source: "user"
+        message: "fix: tighten streaming failure handling from re-review"
+      - date: "2026-05-26"
+        action: write
+        source: "user"
+        message: "fix: harden streaming lifecycle and lift it out of the IPC god-module"
+  "src/hooks/recorderHandle.ts":
+    status: active
+    source: "user:neurot1cal"
+    created: "2026-05-26"
+    last_modified: "2026-06-05"
+    change_count: 4
+    purpose: "React hook — recorderHandle.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-26"
+        action: edit
+        source: "user"
+        message: "fix: don't stream when the append IPC is unavailable"
+      - date: "2026-05-26"
+        action: edit
+        source: "user"
+        message: "fix: tighten streaming failure handling from re-review"
+      - date: "2026-05-26"
+        action: write
+        source: "user"
+        message: "fix: harden streaming lifecycle and lift it out of the IPC god-module"
+  "src/hooks/streamingAudioPeaks.ts":
+    status: active
+    source: "user:my_mac"
+    created: "2026-07-06"
+    last_modified: "2026-07-06"
+    change_count: 2
+    purpose: "React hook — streamingAudioPeaks.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-07-06"
+        action: write
+        source: "user"
+        message: "fix: address review — prune race, chunk cap, MIME, streaming waveform"
+  "src/hooks/useAudioLevelMeter.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-07"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "React hook — useAudioLevelMeter.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-13"
+        action: edit
+        source: "user"
+        message: "fix: stabilize lint/typecheck and shortcut typing"
+      - date: "2026-03-08"
+        action: edit
+        source: "user"
+        message: "fix microphone permission in build"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-03-07"
+        action: write
+        source: "user"
+        message: "audio recording and settings"
+  "src/hooks/useAudioPeaks.ts":
+    status: active
+    source: "user:Davide Mendolia"
+    created: "2026-05-24"
+    last_modified: "2026-07-06"
+    change_count: 5
+    purpose: "React hook — useAudioPeaks.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address review — prune race, chunk cap, MIME, streaming waveform"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "improve waveform"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/hooks/useCameraDevices.test.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-27"
+    last_modified: "2026-06-05"
+    change_count: 8
+    purpose: "Tests for useCameraDevices."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-29"
+        action: write
+        source: "user"
+        message: "misc: remove misc changes"
+      - date: "2026-04-29"
+        action: delete
+        source: "user"
+        message: "feat: all changes"
+      - date: "2026-03-27"
+        action: edit
+        source: "user"
+        message: "fix: focusable element when webcam expanded with no devices, add error test"
+  "src/hooks/useCameraDevices.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-27"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "React hook — useCameraDevices.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-27"
+        action: edit
+        source: "user"
+        message: "fix: address coderabbit review (concurrent stream, collapsed label, unified select, test quality)"
+      - date: "2026-03-27"
+        action: edit
+        source: "user"
+        message: "fix: address PR review comments"
+      - date: "2026-03-27"
+        action: write
+        source: "user"
+        message: "feat: add webcam source selector with stable HUD layout"
+  "src/hooks/useEditorHistory.ts":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-02-27"
+    last_modified: "2026-06-05"
+    change_count: 18
+    purpose: "React hook — useEditorHistory.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "global auto toggle"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(editor): Studio Dashboard empty state + project lifecycle"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/hooks/useMicrophoneDevices.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-07"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "React hook — useMicrophoneDevices.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-13"
+        action: edit
+        source: "user"
+        message: "fix: stabilize lint/typecheck and shortcut typing"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-03-07"
+        action: write
+        source: "user"
+        message: "audio recording and settings"
+  "src/hooks/useScreenRecorder.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 76
+    purpose: "React hook — useScreenRecorder.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address CodeRabbit review feedback"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-06-30"
+        action: edit
+        source: "user"
+        message: "fix(recording): pause/resume webcam recorder on native Windows (#45)"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "record permissions prompt"

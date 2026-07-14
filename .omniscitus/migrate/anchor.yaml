@@ -1,0 +1,26 @@
+version: 1
+
+# Pre-migration git state — the point /omniscitus-uninstall reverts to.
+anchor:
+  sha: 6222c17a2aa3fb626ec4f79189d2d391ce9decdb
+  branch: main
+  timestamp: "2026-07-14T02:06:37Z"
+  git_project: true
+
+migrate_version: "0.8.3"
+
+# Files modified OUTSIDE .omniscitus/ by any omniscitus skill.
+footprint:
+  - path: CLAUDE.md
+    action: appended
+    marker: "### 🗂 Omniscitus (auto-tracking)"
+    by: migrate
+    timestamp: "2026-07-14T02:20:00Z"
+  - path: .gitattributes
+    action: created
+    by: migrate
+    timestamp: "2026-07-14T02:20:00Z"
+  - path: .omniscitus/README.md
+    action: created
+    by: migrate
+    timestamp: "2026-07-14T02:20:00Z"

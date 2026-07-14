@@ -1,0 +1,14 @@
+target: electron/ipc/recordingStream.ts
+language: typescript
+framework: vitest
+test_file: electron/ipc/recordingStream.test.ts
+suites:
+  - "RecordingStreamRegistry"
+cases:
+  - title: "streams chunks to disk in order and reports streamed on finalize"
+  - title: "reports not-streamed when no stream was opened"
+  - title: "rejects open when the target path is not writable (open is awaited, not assumed)"
+  - title: "rejects append when no stream is open"
+  - title: "discard closes the stream and removes the partial file"
+  - title: "discard tolerates a missing file"
+  - title: "opening the same file twice replaces the prior stream"

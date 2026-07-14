@@ -1,0 +1,15 @@
+target: src/components/video-editor/customPlaybackSpeed.ts
+language: typescript
+framework: vitest
+test_file: src/components/video-editor/customPlaybackSpeed.test.ts
+suites:
+  - "parseCustomPlaybackSpeedInput"
+cases:
+  - title: "accepts decimal playback speeds"
+  - title: "keeps a single decimal point while typing"
+  - title: "allows sub-1 custom speeds down to the editor minimum"
+  - title: "rejects speeds below the editor minimum"
+  - title: "accepts comma decimal input by normalizing to a dot"
+  - title: "accepts the maximum editor speed"
+  - title: "accepts high speeds that exceed the native preview rate"
+  - title: "rejects speeds above the editor maximum"

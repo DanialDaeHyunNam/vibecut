@@ -1,0 +1,10 @@
+target: tests/e2e/windows-native-checklist.spec.ts
+language: typescript
+framework: playwright
+test_file: tests/e2e/windows-native-checklist.spec.ts
+suites:
+  - "Windows native checklist smoke tests"
+cases:
+  - title: "source selector opens, lists thumbnails, and selects a screen/window source"
+  - title: "launch window opens an existing video into the editor and playback controls respond"
+  - title: "launch window opens an existing project into the editor"

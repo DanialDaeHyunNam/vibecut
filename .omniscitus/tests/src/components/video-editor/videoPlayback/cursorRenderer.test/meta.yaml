@@ -1,0 +1,12 @@
+target: src/components/video-editor/videoPlayback/cursorRenderer.ts
+language: typescript
+framework: vitest
+test_file: src/components/video-editor/videoPlayback/cursorRenderer.test.ts
+suites:
+  - "mapCursorToCroppedViewport"
+cases:
+  - title: "maps positions directly onto the viewport when there is no crop"
+  - title: "re-normalizes a full-frame position into the cropped viewport"
+  - title: "does not drift: a point on the visible cropped content keeps its relative offset"
+  - title: "returns null when the position falls outside the visible crop"
+  - title: "returns null for a degenerate crop"

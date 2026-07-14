@@ -1,0 +1,17 @@
+target: src/components/launch/LaunchWindow.tsx
+language: typescript
+framework: vitest
+test_file: src/components/launch/LaunchWindow.test.tsx
+suites:
+  - "LaunchWindow record button"
+  - "LaunchWindow system language prompt"
+cases:
+  - title: "opens the source selector instead of disabling the primary action when no source is selected"
+  - title: "records immediately after source selection when the record button opened the picker"
+  - title: "does not record after manual source selection"
+  - title: "clears record-after-selection intent when the source picker closes without a selection"
+  - title: "clears record-after-selection intent when opening the source picker fails"
+  - title: "handles selected source polling failures"
+  - title: "starts recording when a source is already selected"
+  - title: "keeps the HUD interactive on Linux so the drag handle can receive pointer events"
+  - title: "grows the HUD overlay tall enough to fit the prompt so its buttons stay clickable"

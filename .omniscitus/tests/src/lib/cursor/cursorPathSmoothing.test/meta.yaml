@@ -1,0 +1,12 @@
+target: src/lib/cursor/cursorPathSmoothing.ts
+language: typescript
+framework: vitest
+test_file: src/lib/cursor/cursorPathSmoothing.test.ts
+suites:
+  - "cursor path smoothing"
+cases:
+  - title: "removes high-frequency jitter while tracking the overall path"
+  - title: "is a passthrough at smoothing 0"
+  - title: "respects visibility gaps and never smooths across them"
+  - title: "is deterministic for identical inputs"
+  - title: "returns null when there is no cursor data"

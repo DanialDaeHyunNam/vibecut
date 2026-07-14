@@ -1,0 +1,21 @@
+target: src/lib/exporter/streamingDecoder.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/streamingDecoder.test.ts
+suites:
+  - "validateDuration"
+  - "shouldFailDecodeEndedEarly"
+cases:
+  - title: "returns scanned duration when container reports Infinity"
+  - title: "returns scanned duration when container reports 0"
+  - title: "returns scanned duration when container reports NaN"
+  - title: "returns scanned duration when container is inflated beyond threshold"
+  - title: "returns container duration when values are close"
+  - title: "returns container duration when scanned is slightly higher"
+  - title: "returns scanned duration when container under-reports beyond threshold"
+  - title: "returns container duration when scanned is zero (corrupted/empty file)"
+  - title: "returns 0 when both container is NaN and scanned is zero"
+  - title: "does not fail once every segment has been satisfied"
+  - title: "fails when decode stops far before the required end"
+  - title: "fails when no frame could be decoded for a non-empty timeline"
+  - title: "fails when the decoder has not reached the reported stream end"

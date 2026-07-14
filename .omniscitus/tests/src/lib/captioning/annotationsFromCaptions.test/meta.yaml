@@ -1,0 +1,15 @@
+target: src/lib/captioning/annotationsFromCaptions.ts
+language: typescript
+framework: vitest
+test_file: src/lib/captioning/annotationsFromCaptions.test.ts
+suites:
+  - "groupPhraseCaptionSegmentsIntoLines"
+  - "captionSegmentsToAnnotationRegions"
+  - "reconcileAutoCaptionTimelineGaps"
+cases:
+  - title: "preserves phrase boundaries when formatting phrase-timestamp captions"
+  - title: "slices a single merged phrase into timed caption lines by word bounds"
+  - title: "uses raw phrase timing instead of shifting caption boundaries"
+  - title: "preserves empty timeline space when word timestamps contain a real pause"
+  - title: "preserves repeated words before grouping in word mode"
+  - title: "does not change regions when the minimum enforced gap is zero"

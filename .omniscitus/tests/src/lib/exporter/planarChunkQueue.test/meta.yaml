@@ -1,0 +1,13 @@
+target: src/lib/exporter/planarChunkQueue.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/planarChunkQueue.test.ts
+suites:
+  - "PlanarChunkQueue"
+cases:
+  - title: "tracks buffered length across pushes and takes"
+  - title: "drains samples in FIFO order across chunk boundaries (mono)"
+  - title: "keeps channels separate and lays them out planar [ch0…, ch1…]"
+  - title: "honors a partial chunk consumed by an earlier take before dropping it"
+  - title: "ignores non-positive pushes/takes"
+  - title: "reconstructs a long stream fed in odd-sized chunks and drained in fixed slices"

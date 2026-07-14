@@ -1,0 +1,11 @@
+target: src/utils/aspectRatioUtils.ts
+language: typescript
+framework: vitest
+test_file: src/utils/aspectRatioUtils.test.ts
+suites:
+  - "getNativeAspectRatioValue"
+cases:
+  - title: "returns the video ratio when no crop region is provided"
+  - title: "applies crop width and height to the video ratio"
+  - title: "falls back when video metadata is zero or non-finite"
+  - title: "falls back when crop dimensions are non-positive or non-finite"

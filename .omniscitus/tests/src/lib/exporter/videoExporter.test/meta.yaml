@@ -1,0 +1,18 @@
+target: src/lib/exporter/videoExporter.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/videoExporter.test.ts
+suites:
+  - "isSourceCopyFastPathEligible"
+  - "getSourceCopyFastPathBlockers"
+  - "waitForEncoderQueueSpace"
+cases:
+  - title: "allows a no-op MP4 export at source dimensions"
+  - title: "rejects timeline edits and frame-level effects"
+  - title: "rejects resizing and overlays"
+  - title: "reports the source-size mismatch that blocks copy-only export"
+  - title: "resolves immediately when the queue already has space"
+  - title: "waits for the queue to drain and then resolves"
+  - title: "throws a hardware-specific error once the queue stays full past the timeout"
+  - title: "throws a generic error for the software encoder once the queue stays full past the timeout"
+  - title: "stops waiting without throwing once cancelled"

@@ -1,0 +1,9 @@
+target: tests/e2e/gif-export.spec.ts
+language: typescript
+framework: playwright
+test_file: tests/e2e/gif-export.spec.ts
+suites:
+  []
+cases:
+  - title: "exports an MP4 from a loaded video"
+  - title: "exports a GIF from a loaded video"

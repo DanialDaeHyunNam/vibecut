@@ -1,0 +1,26 @@
+target: src/lib/exporter/timelineSegments.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/timelineSegments.test.ts
+suites:
+  - "computeKeepSegments"
+  - "splitBySpeed"
+  - "buildSpeedSegments"
+  - "maxTimelineSpeed"
+cases:
+  - title: "returns one full-duration segment when there are no trims"
+  - title: "removes a middle trim, keeping the surrounding spans"
+  - title: "drops a leading trim"
+  - title: "drops a trailing trim that reaches the end"
+  - title: "sorts unordered trims before collapsing"
+  - title: "does not re-emit source for a nested trim (cursor stays monotonic)"
+  - title: "collapses overlapping trims into their union"
+  - title: "annotates every segment with speed 1 when no speed regions apply"
+  - title: "carves a mid-segment speed region, leaving 1x gaps on both sides"
+  - title: "clips a speed region to the keep-segment bounds"
+  - title: "passes an extreme 100x speed through unclamped"
+  - title: "orders multiple regions and fills the gap between them at 1x"
+  - title: "drops sub-segments narrower than the minimum width"
+  - title: "composes trim removal and speed splitting"
+  - title: "returns 1 when nothing is sped up"
+  - title: "reports the fastest segment"

@@ -1,0 +1,112 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/utils/aspectRatioUtils.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Tests for aspectRatioUtils."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: write
+        source: "user"
+        message: "fix native aspect ratio fallback"
+  "src/utils/aspectRatioUtils.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-05"
+    change_count: 12
+    purpose: "Utility — aspectRatioUtils.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: edit
+        source: "user"
+        message: "ux: rename 'Native' aspect ratio label to 'Original'"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "fix native aspect ratio fallback"
+      - date: "2026-03-21"
+        action: edit
+        source: "user"
+        message: "improved vertical split gated behind 9:16"
+  "src/utils/getTestId.ts":
+    status: active
+    source: "user:Marc Diaz"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Utility — getTestId.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "test: cover MP4 editor exports"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat(test): add an e2e test"
+  "src/utils/platformUtils.ts":
+    status: active
+    source: "user:Alessandro Spisso"
+    created: "2025-12-01"
+    last_modified: "2026-06-05"
+    change_count: 6
+    purpose: "Utility — platformUtils.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-16"
+        action: edit
+        source: "user"
+        message: "fix: use existing getPlatform() so the OS based CPU readback check also works in the browser"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-04"
+        action: edit
+        source: "user"
+        message: "feat: implement platform-aware keyboard shortcuts and add IPC handler for platform detection"
+  "src/utils/timeUtils.ts":
+    status: active
+    source: "user:Prayas Lashkari"
+    created: "2026-03-12"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Utility — timeUtils.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-12"
+        action: write
+        source: "user"
+        message: "refactor: added timeUtils"

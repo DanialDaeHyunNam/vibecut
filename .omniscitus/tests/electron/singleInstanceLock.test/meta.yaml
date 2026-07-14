@@ -1,0 +1,10 @@
+target: electron/singleInstanceLock.ts
+language: typescript
+framework: vitest
+test_file: electron/singleInstanceLock.test.ts
+suites:
+  - "acquireStableInstanceLock"
+cases:
+  - title: "prevents a second lock while the owning process is still running"
+  - title: "reclaims a stale lock when its process is gone"
+  - title: "does not remove a fresh empty lock directory"

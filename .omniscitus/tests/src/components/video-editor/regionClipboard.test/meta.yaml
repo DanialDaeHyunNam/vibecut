@@ -1,0 +1,24 @@
+target: src/components/video-editor/regionClipboard.ts
+language: typescript
+framework: vitest
+test_file: src/components/video-editor/regionClipboard.test.ts
+suites:
+  - "zoom attribute copy/paste"
+  - "speed attribute copy/paste"
+  - "annotation copy captures everything"
+  - "paste onto an existing annotation applies styling only"
+  - "paste as a new annotation clones the full copy"
+  - "zoom paste replaces customScale destructively (F4)"
+  - "figureData guard on paste-onto-existing (F5)"
+cases:
+  - title: "round-trips the copyable attributes onto a different clip while keeping its identity/timing"
+  - title: "deep-copies focus so the source and target are decoupled"
+  - title: "copies only the speed value"
+  - title: "captures styling plus content, type, and position"
+  - title: "overwrites the look/feel but keeps the target"
+  - title: "keeps the target"
+  - title: "clones type, content, styling, and position; takes timing/identity from the base"
+  - title: "deep-copies position so source and clone are decoupled"
+  - title: "clears the target"
+  - title: "does not attach figureData onto a non-figure target"
+  - title: "applies figureData when the target is itself a figure"

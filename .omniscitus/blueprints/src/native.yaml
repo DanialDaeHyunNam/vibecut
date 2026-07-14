@@ -1,0 +1,104 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/native/client.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-31"
+    change_count: 4
+    purpose: "Renderer-side native API typings/glue — client.ts."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(electron): project import/new-project IPC, menu wiring, HUD/editor anti-flash"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: Add projectFolder to user preferences"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "src/native/contracts.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-06-05"
+    change_count: 8
+    purpose: "Renderer-side native API typings/glue — contracts.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(electron): project import/new-project IPC, menu wiring, HUD/editor anti-flash"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: Add projectFolder to user preferences"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: apply native cursor visual effects"
+  "src/native/hooks/useCursorRecordingData.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Renderer-side native API typings/glue — useCursorRecordingData.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "src/native/hooks/useCursorTelemetry.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Renderer-side native API typings/glue — useCursorTelemetry.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "src/native/index.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Renderer-side native API typings/glue — index.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"

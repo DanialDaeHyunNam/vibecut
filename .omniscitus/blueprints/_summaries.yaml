@@ -1,0 +1,139 @@
+summaries:
+  docs:
+    description: "Upstream documentation"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 8
+  electron:
+    description: "Electron main process — windows, IPC, recording, native bridges"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 49
+  electron/ipc:
+    description: "IPC handlers between renderer and main process"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 4
+  electron/native:
+    description: "Platform helpers — Swift ScreenCaptureKit (macOS), C++ WGC (Windows)"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 21
+  electron/native-bridge:
+    description: "JS bridges to platform-native capture/cursor helpers"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 12
+  electron/native-bridge/cursor:
+    description: "Native cursor/click tracking — feeds auto-zoom keyframes"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 8
+  electron/recording:
+    description: "Recording session orchestration in main process"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 2
+  scripts:
+    description: "Build/dev scripts — native helper builds, capture smoke tests"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 14
+  src:
+    description: "Renderer source — React UI, editor, effect/export libraries, i18n"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 316
+  src/assets:
+    description: "Bundled cursor images and static assets"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 27
+  src/components:
+    description: "React components — launch flow, video editor, shared UI primitives"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 91
+  src/components/launch:
+    description: "Recording start flow — source picker, device toggles, countdown"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 12
+  src/components/ui:
+    description: "Shared Radix-based UI primitives (buttons, sliders, dialogs)"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 20
+  src/components/video-editor:
+    description: "Timeline editor — zoom/annotation panels, playback, export dialogs"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 59
+  src/hooks:
+    description: "React hooks — recorder handle, audio peaks, shortcuts"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 11
+  src/i18n:
+    description: "Internationalization — 14-language locale strings + loader"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 94
+  src/lib:
+    description: "Core renderer logic — composite layout, effects, recording sessions, prefs"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 76
+  src/lib/captioning:
+    description: "Local Whisper STT captioning — model mgmt, segment styling"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 10
+  src/lib/cursor:
+    description: "Cursor telemetry playback & effect rendering"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 5
+  src/lib/exporter:
+    description: "Export pipeline — frame rendering, encoding, MP4/GIF muxing"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 35
+  src/native:
+    description: "Renderer-side typings/glue for preload-exposed native APIs"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 5
+  src/utils:
+    description: "Small shared utilities"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 5
+  tests:
+    description: "Playwright e2e + integration checklists"
+    generated_at: 2026-07-14
+    generated_by: migrate
+    stale: false
+    file_count: 4

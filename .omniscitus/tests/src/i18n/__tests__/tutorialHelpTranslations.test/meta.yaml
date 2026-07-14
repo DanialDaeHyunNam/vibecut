@@ -1,0 +1,8 @@
+target: src/i18n/__tests__/tutorialHelpTranslations.test.ts
+language: typescript
+framework: vitest
+test_file: src/i18n/__tests__/tutorialHelpTranslations.test.ts
+suites:
+  - "TutorialHelp translations"
+cases:
+  - title: "defines every tutorial help key for each supported locale"

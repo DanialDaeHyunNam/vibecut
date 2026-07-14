@@ -1,0 +1,292 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "scripts/before-pack.cjs":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-05"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "Build/dev script — before-pack.cjs."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-05"
+        action: write
+        source: "user"
+        message: "bundle tts"
+  "scripts/build-macos-screencapturekit-helper.mjs":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-11"
+    last_modified: "2026-06-06"
+    change_count: 7
+    purpose: "Build/dev script — build-macos-screencapturekit-helper.mjs."
+    change_log:
+      - date: "2026-06-06"
+        action: edit
+        source: "user"
+        message: "fix 2"
+      - date: "2026-06-06"
+        action: edit
+        source: "user"
+        message: "helper fix"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "fix: address native mac review feedback"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add macOS editable cursor overlay support"
+  "scripts/build-windows-wgc-helper.mjs":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-06-15"
+    change_count: 5
+    purpose: "Build/dev script — build-windows-wgc-helper.mjs."
+    change_log:
+      - date: "2026-06-15"
+        action: edit
+        source: "user"
+        message: "ci: prepare v1.5.0 release pipeline"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows recording pause"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "refactor: Migrate the powershell cursor script into the native cursor-sampler.cpp"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "scripts/build_macos.sh":
+    status: active
+    source: "user:samirpatil2000"
+    created: "2026-04-03"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Build/dev script — build_macos.sh."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: write
+        source: "user"
+        message: "feat: configure macOS hardened runtime, entitlements, and build environment variables for notarization"
+  "scripts/capture-openscreen-preview.mjs":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Build/dev script — capture-openscreen-preview.mjs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: align native cursor preview and export"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add windows cursor preview diagnostics"
+  "scripts/diagnostic-tool/README.md":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-06-26"
+    last_modified: "2026-06-26"
+    change_count: 2
+    purpose: "Build/dev script — README.md."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "fix(diagnostic-tool): address CodeRabbit review"
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+  "scripts/diagnostic-tool/diagnostic.bat":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-06-26"
+    last_modified: "2026-06-26"
+    change_count: 2
+    purpose: "Build/dev script — diagnostic.bat."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "fix(diagnostic-tool): address CodeRabbit review"
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+  "scripts/diagnostic-tool/diagnostic.mjs":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-06-26"
+    last_modified: "2026-06-26"
+    change_count: 2
+    purpose: "Build/dev script — diagnostic.mjs."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "fix(diagnostic-tool): address CodeRabbit review"
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+  "scripts/diagnostic-tool/diagnostic.sh":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-06-26"
+    last_modified: "2026-06-26"
+    change_count: 1
+    purpose: "Build/dev script — diagnostic.sh."
+    change_log:
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+  "scripts/fetch-caption-model.mjs":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-06-05"
+    last_modified: "2026-06-06"
+    change_count: 3
+    purpose: "Build/dev script — fetch-caption-model.mjs."
+    change_log:
+      - date: "2026-06-06"
+        action: edit
+        source: "user"
+        message: "helper fix"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-06-05"
+        action: write
+        source: "user"
+        message: "bundle tts"
+  "scripts/i18n-check.mjs":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 9
+    purpose: "Build/dev script — i18n-check.mjs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "Remove unnecessary newline in i18n-check.mjs"
+      - date: "2026-04-18"
+        action: edit
+        source: "user"
+        message: "chore: fix linting issue"
+      - date: "2026-04-16"
+        action: edit
+        source: "user"
+        message: "fix: remove unused COMPARE_LOCALES variable in i18n-check.mjs to pass Biome lint"
+      - date: "2026-04-13"
+        action: edit
+        source: "user"
+        message: "feat: add zh-TW locale"
+  "scripts/inspect-native-cursor-click-bounce.mjs":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Build/dev script — inspect-native-cursor-click-bounce.mjs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "fix: preserve native cursor click interactions"
+  "scripts/test-windows-native-cursor.mjs":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Build/dev script — test-windows-native-cursor.mjs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "test: harden Windows cursor diagnostic"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: record native cursor click events"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: capture quick native cursor clicks"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: apply native cursor visual effects"
+  "scripts/test-windows-wgc-helper.mjs":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 12
+    purpose: "Build/dev script — test-windows-wgc-helper.mjs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "fix: relax cursor capture helper validation"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "fix: enforce cursor-free WGC editable mode"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: resolve selected Windows microphone"

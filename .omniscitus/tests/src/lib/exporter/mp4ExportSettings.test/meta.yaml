@@ -1,0 +1,13 @@
+target: src/lib/exporter/mp4ExportSettings.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/mp4ExportSettings.test.ts
+suites:
+  - "calculateMp4ExportSettings"
+cases:
+  - title: "keeps 1080p explicit even when it upscales short native captures"
+  - title: "keeps lower quality presets below the source size when downscaling is useful"
+  - title: "keeps 1080p explicit even for 720p source dimensions"
+  - title: "preserves source-sized High exports when the source is already 1080p or larger"
+  - title: "keeps portrait presets on the short side"
+  - title: "uses the cropped area as the effective source size"

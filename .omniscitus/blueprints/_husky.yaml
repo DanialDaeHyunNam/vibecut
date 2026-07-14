@@ -1,0 +1,20 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  ".husky/pre-commit":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-07"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: ".husky — pre-commit."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: write
+        source: "user"
+        message: "pre commit hook and biome lint check"

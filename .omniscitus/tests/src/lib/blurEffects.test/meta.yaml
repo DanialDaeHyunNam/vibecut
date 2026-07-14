@@ -1,0 +1,12 @@
+target: src/lib/blurEffects.ts
+language: typescript
+framework: vitest
+test_file: src/lib/blurEffects.test.ts
+suites:
+  - "applyMosaicToImageData"
+  - "blur color helpers"
+cases:
+  - title: "collapses each block to a single representative color"
+  - title: "reduces unique pixel colors, making the transform information-lossy"
+  - title: "normalizes invalid blur colors to white"
+  - title: "returns a dark overlay when black blur color is selected"

@@ -1,0 +1,9 @@
+target: src/lib/exporter/gifExporter.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/gifExporter.test.ts
+suites:
+  - "calculateOutputDimensions"
+cases:
+  - title: "uses the selected aspect ratio for scaled GIF exports"
+  - title: "fits original-size GIF exports within the source bounds at the selected aspect ratio"

@@ -1,0 +1,11 @@
+target: src/lib/nativeMacRecording.ts
+language: typescript
+framework: vitest
+test_file: src/lib/nativeMacRecording.test.ts
+suites:
+  - "nativeMacRecording source parsing"
+cases:
+  - title: "parses Electron window source ids into ScreenCaptureKit window ids"
+  - title: "rejects non-window source ids for window parsing"
+  - title: "parses Electron display source ids into ScreenCaptureKit display ids"
+  - title: "rejects non-display source ids for display parsing"

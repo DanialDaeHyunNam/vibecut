@@ -1,0 +1,19 @@
+target: src/lib/compositeLayout.ts
+language: typescript
+framework: vitest
+test_file: src/lib/compositeLayout.test.ts
+suites:
+  - "computeCompositeLayout"
+cases:
+  - title: "anchors the overlay in the lower-right corner"
+  - title: "scales small screen content up to the export canvas when no padding is applied"
+  - title: "keeps the overlay within the configured stage fraction while preserving aspect ratio"
+  - title: "produces consistent webcam size across landscape and portrait aspect ratios"
+  - title: "scales the webcam proportionally as webcamSizePreset increases"
+  - title: "clamps webcamSizePreset to the valid range (10–50)"
+  - title: "snaps rounding-only source aspect gaps to the full canvas"
+  - title: "centers the combined screen and webcam stack in vertical stack mode"
+  - title: "keeps the screen full-canvas and omits the webcam when dimensions are unavailable in stack mode"
+  - title: "uses a 2:1 split layout in dual frame mode"
+  - title: "forces circular and square masks to use square dimensions"
+  - title: "applies larger rounding for the rounded webcam mask"

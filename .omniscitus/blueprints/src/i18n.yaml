@@ -1,0 +1,2376 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/i18n/__tests__/tutorialHelpTranslations.test.ts":
+    status: active
+    source: "user:SimulAffect"
+    created: "2026-04-12"
+    last_modified: "2026-05-30"
+    change_count: 12
+    purpose: "Tests for tutorialHelpTranslations."
+    change_log:
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "Fix tutorial help translations test for pt-BR locale"
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "Add Portuguese (pt-BR) dialogs to tutorial help translations"
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "Add Portuguese (pt-BR) dialogs to tutorial help translations"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: edit
+        source: "user"
+        message: "i18n: Fixed language sorting and added italian to config and test"
+  "src/i18n/config.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 15
+    purpose: "i18n infrastructure — config.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: edit
+        source: "user"
+        message: "i18n: Fixed language sorting and added italian to config and test"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "Add Russian localization"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "added ar to config and added fallback to the main.ts recordingStatus"
+  "src/i18n/loader.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "i18n infrastructure — loader.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "feat(i18n): auto-discover valid locales and harden language menu"
+      - date: "2026-03-21"
+        action: write
+        source: "user"
+        message: "lang support"
+  "src/i18n/locales/ar/common.json":
+    status: active
+    source: "user:i1Zeus"
+    created: "2026-05-03"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "implement i18n support and dynamic application menu in electron main process"
+      - date: "2026-05-03"
+        action: write
+        source: "user"
+        message: "feat: add Arabic localization support for editor, launch, settings, shortcuts, timeline, common, and dialogs modules"
+  "src/i18n/locales/ar/dialogs.json":
+    status: active
+    source: "user:i1Zeus"
+    created: "2026-05-03"
+    last_modified: "2026-05-31"
+    change_count: 3
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: write
+        source: "user"
+        message: "feat: add Arabic localization support for editor, launch, settings, shortcuts, timeline, common, and dialogs modules"
+  "src/i18n/locales/ar/editor.json":
+    status: active
+    source: "user:i1Zeus"
+    created: "2026-05-03"
+    last_modified: "2026-06-28"
+    change_count: 11
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/ar/launch.json":
+    status: active
+    source: "user:i1Zeus"
+    created: "2026-05-03"
+    last_modified: "2026-07-06"
+    change_count: 6
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+  "src/i18n/locales/ar/settings.json":
+    status: active
+    source: "user:i1Zeus"
+    created: "2026-05-03"
+    last_modified: "2026-07-07"
+    change_count: 19
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/ar/shortcuts.json":
+    status: active
+    source: "user:i1Zeus"
+    created: "2026-05-03"
+    last_modified: "2026-06-25"
+    change_count: 5
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: write
+        source: "user"
+        message: "feat: add Arabic localization support for editor, launch, settings, shortcuts, timeline, common, and dialogs modules"
+  "src/i18n/locales/ar/timeline.json":
+    status: active
+    source: "user:i1Zeus"
+    created: "2026-05-03"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: write
+        source: "user"
+        message: "feat: add Arabic localization support for editor, launch, settings, shortcuts, timeline, common, and dialogs modules"
+  "src/i18n/locales/en/common.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "implement i18n support and dynamic application menu in electron main process"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-03-22"
+        action: edit
+        source: "user"
+        message: "feat: Implement `PlaybackControls` component and add i18n files for common terms in English, Spanish, and Chinese."
+      - date: "2026-03-21"
+        action: write
+        source: "user"
+        message: "lang support"
+  "src/i18n/locales/en/dialogs.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-31"
+    change_count: 8
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-18"
+        action: edit
+        source: "user"
+        message: "resolve conflicts: adopt main's tutorial i18n restructuring"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "Revert \"Merge pull request #365 from AmitwalaH/fix-tutorial-translations\""
+      - date: "2026-04-07"
+        action: edit
+        source: "user"
+        message: "Merge pull request #365 from AmitwalaH/fix-tutorial-translations"
+  "src/i18n/locales/en/editor.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-28"
+    change_count: 15
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/en/launch.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-07-06"
+    change_count: 18
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Update NotesWindow integration and improve accessibility"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Feat: Added lint Button"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/en/settings.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-07-07"
+    change_count: 39
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "global auto toggle"
+  "src/i18n/locales/en/shortcuts.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-25"
+    change_count: 7
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+  "src/i18n/locales/en/timeline.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-03"
+    change_count: 6
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-06-03"
+        action: edit
+        source: "user"
+        message: "global auto toggle"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-09"
+        action: edit
+        source: "user"
+        message: "Add the Shortcut Blur"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "feat: add blur selection (rectangle, oval)"
+  "src/i18n/locales/es/common.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-03-22"
+        action: edit
+        source: "user"
+        message: "feat: Implement `PlaybackControls` component and add i18n files for common terms in English, Spanish, and Chinese."
+      - date: "2026-03-21"
+        action: write
+        source: "user"
+        message: "lang support"
+  "src/i18n/locales/es/dialogs.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-31"
+    change_count: 8
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-18"
+        action: edit
+        source: "user"
+        message: "resolve conflicts: adopt main's tutorial i18n restructuring"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "Revert \"Merge pull request #365 from AmitwalaH/fix-tutorial-translations\""
+      - date: "2026-04-07"
+        action: edit
+        source: "user"
+        message: "Merge pull request #365 from AmitwalaH/fix-tutorial-translations"
+  "src/i18n/locales/es/editor.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-28"
+    change_count: 14
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/es/launch.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-07-06"
+    change_count: 14
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+  "src/i18n/locales/es/settings.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-07-07"
+    change_count: 33
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/es/shortcuts.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-25"
+    change_count: 7
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+  "src/i18n/locales/es/timeline.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-09"
+        action: edit
+        source: "user"
+        message: "Add the Shortcut Blur"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "feat: add blur selection (rectangle, oval)"
+      - date: "2026-03-21"
+        action: write
+        source: "user"
+        message: "lang support"
+  "src/i18n/locales/fr/common.json":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-04-07"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-07"
+        action: write
+        source: "user"
+        message: "feat(i18n): add French translations for various application components"
+  "src/i18n/locales/fr/dialogs.json":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-04-07"
+    last_modified: "2026-05-31"
+    change_count: 5
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Update French translations for dialogs, editor, and settings"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "fix(i18n): sync tutorial help translations"
+      - date: "2026-04-07"
+        action: write
+        source: "user"
+        message: "feat(i18n): add French translations for various application components"
+  "src/i18n/locales/fr/editor.json":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-04-07"
+    last_modified: "2026-06-28"
+    change_count: 14
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/fr/launch.json":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-04-07"
+    last_modified: "2026-07-06"
+    change_count: 7
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+  "src/i18n/locales/fr/settings.json":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-04-07"
+    last_modified: "2026-07-07"
+    change_count: 25
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/fr/shortcuts.json":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-04-07"
+    last_modified: "2026-06-25"
+    change_count: 7
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+  "src/i18n/locales/fr/timeline.json":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-04-07"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-09"
+        action: edit
+        source: "user"
+        message: "Add the Shortcut Blur"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "feat: add blur selection (rectangle, oval)"
+      - date: "2026-04-07"
+        action: write
+        source: "user"
+        message: "feat(i18n): add French translations for various application components"
+  "src/i18n/locales/it/common.json":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-19"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: write
+        source: "user"
+        message: "i18n: Added italian"
+  "src/i18n/locales/it/dialogs.json":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-19"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: write
+        source: "user"
+        message: "i18n: Added italian"
+  "src/i18n/locales/it/editor.json":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-19"
+    last_modified: "2026-06-28"
+    change_count: 6
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/it/launch.json":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-19"
+    last_modified: "2026-07-06"
+    change_count: 5
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-19"
+        action: write
+        source: "user"
+        message: "i18n: Added italian"
+  "src/i18n/locales/it/settings.json":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-19"
+    last_modified: "2026-07-07"
+    change_count: 11
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "Add text animation i18n keys to all locale files"
+  "src/i18n/locales/it/shortcuts.json":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-19"
+    last_modified: "2026-06-25"
+    change_count: 6
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: edit
+        source: "user"
+        message: "i18n: CR update src/i18n/locales/it/shortcuts.json"
+  "src/i18n/locales/it/timeline.json":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-19"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: write
+        source: "user"
+        message: "i18n: Added italian"
+  "src/i18n/locales/ja-JP/common.json":
+    status: active
+    source: "user:ichi"
+    created: "2026-04-19"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "日本語訳を改善"
+      - date: "2026-04-19"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+  "src/i18n/locales/ja-JP/dialogs.json":
+    status: active
+    source: "user:ichi"
+    created: "2026-04-19"
+    last_modified: "2026-05-31"
+    change_count: 4
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "日本語訳を改善"
+      - date: "2026-04-19"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+  "src/i18n/locales/ja-JP/editor.json":
+    status: active
+    source: "user:ichi"
+    created: "2026-04-19"
+    last_modified: "2026-06-28"
+    change_count: 12
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/ja-JP/launch.json":
+    status: active
+    source: "user:ichi"
+    created: "2026-04-19"
+    last_modified: "2026-07-06"
+    change_count: 7
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+  "src/i18n/locales/ja-JP/settings.json":
+    status: active
+    source: "user:ichi"
+    created: "2026-04-19"
+    last_modified: "2026-07-07"
+    change_count: 21
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/ja-JP/shortcuts.json":
+    status: active
+    source: "user:ichi"
+    created: "2026-04-19"
+    last_modified: "2026-06-25"
+    change_count: 5
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+  "src/i18n/locales/ja-JP/timeline.json":
+    status: active
+    source: "user:ichi"
+    created: "2026-04-19"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "日本語訳を改善"
+      - date: "2026-04-19"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+  "src/i18n/locales/ko-KR/common.json":
+    status: active
+    source: "user:kwakseongjae"
+    created: "2026-04-10"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-18"
+        action: edit
+        source: "user"
+        message: "feat(i18n): fill missing Korean (ko-KR) translation keys"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-10"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Korean (ko-KR) localization"
+  "src/i18n/locales/ko-KR/dialogs.json":
+    status: active
+    source: "user:kwakseongjae"
+    created: "2026-04-10"
+    last_modified: "2026-05-31"
+    change_count: 3
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-10"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Korean (ko-KR) localization"
+  "src/i18n/locales/ko-KR/editor.json":
+    status: active
+    source: "user:kwakseongjae"
+    created: "2026-04-10"
+    last_modified: "2026-06-28"
+    change_count: 13
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/ko-KR/launch.json":
+    status: active
+    source: "user:kwakseongjae"
+    created: "2026-04-10"
+    last_modified: "2026-07-06"
+    change_count: 7
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+  "src/i18n/locales/ko-KR/settings.json":
+    status: active
+    source: "user:kwakseongjae"
+    created: "2026-04-10"
+    last_modified: "2026-07-07"
+    change_count: 23
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/ko-KR/shortcuts.json":
+    status: active
+    source: "user:kwakseongjae"
+    created: "2026-04-10"
+    last_modified: "2026-06-25"
+    change_count: 6
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "fix missing locales"
+  "src/i18n/locales/ko-KR/timeline.json":
+    status: active
+    source: "user:kwakseongjae"
+    created: "2026-04-10"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-02"
+        action: edit
+        source: "user"
+        message: "fix missing locales"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-10"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Korean (ko-KR) localization"
+  "src/i18n/locales/pt-BR/common.json":
+    status: active
+    source: "user:nxc-7"
+    created: "2026-05-12"
+    last_modified: "2026-05-12"
+    change_count: 1
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+  "src/i18n/locales/pt-BR/dialogs.json":
+    status: active
+    source: "user:nxc-7"
+    created: "2026-05-12"
+    last_modified: "2026-05-12"
+    change_count: 1
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+  "src/i18n/locales/pt-BR/editor.json":
+    status: active
+    source: "user:nxc-7"
+    created: "2026-05-12"
+    last_modified: "2026-06-28"
+    change_count: 5
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+  "src/i18n/locales/pt-BR/launch.json":
+    status: active
+    source: "user:nxc-7"
+    created: "2026-05-12"
+    last_modified: "2026-07-06"
+    change_count: 3
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+  "src/i18n/locales/pt-BR/settings.json":
+    status: active
+    source: "user:nxc-7"
+    created: "2026-05-12"
+    last_modified: "2026-07-07"
+    change_count: 5
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+  "src/i18n/locales/pt-BR/shortcuts.json":
+    status: active
+    source: "user:nxc-7"
+    created: "2026-05-12"
+    last_modified: "2026-06-25"
+    change_count: 2
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+  "src/i18n/locales/pt-BR/timeline.json":
+    status: active
+    source: "user:nxc-7"
+    created: "2026-05-12"
+    last_modified: "2026-05-12"
+    change_count: 1
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add Brazilian Portuguese (pt-BR) translation"
+  "src/i18n/locales/ru/common.json":
+    status: active
+    source: "user:psychosomat"
+    created: "2026-05-06"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: write
+        source: "user"
+        message: "Add Russian localization"
+  "src/i18n/locales/ru/dialogs.json":
+    status: active
+    source: "user:psychosomat"
+    created: "2026-05-06"
+    last_modified: "2026-05-31"
+    change_count: 3
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: write
+        source: "user"
+        message: "Add Russian localization"
+  "src/i18n/locales/ru/editor.json":
+    status: active
+    source: "user:psychosomat"
+    created: "2026-05-06"
+    last_modified: "2026-06-28"
+    change_count: 9
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/ru/launch.json":
+    status: active
+    source: "user:psychosomat"
+    created: "2026-05-06"
+    last_modified: "2026-07-06"
+    change_count: 6
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+  "src/i18n/locales/ru/settings.json":
+    status: active
+    source: "user:psychosomat"
+    created: "2026-05-06"
+    last_modified: "2026-07-07"
+    change_count: 18
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/ru/shortcuts.json":
+    status: active
+    source: "user:psychosomat"
+    created: "2026-05-06"
+    last_modified: "2026-06-25"
+    change_count: 5
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: write
+        source: "user"
+        message: "Add Russian localization"
+  "src/i18n/locales/ru/timeline.json":
+    status: active
+    source: "user:psychosomat"
+    created: "2026-05-06"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-06"
+        action: write
+        source: "user"
+        message: "Add Russian localization"
+  "src/i18n/locales/tr/common.json":
+    status: active
+    source: "user:Nadir A."
+    created: "2026-04-07"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-07"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Turkish (tr) locale support"
+  "src/i18n/locales/tr/dialogs.json":
+    status: active
+    source: "user:Nadir A."
+    created: "2026-04-07"
+    last_modified: "2026-05-31"
+    change_count: 4
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "fix(i18n): sync tutorial help translations"
+      - date: "2026-04-07"
+        action: write
+        source: "user"
+        message: "feat(i18n): add Turkish (tr) locale support"
+  "src/i18n/locales/tr/editor.json":
+    status: active
+    source: "user:Nadir A."
+    created: "2026-04-07"
+    last_modified: "2026-06-28"
+    change_count: 12
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/tr/launch.json":
+    status: active
+    source: "user:Nadir A."
+    created: "2026-04-07"
+    last_modified: "2026-07-06"
+    change_count: 9
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "fix: address native mac review feedback"
+  "src/i18n/locales/tr/settings.json":
+    status: active
+    source: "user:Nadir A."
+    created: "2026-04-07"
+    last_modified: "2026-07-07"
+    change_count: 25
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/tr/shortcuts.json":
+    status: active
+    source: "user:Nadir A."
+    created: "2026-04-07"
+    last_modified: "2026-06-25"
+    change_count: 6
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+  "src/i18n/locales/tr/timeline.json":
+    status: active
+    source: "user:Nadir A."
+    created: "2026-04-07"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-09"
+        action: edit
+        source: "user"
+        message: "Add the Shortcut Blur"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix some little issues"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "feat: add blur selection (rectangle, oval)"
+  "src/i18n/locales/vi/common.json":
+    status: active
+    source: "user:google-labs-jules[bot]"
+    created: "2026-04-30"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-04-30"
+        action: write
+        source: "user"
+        message: "Add Vietnamese i18n support (vi locale)"
+  "src/i18n/locales/vi/dialogs.json":
+    status: active
+    source: "user:google-labs-jules[bot]"
+    created: "2026-04-30"
+    last_modified: "2026-05-31"
+    change_count: 3
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-30"
+        action: write
+        source: "user"
+        message: "Add Vietnamese i18n support (vi locale)"
+  "src/i18n/locales/vi/editor.json":
+    status: active
+    source: "user:google-labs-jules[bot]"
+    created: "2026-04-30"
+    last_modified: "2026-06-28"
+    change_count: 8
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/vi/launch.json":
+    status: active
+    source: "user:google-labs-jules[bot]"
+    created: "2026-04-30"
+    last_modified: "2026-07-06"
+    change_count: 6
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+  "src/i18n/locales/vi/settings.json":
+    status: active
+    source: "user:google-labs-jules[bot]"
+    created: "2026-04-30"
+    last_modified: "2026-07-07"
+    change_count: 17
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/vi/shortcuts.json":
+    status: active
+    source: "user:google-labs-jules[bot]"
+    created: "2026-04-30"
+    last_modified: "2026-06-25"
+    change_count: 5
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-30"
+        action: write
+        source: "user"
+        message: "Add Vietnamese i18n support (vi locale)"
+  "src/i18n/locales/vi/timeline.json":
+    status: active
+    source: "user:google-labs-jules[bot]"
+    created: "2026-04-30"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-30"
+        action: write
+        source: "user"
+        message: "Add Vietnamese i18n support (vi locale)"
+  "src/i18n/locales/zh-CN/common.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-13"
+        action: edit
+        source: "user"
+        message: "feat: add zh-TW locale"
+      - date: "2026-03-22"
+        action: edit
+        source: "user"
+        message: "feat: Implement `PlaybackControls` component and add i18n files for common terms in English, Spanish, and Chinese."
+  "src/i18n/locales/zh-CN/dialogs.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-31"
+    change_count: 7
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-18"
+        action: edit
+        source: "user"
+        message: "resolve conflicts: adopt main's tutorial i18n restructuring"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "Revert \"Merge pull request #365 from AmitwalaH/fix-tutorial-translations\""
+      - date: "2026-04-07"
+        action: edit
+        source: "user"
+        message: "Merge pull request #365 from AmitwalaH/fix-tutorial-translations"
+  "src/i18n/locales/zh-CN/editor.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-28"
+    change_count: 15
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/zh-CN/launch.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-07-06"
+    change_count: 14
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+  "src/i18n/locales/zh-CN/settings.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-07-07"
+    change_count: 32
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/zh-CN/shortcuts.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-25"
+    change_count: 7
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+  "src/i18n/locales/zh-CN/timeline.json":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-09"
+        action: edit
+        source: "user"
+        message: "Add the Shortcut Blur"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "Fix formatting and locale config"
+      - date: "2026-04-08"
+        action: edit
+        source: "user"
+        message: "feat: add blur selection (rectangle, oval)"
+  "src/i18n/locales/zh-TW/common.json":
+    status: active
+    source: "user:Dopiz"
+    created: "2026-04-13"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "UI translation strings — common."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "chore: sync i18n locale keys"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-13"
+        action: write
+        source: "user"
+        message: "feat: add zh-TW locale"
+  "src/i18n/locales/zh-TW/dialogs.json":
+    status: active
+    source: "user:Dopiz"
+    created: "2026-04-13"
+    last_modified: "2026-05-31"
+    change_count: 3
+    purpose: "UI translation strings — dialogs."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-13"
+        action: write
+        source: "user"
+        message: "feat: add zh-TW locale"
+  "src/i18n/locales/zh-TW/editor.json":
+    status: active
+    source: "user:Dopiz"
+    created: "2026-04-13"
+    last_modified: "2026-06-28"
+    change_count: 13
+    purpose: "UI translation strings — editor."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "fix(video-editor): address CodeRabbit review of region clipboard"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "feat(video-editor): region copy/paste and shared text-editing guard"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "src/i18n/locales/zh-TW/launch.json":
+    status: active
+    source: "user:Dopiz"
+    created: "2026-04-13"
+    last_modified: "2026-07-06"
+    change_count: 8
+    purpose: "UI translation strings — launch."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Enhance NotesToolbar with tooltips and localization support"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Improve tray layout documentation"
+      - date: "2026-05-23"
+        action: edit
+        source: "user"
+        message: "Add vertical tray layout toggle"
+  "src/i18n/locales/zh-TW/settings.json":
+    status: active
+    source: "user:Dopiz"
+    created: "2026-04-13"
+    last_modified: "2026-07-07"
+    change_count: 21
+    purpose: "UI translation strings — settings."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "feat: raise playback-speed cap to 100x"
+      - date: "2026-07-04"
+        action: edit
+        source: "user"
+        message: "refactor(i18n): drop duplicate annotation.failedImageUpload key"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "reactive zoom"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "i18n: add Studio Dashboard, New Project, and import strings across locales"
+  "src/i18n/locales/zh-TW/shortcuts.json":
+    status: active
+    source: "user:Dopiz"
+    created: "2026-04-13"
+    last_modified: "2026-06-25"
+    change_count: 5
+    purpose: "UI translation strings — shortcuts."
+    change_log:
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "First implementation of copy"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-13"
+        action: write
+        source: "user"
+        message: "feat: add zh-TW locale"
+  "src/i18n/locales/zh-TW/timeline.json":
+    status: active
+    source: "user:Dopiz"
+    created: "2026-04-13"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "UI translation strings — timeline."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+      - date: "2026-04-13"
+        action: write
+        source: "user"
+        message: "feat: add zh-TW locale"

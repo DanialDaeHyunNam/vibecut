@@ -1,0 +1,60 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/contexts/I18nContext.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-06-05"
+    change_count: 11
+    purpose: "React context — I18nContext.tsx."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: edit
+        source: "user"
+        message: "i18n: Fix application language selection with electronAPI setLocale"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "feat(i18n): auto-discover valid locales and harden language menu"
+      - date: "2026-04-06"
+        action: edit
+        source: "user"
+        message: "fix(i18n): resolve prompt persistence and language menu behavior"
+  "src/contexts/ShortcutsContext.tsx":
+    status: active
+    source: "user:FabLrc"
+    created: "2026-02-26"
+    last_modified: "2026-05-28"
+    change_count: 6
+    purpose: "React context — ShortcutsContext.tsx."
+    change_log:
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-13"
+        action: edit
+        source: "user"
+        message: "fix: stabilize lint/typecheck and shortcut typing"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"

@@ -1,0 +1,10 @@
+target: src/lib/exporter/frameRenderer.ts
+language: typescript
+framework: vitest
+test_file: src/lib/exporter/frameRenderer.test.ts
+suites:
+  - "drawWebcamFrameImage"
+cases:
+  - title: "draws the webcam frame into the layout rect by default"
+  - title: "mirrors around the webcam rect without changing the crop"
+  - title: "restores the canvas context if mirrored drawing fails"

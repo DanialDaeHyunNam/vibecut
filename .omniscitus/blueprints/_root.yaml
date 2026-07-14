@@ -1,0 +1,666 @@
+version: 1
+updated: 2026-07-14T02:12:59.942Z
+
+files:
+  ".editorconfig":
+    status: active
+    source: "user:Siddharth"
+    created: 2026-03-07
+    last_modified: 2026-05-24
+    change_count: 2
+    purpose: "Root config — .editorconfig."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: write
+        source: "user"
+        message: "feat: add .editorconfig"
+  ".env.example":
+    status: active
+    source: "user:samirpatil2000"
+    created: 2026-04-03
+    last_modified: 2026-05-24
+    change_count: 2
+    purpose: "Root config — .env.example."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-03"
+        action: write
+        source: "user"
+        message: "feat: configure macOS hardened runtime, entitlements, and build environment variables for notarization"
+  ".envrc":
+    status: active
+    source: "user:Enriquefft"
+    created: 2026-04-12
+    last_modified: 2026-05-24
+    change_count: 2
+    purpose: "Root config — .envrc."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-12"
+        action: write
+        source: "user"
+        message: "feat: add Nix flake with dev shell, package, and NixOS/Home Manager modules"
+  ".gitignore":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-06-05
+    change_count: 22
+    purpose: "Root config — .gitignore."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "bundle tts"
+      - date: "2026-05-25"
+        action: edit
+        source: "user"
+        message: "Added .import files to .gitignore"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "chore: ignore macos native build outputs"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  ".nvmrc":
+    status: active
+    source: "user:Marcus Schiesser"
+    created: 2026-03-19
+    last_modified: 2026-05-24
+    change_count: 2
+    purpose: "Root config — .nvmrc."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-19"
+        action: write
+        source: "user"
+        message: "Pin Node and npm versions"
+  "AGENTS.md":
+    status: active
+    source: "user:EtienneLescot"
+    created: 2026-06-22
+    last_modified: 2026-07-05
+    change_count: 5
+    purpose: "Root config — AGENTS.md."
+    change_log:
+      - date: "2026-07-05"
+        action: edit
+        source: "user"
+        message: "docs(release): document frozen release branches and the v1.6.0 incident"
+      - date: "2026-06-30"
+        action: edit
+        source: "user"
+        message: "feat(ci): release candidate pipeline (prerelease + promote workflows)"
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "chore(agents): remove Mavis-specific 'Agent team' section from AGENTS.md"
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "fix(harness): correct native helper and i18n locale paths in agent docs"
+      - date: "2026-06-22"
+        action: write
+        source: "user"
+        message: "chore: bootstrap Mavis agent team for the repo"
+  "CLAUDE.md":
+    status: active
+    source: "claude:claude"
+    created: 2026-07-14
+    last_modified: 2026-07-14T02:12:40.796Z
+    change_count: 2
+    purpose: "Project entrypoint doc — cinerec goals, OpenScreen fork base, port 3732, roadmap vs Recorded/Screen Studio."
+    change_log:
+      - date: 2026-07-14T02:12:40.796Z
+        action: edit
+        source: "claude:Dan"
+      - date: "2026-07-14"
+        action: write
+        source: "claude"
+        message: "docs: add project CLAUDE.md (cinerec fork bootstrap)"
+  "CONTRIBUTING.md":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-06-19
+    change_count: 6
+    purpose: "Upstream contribution guide."
+    change_log:
+      - date: "2026-06-19"
+        action: edit
+        source: "user"
+        message: "Add merged PR issue bookkeeping"
+      - date: "2026-06-15"
+        action: edit
+        source: "user"
+        message: "Update repository links for maintained fork"
+      - date: "2026-05-30"
+        action: edit
+        source: "user"
+        message: "chore: format codebase and update i18n locale files"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+  LICENSE:
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-05-24
+    change_count: 3
+    purpose: "MIT license — original copyright (Siddharth Vaddem) must be preserved."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "README.md":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-07-01
+    change_count: 35
+    purpose: "Upstream OpenScreen README — install, platform capture notes, community links."
+    change_log:
+      - date: "2026-07-01"
+        action: edit
+        source: "user"
+        message: "fix: restore README screenshots and localize image read errors"
+      - date: "2026-06-24"
+        action: edit
+        source: "user"
+        message: "docs+ci: add public ROADMAP.md, README link, and #🗺️・roadmap auto-post"
+      - date: "2026-06-24"
+        action: edit
+        source: "user"
+        message: "docs: link GitHub Issues in Community section"
+      - date: "2026-06-24"
+        action: edit
+        source: "user"
+        message: "docs: move Need help link into a Community section at the bottom"
+      - date: "2026-06-24"
+        action: edit
+        source: "user"
+        message: "docs: add Discord badge, tech/platform badges, and Need help link"
+  "ROADMAP.md":
+    status: active
+    source: "user:EtienneLescot"
+    created: 2026-06-24
+    last_modified: 2026-07-06
+    change_count: 11
+    purpose: "Upstream roadmap."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "docs(roadmap): add blur regions restoration to stability tier"
+      - date: "2026-06-25"
+        action: edit
+        source: "user"
+        message: "docs(roadmap): add 'Site & documentation' tier; clean smoke-test noise"
+      - date: "2026-06-24"
+        action: edit
+        source: "user"
+        message: "docs(roadmap): seventh smoke test via PR merge"
+      - date: "2026-06-24"
+        action: edit
+        source: "user"
+        message: "docs(roadmap): sixth smoke test - variable deleted, pin-as-state pure"
+      - date: "2026-06-24"
+        action: edit
+        source: "user"
+        message: "docs(roadmap): fifth smoke test - pin permission granted"
+  "biome.json":
+    status: active
+    source: "user:Idris Gadi"
+    created: 2026-01-27
+    last_modified: 2026-05-24
+    change_count: 4
+    purpose: "Root config — biome.json."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-21"
+        action: edit
+        source: "user"
+        message: "style: migrate biome config to 2.4.12 and fix formatting (CRLF → LF)"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-01-27"
+        action: write
+        source: "user"
+        message: "feat: remove eslint and add biome for formatter and linter"
+  "components.json":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-05-24
+    change_count: 4
+    purpose: "Root config — components.json."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "electron-builder.json5":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-06-15
+    change_count: 25
+    purpose: "Desktop packaging config (dmg/exe/AppImage)."
+    change_log:
+      - date: "2026-06-15"
+        action: edit
+        source: "user"
+        message: "ci: prepare v1.5.0 release pipeline"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "bundle tts"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "fix(build): use sharp prebuilt instead of compiling from source (fixes macOS CI)"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "custom cursors"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+  "flake.lock":
+    status: active
+    source: "user:Enriquefft"
+    created: 2026-04-12
+    last_modified: 2026-05-24
+    change_count: 2
+    purpose: "Root config — flake.lock."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-12"
+        action: write
+        source: "user"
+        message: "feat: add Nix flake with dev shell, package, and NixOS/Home Manager modules"
+  "flake.nix":
+    status: active
+    source: "user:Enriquefft"
+    created: 2026-04-12
+    last_modified: 2026-05-24
+    change_count: 3
+    purpose: "Root config — flake.nix."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-12"
+        action: edit
+        source: "user"
+        message: "fix(nix): correct Electron binary path to libexec/electron"
+      - date: "2026-04-12"
+        action: write
+        source: "user"
+        message: "feat: add Nix flake with dev shell, package, and NixOS/Home Manager modules"
+  "index.html":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-05-31
+    change_count: 4
+    purpose: "Renderer HTML entry."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(editor): Studio Dashboard empty state + project lifecycle"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "macos.entitlements":
+    status: active
+    source: "user:samirpatil2000"
+    created: 2026-04-03
+    last_modified: 2026-05-24
+    change_count: 3
+    purpose: "macOS entitlements for screen capture permissions."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-08"
+        action: edit
+        source: "user"
+        message: "fix(macos): add NSScreenCaptureUsageDescription and screen-capture entitlement"
+      - date: "2026-04-03"
+        action: write
+        source: "user"
+        message: "feat: configure macOS hardened runtime, entitlements, and build environment variables for notarization"
+  "package-lock.json":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-07-09
+    change_count: 56
+    purpose: "Root config — package-lock.json."
+    change_log:
+      - date: "2026-07-09"
+        action: edit
+        source: "user"
+        message: "fix: address review feedback (webcam freeze, O(1) audio accumulator)"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Chore: Upgrade to Tiptap for enhanced note-taking functionality"
+      - date: "2026-06-27"
+        action: edit
+        source: "user"
+        message: "refactor(ci): Global refactoring of pipeline workflows while addressing current technical debt"
+      - date: "2026-06-04"
+        action: edit
+        source: "user"
+        message: "version bump"
+  "package.json":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-07-05
+    change_count: 80
+    purpose: "npm manifest — dev/build scripts incl. native helper builds (build:native:mac/win)."
+    change_log:
+      - date: "2026-07-05"
+        action: edit
+        source: "user"
+        message: "chore(release): bump to 1.6.0 [skip ci]"
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Chore: Upgrade to Tiptap for enhanced note-taking functionality"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Remove unused allowScripts section from package.json"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Notes is working, and not showing in the screen recorder"
+      - date: "2026-06-30"
+        action: edit
+        source: "user"
+        message: "chore(release): bump to 1.6.0-rc.1 [skip ci]"
+  "playwright.config.ts":
+    status: active
+    source: "user:Marc Diaz"
+    created: 2026-03-16
+    last_modified: 2026-05-24
+    change_count: 2
+    purpose: "Root config — playwright.config.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat(test): add an e2e test"
+  "postcss.config.cjs":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-05-24
+    change_count: 4
+    purpose: "Root config — postcss.config.cjs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "tailwind.config.cjs":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-05-24
+    change_count: 7
+    purpose: "Root config — tailwind.config.cjs."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-13"
+        action: edit
+        source: "user"
+        message: "refactor: clean up imports and streamline JSX formatting in LaunchWindow component"
+      - date: "2026-03-12"
+        action: edit
+        source: "user"
+        message: "refactor: add new animations and boxShadow styles for mic panel and recording effects"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-01-20"
+        action: edit
+        source: "user"
+        message: "accordion & settings cleanup"
+  "tsconfig.json":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-05-24
+    change_count: 5
+    purpose: "Root config — tsconfig.json."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2026-01-20"
+        action: edit
+        source: "user"
+        message: "fix build errors"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "tsconfig.node.json":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-05-24
+    change_count: 5
+    purpose: "Root config — tsconfig.node.json."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "vite.config.ts":
+    status: active
+    source: "user:Siddharth"
+    created: 2025-11-28
+    last_modified: 2026-06-01
+    change_count: 9
+    purpose: "Vite + vite-plugin-electron config — dev server drives the Electron shell."
+    change_log:
+      - date: "2026-06-01"
+        action: edit
+        source: "user"
+        message: "captions: run Whisper in a Web Worker, move auto-captions button to timeline"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add macos screencapturekit helper"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "feat: add video transcriptions (in-browser auto captions)"
+      - date: "2026-04-23"
+        action: edit
+        source: "user"
+        message: "style: fix linting errors for biome check"
+  "vitest.browser.config.ts":
+    status: active
+    source: "user:Marc Diaz"
+    created: 2026-04-07
+    last_modified: 2026-05-24
+    change_count: 3
+    purpose: "Root config — vitest.browser.config.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-07"
+        action: edit
+        source: "user"
+        message: "refactor: remove extraneous comments"
+      - date: "2026-04-07"
+        action: write
+        source: "user"
+        message: "feat: use export testing"
+  "vitest.config.ts":
+    status: active
+    source: "user:Nikhil Solanki"
+    created: 2025-12-25
+    last_modified: 2026-06-27
+    change_count: 9
+    purpose: "Root config — vitest.config.ts."
+    change_log:
+      - date: "2026-06-27"
+        action: edit
+        source: "user"
+        message: "fix(ci): address maintainer review feedback"
+      - date: "2026-05-26"
+        action: edit
+        source: "user"
+        message: "fix: harden streaming lifecycle and lift it out of the IPC god-module"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-07"
+        action: edit
+        source: "user"
+        message: "fix: tests + how to write them"
+      - date: "2026-04-29"
+        action: edit
+        source: "user"
+        message: "misc: remove misc changes"
+  ".gitattributes":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-14
+    last_modified: 2026-07-14T02:12:59.942Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-14T02:12:59.942Z
+        action: write
+        source: "claude:Dan"

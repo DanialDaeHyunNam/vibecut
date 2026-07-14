@@ -1,0 +1,12 @@
+target: src/components/video-editor/videoPlayback/zoomSpring.ts
+language: typescript
+framework: vitest
+test_file: src/components/video-editor/videoPlayback/zoomSpring.test.ts
+suites:
+  - "zoom spring chase"
+cases:
+  - title: "resetZoomSpring snaps every axis exactly to the target"
+  - title: "eases into a jumped target instead of snapping (velocity continuity)"
+  - title: "converges to a static target without overshooting it"
+  - title: "does not overshoot when the target reverses mid-motion"
+  - title: "steps each axis independently"

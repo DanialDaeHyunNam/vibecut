@@ -1,0 +1,1144 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "electron/diagnostics/main-log-buffer.test.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-06-26"
+    last_modified: "2026-06-26"
+    change_count: 1
+    purpose: "Tests for main-log-buffer."
+    change_log:
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+  "electron/diagnostics/main-log-buffer.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-06-26"
+    last_modified: "2026-06-26"
+    change_count: 1
+    purpose: "Diagnostics — main-log-buffer.ts."
+    change_log:
+      - date: "2026-06-26"
+        action: write
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+  "electron/electron-env.d.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 55
+    purpose: "Electron main process — electron-env.d.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: stream >2GB recordings into OPFS so long videos can export"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Notes is working, and not showing in the screen recorder"
+      - date: "2026-06-19"
+        action: edit
+        source: "user"
+        message: "Chain recording after source selection"
+      - date: "2026-06-02"
+        action: edit
+        source: "user"
+        message: "fix vertical layout"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(electron): project import/new-project IPC, menu wiring, HUD/editor anti-flash"
+  "electron/globalShortcut.ts":
+    status: active
+    source: "user:Yauheni Bandziukevich"
+    created: "2026-05-28"
+    last_modified: "2026-06-05"
+    change_count: 5
+    purpose: "Electron main process — globalShortcut.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: preserve working shortcut when new registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: show error feedback when global shortcut registration fails"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "fix: convert special keys to valid Electron accelerators"
+      - date: "2026-05-28"
+        action: write
+        source: "user"
+        message: "feat: add configurable global shortcut to open app"
+  "electron/i18n.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2026-03-21"
+    last_modified: "2026-05-24"
+    change_count: 7
+    purpose: "Electron main process — i18n.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-19"
+        action: edit
+        source: "user"
+        message: "i18n: Add italian (and missing russian) language to window main locale"
+      - date: "2026-05-03"
+        action: edit
+        source: "user"
+        message: "implement lightweight i18n support for electron main process"
+      - date: "2026-04-30"
+        action: edit
+        source: "user"
+        message: "Add Vietnamese i18n support (vi locale)"
+      - date: "2026-04-19"
+        action: edit
+        source: "user"
+        message: "feat(i18n): add Japanese locale and update translations for existing locales"
+  "electron/ipc/handlers.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 87
+    purpose: "Main-process IPC — handlers.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address review — prune race, chunk cap, MIME, streaming waveform"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: stream >2GB recordings into OPFS so long videos can export"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Notes is working, and not showing in the screen recorder"
+      - date: "2026-06-27"
+        action: edit
+        source: "user"
+        message: "refactor(macos): address review — drop captureBounds validator and ready-event field"
+      - date: "2026-06-23"
+        action: edit
+        source: "user"
+        message: "fix(macos): correct cursor offset in single-window capture"
+  "electron/ipc/nativeBridge.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-31"
+    change_count: 5
+    purpose: "Main-process IPC — nativeBridge.ts."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(electron): project import/new-project IPC, menu wiring, HUD/editor anti-flash"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: Add projectFolder to user preferences"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "electron/ipc/recordingStream.test.ts":
+    status: active
+    source: "user:neurot1cal"
+    created: "2026-05-26"
+    last_modified: "2026-05-26"
+    change_count: 1
+    purpose: "Tests for recordingStream."
+    change_log:
+      - date: "2026-05-26"
+        action: write
+        source: "user"
+        message: "fix: harden streaming lifecycle and lift it out of the IPC god-module"
+  "electron/ipc/recordingStream.ts":
+    status: active
+    source: "user:neurot1cal"
+    created: "2026-05-26"
+    last_modified: "2026-06-05"
+    change_count: 2
+    purpose: "Main-process IPC — recordingStream.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-26"
+        action: write
+        source: "user"
+        message: "fix: harden streaming lifecycle and lift it out of the IPC god-module"
+  "electron/main.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-06-28"
+    change_count: 47
+    purpose: "Electron main process — window lifecycle, recording orchestration."
+    change_log:
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Update window handling and title for NotesWindow"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Notes is working, and not showing in the screen recorder"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+      - date: "2026-06-19"
+        action: edit
+        source: "user"
+        message: "Fix duplicate app instances"
+      - date: "2026-06-19"
+        action: edit
+        source: "user"
+        message: "Guard duplicate HUD creation"
+  "electron/native-bridge/cursor/adapter.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Native cursor/click tracking bridge — adapter.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "electron/native-bridge/cursor/recording/factory.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-06-05"
+    change_count: 8
+    purpose: "Native cursor/click tracking bridge — factory.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add macOS editable cursor overlay support"
+      - date: "2026-05-10"
+        action: edit
+        source: "user"
+        message: "remove macos cursor highlight; wire telemetry session for non-windows"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "fix: address maintainer platform regressions"
+  "electron/native-bridge/cursor/recording/macNativeCursorRecordingSession.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-05-12"
+    last_modified: "2026-06-05"
+    change_count: 6
+    purpose: "Native cursor/click tracking bridge — macNativeCursorRecordingSession.ts."
+    change_log:
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "fix: address review comments on PR #671"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: capture native cursor bitmaps on macOS"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-18"
+        action: edit
+        source: "user"
+        message: "feat(cursor): clip native cursor to camera-aware video bounds in preview and export"
+  "electron/native-bridge/cursor/recording/session.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Native cursor/click tracking bridge — session.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add windows native cursor capture and rendering"
+  "electron/native-bridge/cursor/recording/telemetryRecordingSession.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Native cursor/click tracking bridge — telemetryRecordingSession.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: align native cursor preview and export"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add windows native cursor capture and rendering"
+  "electron/native-bridge/cursor/recording/windowsNativeRecordingSession.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-07-07"
+    change_count: 15
+    purpose: "Native cursor/click tracking bridge — windowsNativeRecordingSession.ts."
+    change_log:
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "fix(cursor): use screen.dipToScreenRect for multi-monitor origin"
+      - date: "2026-07-07"
+        action: edit
+        source: "user"
+        message: "fix(cursor): normalize sampler position against physical bounds"
+      - date: "2026-06-02"
+        action: edit
+        source: "user"
+        message: "fix: resolve cursor-sampler telemetry not working"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "refactor: Migrate the powershell cursor script into the native cursor-sampler.cpp"
+  "electron/native-bridge/cursor/recording/windowsNativeRecordingSession.types.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-26"
+    last_modified: "2026-05-24"
+    change_count: 8
+    purpose: "Native cursor/click tracking bridge — windowsNativeRecordingSession.types.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "test: harden Windows cursor diagnostic"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: record native cursor click events"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: capture quick native cursor clicks"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: apply native cursor visual effects"
+  "electron/native-bridge/cursor/telemetryCursorAdapter.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Native cursor/click tracking bridge — telemetryCursorAdapter.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "electron/native-bridge/services/cursorService.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Native bridge service — cursorService.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "electron/native-bridge/services/projectService.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-31"
+    change_count: 5
+    purpose: "Native bridge service — projectService.ts."
+    change_log:
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(electron): project import/new-project IPC, menu wiring, HUD/editor anti-flash"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: Add projectFolder to user preferences"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "electron/native-bridge/services/systemService.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Native bridge service — systemService.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "electron/native-bridge/store.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Native bridge service — store.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat: add unified native bridge foundation"
+  "electron/native/README.md":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-06-22"
+    change_count: 14
+    purpose: "Electron main process — README.md."
+    change_log:
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "fix(wgc-capture): drop pre-flight H.264 MFT check, keep sink-failure diagnostic"
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "fix(wgc-capture): pre-flight H.264 MFT check + actionable error"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add macOS editable cursor overlay support"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: compose mac native capture with media"
+  "electron/native/screencapturekit/Package.swift":
+    status: active
+    source: "user:Etienne"
+    created: "2026-05-12"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "macOS ScreenCaptureKit native helper (Swift) — Package.swift."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: add macOS editable cursor overlay support"
+      - date: "2026-05-12"
+        action: write
+        source: "user"
+        message: "feat: add macos screencapturekit helper"
+  "electron/native/screencapturekit/Sources/OpenScreenMacOSCursorHelper/main.swift":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-05-12"
+    last_modified: "2026-05-29"
+    change_count: 7
+    purpose: "macOS ScreenCaptureKit native helper (Swift) — main.swift."
+    change_log:
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "fix: address review comments on PR #671"
+      - date: "2026-05-29"
+        action: edit
+        source: "user"
+        message: "feat: capture native cursor bitmaps on macOS"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "fix: address follow-up review comments"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "fix: address native mac review feedback"
+  "electron/native/screencapturekit/Sources/OpenScreenScreenCaptureKitHelper/main.swift":
+    status: active
+    source: "user:Etienne"
+    created: "2026-05-12"
+    last_modified: "2026-06-27"
+    change_count: 7
+    purpose: "macOS ScreenCaptureKit native helper (Swift) — main.swift."
+    change_log:
+      - date: "2026-06-27"
+        action: edit
+        source: "user"
+        message: "refactor(macos): address review — drop captureBounds validator and ready-event field"
+      - date: "2026-06-23"
+        action: edit
+        source: "user"
+        message: "fix(macos): correct cursor offset in single-window capture"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-13"
+        action: edit
+        source: "user"
+        message: "fix: address native mac review feedback"
+      - date: "2026-05-12"
+        action: edit
+        source: "user"
+        message: "feat: support pausing macOS native recordings"
+  "electron/native/wgc-capture/CMakeLists.txt":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-06-15"
+    change_count: 8
+    purpose: "Windows Graphics Capture native helper (C++) — CMakeLists.txt."
+    change_log:
+      - date: "2026-06-15"
+        action: edit
+        source: "user"
+        message: "ci: prepare v1.5.0 release pipeline"
+      - date: "2026-06-02"
+        action: edit
+        source: "user"
+        message: "fix: resolve cursor-sampler telemetry not working"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "refactor: Migrate the powershell cursor script into the native cursor-sampler.cpp"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: support DirectShow virtual webcams"
+  "electron/native/wgc-capture/src/audio_sample_utils.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Windows Graphics Capture native helper (C++) — audio_sample_utils.cpp."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows recording pause"
+      - date: "2026-05-10"
+        action: edit
+        source: "user"
+        message: "fix: normalize native Windows audio for AAC"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: resolve selected Windows microphone"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: align native mixed audio timeline"
+  "electron/native/wgc-capture/src/audio_sample_utils.h":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Windows Graphics Capture native helper (C++) — audio_sample_utils.h."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows recording pause"
+      - date: "2026-05-10"
+        action: edit
+        source: "user"
+        message: "fix: normalize native Windows audio for AAC"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: resolve selected Windows microphone"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: align native mixed audio timeline"
+  "electron/native/wgc-capture/src/cursor-sampler.cpp":
+    status: active
+    source: "user:Luca Fontanot"
+    created: "2026-05-20"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Windows Graphics Capture native helper (C++) — cursor-sampler.cpp."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "fix: Thread detach before teardown is race-prone."
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "fix: Add <algorithm> include for std::max"
+      - date: "2026-05-20"
+        action: write
+        source: "user"
+        message: "refactor: Migrate the powershell cursor script into the native cursor-sampler.cpp"
+  "electron/native/wgc-capture/src/dshow_webcam_capture.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 6
+    purpose: "Windows Graphics Capture native helper (C++) — dshow_webcam_capture.cpp."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Address webcam sidecar review feedback"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: harden native recorder review paths"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+  "electron/native/wgc-capture/src/dshow_webcam_capture.h":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 3
+    purpose: "Windows Graphics Capture native helper (C++) — dshow_webcam_capture.h."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "fix: support DirectShow virtual webcams"
+  "electron/native/wgc-capture/src/main.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-06-26"
+    change_count: 17
+    purpose: "Windows Graphics Capture native helper (C++) — main.cpp."
+    change_log:
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "fix(wgc): capture per-step stop timing, bump timeout, add diagnostic tool"
+      - date: "2026-06-02"
+        action: edit
+        source: "user"
+        message: "fix: resolve cursor-sampler telemetry not working"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows recording pause"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+  "electron/native/wgc-capture/src/mf_encoder.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-06-22"
+    change_count: 9
+    purpose: "Windows Graphics Capture native helper (C++) — mf_encoder.cpp."
+    change_log:
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "fix(wgc-capture): drop pre-flight H.264 MFT check, keep sink-failure diagnostic"
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "refactor(wgc-capture): log MFTEnumEx HRESULT and rename mediaType param"
+      - date: "2026-06-22"
+        action: edit
+        source: "user"
+        message: "fix(wgc-capture): pre-flight H.264 MFT check + actionable error"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Address webcam sidecar review feedback"
+  "electron/native/wgc-capture/src/mf_encoder.h":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "Windows Graphics Capture native helper (C++) — mf_encoder.h."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: add native Windows webcam composition"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "electron/native/wgc-capture/src/monitor_utils.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Windows Graphics Capture native helper (C++) — monitor_utils.cpp."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "electron/native/wgc-capture/src/monitor_utils.h":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "Windows Graphics Capture native helper (C++) — monitor_utils.h."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "electron/native/wgc-capture/src/wasapi_loopback_capture.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Windows Graphics Capture native helper (C++) — wasapi_loopback_capture.cpp."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: resolve selected Windows microphone"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: add native Windows microphone capture"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "electron/native/wgc-capture/src/wasapi_loopback_capture.h":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Windows Graphics Capture native helper (C++) — wasapi_loopback_capture.h."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: resolve selected Windows microphone"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: add native Windows microphone capture"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "electron/native/wgc-capture/src/webcam_capture.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Windows Graphics Capture native helper (C++) — webcam_capture.cpp."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: support DirectShow virtual webcams"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: honor selected native Windows webcam"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows webcam composition"
+  "electron/native/wgc-capture/src/webcam_capture.h":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Windows Graphics Capture native helper (C++) — webcam_capture.h."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-22"
+        action: edit
+        source: "user"
+        message: "Fix native Windows webcam sidecar capture"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: support DirectShow virtual webcams"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: honor selected native Windows webcam"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows webcam composition"
+  "electron/native/wgc-capture/src/wgc_session.cpp":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Windows Graphics Capture native helper (C++) — wgc_session.cpp."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "fix: enforce cursor-free WGC editable mode"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: add native Windows window capture"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "electron/native/wgc-capture/src/wgc_session.h":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-05-24"
+    change_count: 5
+    purpose: "Windows Graphics Capture native helper (C++) — wgc_session.h."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-16"
+        action: edit
+        source: "user"
+        message: "fix: enforce cursor-free WGC editable mode"
+      - date: "2026-05-06"
+        action: edit
+        source: "user"
+        message: "feat: add Windows cursor capture mode"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "feat: add native Windows window capture"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "feat: add native Windows recorder helper"
+  "electron/preload.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 56
+    purpose: "Preload bridge — exposes native APIs to the renderer."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: stream >2GB recordings into OPFS so long videos can export"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Notes is working, and not showing in the screen recorder"
+      - date: "2026-06-19"
+        action: edit
+        source: "user"
+        message: "Chain recording after source selection"
+      - date: "2026-06-02"
+        action: edit
+        source: "user"
+        message: "fix vertical layout"
+      - date: "2026-05-31"
+        action: edit
+        source: "user"
+        message: "feat(electron): project import/new-project IPC, menu wiring, HUD/editor anti-flash"
+  "electron/recording/webm-duration.test.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-07-06"
+    last_modified: "2026-07-06"
+    change_count: 2
+    purpose: "Tests for webm-duration."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address CodeRabbit review feedback"
+      - date: "2026-07-06"
+        action: write
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+  "electron/recording/webm-duration.ts":
+    status: active
+    source: "user:neurot1cal"
+    created: "2026-05-25"
+    last_modified: "2026-07-06"
+    change_count: 4
+    purpose: "Recording session management — webm-duration.ts."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: address CodeRabbit review feedback"
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "feat: implement optimized webm patching and saving state"
+      - date: "2026-06-05"
+        action: edit
+        source: "user"
+        message: "cleanup"
+      - date: "2026-05-25"
+        action: write
+        source: "user"
+        message: "fix: stream long recordings to disk and patch WebM duration on save"
+  "electron/singleInstanceLock.test.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-06-19"
+    last_modified: "2026-06-19"
+    change_count: 1
+    purpose: "Tests for singleInstanceLock."
+    change_log:
+      - date: "2026-06-19"
+        action: write
+        source: "user"
+        message: "Fix duplicate app instances"
+  "electron/singleInstanceLock.ts":
+    status: active
+    source: "user:Etienne Lescot"
+    created: "2026-06-19"
+    last_modified: "2026-06-19"
+    change_count: 1
+    purpose: "Electron main process — singleInstanceLock.ts."
+    change_log:
+      - date: "2026-06-19"
+        action: write
+        source: "user"
+        message: "Fix duplicate app instances"
+  "electron/windows.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-03"
+    change_count: 25
+    purpose: "BrowserWindow creation/management."
+    change_log:
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Refactor: Adjust NotesWindow dimensions and update styling"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Update window handling and title for NotesWindow"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Refactor: Adjust dimensions and local storage handling in NotesWindow"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Refactor: Update NotesWindow and createNotesWindow for improved UI"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Refactor: Update URL parameters for notes window"

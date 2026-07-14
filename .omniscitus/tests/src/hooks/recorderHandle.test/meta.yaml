@@ -1,0 +1,17 @@
+target: src/hooks/recorderHandle.ts
+language: typescript
+framework: vitest
+test_file: src/hooks/recorderHandle.test.ts
+suites:
+  - "createRecorderHandle"
+cases:
+  - title: "streams chunks to disk in arrival order and resolves an empty blob"
+  - title: "falls back to a complete in-memory blob when the stream fails to open"
+  - title: "falls back to in-memory buffering when the open IPC call rejects"
+  - title: "waits for in-flight chunk writes before stop resolves (no truncation)"
+  - title: "rejects when a chunk fails to write mid-stream"
+  - title: "treats a rejected append the same as a failed write"
+  - title: "buffers in memory and never opens a stream when no file name is given"
+  - title: "buffers in memory when appendRecordingChunk is unavailable (version skew)"
+  - title: "discard closes the disk stream for a streamed recording"
+  - title: "discard is a no-op when the stream never opened"

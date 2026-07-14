@@ -1,0 +1,140 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "src/App.css":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "src — App.css."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-07"
+        action: edit
+        source: "user"
+        message: "biome linting refactor"
+      - date: "2025-12-01"
+        action: write
+        source: "user"
+        message: "draggable playhead and pause/play shortcut"
+      - date: "2025-11-28"
+        action: write
+        source: "user"
+        message: "motion blur export stale closure"
+  "src/App.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-02"
+    change_count: 19
+    purpose: "Renderer root — routes launch UI vs video editor."
+    change_log:
+      - date: "2026-07-02"
+        action: edit
+        source: "user"
+        message: "Chore: Removed redundant code for the app.tsx resolving coderabbit's issues"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Simplify NotesWindow rendering in App component"
+      - date: "2026-06-28"
+        action: edit
+        source: "user"
+        message: "Refactor: Update NotesWindow integration and improve accessibility"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Refactor: Update URL parameters for notes window"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Notes is working, and not showing in the screen recorder"
+  "src/index.css":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-03"
+    change_count: 12
+    purpose: "src — index.css."
+    change_log:
+      - date: "2026-07-03"
+        action: edit
+        source: "user"
+        message: "Chore: Upgrade to Tiptap for enhanced note-taking functionality"
+      - date: "2026-05-28"
+        action: edit
+        source: "user"
+        message: "Add more built-in annotation font options"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-09"
+        action: edit
+        source: "user"
+        message: "ui revamp"
+      - date: "2026-04-18"
+        action: edit
+        source: "user"
+        message: "rm"
+  "src/main.tsx":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-07-06"
+    change_count: 8
+    purpose: "React renderer entry."
+    change_log:
+      - date: "2026-07-06"
+        action: edit
+        source: "user"
+        message: "fix: abortable, deduplicated OPFS copies; harden waveform and caption paths"
+      - date: "2026-06-26"
+        action: edit
+        source: "user"
+        message: "Refactor: Update URL parameters for notes window"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-16"
+        action: edit
+        source: "user"
+        message: "feat:add countdown before record start"
+      - date: "2026-03-21"
+        action: edit
+        source: "user"
+        message: "lang support"
+  "src/vite-env.d.ts":
+    status: active
+    source: "user:Siddharth"
+    created: "2025-11-28"
+    last_modified: "2026-05-24"
+    change_count: 18
+    purpose: "src — vite-env.d.ts."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "address review audit: persist canonical wallpaper, dedupe types, tighten edge cases"
+      - date: "2026-04-24"
+        action: edit
+        source: "user"
+        message: "resolve asset base path synchronously from preload"
+      - date: "2026-04-05"
+        action: edit
+        source: "user"
+        message: "Refactor: update 'New Recording' dialog and atomize confirm workflow (plus lint fixes)"
+      - date: "2026-04-03"
+        action: edit
+        source: "user"
+        message: "[Feature]: Ability to start a new recording from the editor"

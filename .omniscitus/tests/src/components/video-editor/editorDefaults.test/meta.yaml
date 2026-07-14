@@ -1,0 +1,10 @@
+target: src/components/video-editor/editorDefaults.ts
+language: typescript
+framework: vitest
+test_file: src/components/video-editor/editorDefaults.test.ts
+suites:
+  - "editor defaults SSOT"
+cases:
+  - title: "keeps history defaults aligned with editor defaults"
+  - title: "keeps user preference defaults aligned with editor and export defaults"
+  - title: "keeps project fallback normalization aligned with editor defaults"

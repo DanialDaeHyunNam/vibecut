@@ -1,0 +1,16 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  ".worktrees/wt-9ce78f24/HANDOFF.md":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-07-01"
+    last_modified: "2026-07-01"
+    change_count: 1
+    purpose: ".worktrees/wt-9ce78f24 — HANDOFF.md."
+    change_log:
+      - date: "2026-07-01"
+        action: write
+        source: "user"
+        message: "docs(ai-edition): add HANDOFF.md with implementation summary, file map, deferred work, and continuation guide"

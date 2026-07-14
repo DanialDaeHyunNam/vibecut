@@ -1,0 +1,10 @@
+version: 1
+units:
+  - id: 2026-07-14-cinerec-fork-bootstrap
+    domain: product
+    status: closed
+    created: "2026-07-14"
+    last_updated: "2026-07-14"
+    session_count: 1
+    title: "cinerec bootstrap — forked OpenScreen to clone Recorded/Screen Studio"
+    file: "product/2026-07-14-cinerec-fork-bootstrap.md"

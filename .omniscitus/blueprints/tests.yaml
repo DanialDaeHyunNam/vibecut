@@ -1,0 +1,96 @@
+version: 1
+updated: "2026-07-14"
+
+files:
+  "tests/e2e/gif-export.spec.ts":
+    status: active
+    source: "user:Marc Diaz"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 19
+    purpose: "Tests for gif-export."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "test: tighten export e2e guards"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "test: wait for export bytes in e2e"
+      - date: "2026-05-20"
+        action: edit
+        source: "user"
+        message: "test: cover MP4 editor exports"
+      - date: "2026-04-05"
+        action: edit
+        source: "user"
+        message: "fix: wrap evaluate in try/catch for expected HUD window close"
+  "tests/e2e/windows-native-checklist.spec.ts":
+    status: active
+    source: "user:EtienneLescot"
+    created: "2026-05-05"
+    last_modified: "2026-06-19"
+    change_count: 4
+    purpose: "Tests for windows-native-checklist."
+    change_log:
+      - date: "2026-06-19"
+        action: edit
+        source: "user"
+        message: "Chain recording after source selection"
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-05-05"
+        action: edit
+        source: "user"
+        message: "fix: address native capture review feedback"
+      - date: "2026-05-05"
+        action: write
+        source: "user"
+        message: "test: add Windows native checklist smoke test"
+  "tests/fixtures/sample-inflated-duration.webm":
+    status: active
+    source: "user:Marc Diaz"
+    created: "2026-04-20"
+    last_modified: "2026-05-24"
+    change_count: 4
+    purpose: "E2E/integration test — sample-inflated-duration.webm."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-04-29"
+        action: write
+        source: "user"
+        message: "feat: all changes"
+      - date: "2026-04-23"
+        action: delete
+        source: "user"
+        message: "fix: just use one test"
+      - date: "2026-04-20"
+        action: write
+        source: "user"
+        message: "fix: add webm inflated duration and fix"
+  "tests/fixtures/sample.webm":
+    status: active
+    source: "user:Marc Diaz"
+    created: "2026-03-16"
+    last_modified: "2026-05-24"
+    change_count: 2
+    purpose: "E2E/integration test — sample.webm."
+    change_log:
+      - date: "2026-05-24"
+        action: write
+        source: "user"
+        message: "refactor: split loadSourceFile into loadLocalSourceFile and loadRemoteSourceFile"
+      - date: "2026-03-16"
+        action: write
+        source: "user"
+        message: "feat(test): add an e2e test"
