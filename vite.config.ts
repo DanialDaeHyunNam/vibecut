@@ -11,6 +11,10 @@ export default defineConfig({
 			main: {
 				entry: "electron/main.ts",
 				onstart({ startup }) {
+					// CINEREC_NO_SPAWN: vite가 Electron을 자식으로 띄우지 않는다.
+					// 셸 자식으로 뜨면 macOS TCC가 화면기록 권한을 터미널 계보에 귀속시켜
+					// denied가 되므로, 대신 launchd 직속(`open`)으로 띄운다 (Makefile `rec`).
+					if (process.env.CINEREC_NO_SPAWN) return;
 					const env = { ...process.env };
 					delete env.ELECTRON_RUN_AS_NODE;
 					return startup(["."], { env });
