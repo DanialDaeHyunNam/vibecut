@@ -321,6 +321,61 @@ export function createCountdownOverlayWindow(): BrowserWindow {
 	return win;
 }
 
+// Floating webcam self-view shown while the webcam is enabled. Content
+// protection keeps it out of the screen recording (same mechanism as the
+// Notes window), so the user sees their face but the capture never does.
+export function createWebcamPreviewWindow(deviceId?: string): BrowserWindow {
+	const { workArea } = screen.getPrimaryDisplay();
+	const size = 200;
+	const margin = 24;
+
+	const win = new BrowserWindow({
+		width: size,
+		height: size,
+		x: workArea.x + workArea.width - size - margin,
+		y: workArea.y + workArea.height - size - margin,
+		minWidth: 120,
+		minHeight: 120,
+		frame: false,
+		transparent: true,
+		resizable: true,
+		alwaysOnTop: true,
+		skipTaskbar: true,
+		hasShadow: false,
+		show: false,
+		webPreferences: {
+			preload: path.join(__dirname, "preload.mjs"),
+			additionalArguments: [ASSET_BASE_URL_ARG],
+			nodeIntegration: false,
+			contextIsolation: true,
+			backgroundThrottling: false,
+		},
+	});
+
+	win.setContentProtection(true);
+	win.setAlwaysOnTop(true, "screen-saver");
+	if (process.platform === "darwin") {
+		win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+	}
+	win.once("ready-to-show", () => {
+		win.setContentProtection(true);
+		win.show();
+	});
+
+	const query = `windowType=webcam-preview${deviceId ? `&deviceId=${encodeURIComponent(deviceId)}` : ""}`;
+	if (VITE_DEV_SERVER_URL) {
+		win.loadURL(`${VITE_DEV_SERVER_URL}?${query}`);
+	} else {
+		win.loadFile(path.join(RENDERER_DIST, "index.html"), {
+			query: deviceId
+				? { windowType: "webcam-preview", deviceId }
+				: { windowType: "webcam-preview" },
+		});
+	}
+
+	return win;
+}
+
 // Frameless Notes Window for taking notes during a recording.
 export function createNotesWindow(): BrowserWindow {
 	const win = new BrowserWindow({

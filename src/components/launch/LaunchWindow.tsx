@@ -141,6 +141,21 @@ export function LaunchWindow() {
 	const showMicControls = microphoneEnabled && !recording;
 	const showWebcamControls = webcamEnabled && !recording;
 
+	// Floating self-view: appears while the webcam is on (including during
+	// recording — the window is content-protected so the capture never sees it).
+	useEffect(() => {
+		if (webcamEnabled) {
+			void window.electronAPI.webcamPreviewShow?.(webcamDeviceId);
+		} else {
+			void window.electronAPI.webcamPreviewHide?.();
+		}
+	}, [webcamEnabled, webcamDeviceId]);
+	useEffect(() => {
+		return () => {
+			void window.electronAPI.webcamPreviewHide?.();
+		};
+	}, []);
+
 	const [isMicHovered, setIsMicHovered] = useState(false);
 	const [isMicFocused, setIsMicFocused] = useState(false);
 	const micExpanded = isMicHovered || isMicFocused;
@@ -925,7 +940,7 @@ export function LaunchWindow() {
 						}
 					>
 						{systemAudioEnabled
-							? getIcon("volumeOn", "text-green-400")
+							? getIcon("volumeOn", "text-[#9B84FF]")
 							: getIcon("volumeOff", "text-white/40")}
 					</button>
 					<button
@@ -939,7 +954,7 @@ export function LaunchWindow() {
 						}}
 					>
 						{microphoneEnabled
-							? getIcon("micOn", "text-green-400")
+							? getIcon("micOn", "text-[#9B84FF]")
 							: getIcon("micOff", "text-white/40")}
 					</button>
 					<button
@@ -952,7 +967,7 @@ export function LaunchWindow() {
 						title={webcamEnabled ? t("webcam.disableWebcam") : t("webcam.enableWebcam")}
 					>
 						{webcamEnabled
-							? getIcon("webcamOn", "text-green-400")
+							? getIcon("webcamOn", "text-[#9B84FF]")
 							: getIcon("webcamOff", "text-white/40")}
 					</button>
 					{supportsCursorModeToggle && (
@@ -978,7 +993,7 @@ export function LaunchWindow() {
 						>
 							{getIcon(
 								"cursor",
-								cursorCaptureMode === "editable-overlay" ? "text-green-400" : "text-white/40",
+								cursorCaptureMode === "editable-overlay" ? "text-[#9B84FF]" : "text-white/40",
 							)}
 						</button>
 					)}

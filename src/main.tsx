@@ -20,7 +20,8 @@ if (
 	showNotes ||
 	windowType === "hud-overlay" ||
 	windowType === "source-selector" ||
-	windowType === "countdown-overlay"
+	windowType === "countdown-overlay" ||
+	windowType === "webcam-preview"
 ) {
 	document.body.style.background = "transparent";
 	document.documentElement.style.background = "transparent";

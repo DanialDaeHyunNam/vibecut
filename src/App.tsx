@@ -3,6 +3,7 @@ import { CountdownOverlay } from "./components/launch/CountdownOverlay.tsx";
 import { LaunchWindow } from "./components/launch/LaunchWindow";
 import { NotesWindow } from "./components/launch/NotesWindow.tsx";
 import { SourceSelector } from "./components/launch/SourceSelector";
+import { WebcamPreviewWindow } from "./components/launch/WebcamPreviewWindow";
 import { Toaster } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { useScopedT } from "./contexts/I18nContext";
@@ -30,7 +31,12 @@ export default function App() {
 			setWindowType(type);
 		}
 
-		if (type === "hud-overlay" || type === "source-selector" || type === "countdown-overlay") {
+		if (
+			type === "hud-overlay" ||
+			type === "source-selector" ||
+			type === "countdown-overlay" ||
+			type === "webcam-preview"
+		) {
 			document.body.style.background = "transparent";
 			document.documentElement.style.background = "transparent";
 			document.getElementById("root")?.style.setProperty("background", "transparent");
@@ -66,6 +72,8 @@ export default function App() {
 				return <SourceSelector />;
 			case "countdown-overlay":
 				return <CountdownOverlay />;
+			case "webcam-preview":
+				return <WebcamPreviewWindow />;
 			case "editor":
 				return (
 					<ShortcutsProvider>
@@ -73,7 +81,7 @@ export default function App() {
 							fallback={
 								<div className="flex flex-col items-center justify-center gap-3 h-screen bg-[#09090b]">
 									<svg
-										className="animate-spin text-[#34B27B]"
+										className="animate-spin text-[#7C5CFF]"
 										xmlns="http://www.w3.org/2000/svg"
 										fill="none"
 										viewBox="0 0 24 24"
