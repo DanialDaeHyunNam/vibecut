@@ -41,7 +41,8 @@
 		"play": "Oynat",
 		"pause": "Duraklat",
 		"fullscreen": "Tam Ekran",
-		"exitFullscreen": "Tam Ekrandan Çık"
+		"exitFullscreen": "Tam Ekrandan Çık",
+		"skipToStart": "Başa dön"
 	},
 	"locale": {
 		"name": "Türkçe",

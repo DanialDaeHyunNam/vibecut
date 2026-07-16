@@ -41,7 +41,8 @@
 		"play": "Воспроизвести",
 		"pause": "Пауза",
 		"fullscreen": "Полный экран",
-		"exitFullscreen": "Выход из полного экрана"
+		"exitFullscreen": "Выход из полного экрана",
+		"skipToStart": "В начало"
 	},
 	"locale": {
 		"name": "Русский",

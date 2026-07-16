@@ -41,7 +41,8 @@
 		"play": "Riproduci",
 		"pause": "Pausa",
 		"fullscreen": "Schermo intero",
-		"exitFullscreen": "Esci dallo schermo intero"
+		"exitFullscreen": "Esci dallo schermo intero",
+		"skipToStart": "Vai all'inizio"
 	},
 	"locale": {
 		"name": "Italiano",

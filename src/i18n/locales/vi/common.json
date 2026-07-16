@@ -41,7 +41,8 @@
 		"play": "Phát",
 		"pause": "Tạm dừng",
 		"fullscreen": "Toàn màn hình",
-		"exitFullscreen": "Thoát toàn màn hình"
+		"exitFullscreen": "Thoát toàn màn hình",
+		"skipToStart": "Về đầu"
 	},
 	"locale": {
 		"name": "Tiếng Việt",

@@ -23,7 +23,8 @@
 	},
 	"export": {
 		"canceled": "تم إلغاء التصدير",
-		"exportedSuccessfully": "تم تصدير {{format}} بنجاح"
+		"exportedSuccessfully": "تم تصدير {{format}} بنجاح",
+		"srtSaved": "Subtitles (.srt) saved"
 	},
 	"project": {
 		"saveCanceled": "تم إلغاء حفظ المشروع",

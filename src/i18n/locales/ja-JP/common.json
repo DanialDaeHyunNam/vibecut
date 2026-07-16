@@ -41,7 +41,8 @@
 		"play": "再生",
 		"pause": "一時停止",
 		"fullscreen": "全画面表示",
-		"exitFullscreen": "全画面表示を終了"
+		"exitFullscreen": "全画面表示を終了",
+		"skipToStart": "最初に戻る"
 	},
 	"locale": {
 		"name": "日本語",

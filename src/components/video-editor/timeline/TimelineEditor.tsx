@@ -540,7 +540,7 @@ function TimelineAxis({
 							<span
 								className={cn(
 									"text-[10px] font-medium tabular-nums tracking-tight",
-									marker.time === currentTimeMs ? "text-[#34B27B]" : "text-slate-500",
+									marker.time === currentTimeMs ? "text-[#7C5CFF]" : "text-slate-500",
 								)}
 							>
 								{marker.label}
@@ -1464,7 +1464,7 @@ export default function TimelineEditor({
 						onClick={handleAddZoom}
 						variant="ghost"
 						size="icon"
-						className="h-7 w-7 rounded-lg text-slate-400 hover:text-[#34B27B] hover:bg-[#34B27B]/10 transition-all"
+						className="h-7 w-7 rounded-lg text-slate-400 hover:text-[#7C5CFF] hover:bg-[#7C5CFF]/10 transition-all"
 						title={t("buttons.addZoom")}
 					>
 						<ZoomIn className="w-4 h-4" />
@@ -1475,8 +1475,8 @@ export default function TimelineEditor({
 						size="icon"
 						aria-pressed={autoZoomEnabled}
 						className={cn(
-							"h-7 w-7 rounded-lg transition-all hover:bg-[#34B27B]/10 hover:text-[#34B27B]",
-							autoZoomEnabled ? "bg-[#34B27B]/15 text-[#34B27B]" : "text-slate-400",
+							"h-7 w-7 rounded-lg transition-all hover:bg-[#7C5CFF]/10 hover:text-[#7C5CFF]",
+							autoZoomEnabled ? "bg-[#7C5CFF]/15 text-[#7C5CFF]" : "text-slate-400",
 						)}
 						title={autoZoomEnabled ? t("buttons.autoZoomOn") : t("buttons.autoZoomOff")}
 					>
@@ -1488,8 +1488,8 @@ export default function TimelineEditor({
 						size="icon"
 						aria-pressed={autoFocusAll}
 						className={cn(
-							"h-7 w-7 rounded-lg transition-all hover:bg-[#34B27B]/10 hover:text-[#34B27B]",
-							autoFocusAll ? "bg-[#34B27B]/15 text-[#34B27B]" : "text-slate-400",
+							"h-7 w-7 rounded-lg transition-all hover:bg-[#7C5CFF]/10 hover:text-[#7C5CFF]",
+							autoFocusAll ? "bg-[#7C5CFF]/15 text-[#7C5CFF]" : "text-slate-400",
 						)}
 						title={autoFocusAll ? t("buttons.autoFocusAllOn") : t("buttons.autoFocusAllOff")}
 					>
@@ -1576,7 +1576,7 @@ export default function TimelineEditor({
 									className="text-slate-300 hover:text-white hover:bg-white/10 cursor-pointer flex items-center justify-between gap-3"
 								>
 									<span>{getAspectRatioLabel(ratio)}</span>
-									{aspectRatio === ratio && <Check className="w-3 h-3 text-[#34B27B]" />}
+									{aspectRatio === ratio && <Check className="w-3 h-3 text-[#7C5CFF]" />}
 								</DropdownMenuItem>
 							))}
 						</DropdownMenuContent>
@@ -1585,13 +1585,13 @@ export default function TimelineEditor({
 				<div className="flex-1" />
 				<div className="hidden md:flex items-center gap-3 text-[10px] text-slate-500 font-medium">
 					<span className="flex items-center gap-1.5">
-						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-sans">
+						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#7C5CFF] font-sans">
 							{scrollLabels.pan}
 						</kbd>
 						<span>{t("labels.pan")}</span>
 					</span>
 					<span className="flex items-center gap-1.5">
-						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-sans">
+						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#7C5CFF] font-sans">
 							{scrollLabels.zoom}
 						</kbd>
 						<span>{t("labels.zoom")}</span>

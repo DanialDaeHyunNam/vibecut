@@ -15,7 +15,8 @@
 	},
 	"export": {
 		"canceled": "Dışa aktarım iptal edildi",
-		"exportedSuccessfully": "{{format}} başarıyla dışa aktarıldı"
+		"exportedSuccessfully": "{{format}} başarıyla dışa aktarıldı",
+		"srtSaved": "Subtitles (.srt) saved"
 	},
 	"project": {
 		"saveCanceled": "Proje kaydetme iptal edildi",

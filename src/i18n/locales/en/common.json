@@ -41,7 +41,8 @@
 		"play": "Play",
 		"pause": "Pause",
 		"fullscreen": "Fullscreen",
-		"exitFullscreen": "Exit Fullscreen"
+		"exitFullscreen": "Exit Fullscreen",
+		"skipToStart": "Skip to start"
 	},
 	"locale": {
 		"name": "English",

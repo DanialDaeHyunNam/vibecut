@@ -15,7 +15,8 @@
 	},
 	"export": {
 		"canceled": "Exportación cancelada",
-		"exportedSuccessfully": "{{format}} exportado exitosamente"
+		"exportedSuccessfully": "{{format}} exportado exitosamente",
+		"srtSaved": "Subtitles (.srt) saved"
 	},
 	"project": {
 		"saveCanceled": "Guardado de proyecto cancelado",

@@ -108,7 +108,10 @@
 	"export": {
 		"videoButton": "Xuất Video",
 		"gifButton": "Xuất GIF",
-		"chooseSaveLocation": "Chọn vị trí lưu"
+		"chooseSaveLocation": "Chọn vị trí lưu",
+		"burnCaptions": "Burn captions into video",
+		"saveSrt": "Also save .srt subtitle file",
+		"captionsPreviewOnly": "Captions stay preview-only and are excluded from the exported video"
 	},
 	"support": {
 		"reportBug": "Báo cáo lỗi",

@@ -41,7 +41,8 @@
 		"play": "Lecture",
 		"pause": "Pause",
 		"fullscreen": "Plein écran",
-		"exitFullscreen": "Quitter le plein écran"
+		"exitFullscreen": "Quitter le plein écran",
+		"skipToStart": "Revenir au début"
 	},
 	"locale": {
 		"name": "Français",

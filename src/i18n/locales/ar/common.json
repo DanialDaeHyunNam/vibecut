@@ -41,7 +41,8 @@
 		"play": "تشغيل",
 		"pause": "ايقاف مؤقت",
 		"fullscreen": "ملء الشاشة",
-		"exitFullscreen": "خروج من ملء الشاشة"
+		"exitFullscreen": "خروج من ملء الشاشة",
+		"skipToStart": "الانتقال إلى البداية"
 	},
 	"locale": {
 		"name": "عربي",

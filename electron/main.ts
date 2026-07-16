@@ -504,6 +504,15 @@ appReady?.then(async () => {
 	// otherwise classify us as an accessory app.
 	if (process.platform === "darwin") {
 		app.dock?.show();
+		// Packaged builds get the icon from the bundle; in dev, Electron's default
+		// dock icon would show, so set the brand icon explicitly.
+		if (!app.isPackaged && process.env.APP_ROOT) {
+			try {
+				app.dock?.setIcon(path.join(process.env.APP_ROOT, "icons", "icons", "png", "512x512.png"));
+			} catch (error) {
+				console.warn("Failed to set dev dock icon:", error);
+			}
+		}
 	}
 
 	session.defaultSession.setPermissionCheckHandler((_webContents, permission) => {

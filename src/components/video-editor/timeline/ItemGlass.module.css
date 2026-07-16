@@ -2,8 +2,8 @@
 	position: relative;
 	border-radius: 10px;
 	-corner-smoothing: antialiased;
-	background: linear-gradient(180deg, rgba(52, 178, 123, 0.28), rgba(31, 115, 82, 0.2));
-	border: 1px solid rgba(77, 221, 157, 0.36);
+	background: linear-gradient(180deg, rgba(124, 92, 255, 0.28), rgba(74, 52, 168, 0.2));
+	border: 1px solid rgba(155, 132, 255, 0.36);
 	box-shadow:
 		0 1px 0 rgba(255, 255, 255, 0.1) inset,
 		0 8px 22px rgba(0, 0, 0, 0.22);
@@ -12,16 +12,16 @@
 }
 
 .glassGreen:hover {
-	background: linear-gradient(180deg, rgba(52, 178, 123, 0.36), rgba(31, 115, 82, 0.25));
-	border-color: rgba(77, 221, 157, 0.62);
+	background: linear-gradient(180deg, rgba(124, 92, 255, 0.36), rgba(74, 52, 168, 0.25));
+	border-color: rgba(155, 132, 255, 0.62);
 }
 
 .glassGreen.selected {
-	background: linear-gradient(180deg, rgba(52, 178, 123, 0.48), rgba(31, 115, 82, 0.32));
-	border-color: #34b27b;
+	background: linear-gradient(180deg, rgba(124, 92, 255, 0.48), rgba(74, 52, 168, 0.32));
+	border-color: #7c5cff;
 	box-shadow:
-		0 0 0 1px rgba(52, 178, 123, 0.95),
-		0 0 0 4px rgba(52, 178, 123, 0.14),
+		0 0 0 1px rgba(124, 92, 255, 0.95),
+		0 0 0 4px rgba(124, 92, 255, 0.14),
 		0 12px 26px rgba(0, 0, 0, 0.28);
 	z-index: 10;
 }
@@ -58,9 +58,9 @@
 	position: relative;
 	border-radius: 10px;
 	-corner-smoothing: antialiased;
-	background: rgba(180, 160, 70, 0.15);
-	border: 1px solid rgba(180, 160, 70, 0.3);
-	box-shadow: 0 2px 12px 0 rgba(180, 160, 70, 0.1) inset;
+	background: rgba(34, 211, 238, 0.15);
+	border: 1px solid rgba(34, 211, 238, 0.3);
+	box-shadow: 0 2px 12px 0 rgba(34, 211, 238, 0.1) inset;
 	margin: 3px 0;
 	backdrop-filter: blur(4px);
 	-webkit-backdrop-filter: blur(4px);
@@ -68,17 +68,17 @@
 }
 
 .glassYellow:hover {
-	background: rgba(180, 160, 70, 0.25);
-	border-color: rgba(180, 160, 70, 0.5);
-	box-shadow: 0 4px 20px 0 rgba(180, 160, 70, 0.2) inset;
+	background: rgba(34, 211, 238, 0.25);
+	border-color: rgba(34, 211, 238, 0.5);
+	box-shadow: 0 4px 20px 0 rgba(34, 211, 238, 0.2) inset;
 }
 
 .glassYellow.selected {
-	background: rgba(180, 160, 70, 0.35);
-	border-color: #b4a046;
+	background: rgba(34, 211, 238, 0.35);
+	border-color: #22d3ee;
 	box-shadow:
-		0 0 0 1px #b4a046,
-		0 4px 20px 0 rgba(180, 160, 70, 0.3) inset;
+		0 0 0 1px #22d3ee,
+		0 4px 20px 0 rgba(34, 211, 238, 0.3) inset;
 	z-index: 10;
 }
 

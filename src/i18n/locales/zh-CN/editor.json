@@ -23,7 +23,8 @@
 	},
 	"export": {
 		"canceled": "导出已取消",
-		"exportedSuccessfully": "{{format}} 导出成功"
+		"exportedSuccessfully": "{{format}} 导出成功",
+		"srtSaved": "Subtitles (.srt) saved"
 	},
 	"project": {
 		"saveCanceled": "项目保存已取消",

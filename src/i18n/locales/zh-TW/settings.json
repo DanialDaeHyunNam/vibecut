@@ -109,7 +109,10 @@
 	"export": {
 		"videoButton": "匯出影片",
 		"gifButton": "匯出 GIF",
-		"chooseSaveLocation": "選擇儲存位置"
+		"chooseSaveLocation": "選擇儲存位置",
+		"burnCaptions": "Burn captions into video",
+		"saveSrt": "Also save .srt subtitle file",
+		"captionsPreviewOnly": "Captions stay preview-only and are excluded from the exported video"
 	},
 	"support": {
 		"reportBug": "回報錯誤",

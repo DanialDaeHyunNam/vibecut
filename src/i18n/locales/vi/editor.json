@@ -23,7 +23,8 @@
 	},
 	"export": {
 		"canceled": "Đã hủy xuất",
-		"exportedSuccessfully": "Đã xuất {{format}} thành công"
+		"exportedSuccessfully": "Đã xuất {{format}} thành công",
+		"srtSaved": "Subtitles (.srt) saved"
 	},
 	"project": {
 		"saveCanceled": "Đã hủy lưu dự án",

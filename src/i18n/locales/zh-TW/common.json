@@ -41,7 +41,8 @@
 		"play": "播放",
 		"pause": "暫停",
 		"fullscreen": "全螢幕",
-		"exitFullscreen": "退出全螢幕"
+		"exitFullscreen": "退出全螢幕",
+		"skipToStart": "回到開頭"
 	},
 	"locale": {
 		"name": "繁體中文",

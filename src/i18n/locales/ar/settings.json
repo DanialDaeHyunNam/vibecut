@@ -108,7 +108,10 @@
 	"export": {
 		"videoButton": "تصدير الفيديو",
 		"gifButton": "تصدير GIF",
-		"chooseSaveLocation": "اختيار موقع الحفظ"
+		"chooseSaveLocation": "اختيار موقع الحفظ",
+		"burnCaptions": "Burn captions into video",
+		"saveSrt": "Also save .srt subtitle file",
+		"captionsPreviewOnly": "Captions stay preview-only and are excluded from the exported video"
 	},
 	"support": {
 		"reportBug": "الإبلاغ عن خطأ",

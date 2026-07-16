@@ -23,7 +23,8 @@
 	},
 	"export": {
 		"canceled": "Экспорт отменён",
-		"exportedSuccessfully": "{{format}} успешно экспортирован"
+		"exportedSuccessfully": "{{format}} успешно экспортирован",
+		"srtSaved": "Subtitles (.srt) saved"
 	},
 	"project": {
 		"saveCanceled": "Сохранение проекта отменено",

@@ -108,7 +108,10 @@
 	"export": {
 		"videoButton": "비디오 내보내기",
 		"gifButton": "GIF 내보내기",
-		"chooseSaveLocation": "저장 위치 선택"
+		"chooseSaveLocation": "저장 위치 선택",
+		"burnCaptions": "자막을 영상에 포함",
+		"saveSrt": ".srt 자막 파일 별도 저장",
+		"captionsPreviewOnly": "자막은 미리보기에서만 보이고 내보낸 영상에는 포함되지 않습니다"
 	},
 	"support": {
 		"reportBug": "버그 신고",

@@ -108,7 +108,10 @@
 	"export": {
 		"videoButton": "Exportar video",
 		"gifButton": "Exportar GIF",
-		"chooseSaveLocation": "Elegir ubicación de guardado"
+		"chooseSaveLocation": "Elegir ubicación de guardado",
+		"burnCaptions": "Burn captions into video",
+		"saveSrt": "Also save .srt subtitle file",
+		"captionsPreviewOnly": "Captions stay preview-only and are excluded from the exported video"
 	},
 	"support": {
 		"reportBug": "Reportar error",

@@ -1,4 +1,4 @@
-import { Maximize, Minimize, Pause, Play } from "lucide-react";
+import { Maximize, Minimize, Pause, Play, SkipBack } from "lucide-react";
 import { useScopedT } from "@/contexts/I18nContext";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
@@ -40,6 +40,15 @@ export default function PlaybackControls({
 	return (
 		<div className="flex items-center gap-2 px-1 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-xl transition-all duration-300 hover:bg-black/70 hover:border-white/20">
 			<Button
+				onClick={() => onSeek(0)}
+				size="icon"
+				variant="ghost"
+				className="w-7 h-7 rounded-full transition-all duration-200 border border-transparent bg-transparent hover:bg-white/10 text-white hover:text-white hover:border-white/10 shrink-0 shadow-none"
+				aria-label={t("playback.skipToStart")}
+			>
+				<SkipBack className="w-3.5 h-3.5 fill-current" />
+			</Button>
+			<Button
 				onClick={onTogglePlayPause}
 				size="icon"
 				className={cn(
@@ -64,7 +73,7 @@ export default function PlaybackControls({
 			<div className="flex-1 relative h-6 flex items-center group">
 				{/* Custom Track Background */}
 				<div className="absolute left-0 right-0 h-0.5 bg-white/10 rounded-full overflow-hidden">
-					<div className="h-full bg-[#34B27B] rounded-full" style={{ width: `${progress}%` }} />
+					<div className="h-full bg-[#7C5CFF] rounded-full" style={{ width: `${progress}%` }} />
 				</div>
 
 				{/* Interactive Input */}

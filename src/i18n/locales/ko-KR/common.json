@@ -41,7 +41,8 @@
 		"play": "재생",
 		"pause": "일시정지",
 		"fullscreen": "전체화면",
-		"exitFullscreen": "전체화면 종료"
+		"exitFullscreen": "전체화면 종료",
+		"skipToStart": "처음으로"
 	},
 	"locale": {
 		"name": "한국어",

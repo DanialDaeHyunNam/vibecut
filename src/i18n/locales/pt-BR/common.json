@@ -41,7 +41,8 @@
 		"play": "Play",
 		"pause": "Pause",
 		"fullscreen": "Tela Cheia",
-		"exitFullscreen": "Sair da Tela Cheia"
+		"exitFullscreen": "Sair da Tela Cheia",
+		"skipToStart": "Ir para o início"
 	},
 	"locale": {
 		"name": "Português Brasileiro",

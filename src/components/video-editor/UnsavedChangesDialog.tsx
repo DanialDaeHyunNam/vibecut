@@ -69,7 +69,7 @@ export function UnsavedChangesDialog({
 					<button
 						type="button"
 						onClick={onSaveAndClose}
-						className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-[#34B27B] hover:bg-[#2d9e6c] active:bg-[#27885c] text-white font-medium text-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#34B27B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b]"
+						className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-[#7C5CFF] hover:bg-[#2d9e6c] active:bg-[#27885c] text-white font-medium text-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b]"
 					>
 						<Save className="w-4 h-4" />
 						{saveLabel}

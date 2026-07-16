@@ -23,7 +23,8 @@
 	},
 	"export": {
 		"canceled": "エクスポートがキャンセルされました",
-		"exportedSuccessfully": "{{format}}を正常にエクスポートしました"
+		"exportedSuccessfully": "{{format}}を正常にエクスポートしました",
+		"srtSaved": "Subtitles (.srt) saved"
 	},
 	"project": {
 		"saveCanceled": "プロジェクトの保存がキャンセルされました",
