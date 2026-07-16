@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "Se agregó {{count}} sugerencia de zoom basada en el cursor",
 		"addedZoomSuggestionsPlural": "Se agregaron {{count}} sugerencias de zoom basadas en el cursor"
+	},
+	"tips": {
+		"laneJump": "Saltar entre bloques del carril activo",
+		"laneClickKey": "Clic en un carril",
+		"laneClick": "Actívalo para navegar con Alt",
+		"dividerKey": "Arrastra el divisor",
+		"divider": "Cambia el tamaño del panel · doble clic restablece"
 	}
 }

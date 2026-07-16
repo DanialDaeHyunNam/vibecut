@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "{{count}} imleç tabanlı yakınlaştırma önerisi eklendi",
 		"addedZoomSuggestionsPlural": "{{count}} imleç tabanlı yakınlaştırma önerisi eklendi"
+	},
+	"tips": {
+		"laneJump": "Aktif şeritteki bloklar arasında atla",
+		"laneClickKey": "Şeride tıkla",
+		"laneClick": "Alt gezinmesi için hedefle",
+		"dividerKey": "Ayracı sürükle",
+		"divider": "Panel boyutunu ayarla · çift tıklama sıfırlar"
 	}
 }

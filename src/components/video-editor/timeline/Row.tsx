@@ -6,19 +6,39 @@ interface RowProps extends RowDefinition {
 	hint?: string;
 	isEmpty?: boolean;
 	background?: React.ReactNode;
+	/** Marks this lane as the Alt+←/→ navigation target. */
+	isActiveLane?: boolean;
+	onLaneClick?: () => void;
 }
 
 /**
  * A horizontal timeline lane. Wraps dnd-timeline's `useRow` and adds an optional
- * `background` layer, an empty-state hint label, and a minimum height.
+ * `background` layer, an empty-state hint label, and a minimum height. Clicking
+ * anywhere in the lane focuses it for keyboard navigation; the focused lane
+ * shows a violet left edge.
  */
-export default function Row({ id, children, hint, isEmpty, background }: RowProps) {
+export default function Row({
+	id,
+	children,
+	hint,
+	isEmpty,
+	background,
+	isActiveLane,
+	onLaneClick,
+}: RowProps) {
 	const { setNodeRef, rowWrapperStyle, rowStyle } = useRow({ id });
 
 	return (
 		<div
-			className="border-b border-white/[0.055] bg-[#101116] relative overflow-hidden"
-			style={{ ...rowWrapperStyle, minHeight: 36 }}
+			className={`border-b border-white/[0.055] relative overflow-hidden ${
+				isActiveLane ? "bg-[#14121F]" : "bg-[#101116]"
+			}`}
+			style={{
+				...rowWrapperStyle,
+				minHeight: 36,
+				boxShadow: isActiveLane ? "inset 2px 0 0 #7C5CFF" : undefined,
+			}}
+			onClick={onLaneClick}
 		>
 			{background}
 			{isEmpty && hint && (

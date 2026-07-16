@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "Đã thêm {{count}} đề xuất thu phóng dựa trên con trỏ",
 		"addedZoomSuggestionsPlural": "Đã thêm {{count}} đề xuất thu phóng dựa trên con trỏ"
+	},
+	"tips": {
+		"laneJump": "Nhảy giữa các khối của làn đang chọn",
+		"laneClickKey": "Nhấp vào làn",
+		"laneClick": "Đặt làm mục tiêu điều hướng Alt",
+		"dividerKey": "Kéo thanh chia",
+		"divider": "Đổi cỡ bảng điều khiển · nhấp đúp để đặt lại"
 	}
 }

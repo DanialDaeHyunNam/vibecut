@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "カーソルに基づくズーム提案を {{count}} 件追加しました",
 		"addedZoomSuggestionsPlural": "カーソルに基づくズーム提案を {{count}} 件追加しました"
+	},
+	"tips": {
+		"laneJump": "選択レーンのブロック間を移動",
+		"laneClickKey": "レーンをクリック",
+		"laneClick": "Alt移動の対象にする",
+		"dividerKey": "仕切りをドラッグ",
+		"divider": "パネルの幅を調整 · ダブルクリックで初期値"
 	}
 }

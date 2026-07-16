@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "Aggiunto {{count}} suggerimento zoom basato sul cursore",
 		"addedZoomSuggestionsPlural": "Aggiunti {{count}} suggerimenti zoom basati sul cursore"
+	},
+	"tips": {
+		"laneJump": "Salta tra i blocchi della corsia attiva",
+		"laneClickKey": "Clic su una corsia",
+		"laneClick": "Rendila destinazione della navigazione Alt",
+		"dividerKey": "Trascina il divisore",
+		"divider": "Ridimensiona il pannello · doppio clic ripristina"
 	}
 }

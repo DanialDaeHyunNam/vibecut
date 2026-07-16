@@ -91,6 +91,9 @@ interface TimelineEditorProps {
 	onAspectRatioChange: (aspectRatio: AspectRatio) => void;
 	videoUrl?: string;
 	showTrimWaveform?: boolean;
+	/** Lane focused for Alt+←/→ block navigation. */
+	activeLane?: "zoom" | "trim" | "annotation" | "speed";
+	onLaneClick?: (lane: "zoom" | "trim" | "annotation" | "speed") => void;
 	/** Opens the auto-captions flow. When omitted, the captions button is hidden. */
 	onGenerateCaptions?: () => void;
 	isGeneratingCaptions?: boolean;
@@ -572,6 +575,8 @@ function Timeline({
 	keyframes = [],
 	videoUrl,
 	showTrimWaveform = false,
+	activeLane,
+	onLaneClick,
 }: {
 	items: TimelineRenderItem[];
 	videoDurationMs: number;
@@ -591,6 +596,8 @@ function Timeline({
 	keyframes?: { id: string; time: number }[];
 	videoUrl?: string;
 	showTrimWaveform?: boolean;
+	activeLane?: "zoom" | "trim" | "annotation" | "speed";
+	onLaneClick?: (lane: "zoom" | "trim" | "annotation" | "speed") => void;
 }) {
 	const t = useScopedT("timeline");
 	const { setTimelineRef, style, sidebarWidth, range, pixelsToValue } = useTimelineContext();
@@ -776,7 +783,13 @@ function Timeline({
 				keyframes={keyframes}
 			/>
 
-			<Row id={ZOOM_ROW_ID} isEmpty={zoomItems.length === 0} hint={t("hints.pressZoom")}>
+			<Row
+				id={ZOOM_ROW_ID}
+				isEmpty={zoomItems.length === 0}
+				hint={t("hints.pressZoom")}
+				isActiveLane={activeLane === "zoom"}
+				onLaneClick={() => onLaneClick?.("zoom")}
+			>
 				{zoomItems.map((item) => (
 					<Item
 						id={item.id}
@@ -799,6 +812,8 @@ function Timeline({
 				id={TRIM_ROW_ID}
 				isEmpty={trimItems.length === 0}
 				hint={t("hints.pressTrim")}
+				isActiveLane={activeLane === "trim"}
+				onLaneClick={() => onLaneClick?.("trim")}
 				background={
 					showTrimWaveform ? (
 						<BackgroundWaveform
@@ -829,6 +844,8 @@ function Timeline({
 				id={ANNOTATION_ROW_ID}
 				isEmpty={annotationItems.length === 0}
 				hint={t("hints.pressAnnotation")}
+				isActiveLane={activeLane === "annotation"}
+				onLaneClick={() => onLaneClick?.("annotation")}
 			>
 				{annotationItems.map((item) => (
 					<Item
@@ -846,7 +863,13 @@ function Timeline({
 			</Row>
 
 			{BLUR_REGIONS_ENABLED && (
-				<Row id={BLUR_ROW_ID} isEmpty={blurItems.length === 0} hint={t("hints.pressBlur")}>
+				<Row
+					id={BLUR_ROW_ID}
+					isEmpty={blurItems.length === 0}
+					hint={t("hints.pressBlur")}
+					isActiveLane={activeLane === "annotation"}
+					onLaneClick={() => onLaneClick?.("annotation")}
+				>
 					{blurItems.map((item) => (
 						<Item
 							id={item.id}
@@ -863,7 +886,13 @@ function Timeline({
 				</Row>
 			)}
 
-			<Row id={SPEED_ROW_ID} isEmpty={speedItems.length === 0} hint={t("hints.pressSpeed")}>
+			<Row
+				id={SPEED_ROW_ID}
+				isEmpty={speedItems.length === 0}
+				hint={t("hints.pressSpeed")}
+				isActiveLane={activeLane === "speed"}
+				onLaneClick={() => onLaneClick?.("speed")}
+			>
 				{speedItems.map((item) => (
 					<Item
 						id={item.id}
@@ -926,6 +955,8 @@ export default function TimelineEditor({
 	onAspectRatioChange,
 	videoUrl,
 	showTrimWaveform = false,
+	activeLane,
+	onLaneClick,
 	onGenerateCaptions,
 	isGeneratingCaptions = false,
 	captionsLabel,
@@ -957,6 +988,19 @@ export default function TimelineEditor({
 			setScrollLabels({ pan: "Scroll", zoom });
 		});
 	}, []);
+
+	// Rotating interaction tips shown at the right edge of the toolbar.
+	const [tipIndex, setTipIndex] = useState(0);
+	const tips = useMemo(
+		() => [
+			{ key: scrollLabels.pan, label: t("labels.pan") },
+			{ key: scrollLabels.zoom, label: t("labels.zoom") },
+			{ key: isMac ? "⌥ + ← / →" : "Alt + ← / →", label: t("tips.laneJump") },
+			{ key: t("tips.laneClickKey"), label: t("tips.laneClick") },
+			{ key: t("tips.dividerKey"), label: t("tips.divider") },
+		],
+		[scrollLabels, t, isMac],
+	);
 
 	const addKeyframe = useCallback(() => {
 		if (totalMs === 0) return;
@@ -1583,19 +1627,30 @@ export default function TimelineEditor({
 					</DropdownMenu>
 				</div>
 				<div className="flex-1" />
-				<div className="hidden md:flex items-center gap-3 text-[10px] text-slate-500 font-medium">
-					<span className="flex items-center gap-1.5">
-						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#7C5CFF] font-sans">
-							{scrollLabels.pan}
+				{/* Rotating tips: ‹ › flips through interaction hints. */}
+				<div className="hidden md:flex items-center gap-1 text-[10px] text-slate-500 font-medium">
+					<button
+						type="button"
+						aria-label="Previous tip"
+						onClick={() => setTipIndex((index) => (index + tips.length - 1) % tips.length)}
+						className="px-1 text-slate-600 hover:text-slate-300 transition-colors"
+					>
+						‹
+					</button>
+					<span className="flex items-center gap-1.5 min-w-[190px] justify-center">
+						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#7C5CFF] font-sans whitespace-nowrap">
+							{tips[tipIndex].key}
 						</kbd>
-						<span>{t("labels.pan")}</span>
+						<span className="whitespace-nowrap">{tips[tipIndex].label}</span>
 					</span>
-					<span className="flex items-center gap-1.5">
-						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#7C5CFF] font-sans">
-							{scrollLabels.zoom}
-						</kbd>
-						<span>{t("labels.zoom")}</span>
-					</span>
+					<button
+						type="button"
+						aria-label="Next tip"
+						onClick={() => setTipIndex((index) => (index + 1) % tips.length)}
+						className="px-1 text-slate-600 hover:text-slate-300 transition-colors"
+					>
+						›
+					</button>
 				</div>
 			</div>
 			<div
@@ -1643,6 +1698,8 @@ export default function TimelineEditor({
 						keyframes={keyframes}
 						videoUrl={videoUrl}
 						showTrimWaveform={showTrimWaveform}
+						activeLane={activeLane}
+						onLaneClick={onLaneClick}
 					/>
 				</TimelineWrapper>
 			</div>

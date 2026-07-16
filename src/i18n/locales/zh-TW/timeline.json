@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "已新增 {{count}} 個基於游標的縮放建議",
 		"addedZoomSuggestionsPlural": "已新增 {{count}} 個基於游標的縮放建議"
+	},
+	"tips": {
+		"laneJump": "在所選軌道的區塊之間跳轉",
+		"laneClickKey": "點擊軌道",
+		"laneClick": "設為 Alt 導覽目標",
+		"dividerKey": "拖曳分隔線",
+		"divider": "調整面板寬度 · 連點兩下恢復預設"
 	}
 }

@@ -55,5 +55,12 @@
 	"success": {
 		"addedZoomSuggestions": "Added {{count}} cursor-based zoom suggestion",
 		"addedZoomSuggestionsPlural": "Added {{count}} cursor-based zoom suggestions"
+	},
+	"tips": {
+		"laneJump": "Jump between blocks in the focused lane",
+		"laneClickKey": "Click a lane",
+		"laneClick": "Focus it for Alt navigation",
+		"dividerKey": "Drag divider",
+		"divider": "Resize the AI panel · double-click resets"
 	}
 }

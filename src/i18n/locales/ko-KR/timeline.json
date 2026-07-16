@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "커서 기반 줌 제안 {{count}}개가 추가되었습니다",
 		"addedZoomSuggestionsPlural": "커서 기반 줌 제안 {{count}}개가 추가되었습니다"
+	},
+	"tips": {
+		"laneJump": "선택한 레인의 블록 사이 점프",
+		"laneClickKey": "레인 클릭",
+		"laneClick": "Alt 이동 대상 레인으로 지정",
+		"dividerKey": "구분선 드래그",
+		"divider": "AI 패널 크기 조절 · 더블클릭 시 기본값"
 	}
 }

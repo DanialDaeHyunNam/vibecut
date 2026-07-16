@@ -51,5 +51,12 @@
 	"success": {
 		"addedZoomSuggestions": "已添加 {{count}} 个基于光标的缩放建议",
 		"addedZoomSuggestionsPlural": "已添加 {{count}} 个基于光标的缩放建议"
+	},
+	"tips": {
+		"laneJump": "在所选轨道的块之间跳转",
+		"laneClickKey": "点击轨道",
+		"laneClick": "设为 Alt 导航目标",
+		"dividerKey": "拖动分隔条",
+		"divider": "调整面板宽度 · 双击恢复默认"
 	}
 }
