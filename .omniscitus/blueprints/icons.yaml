@@ -1,0 +1,15 @@
+version: 1
+updated: 2026-07-16T09:21:17.733Z
+
+files:
+  "icons/cinerec-icon.svg":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T09:21:17.733Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-16T09:21:17.733Z
+        action: write
+        source: "claude:Dan"

@@ -40,8 +40,53 @@ npm test                                    # vitest
 웹앱이 아니라 Electron 데스크톱 앱 — 3732는 개발용 렌더러 서버 포트이고 실제 UI는 Electron 창.
 브라우저로 3732에 접속하면 네이티브 기능(캡처/커서 훅) 없이 렌더러만 뜬다.
 
+**최초 클론/재설치 후 필수**: `npm run build:native:mac` — 커서 추적·캡처용 Swift 헬퍼 빌드.
+안 하면 녹화 시 "cursor helper couldn't be found in this build" 팝업이 뜬다 (Xcode 필요, ~5초).
+
 - **Node 요구 22.x** (engines: 22.22.1) — 로컬은 20.12.0. engine-strict 아니라 설치는 되지만, 런타임 이슈 시 Node 22 설치 먼저 의심할 것
 - 첫 녹화 시 macOS 화면 기록 + 손쉬운 사용(접근성) 권한 필요
+
+### ⚠️ 화면 기록 권한이 계속 denied일 때 (2026-07-14 삽질 기록)
+
+**근본 원인 2개가 겹쳐 있었다:**
+
+1. **TCC 책임 프로세스 귀속**: Electron을 셸(터미널/Claude 세션)의 자식으로 띄우면 macOS가
+   화면기록 권한을 Electron이 아니라 **터미널 계보**에 물어서 denied가 된다.
+   → 해결: vite는 `CINEREC_NO_SPAWN=1`로 Electron 스폰 없이 띄우고, Electron은
+   `launchctl setenv VITE_DEV_SERVER_URL http://localhost:3732` 후
+   `open -n node_modules/electron/dist/Electron.app --args {cinerec 절대경로}` 로
+   **launchd 직속** 실행 (루트 Makefile `make rec`/`make all`이 이 구조).
+2. **adhoc 서명**: 개발용 Electron은 adhoc 서명이라 TCC가 허용을 붙일 안정적 신원이 없다.
+   → 해결: `codesign --force --deep --sign "Apple Development: DaeHyun Nam (PP2Q4D47YY)" node_modules/electron/dist/Electron.app`
+
+**진단법** (팝업 없이 즉시 확인): Electron으로 `getMediaAccessStatus("screen")` 출력하는
+프로브 스크립트를 ① 셸에서 ② `open -n`으로 각각 실행해 비교. ①denied·②granted면 원인 1.
+
+**`npm install`이 Electron을 다시 풀면 서명이 초기화된다** — 권한 문제 재발 시 codesign부터.
+`launchctl setenv`는 `make stop`에서 unsetenv됨 (남아있으면 패키지 앱도 dev URL을 열려고 하니 주의).
+
+### ⚠️ dev Electron이 아무 출력 없이 즉시 종료될 때 (2026-07-16 삽질 기록)
+
+`/Applications/Openscreen.app`(패키지 설치본)이 실행 중이면 **단일 인스턴스 락**
+(`$TMPDIR/openscreen-single-instance-uid-501.lock` + `app.requestSingleInstanceLock`)을
+쥐고 있어서 dev Electron이 에러·로그 하나 없이 exit 0으로 죽는다 (electron/main.ts:120-129).
+진단: 락 디렉토리의 `pid` 파일을 `ps -p`로 확인. 해결: 패키지 앱 종료 후 `make rec` 재실행.
+
+## AI 채팅 패널 (자연어 편집)
+
+에디터 우측 레일 [설정|AI] 탭에서 LLM에게 자연어로 편집 지시 ("0:03에 줌 추가해줘").
+- **Claude Code 구독 연동** (API key 불필요): `@anthropic-ai/claude-agent-sdk`가 main 프로세스에서
+  네이티브 `claude` 바이너리(`@anthropic-ai/claude-agent-sdk-darwin-arm64` 패키지에 내장, ~240MB)를
+  spawn — PATH 불필요, 인증은 `~/.claude` 로그인 재사용. OpenAI/Gemini/Grok은 인터페이스만 준비됨.
+- 구조: main `electron/ai/` (프로바이더/툴 정의/브리지) ↔ 렌더러 `src/components/ai-chat/` +
+  `useAiToolHost` (툴콜을 `aiCommandExecutor`로 실행 → `pushState` = 변이 툴콜 1회당 undo 1스텝).
+- 에이전트는 파일/셸 접근 불가 (`tools: []` + cinerec MCP 툴만 허용), maxTurns 12, 툴당 15s 타임아웃.
+- 클릭 텔레메트리(`get_click_events`)로 "버튼 클릭할 때 확대" 같은 지시를 실제 클릭 좌표에 정렬.
+- 멀티모달 툴: `get_video_frames`(프레임 캡처→비전), `get_transcript`(로컬 Whisper 나레이션),
+  `add_captions`(자동 자막과 동일 스타일), `set_style`(배경/패딩/그림자/웹캠 PIP).
+- 대화는 프로젝트별 localStorage 저장 + SDK `resume`으로 앱 재시작 후에도 세션 이어감.
+  에이전트 트랜스크립트는 `~/.claude/projects/-/`(cwd 기준)에 JSONL로 남음 — 날린 문구 복구 가능.
+- 설정: `<userData>/ai-settings.json` (API key는 safeStorage 암호화). 테스트: `aiCommandExecutor.test.ts`.
 
 ## 로드맵 (Recorded 대비 갭)
 

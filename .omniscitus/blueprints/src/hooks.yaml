@@ -1,12 +1,12 @@
 version: 1
-updated: "2026-07-14"
+updated: 2026-07-16T09:05:06.497Z
 
 files:
   "src/hooks/audioPeaksWorker.ts":
     status: active
     source: "user:Davide Mendolia"
-    created: "2026-05-24"
-    last_modified: "2026-06-05"
+    created: 2026-05-24
+    last_modified: 2026-06-05
     change_count: 2
     purpose: "React hook — audioPeaksWorker.ts."
     change_log:
@@ -21,8 +21,8 @@ files:
   "src/hooks/recorderHandle.test.ts":
     status: active
     source: "user:neurot1cal"
-    created: "2026-05-26"
-    last_modified: "2026-05-26"
+    created: 2026-05-26
+    last_modified: 2026-05-26
     change_count: 3
     purpose: "Tests for recorderHandle."
     change_log:
@@ -41,8 +41,8 @@ files:
   "src/hooks/recorderHandle.ts":
     status: active
     source: "user:neurot1cal"
-    created: "2026-05-26"
-    last_modified: "2026-06-05"
+    created: 2026-05-26
+    last_modified: 2026-06-05
     change_count: 4
     purpose: "React hook — recorderHandle.ts."
     change_log:
@@ -65,8 +65,8 @@ files:
   "src/hooks/streamingAudioPeaks.ts":
     status: active
     source: "user:my_mac"
-    created: "2026-07-06"
-    last_modified: "2026-07-06"
+    created: 2026-07-06
+    last_modified: 2026-07-06
     change_count: 2
     purpose: "React hook — streamingAudioPeaks.ts."
     change_log:
@@ -81,8 +81,8 @@ files:
   "src/hooks/useAudioLevelMeter.ts":
     status: active
     source: "user:Siddharth"
-    created: "2026-03-07"
-    last_modified: "2026-05-24"
+    created: 2026-03-07
+    last_modified: 2026-05-24
     change_count: 5
     purpose: "React hook — useAudioLevelMeter.ts."
     change_log:
@@ -109,8 +109,8 @@ files:
   "src/hooks/useAudioPeaks.ts":
     status: active
     source: "user:Davide Mendolia"
-    created: "2026-05-24"
-    last_modified: "2026-07-06"
+    created: 2026-05-24
+    last_modified: 2026-07-06
     change_count: 5
     purpose: "React hook — useAudioPeaks.ts."
     change_log:
@@ -137,8 +137,8 @@ files:
   "src/hooks/useCameraDevices.test.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-27"
-    last_modified: "2026-06-05"
+    created: 2026-03-27
+    last_modified: 2026-06-05
     change_count: 8
     purpose: "Tests for useCameraDevices."
     change_log:
@@ -165,8 +165,8 @@ files:
   "src/hooks/useCameraDevices.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-27"
-    last_modified: "2026-06-05"
+    created: 2026-03-27
+    last_modified: 2026-06-05
     change_count: 5
     purpose: "React hook — useCameraDevices.ts."
     change_log:
@@ -193,8 +193,8 @@ files:
   "src/hooks/useEditorHistory.ts":
     status: active
     source: "user:FabLrc"
-    created: "2026-02-27"
-    last_modified: "2026-06-05"
+    created: 2026-02-27
+    last_modified: 2026-06-05
     change_count: 18
     purpose: "React hook — useEditorHistory.ts."
     change_log:
@@ -221,8 +221,8 @@ files:
   "src/hooks/useMicrophoneDevices.ts":
     status: active
     source: "user:Siddharth"
-    created: "2026-03-07"
-    last_modified: "2026-05-24"
+    created: 2026-03-07
+    last_modified: 2026-05-24
     change_count: 4
     purpose: "React hook — useMicrophoneDevices.ts."
     change_log:
@@ -245,8 +245,8 @@ files:
   "src/hooks/useScreenRecorder.ts":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-06"
+    created: 2025-11-28
+    last_modified: 2026-07-06
     change_count: 76
     purpose: "React hook — useScreenRecorder.ts."
     change_log:
@@ -270,3 +270,67 @@ files:
         action: edit
         source: "user"
         message: "record permissions prompt"
+  "src/hooks/useAiChat.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T08:16:54.554Z
+    change_count: 9
+    purpose: "채팅 상태 훅 — 이벤트 구독, 프로젝트별 localStorage 저장, 세션 resume, ask_user 응답"
+    change_log:
+      - date: 2026-07-16T08:16:54.554Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:16:53.041Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:16:39.218Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:16:35.588Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:59:24.791Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:59:22.466Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:59:13.781Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:42:24.896Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:42:15.023Z
+        action: write
+        source: "claude:Dan"
+  "src/hooks/useAiToolHost.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T09:05:06.497Z
+    change_count: 7
+    purpose: "렌더러 툴 호스트 — ai:tool-call 수신, executor/프레임/트랜스크립트 실행 후 회신"
+    change_log:
+      - date: 2026-07-16T09:05:06.497Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T09:05:04.511Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:17:03.434Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:01:50.308Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:01:46.534Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:16:06.370Z
+        action: write
+        source: "claude:Dan"
+      - date: 2026-07-16T06:46:40.787Z
+        action: write
+        source: "claude:Dan"

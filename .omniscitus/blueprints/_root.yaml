@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-14T02:12:59.942Z
+updated: 2026-07-16T08:03:10.455Z
 
 files:
   ".editorconfig":
@@ -126,10 +126,25 @@ files:
     status: active
     source: "claude:claude"
     created: 2026-07-14
-    last_modified: 2026-07-14T02:12:40.796Z
-    change_count: 2
+    last_modified: 2026-07-16T08:03:10.455Z
+    change_count: 7
     purpose: "Project entrypoint doc — cinerec goals, OpenScreen fork base, port 3732, roadmap vs Recorded/Screen Studio."
     change_log:
+      - date: 2026-07-16T08:03:10.455Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:00:42.005Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-14T03:07:17.084Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-14T03:01:23.811Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-14T02:56:16.571Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-14T02:12:40.796Z
         action: edit
         source: "claude:Dan"
@@ -293,10 +308,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-06-15
-    change_count: 25
+    last_modified: 2026-07-16T06:33:54.462Z
+    change_count: 26
     purpose: "Desktop packaging config (dmg/exe/AppImage)."
     change_log:
+      - date: 2026-07-16T06:33:54.462Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-15"
         action: edit
         source: "user"
@@ -581,10 +599,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-06-01
-    change_count: 9
+    last_modified: 2026-07-16T06:33:35.816Z
+    change_count: 11
     purpose: "Vite + vite-plugin-electron config — dev server drives the Electron shell."
     change_log:
+      - date: 2026-07-16T06:33:35.816Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-14T02:59:59.788Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-01"
         action: edit
         source: "user"
@@ -659,7 +683,7 @@ files:
     created: 2026-07-14
     last_modified: 2026-07-14T02:12:59.942Z
     change_count: 1
-    purpose: ""
+    purpose: "omniscitus 추적 파일을 GitHub diff에서 접는 linguist-generated 설정"
     change_log:
       - date: 2026-07-14T02:12:59.942Z
         action: write

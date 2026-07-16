@@ -1,12 +1,12 @@
 version: 1
-updated: "2026-07-14"
+updated: 2026-07-16T09:23:37.946Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-06-26"
-    last_modified: "2026-06-26"
+    created: 2026-06-26
+    last_modified: 2026-06-26
     change_count: 1
     purpose: "Tests for main-log-buffer."
     change_log:
@@ -17,8 +17,8 @@ files:
   "electron/diagnostics/main-log-buffer.ts":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-06-26"
-    last_modified: "2026-06-26"
+    created: 2026-06-26
+    last_modified: 2026-06-26
     change_count: 1
     purpose: "Diagnostics — main-log-buffer.ts."
     change_log:
@@ -29,11 +29,29 @@ files:
   "electron/electron-env.d.ts":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-06"
-    change_count: 55
+    created: 2025-11-28
+    last_modified: 2026-07-16T09:04:36.274Z
+    change_count: 61
     purpose: "Electron main process — electron-env.d.ts."
     change_log:
+      - date: 2026-07-16T09:04:36.274Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:58:40.957Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:58:39.263Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:19:02.678Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:16:41.552Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:33:26.662Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-06"
         action: edit
         source: "user"
@@ -57,8 +75,8 @@ files:
   "electron/globalShortcut.ts":
     status: active
     source: "user:Yauheni Bandziukevich"
-    created: "2026-05-28"
-    last_modified: "2026-06-05"
+    created: 2026-05-28
+    last_modified: 2026-06-05
     change_count: 5
     purpose: "Electron main process — globalShortcut.ts."
     change_log:
@@ -85,8 +103,8 @@ files:
   "electron/i18n.ts":
     status: active
     source: "user:Siddharth"
-    created: "2026-03-21"
-    last_modified: "2026-05-24"
+    created: 2026-03-21
+    last_modified: 2026-05-24
     change_count: 7
     purpose: "Electron main process — i18n.ts."
     change_log:
@@ -113,11 +131,26 @@ files:
   "electron/ipc/handlers.ts":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-06"
-    change_count: 87
+    created: 2025-11-28
+    last_modified: 2026-07-16T09:04:03.778Z
+    change_count: 92
     purpose: "Main-process IPC — handlers.ts."
     change_log:
+      - date: 2026-07-16T09:04:03.778Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:18:14.597Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:17:48.857Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:32:44.417Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:32:42.634Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-06"
         action: edit
         source: "user"
@@ -141,8 +174,8 @@ files:
   "electron/ipc/nativeBridge.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-31"
+    created: 2026-03-16
+    last_modified: 2026-05-31
     change_count: 5
     purpose: "Main-process IPC — nativeBridge.ts."
     change_log:
@@ -169,8 +202,8 @@ files:
   "electron/ipc/recordingStream.test.ts":
     status: active
     source: "user:neurot1cal"
-    created: "2026-05-26"
-    last_modified: "2026-05-26"
+    created: 2026-05-26
+    last_modified: 2026-05-26
     change_count: 1
     purpose: "Tests for recordingStream."
     change_log:
@@ -181,8 +214,8 @@ files:
   "electron/ipc/recordingStream.ts":
     status: active
     source: "user:neurot1cal"
-    created: "2026-05-26"
-    last_modified: "2026-06-05"
+    created: 2026-05-26
+    last_modified: 2026-06-05
     change_count: 2
     purpose: "Main-process IPC — recordingStream.ts."
     change_log:
@@ -197,11 +230,14 @@ files:
   "electron/main.ts":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-06-28"
-    change_count: 47
+    created: 2025-11-28
+    last_modified: 2026-07-16T09:23:37.946Z
+    change_count: 48
     purpose: "Electron main process — window lifecycle, recording orchestration."
     change_log:
+      - date: 2026-07-16T09:23:37.946Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-28"
         action: edit
         source: "user"
@@ -225,8 +261,8 @@ files:
   "electron/native-bridge/cursor/adapter.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Native cursor/click tracking bridge — adapter.ts."
     change_log:
@@ -241,8 +277,8 @@ files:
   "electron/native-bridge/cursor/recording/factory.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-06-05"
+    created: 2026-03-16
+    last_modified: 2026-06-05
     change_count: 8
     purpose: "Native cursor/click tracking bridge — factory.ts."
     change_log:
@@ -269,8 +305,8 @@ files:
   "electron/native-bridge/cursor/recording/macNativeCursorRecordingSession.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-05-12"
-    last_modified: "2026-06-05"
+    created: 2026-05-12
+    last_modified: 2026-06-05
     change_count: 6
     purpose: "Native cursor/click tracking bridge — macNativeCursorRecordingSession.ts."
     change_log:
@@ -297,8 +333,8 @@ files:
   "electron/native-bridge/cursor/recording/session.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Native cursor/click tracking bridge — session.ts."
     change_log:
@@ -313,8 +349,8 @@ files:
   "electron/native-bridge/cursor/recording/telemetryRecordingSession.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 3
     purpose: "Native cursor/click tracking bridge — telemetryRecordingSession.ts."
     change_log:
@@ -333,8 +369,8 @@ files:
   "electron/native-bridge/cursor/recording/windowsNativeRecordingSession.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-07-07"
+    created: 2026-03-16
+    last_modified: 2026-07-07
     change_count: 15
     purpose: "Native cursor/click tracking bridge — windowsNativeRecordingSession.ts."
     change_log:
@@ -361,8 +397,8 @@ files:
   "electron/native-bridge/cursor/recording/windowsNativeRecordingSession.types.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-26"
-    last_modified: "2026-05-24"
+    created: 2026-03-26
+    last_modified: 2026-05-24
     change_count: 8
     purpose: "Native cursor/click tracking bridge — windowsNativeRecordingSession.types.ts."
     change_log:
@@ -389,8 +425,8 @@ files:
   "electron/native-bridge/cursor/telemetryCursorAdapter.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 3
     purpose: "Native cursor/click tracking bridge — telemetryCursorAdapter.ts."
     change_log:
@@ -409,8 +445,8 @@ files:
   "electron/native-bridge/services/cursorService.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Native bridge service — cursorService.ts."
     change_log:
@@ -425,8 +461,8 @@ files:
   "electron/native-bridge/services/projectService.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-31"
+    created: 2026-03-16
+    last_modified: 2026-05-31
     change_count: 5
     purpose: "Native bridge service — projectService.ts."
     change_log:
@@ -453,8 +489,8 @@ files:
   "electron/native-bridge/services/systemService.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Native bridge service — systemService.ts."
     change_log:
@@ -469,8 +505,8 @@ files:
   "electron/native-bridge/store.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Native bridge service — store.ts."
     change_log:
@@ -485,8 +521,8 @@ files:
   "electron/native/README.md":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-06-22"
+    created: 2026-05-05
+    last_modified: 2026-06-22
     change_count: 14
     purpose: "Electron main process — README.md."
     change_log:
@@ -513,8 +549,8 @@ files:
   "electron/native/screencapturekit/Package.swift":
     status: active
     source: "user:Etienne"
-    created: "2026-05-12"
-    last_modified: "2026-05-24"
+    created: 2026-05-12
+    last_modified: 2026-05-24
     change_count: 3
     purpose: "macOS ScreenCaptureKit native helper (Swift) — Package.swift."
     change_log:
@@ -533,8 +569,8 @@ files:
   "electron/native/screencapturekit/Sources/OpenScreenMacOSCursorHelper/main.swift":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-05-12"
-    last_modified: "2026-05-29"
+    created: 2026-05-12
+    last_modified: 2026-05-29
     change_count: 7
     purpose: "macOS ScreenCaptureKit native helper (Swift) — main.swift."
     change_log:
@@ -561,8 +597,8 @@ files:
   "electron/native/screencapturekit/Sources/OpenScreenScreenCaptureKitHelper/main.swift":
     status: active
     source: "user:Etienne"
-    created: "2026-05-12"
-    last_modified: "2026-06-27"
+    created: 2026-05-12
+    last_modified: 2026-06-27
     change_count: 7
     purpose: "macOS ScreenCaptureKit native helper (Swift) — main.swift."
     change_log:
@@ -589,8 +625,8 @@ files:
   "electron/native/wgc-capture/CMakeLists.txt":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-06-15"
+    created: 2026-05-05
+    last_modified: 2026-06-15
     change_count: 8
     purpose: "Windows Graphics Capture native helper (C++) — CMakeLists.txt."
     change_log:
@@ -617,8 +653,8 @@ files:
   "electron/native/wgc-capture/src/audio_sample_utils.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 6
     purpose: "Windows Graphics Capture native helper (C++) — audio_sample_utils.cpp."
     change_log:
@@ -645,8 +681,8 @@ files:
   "electron/native/wgc-capture/src/audio_sample_utils.h":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 6
     purpose: "Windows Graphics Capture native helper (C++) — audio_sample_utils.h."
     change_log:
@@ -673,8 +709,8 @@ files:
   "electron/native/wgc-capture/src/cursor-sampler.cpp":
     status: active
     source: "user:Luca Fontanot"
-    created: "2026-05-20"
-    last_modified: "2026-05-24"
+    created: 2026-05-20
+    last_modified: 2026-05-24
     change_count: 4
     purpose: "Windows Graphics Capture native helper (C++) — cursor-sampler.cpp."
     change_log:
@@ -697,8 +733,8 @@ files:
   "electron/native/wgc-capture/src/dshow_webcam_capture.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 6
     purpose: "Windows Graphics Capture native helper (C++) — dshow_webcam_capture.cpp."
     change_log:
@@ -725,8 +761,8 @@ files:
   "electron/native/wgc-capture/src/dshow_webcam_capture.h":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 3
     purpose: "Windows Graphics Capture native helper (C++) — dshow_webcam_capture.h."
     change_log:
@@ -745,8 +781,8 @@ files:
   "electron/native/wgc-capture/src/main.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-06-26"
+    created: 2026-05-05
+    last_modified: 2026-06-26
     change_count: 17
     purpose: "Windows Graphics Capture native helper (C++) — main.cpp."
     change_log:
@@ -773,8 +809,8 @@ files:
   "electron/native/wgc-capture/src/mf_encoder.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-06-22"
+    created: 2026-05-05
+    last_modified: 2026-06-22
     change_count: 9
     purpose: "Windows Graphics Capture native helper (C++) — mf_encoder.cpp."
     change_log:
@@ -801,8 +837,8 @@ files:
   "electron/native/wgc-capture/src/mf_encoder.h":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 4
     purpose: "Windows Graphics Capture native helper (C++) — mf_encoder.h."
     change_log:
@@ -825,8 +861,8 @@ files:
   "electron/native/wgc-capture/src/monitor_utils.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Windows Graphics Capture native helper (C++) — monitor_utils.cpp."
     change_log:
@@ -841,8 +877,8 @@ files:
   "electron/native/wgc-capture/src/monitor_utils.h":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Windows Graphics Capture native helper (C++) — monitor_utils.h."
     change_log:
@@ -857,8 +893,8 @@ files:
   "electron/native/wgc-capture/src/wasapi_loopback_capture.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 5
     purpose: "Windows Graphics Capture native helper (C++) — wasapi_loopback_capture.cpp."
     change_log:
@@ -885,8 +921,8 @@ files:
   "electron/native/wgc-capture/src/wasapi_loopback_capture.h":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 5
     purpose: "Windows Graphics Capture native helper (C++) — wasapi_loopback_capture.h."
     change_log:
@@ -913,8 +949,8 @@ files:
   "electron/native/wgc-capture/src/webcam_capture.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 5
     purpose: "Windows Graphics Capture native helper (C++) — webcam_capture.cpp."
     change_log:
@@ -941,8 +977,8 @@ files:
   "electron/native/wgc-capture/src/webcam_capture.h":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 5
     purpose: "Windows Graphics Capture native helper (C++) — webcam_capture.h."
     change_log:
@@ -969,8 +1005,8 @@ files:
   "electron/native/wgc-capture/src/wgc_session.cpp":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 5
     purpose: "Windows Graphics Capture native helper (C++) — wgc_session.cpp."
     change_log:
@@ -997,8 +1033,8 @@ files:
   "electron/native/wgc-capture/src/wgc_session.h":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 5
     purpose: "Windows Graphics Capture native helper (C++) — wgc_session.h."
     change_log:
@@ -1025,11 +1061,23 @@ files:
   "electron/preload.ts":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-06"
-    change_count: 56
+    created: 2025-11-28
+    last_modified: 2026-07-16T09:04:33.984Z
+    change_count: 60
     purpose: "Preload bridge — exposes native APIs to the renderer."
     change_log:
+      - date: 2026-07-16T09:04:33.984Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:18:59.842Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:16:39.635Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:33:01.588Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-06"
         action: edit
         source: "user"
@@ -1053,8 +1101,8 @@ files:
   "electron/recording/webm-duration.test.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-07-06"
-    last_modified: "2026-07-06"
+    created: 2026-07-06
+    last_modified: 2026-07-06
     change_count: 2
     purpose: "Tests for webm-duration."
     change_log:
@@ -1069,8 +1117,8 @@ files:
   "electron/recording/webm-duration.ts":
     status: active
     source: "user:neurot1cal"
-    created: "2026-05-25"
-    last_modified: "2026-07-06"
+    created: 2026-05-25
+    last_modified: 2026-07-06
     change_count: 4
     purpose: "Recording session management — webm-duration.ts."
     change_log:
@@ -1093,8 +1141,8 @@ files:
   "electron/singleInstanceLock.test.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-06-19"
-    last_modified: "2026-06-19"
+    created: 2026-06-19
+    last_modified: 2026-06-19
     change_count: 1
     purpose: "Tests for singleInstanceLock."
     change_log:
@@ -1105,8 +1153,8 @@ files:
   "electron/singleInstanceLock.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-06-19"
-    last_modified: "2026-06-19"
+    created: 2026-06-19
+    last_modified: 2026-06-19
     change_count: 1
     purpose: "Electron main process — singleInstanceLock.ts."
     change_log:
@@ -1117,11 +1165,14 @@ files:
   "electron/windows.ts":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-03"
-    change_count: 25
+    created: 2025-11-28
+    last_modified: 2026-07-16T07:17:28.982Z
+    change_count: 26
     purpose: "BrowserWindow creation/management."
     change_log:
+      - date: 2026-07-16T07:17:28.982Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-03"
         action: edit
         source: "user"
@@ -1142,3 +1193,198 @@ files:
         action: edit
         source: "user"
         message: "Refactor: Update URL parameters for notes window"
+  "electron/ai/providers/types.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T07:57:50.578Z
+    change_count: 5
+    purpose: "AI 프로바이더 추상화 — AiProvider/AiChatEvent/세션 인터페이스 (4개 프로바이더 대응)"
+    change_log:
+      - date: 2026-07-16T07:57:50.578Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:57:48.424Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:14:17.304Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:31:27.528Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:27:45.544Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/settings.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T06:28:08.697Z
+    change_count: 1
+    purpose: "ai-settings.json 로드/저장 — 모델 선택 유지, API key는 safeStorage 암호화"
+    change_log:
+      - date: 2026-07-16T06:28:08.697Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/toolBridge.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T09:05:00.374Z
+    change_count: 7
+    purpose: "main→renderer AI 툴콜 RPC — correlation id, 툴별 타임아웃, pending 정리"
+    change_log:
+      - date: 2026-07-16T09:05:00.374Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:15:44.018Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:01:32.419Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:01:28.920Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:14:42.836Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:14:19.539Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:30:28.936Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/toolDefinitions.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T09:04:48.110Z
+    change_count: 12
+    purpose: "cinerec MCP 툴 정의(zod) — 줌/트림/배속/자막/스타일/프레임/트랜스크립트/ask_user"
+    change_log:
+      - date: 2026-07-16T09:04:48.110Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T09:04:46.070Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:15:58.468Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:15:56.617Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:01:19.598Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:01:17.061Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:49:37.142Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:49:34.572Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:15:01.490Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:15:00.278Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:14:56.498Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:30:57.695Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/systemPrompt.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T09:09:15.956Z
+    change_count: 6
+    purpose: "편집 에이전트 시스템 프롬프트 + 턴별 프로젝트 스냅샷 프리픽스"
+    change_log:
+      - date: 2026-07-16T09:09:15.956Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:16:10.859Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T08:02:07.378Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:50:01.668Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:15:15.439Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:31:15.597Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providers/claudeCode.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T07:58:20.667Z
+    change_count: 5
+    purpose: "Claude Code 프로바이더 — Agent SDK query() 세션, 스트리밍, 세션 resume, 인증 감지"
+    change_log:
+      - date: 2026-07-16T07:58:20.667Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:58:12.785Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:15:11.291Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:55:03.409Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:32:00.740Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providers/index.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T06:32:11.792Z
+    change_count: 1
+    purpose: "프로바이더 레지스트리 (Claude 활성 + OpenAI/Gemini/Grok coming-soon 스텁)"
+    change_log:
+      - date: 2026-07-16T06:32:11.792Z
+        action: write
+        source: "claude:Dan"
+  "electron/ipc/aiChat.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T07:58:31.400Z
+    change_count: 3
+    purpose: "AI 채팅 IPC — 프로바이더 상태/설정, 세션 생성·재개·중단, 이벤트 릴레이"
+    change_log:
+      - date: 2026-07-16T07:58:31.400Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:58:29.058Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T06:32:33.340Z
+        action: write
+        source: "claude:Dan"
+  "electron/ipc/webcamPreview.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T07:17:39.969Z
+    change_count: 1
+    purpose: "플로팅 웹캠 셀프뷰 창 show/hide IPC (싱글턴, 기기 변경 푸시)"
+    change_log:
+      - date: 2026-07-16T07:17:39.969Z
+        action: write
+        source: "claude:Dan"

@@ -1,12 +1,12 @@
 version: 1
-updated: "2026-07-14"
+updated: 2026-07-16T07:18:45.747Z
 
 files:
   "src/App.css":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-05-24"
+    created: 2025-11-28
+    last_modified: 2026-05-24
     change_count: 4
     purpose: "src — App.css."
     change_log:
@@ -29,11 +29,20 @@ files:
   "src/App.tsx":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-02"
-    change_count: 19
+    created: 2025-11-28
+    last_modified: 2026-07-16T07:18:43.764Z
+    change_count: 22
     purpose: "Renderer root — routes launch UI vs video editor."
     change_log:
+      - date: 2026-07-16T07:18:43.764Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:18:41.945Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T07:18:40.526Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-02"
         action: edit
         source: "user"
@@ -57,8 +66,8 @@ files:
   "src/index.css":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-03"
+    created: 2025-11-28
+    last_modified: 2026-07-03
     change_count: 12
     purpose: "src — index.css."
     change_log:
@@ -85,11 +94,14 @@ files:
   "src/main.tsx":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-07-06"
-    change_count: 8
+    created: 2025-11-28
+    last_modified: 2026-07-16T07:18:45.747Z
+    change_count: 9
     purpose: "React renderer entry."
     change_log:
+      - date: 2026-07-16T07:18:45.747Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-06"
         action: edit
         source: "user"
@@ -113,8 +125,8 @@ files:
   "src/vite-env.d.ts":
     status: active
     source: "user:Siddharth"
-    created: "2025-11-28"
-    last_modified: "2026-05-24"
+    created: 2025-11-28
+    last_modified: 2026-05-24
     change_count: 18
     purpose: "src — vite-env.d.ts."
     change_log:
