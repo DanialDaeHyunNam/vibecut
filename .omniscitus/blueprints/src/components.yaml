@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-16T09:24:42.344Z
+updated: 2026-07-16T09:42:39.726Z
 
 files:
   "src/components/launch/CountdownOverlay.tsx":
@@ -1653,10 +1653,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-06-05
-    change_count: 19
+    last_modified: 2026-07-16T09:42:39.726Z
+    change_count: 20
     purpose: "Video editor — Item.tsx."
     change_log:
+      - date: 2026-07-16T09:42:39.726Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-05"
         action: edit
         source: "user"
@@ -2472,10 +2475,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T07:18:31.781Z
-    change_count: 1
+    last_modified: 2026-07-16T09:30:07.932Z
+    change_count: 2
     purpose: "웹캠 셀프뷰 창 콘텐츠 — 미러 영상, 드래그 영역, 호버 닫기 버튼"
     change_log:
+      - date: 2026-07-16T09:30:07.932Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T07:18:31.781Z
         action: write
         source: "claude:Dan"

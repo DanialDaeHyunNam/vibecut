@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-16T09:23:37.946Z
+updated: 2026-07-16T09:30:05.527Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -1166,10 +1166,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T07:17:28.982Z
-    change_count: 26
+    last_modified: 2026-07-16T09:30:05.527Z
+    change_count: 28
     purpose: "BrowserWindow creation/management."
     change_log:
+      - date: 2026-07-16T09:30:05.527Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-16T09:29:54.964Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T07:17:28.982Z
         action: edit
         source: "claude:Dan"

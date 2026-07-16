@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-16T09:03:45.585Z
+updated: 2026-07-16T09:43:11.877Z
 
 files:
   "src/lib/__tests__/frameStepNavigation.test.ts":
@@ -1500,10 +1500,13 @@ files:
     status: active
     source: "user:FabLrc"
     created: 2026-02-26
-    last_modified: 2026-06-26
-    change_count: 13
+    last_modified: 2026-07-16T09:43:11.877Z
+    change_count: 14
     purpose: "Renderer library module — shortcuts.ts."
     change_log:
+      - date: 2026-07-16T09:43:11.877Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-26"
         action: edit
         source: "user"

@@ -72,7 +72,7 @@ summaries:
     description: "Recording launch UI — HUD, source selector, countdown, notes, webcam self-view"
     generated_at: 2026-07-16
     generated_by: wrap-up
-    stale: false
+    stale: true
     file_count: 12
   "src/components/ui":
     description: "Radix 기반 shadcn 스타일 UI 프리미티브 (textarea 포함)"
