@@ -36,6 +36,7 @@
 		"panTimeline": "Xoay Trục thời gian",
 		"zoomTimeline": "Thu phóng Trục thời gian",
 		"frameBack": "Lùi một khung hình",
-		"frameForward": "Tiến một khung hình"
+		"frameForward": "Tiến một khung hình",
+		"laneJump": "Nhảy giữa các khối làn"
 	}
 }

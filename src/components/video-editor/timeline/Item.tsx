@@ -72,7 +72,9 @@ export default function Item({
 				? glassStyles.glassAmber
 				: glassStyles.glassYellow;
 
-	const endCapColor = isZoom ? "#21916A" : isTrim ? "#ef4444" : isSpeed ? "#d97706" : "#B4A046";
+	// Resize handles sit a shade deeper than each lane's block so they read
+	// as grabbable edges: zoom=deep violet, trim=red, speed=amber, text=cyan.
+	const endCapColor = isZoom ? "#4C2FE0" : isTrim ? "#ef4444" : isSpeed ? "#d97706" : "#0E7490";
 
 	const timeLabel = useMemo(
 		() => `${formatMs(span.start)} – ${formatMs(span.end)}`,

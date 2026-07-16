@@ -36,6 +36,7 @@
 		"panTimeline": "تحريك المخطط الزمني",
 		"zoomTimeline": "تكبير المخطط الزمني",
 		"frameBack": "إطار للخلف",
-		"frameForward": "إطار للأمام"
+		"frameForward": "إطار للأمام",
+		"laneJump": "Jump Between Lane Blocks"
 	}
 }

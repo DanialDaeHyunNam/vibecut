@@ -36,6 +36,7 @@
 		"panTimeline": "Pan Timeline",
 		"zoomTimeline": "Zoom Timeline",
 		"frameBack": "Frame Back",
-		"frameForward": "Frame Forward"
+		"frameForward": "Frame Forward",
+		"laneJump": "Jump Between Lane Blocks"
 	}
 }

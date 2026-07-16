@@ -34,6 +34,7 @@
 		"panTimeline": "Mover Linha do Tempo",
 		"zoomTimeline": "Zoom na Linha do Tempo",
 		"frameBack": "Quadro Anterior",
-		"frameForward": "Próximo Quadro"
+		"frameForward": "Próximo Quadro",
+		"laneJump": "Pular entre blocos da faixa"
 	}
 }

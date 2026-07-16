@@ -36,6 +36,7 @@
 		"panTimeline": "Zaman Çizelgesini Kaydır",
 		"zoomTimeline": "Zaman Çizelgesini Yakınlaştır",
 		"frameBack": "Önceki Kare",
-		"frameForward": "Sonraki Kare"
+		"frameForward": "Sonraki Kare",
+		"laneJump": "Şerit blokları arasında atla"
 	}
 }

@@ -36,6 +36,7 @@
 		"panTimeline": "Desplazar línea de tiempo",
 		"zoomTimeline": "Zoom en línea de tiempo",
 		"frameBack": "Fotograma anterior",
-		"frameForward": "Fotograma siguiente"
+		"frameForward": "Fotograma siguiente",
+		"laneJump": "Saltar entre bloques del carril"
 	}
 }

@@ -36,6 +36,7 @@
 		"panTimeline": "타임라인 이동",
 		"zoomTimeline": "타임라인 확대/축소",
 		"frameBack": "이전 프레임",
-		"frameForward": "다음 프레임"
+		"frameForward": "다음 프레임",
+		"laneJump": "레인 블록 사이 점프"
 	}
 }

@@ -36,6 +36,7 @@
 		"panTimeline": "Panoramica timeline",
 		"zoomTimeline": "Zoom timeline",
 		"frameBack": "Fotogramma indietro",
-		"frameForward": "Fotogramma avanti"
+		"frameForward": "Fotogramma avanti",
+		"laneJump": "Salta tra i blocchi della corsia"
 	}
 }

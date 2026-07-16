@@ -61,7 +61,7 @@ export function WebcamPreviewWindow() {
 
 	return (
 		<div
-			className="group relative h-screen w-screen overflow-hidden rounded-full bg-black/80"
+			className="group relative h-screen w-screen overflow-hidden rounded-2xl bg-black ring-1 ring-white/15"
 			style={{ WebkitAppRegion: "drag" } as React.CSSProperties}
 		>
 			{error ? (

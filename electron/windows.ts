@@ -326,22 +326,24 @@ export function createCountdownOverlayWindow(): BrowserWindow {
 // Notes window), so the user sees their face but the capture never does.
 export function createWebcamPreviewWindow(deviceId?: string): BrowserWindow {
 	const { workArea } = screen.getPrimaryDisplay();
-	const size = 200;
+	const width = 256;
+	const height = 192;
 	const margin = 24;
 
 	const win = new BrowserWindow({
-		width: size,
-		height: size,
-		x: workArea.x + workArea.width - size - margin,
-		y: workArea.y + workArea.height - size - margin,
-		minWidth: 120,
+		width,
+		height,
+		x: workArea.x + workArea.width - width - margin,
+		y: workArea.y + workArea.height - height - margin,
+		minWidth: 160,
 		minHeight: 120,
 		frame: false,
 		transparent: true,
 		resizable: true,
 		alwaysOnTop: true,
 		skipTaskbar: true,
-		hasShadow: false,
+		// Native macOS shadow hugs the rounded-rect alpha shape of the content.
+		hasShadow: true,
 		show: false,
 		webPreferences: {
 			preload: path.join(__dirname, "preload.mjs"),
@@ -356,6 +358,8 @@ export function createWebcamPreviewWindow(deviceId?: string): BrowserWindow {
 	win.setAlwaysOnTop(true, "screen-saver");
 	if (process.platform === "darwin") {
 		win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+		// Keep the camera's shape while the user resizes.
+		win.setAspectRatio(4 / 3);
 	}
 	win.once("ready-to-show", () => {
 		win.setContentProtection(true);

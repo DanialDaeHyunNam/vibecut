@@ -36,6 +36,7 @@
 		"panTimeline": "平移时间轴",
 		"zoomTimeline": "缩放时间轴",
 		"frameBack": "上一帧",
-		"frameForward": "下一帧"
+		"frameForward": "下一帧",
+		"laneJump": "在轨道块之间跳转"
 	}
 }

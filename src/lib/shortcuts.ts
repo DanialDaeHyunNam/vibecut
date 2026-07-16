@@ -74,6 +74,15 @@ export const FIXED_SHORTCUTS: FixedShortcut[] = [
 		display: "→",
 		bindings: [{ key: "arrowright" }],
 	},
+	{
+		i18nKey: "laneJump",
+		label: "Jump Between Lane Blocks",
+		display: "Alt + ← / →",
+		bindings: [
+			{ key: "arrowleft", alt: true },
+			{ key: "arrowright", alt: true },
+		],
+	},
 ];
 
 export type ShortcutConflict =
