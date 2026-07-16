@@ -15,6 +15,7 @@ export const SUPPORTED_LOCALES = [
 	"zh-TW",
 ] as const;
 export const I18N_NAMESPACES = [
+	"aiChat",
 	"common",
 	"dialogs",
 	"editor",

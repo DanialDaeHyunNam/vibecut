@@ -14,6 +14,11 @@ const CAPTION_POSITION = {
 
 const CAPTION_SIZE = { width: CAPTION_WIDTH, height: CAPTION_HEIGHT };
 
+// Exported for the AI chat panel's add_captions tool, so agent-authored
+// subtitles look identical to auto-captions (and sibling-sync styling works).
+export const AI_CAPTION_POSITION = CAPTION_POSITION;
+export const AI_CAPTION_SIZE = CAPTION_SIZE;
+
 const CAPTION_STYLE: AnnotationTextStyle = {
 	color: "#ffffff",
 	backgroundColor: "rgba(255, 255, 255, 0)",
@@ -24,6 +29,8 @@ const CAPTION_STYLE: AnnotationTextStyle = {
 	textDecoration: "none",
 	textAlign: "center",
 };
+
+export const AI_CAPTION_STYLE = CAPTION_STYLE;
 
 /** Nudge caption starts earlier (seconds); Whisper onsets run slightly late. Do not offset ends too, that pulls lines off-screen early. */
 const AUTO_CAPTION_START_BIAS_SEC = 0;

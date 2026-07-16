@@ -299,4 +299,62 @@ contextBridge.exposeInMainWorld("electronAPI", {
 	sendCloseConfirmResponse: (choice: "save" | "discard" | "cancel") => {
 		ipcRenderer.send("close-confirm-response", choice);
 	},
+	aiProviderStatus: (providerId: string) => {
+		return ipcRenderer.invoke("ai-provider-status", providerId);
+	},
+	aiListProviders: () => {
+		return ipcRenderer.invoke("ai-list-providers");
+	},
+	aiGetSettings: () => {
+		return ipcRenderer.invoke("ai-get-settings");
+	},
+	aiSaveSettings: (update: unknown) => {
+		return ipcRenderer.invoke("ai-save-settings", update);
+	},
+	aiChatSend: (payload: unknown) => {
+		return ipcRenderer.invoke("ai-chat-send", payload);
+	},
+	aiChatCancel: () => {
+		return ipcRenderer.invoke("ai-chat-cancel");
+	},
+	aiChatReset: () => {
+		return ipcRenderer.invoke("ai-chat-reset");
+	},
+	onAiChatEvent: (callback: (event: unknown) => void) => {
+		const listener = (_event: unknown, chatEvent: unknown) => callback(chatEvent);
+		ipcRenderer.on("ai:chat-event", listener);
+		return () => ipcRenderer.removeListener("ai:chat-event", listener);
+	},
+	onAiToolCall: (callback: (call: { callId: string; name: string; input: unknown }) => void) => {
+		const listener = (_event: unknown, call: { callId: string; name: string; input: unknown }) =>
+			callback(call);
+		ipcRenderer.on("ai:tool-call", listener);
+		return () => ipcRenderer.removeListener("ai:tool-call", listener);
+	},
+	aiToolResult: (payload: {
+		callId: string;
+		ok: boolean;
+		content: string;
+		summary?: string;
+		images?: Array<{ data: string; mimeType: string }>;
+	}) => {
+		ipcRenderer.send("ai:tool-result", payload);
+	},
+	saveSrtFile: (filePath: string, content: string) => {
+		return ipcRenderer.invoke("save-srt-file", filePath, content);
+	},
+	saveSrtDialog: (content: string, suggestedName?: string) => {
+		return ipcRenderer.invoke("save-srt-dialog", content, suggestedName);
+	},
+	webcamPreviewShow: (deviceId?: string) => {
+		return ipcRenderer.invoke("webcam-preview-show", deviceId);
+	},
+	webcamPreviewHide: () => {
+		return ipcRenderer.invoke("webcam-preview-hide");
+	},
+	onWebcamPreviewDevice: (callback: (deviceId: string | null) => void) => {
+		const listener = (_event: unknown, deviceId: string | null) => callback(deviceId);
+		ipcRenderer.on("webcam-preview-device", listener);
+		return () => ipcRenderer.removeListener("webcam-preview-device", listener);
+	},
 });

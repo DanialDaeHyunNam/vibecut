@@ -20,7 +20,13 @@ export default defineConfig({
 					return startup(["."], { env });
 				},
 				vite: {
-					build: {},
+					build: {
+						rollupOptions: {
+							// The Agent SDK must load from node_modules at runtime so it can
+							// find its vendored native `claude` binary (platform package).
+							external: ["@anthropic-ai/claude-agent-sdk", /^@anthropic-ai\/claude-agent-sdk-/],
+						},
+					},
 				},
 			},
 			preload: {

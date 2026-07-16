@@ -42,8 +42,10 @@ import { createCursorRecordingSession } from "../native-bridge/cursor/recording/
 import { requestMacCursorAccessibilityAccess } from "../native-bridge/cursor/recording/macNativeCursorRecordingSession";
 import type { CursorRecordingSession } from "../native-bridge/cursor/recording/session";
 import { patchWebmDurationOnDisk } from "../recording/webm-duration";
+import { registerAiChatHandlers } from "./aiChat";
 import { registerNativeBridgeHandlers } from "./nativeBridge";
 import { RecordingStreamRegistry, registerRecordingStreamHandlers } from "./recordingStream";
+import { registerWebcamPreviewHandlers } from "./webcamPreview";
 
 const PROJECT_FILE_EXTENSION = "openscreen";
 export const SHORTCUTS_FILE = path.join(app.getPath("userData"), "shortcuts.json");
@@ -2238,6 +2240,12 @@ export function registerIpcHandlers(
 	const recordingStreams = new RecordingStreamRegistry();
 	registerRecordingStreamHandlers(ipcMain, recordingStreams, resolveRecordingOutputPath);
 
+	// AI chat panel (provider status/settings/chat/tool bridge).
+	registerAiChatHandlers(ipcMain, getMainWindow);
+
+	// Floating webcam self-view (content-protected, excluded from capture).
+	registerWebcamPreviewHandlers(ipcMain);
+
 	ipcMain.handle("store-recorded-session", async (_, payload: StoreRecordedSessionInput) => {
 		try {
 			return await storeRecordedSessionFiles(payload);
@@ -2401,6 +2409,43 @@ export function registerIpcHandlers(
 	// Return base path for assets so renderer can resolve file:// paths in production
 	ipcMain.handle("get-asset-base-path", () => {
 		return resolveAssetBasePath();
+	});
+
+	// Sidecar subtitle write: path comes from the export flow (same folder as
+	// the exported video); restricted to .srt so the renderer can't write
+	// arbitrary files through this channel.
+	ipcMain.handle("save-srt-file", async (_, filePath: string, content: string) => {
+		try {
+			if (typeof filePath !== "string" || !filePath.toLowerCase().endsWith(".srt")) {
+				return { success: false, error: "Only .srt paths are allowed" };
+			}
+			await fs.writeFile(filePath, content, "utf-8");
+			return { success: true, path: filePath };
+		} catch (error) {
+			return { success: false, error: error instanceof Error ? error.message : String(error) };
+		}
+	});
+
+	// Standalone subtitle export (used by the AI agent's export_captions_srt
+	// tool): user picks the destination in a save dialog.
+	ipcMain.handle("save-srt-dialog", async (_, content: string, suggestedName?: string) => {
+		try {
+			const result = await dialog.showSaveDialog({
+				title: "Save subtitles",
+				defaultPath: path.join(
+					app.getPath("downloads"),
+					suggestedName?.endsWith(".srt") ? suggestedName : `${suggestedName ?? "captions"}.srt`,
+				),
+				filters: [{ name: "SubRip Subtitles", extensions: ["srt"] }],
+			});
+			if (result.canceled || !result.filePath) {
+				return { success: false, canceled: true };
+			}
+			await fs.writeFile(result.filePath, content, "utf-8");
+			return { success: true, path: result.filePath };
+		} catch (error) {
+			return { success: false, error: error instanceof Error ? error.message : String(error) };
+		}
 	});
 
 	ipcMain.handle("pick-export-save-path", async (_, fileName: string, exportFolder?: string) => {

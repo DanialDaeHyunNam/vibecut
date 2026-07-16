@@ -317,8 +317,96 @@ interface Window {
 			projectState: unknown;
 			logs: string[];
 		}) => Promise<{ success: boolean; path?: string; canceled?: boolean; error?: string }>;
+		aiProviderStatus: (providerId: AiProviderId) => Promise<AiProviderStatus>;
+		aiListProviders: () => Promise<AiProviderListing[]>;
+		aiGetSettings: () => Promise<AiSettingsPublic>;
+		aiSaveSettings: (update: {
+			provider?: AiProviderId;
+			modelByProvider?: Partial<Record<AiProviderId, string>>;
+			apiKeys?: Partial<Record<AiProviderId, string | null>>;
+		}) => Promise<{ success: boolean; settings?: AiSettingsPublic; error?: string }>;
+		aiChatSend: (payload: {
+			provider: AiProviderId;
+			model: string;
+			text: string;
+			snapshot?: AiProjectSnapshot;
+			resumeSessionId?: string;
+		}) => Promise<{ success: boolean; error?: string }>;
+		aiChatCancel: () => Promise<{ success: boolean }>;
+		aiChatReset: () => Promise<{ success: boolean }>;
+		onAiChatEvent: (callback: (event: AiChatEvent) => void) => () => void;
+		onAiToolCall: (
+			callback: (call: { callId: string; name: string; input: unknown }) => void,
+		) => () => void;
+		aiToolResult: (payload: {
+			callId: string;
+			ok: boolean;
+			content: string;
+			summary?: string;
+			images?: Array<{ data: string; mimeType: string }>;
+		}) => void;
+		saveSrtFile: (
+			filePath: string,
+			content: string,
+		) => Promise<{ success: boolean; path?: string; error?: string }>;
+		saveSrtDialog: (
+			content: string,
+			suggestedName?: string,
+		) => Promise<{ success: boolean; path?: string; canceled?: boolean; error?: string }>;
+		webcamPreviewShow: (deviceId?: string) => Promise<{ success: boolean }>;
+		webcamPreviewHide: () => Promise<{ success: boolean }>;
+		onWebcamPreviewDevice: (callback: (deviceId: string | null) => void) => () => void;
 	};
 }
+
+type AiProviderId = "claude-code" | "openai" | "gemini" | "grok";
+
+type AiProviderStatus =
+	| { available: true; detail?: string }
+	| {
+			available: false;
+			reason: "not-installed" | "not-authenticated" | "no-api-key" | "coming-soon" | "error";
+			detail?: string;
+	  };
+
+interface AiModelInfo {
+	id: string;
+	label: string;
+	isDefault?: boolean;
+}
+
+interface AiProviderListing {
+	id: AiProviderId;
+	label: string;
+	requiresApiKey: boolean;
+	models: AiModelInfo[];
+}
+
+interface AiSettingsPublic {
+	provider: AiProviderId;
+	modelByProvider: Partial<Record<AiProviderId, string>>;
+	hasApiKey: Partial<Record<AiProviderId, boolean>>;
+}
+
+interface AiProjectSnapshot {
+	durationMs: number;
+	zoomCount: number;
+	trimCount: number;
+	speedCount: number;
+	hasCursorTelemetry: boolean;
+}
+
+type AiChatEvent =
+	| { type: "session-started"; sessionId: string }
+	| { type: "text-delta"; text: string }
+	| { type: "tool-start"; toolCallId: string; name: string; input: unknown }
+	| { type: "tool-end"; toolCallId: string; ok: boolean; summary?: string }
+	| { type: "turn-done" }
+	| {
+			type: "error";
+			code: "not-installed" | "not-authenticated" | "aborted" | "unknown";
+			message: string;
+	  };
 
 interface ProcessedDesktopSource {
 	id: string;
