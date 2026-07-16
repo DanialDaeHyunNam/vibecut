@@ -48,7 +48,7 @@ summaries:
     description: "Build/dev scripts — native helper builds, capture smoke tests"
     generated_at: 2026-07-14
     generated_by: migrate
-    stale: false
+    stale: true
     file_count: 14
   src:
     description: "Renderer source — React UI, editor, effect/export libraries, i18n"

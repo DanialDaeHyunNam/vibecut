@@ -1,12 +1,12 @@
 version: 1
-updated: "2026-07-14"
+updated: 2026-07-16T09:56:22.925Z
 
 files:
   "scripts/before-pack.cjs":
     status: active
     source: "user:Siddharth"
-    created: "2026-06-05"
-    last_modified: "2026-06-05"
+    created: 2026-06-05
+    last_modified: 2026-06-05
     change_count: 2
     purpose: "Build/dev script — before-pack.cjs."
     change_log:
@@ -21,8 +21,8 @@ files:
   "scripts/build-macos-screencapturekit-helper.mjs":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-11"
-    last_modified: "2026-06-06"
+    created: 2026-05-11
+    last_modified: 2026-06-06
     change_count: 7
     purpose: "Build/dev script — build-macos-screencapturekit-helper.mjs."
     change_log:
@@ -49,8 +49,8 @@ files:
   "scripts/build-windows-wgc-helper.mjs":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-06-15"
+    created: 2026-05-05
+    last_modified: 2026-06-15
     change_count: 5
     purpose: "Build/dev script — build-windows-wgc-helper.mjs."
     change_log:
@@ -77,8 +77,8 @@ files:
   "scripts/build_macos.sh":
     status: active
     source: "user:samirpatil2000"
-    created: "2026-04-03"
-    last_modified: "2026-05-24"
+    created: 2026-04-03
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Build/dev script — build_macos.sh."
     change_log:
@@ -93,8 +93,8 @@ files:
   "scripts/capture-openscreen-preview.mjs":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 3
     purpose: "Build/dev script — capture-openscreen-preview.mjs."
     change_log:
@@ -113,8 +113,8 @@ files:
   "scripts/diagnostic-tool/README.md":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-06-26"
-    last_modified: "2026-06-26"
+    created: 2026-06-26
+    last_modified: 2026-06-26
     change_count: 2
     purpose: "Build/dev script — README.md."
     change_log:
@@ -129,8 +129,8 @@ files:
   "scripts/diagnostic-tool/diagnostic.bat":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-06-26"
-    last_modified: "2026-06-26"
+    created: 2026-06-26
+    last_modified: 2026-06-26
     change_count: 2
     purpose: "Build/dev script — diagnostic.bat."
     change_log:
@@ -145,8 +145,8 @@ files:
   "scripts/diagnostic-tool/diagnostic.mjs":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-06-26"
-    last_modified: "2026-06-26"
+    created: 2026-06-26
+    last_modified: 2026-06-26
     change_count: 2
     purpose: "Build/dev script — diagnostic.mjs."
     change_log:
@@ -161,8 +161,8 @@ files:
   "scripts/diagnostic-tool/diagnostic.sh":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-06-26"
-    last_modified: "2026-06-26"
+    created: 2026-06-26
+    last_modified: 2026-06-26
     change_count: 1
     purpose: "Build/dev script — diagnostic.sh."
     change_log:
@@ -173,8 +173,8 @@ files:
   "scripts/fetch-caption-model.mjs":
     status: active
     source: "user:Siddharth"
-    created: "2026-06-05"
-    last_modified: "2026-06-06"
+    created: 2026-06-05
+    last_modified: 2026-06-06
     change_count: 3
     purpose: "Build/dev script — fetch-caption-model.mjs."
     change_log:
@@ -193,8 +193,8 @@ files:
   "scripts/i18n-check.mjs":
     status: active
     source: "user:Siddharth"
-    created: "2026-03-21"
-    last_modified: "2026-05-24"
+    created: 2026-03-21
+    last_modified: 2026-05-24
     change_count: 9
     purpose: "Build/dev script — i18n-check.mjs."
     change_log:
@@ -221,8 +221,8 @@ files:
   "scripts/inspect-native-cursor-click-bounce.mjs":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Build/dev script — inspect-native-cursor-click-bounce.mjs."
     change_log:
@@ -237,8 +237,8 @@ files:
   "scripts/test-windows-native-cursor.mjs":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 7
     purpose: "Build/dev script — test-windows-native-cursor.mjs."
     change_log:
@@ -265,8 +265,8 @@ files:
   "scripts/test-windows-wgc-helper.mjs":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 12
     purpose: "Build/dev script — test-windows-wgc-helper.mjs."
     change_log:
@@ -290,3 +290,14 @@ files:
         action: edit
         source: "user"
         message: "fix: resolve selected Windows microphone"
+  "scripts/render-icon.mjs":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T09:56:22.925Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-16T09:56:22.925Z
+        action: write
+        source: "claude:Dan"
