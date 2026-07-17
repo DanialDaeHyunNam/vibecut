@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-16T09:30:05.527Z
+updated: 2026-07-17T07:32:32.970Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -1266,10 +1266,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T09:04:48.110Z
-    change_count: 12
+    last_modified: 2026-07-17T07:24:35.086Z
+    change_count: 13
     purpose: "cinerec MCP 툴 정의(zod) — 줌/트림/배속/자막/스타일/프레임/트랜스크립트/ask_user"
     change_log:
+      - date: 2026-07-17T07:24:35.086Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-16T09:04:48.110Z
         action: edit
         source: "claude:Dan"
@@ -1359,10 +1362,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T06:32:11.792Z
-    change_count: 1
+    last_modified: 2026-07-17T07:28:22.556Z
+    change_count: 2
     purpose: "프로바이더 레지스트리 (Claude 활성 + OpenAI/Gemini/Grok coming-soon 스텁)"
     change_log:
+      - date: 2026-07-17T07:28:22.556Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-16T06:32:11.792Z
         action: write
         source: "claude:Dan"
@@ -1392,5 +1398,85 @@ files:
     purpose: "플로팅 웹캠 셀프뷰 창 show/hide IPC (싱글턴, 기기 변경 푸시)"
     change_log:
       - date: 2026-07-16T07:17:39.969Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/toolHost.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T07:25:02.097Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T07:25:02.097Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/mcpBridge.cjs":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T07:25:26.942Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T07:25:26.942Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/cliDiscovery.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T07:25:47.997Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T07:25:47.997Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providers/codexEvents.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T07:26:45.790Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T07:26:45.790Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providers/codexCli.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T07:27:21.054Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T07:27:21.054Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providers/geminiCli.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T07:28:06.905Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T07:28:06.905Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/aiCliBridge.test.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T07:32:32.970Z
+    change_count: 2
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T07:32:32.970Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T07:31:39.070Z
         action: write
         source: "claude:Dan"

@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T05:34:06.678Z
+updated: 2026-07-17T07:28:25.344Z
 
 files:
   ".editorconfig":
@@ -314,10 +314,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T06:33:54.462Z
-    change_count: 26
+    last_modified: 2026-07-17T07:28:25.344Z
+    change_count: 27
     purpose: "Desktop packaging config (dmg/exe/AppImage)."
     change_log:
+      - date: 2026-07-17T07:28:25.344Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T06:33:54.462Z
         action: edit
         source: "claude:Dan"

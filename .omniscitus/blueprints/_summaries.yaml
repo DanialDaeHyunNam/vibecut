@@ -66,7 +66,7 @@ summaries:
     description: "React components — launch HUD, video editor, AI chat panel, shared UI"
     generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: false
+    stale: true
     file_count: 91
   "src/components/launch":
     description: "Recording launch UI — HUD, source selector, countdown, notes, webcam self-view"
@@ -90,7 +90,7 @@ summaries:
     description: "React hooks — editor history, recorder, cursor telemetry, AI chat/tool host"
     generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: false
+    stale: true
     file_count: 11
   "src/i18n":
     description: "14개 로케일 i18n — config/loader + 네임스페이스 JSON (aiChat 추가)"

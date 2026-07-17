@@ -44,7 +44,8 @@ ask_user)과 프로젝트별 대화 저장·세션 이어가기까지 하루에 
 - [ ] 실사용 검증 계속: ask_user 재질문 응답 후 맞춤 자동편집 완주 확인
 - [ ] 패키징 스모크 (`npm run build:mac`) — SDK external/asarUnpack + 240MB 바이너리 동작 확인
 - [ ] 기능 단위 커밋 정리 (40+ 파일 미커밋)
-- [ ] OpenAI/Gemini/Grok API-key 프로바이더 구현 (인터페이스·설정 스키마는 준비됨)
+- [x] OpenAI/Gemini/Grok 프로바이더 (2026-07-17: OpenAI는 Codex CLI 구독 연동·Gemini는 Gemini CLI 구독 연동으로 구현 — 공용 stdio MCP 브리지(mcpBridge.cjs)+툴 호스트(유닉스 소켓) 경유로 툴 18종 공유. Grok은 API key 입력 UI만, 프로바이더는 coming-soon 유지)
+- [ ] Codex/Gemini 실기기 검증 — 두 CLI 모두 로컬 미설치라 spawn 경로(코덱스 exec resume, gemini 설정 주입)는 실제 CLI로 미확인. `npm i -g @openai/codex` 후 `codex login`, `npm i -g @google/gemini-cli` 후 로그인하고 실채팅 확인 필요
 - [ ] 내보내기(export) 트리거 툴 검토
 
 ## Notes
