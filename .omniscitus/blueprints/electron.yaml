@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T07:32:32.970Z
+updated: 2026-07-17T12:46:42.860Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -1448,10 +1448,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T07:27:21.054Z
-    change_count: 1
+    last_modified: 2026-07-17T12:46:18.610Z
+    change_count: 2
     purpose: ""
     change_log:
+      - date: 2026-07-17T12:46:18.610Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-17T07:27:21.054Z
         action: write
         source: "claude:Dan"
@@ -1459,10 +1462,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T07:28:06.905Z
-    change_count: 1
+    last_modified: 2026-07-17T12:46:42.860Z
+    change_count: 2
     purpose: ""
     change_log:
+      - date: 2026-07-17T12:46:42.860Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-17T07:28:06.905Z
         action: write
         source: "claude:Dan"
@@ -1478,5 +1484,16 @@ files:
         action: edit
         source: "claude:Dan"
       - date: 2026-07-17T07:31:39.070Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providers/cliSession.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T10:48:04.120Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T10:48:04.120Z
         action: write
         source: "claude:Dan"

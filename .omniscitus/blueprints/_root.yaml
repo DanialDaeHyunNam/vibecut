@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T08:26:06.214Z
+updated: 2026-07-17T12:49:26.314Z
 
 files:
   ".editorconfig":
@@ -98,10 +98,13 @@ files:
     status: active
     source: "user:EtienneLescot"
     created: 2026-06-22
-    last_modified: 2026-07-05
-    change_count: 5
+    last_modified: 2026-07-17T12:49:17.589Z
+    change_count: 6
     purpose: "Root config — AGENTS.md."
     change_log:
+      - date: 2026-07-17T12:49:17.589Z
+        action: write
+        source: "claude:Dan"
       - date: "2026-07-05"
         action: edit
         source: "user"
@@ -207,10 +210,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-17T08:26:06.214Z
-    change_count: 41
+    last_modified: 2026-07-17T12:49:26.314Z
+    change_count: 42
     purpose: "Upstream OpenScreen README — install, platform capture notes, community links."
     change_log:
+      - date: 2026-07-17T12:49:26.314Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T08:26:06.214Z
         action: edit
         source: "claude:Dan"
@@ -710,5 +716,16 @@ files:
     purpose: "omniscitus 추적 파일을 GitHub diff에서 접는 linguist-generated 설정"
     change_log:
       - date: 2026-07-14T02:12:59.942Z
+        action: write
+        source: "claude:Dan"
+  "ARCHITECTURE.md":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T12:47:56.032Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T12:47:56.032Z
         action: write
         source: "claude:Dan"
