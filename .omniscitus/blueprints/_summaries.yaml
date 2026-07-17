@@ -15,10 +15,10 @@ summaries:
     stale: true
     file_count: 49
   "electron/ipc":
-    description: "IPC handlers — recording, project files, AI chat, webcam self-view"
-    generated_at: 2026-07-16
+    description: "IPC handlers — recording, project files, AI chat, webcam self-view, SRT save"
+    generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 4
   "electron/native":
     description: "Platform helpers — Swift ScreenCaptureKit (macOS), C++ WGC (Windows)"
@@ -64,15 +64,15 @@ summaries:
     file_count: 27
   "src/components":
     description: "React components — launch HUD, video editor, AI chat panel, shared UI"
-    generated_at: 2026-07-16
+    generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 91
   "src/components/launch":
     description: "Recording launch UI — HUD, source selector, countdown, notes, webcam self-view"
-    generated_at: 2026-07-16
+    generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 12
   "src/components/ui":
     description: "Radix 기반 shadcn 스타일 UI 프리미티브 (textarea 포함)"
@@ -81,16 +81,16 @@ summaries:
     stale: false
     file_count: 20
   "src/components/video-editor":
-    description: "타임라인 비디오 에디터 — 프리뷰, 설정 레일([AI|설정] 탭), 내보내기"
-    generated_at: 2026-07-16
+    description: "타임라인 비디오 에디터 — 리사이즈 가능한 [AI|설정] 레일, 레인 포커스 내비, 내보내기"
+    generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 59
   "src/hooks":
     description: "React hooks — editor history, recorder, cursor telemetry, AI chat/tool host"
-    generated_at: 2026-07-16
+    generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 11
   "src/i18n":
     description: "14개 로케일 i18n — config/loader + 네임스페이스 JSON (aiChat 추가)"
@@ -99,16 +99,16 @@ summaries:
     stale: false
     file_count: 94
   "src/lib":
-    description: "공유 라이브러리 — exporter, captioning, cursor, wallpaper, recording session"
-    generated_at: 2026-07-16
+    description: "공유 라이브러리 — exporter, captioning(+SRT), cursor, wallpaper, shortcuts"
+    generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 76
   "src/lib/captioning":
-    description: "로컬 Whisper 자막 파이프라인 — 오디오 추출, 전사, 캡션 annotation 변환 (AI 캡션 상수 공유)"
-    generated_at: 2026-07-16
+    description: "로컬 Whisper 자막 파이프라인 + SRT 직렬화 (AI 캡션 상수 공유)"
+    generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 10
   "src/lib/cursor":
     description: "Cursor telemetry playback & effect rendering"

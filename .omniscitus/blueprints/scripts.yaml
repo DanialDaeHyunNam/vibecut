@@ -296,7 +296,7 @@ files:
     created: 2026-07-16
     last_modified: 2026-07-16T09:56:22.925Z
     change_count: 1
-    purpose: ""
+    purpose: "Electron 오프스크린 렌더러로 SVG→투명 PNG 변환 (qlmanage 흰배경 문제 대체)"
     change_log:
       - date: 2026-07-16T09:56:22.925Z
         action: write

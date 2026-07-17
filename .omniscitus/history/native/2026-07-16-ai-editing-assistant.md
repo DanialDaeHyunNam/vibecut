@@ -33,6 +33,13 @@ ask_user)과 프로젝트별 대화 저장·세션 이어가기까지 하루에 
 
 **Learned**: SRT가 자막 이관의 사실상 표준. Agent SDK 매니페스트에 win32-x64/arm64 바이너리 포함 — Claude 연동은 윈도우도 지원됨 (실기기 검증은 미실시).
 
+### 2026-07-17
+**Focus**: aiChat 네임스페이스 14로케일 실번역 완료
+- 영어 시드였던 11개 로케일(ar/es/fr/it/ja/ru/tr/vi/pt-BR/zh-CN/zh-TW)에 프롬프트 포함 전체 키 실번역 작성
+- Whisper 언어 자동 감지 확인(transcribeCore가 language 미지정 → auto-detect); tiny 모델의 한국어 한계와 모델 업그레이드 옵션(base/small)은 제안 상태
+
+**Learned**: autoEditPrompt/understandPrompt 같은 "에이전트에게 보내는 프롬프트"도 채팅에 사용자 메시지로 노출되므로 로케일 번역 대상에 포함해야 자연스럽다.
+
 ## Pending
 - [ ] 실사용 검증 계속: ask_user 재질문 응답 후 맞춤 자동편집 완주 확인
 - [ ] 패키징 스모크 (`npm run build:mac`) — SDK external/asarUnpack + 240MB 바이너리 동작 확인

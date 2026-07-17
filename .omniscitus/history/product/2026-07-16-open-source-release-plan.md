@@ -21,6 +21,15 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 
 **Learned**: 라이선스 리스크는 포크한 코드가 아니라 나중에 추가한 의존성에서 온다 — 공개 전 `npx license-checker`로 전체 의존성 스윕 필수.
 
+### 2026-07-17
+**Focus**: Vibecut 리브랜딩 적용 완료
+- 브랜드명 Vibecut 확정(ask 선택) 후 전면 적용: productName/appId(app.vibecut)/package명/창 타이틀/메뉴/독/트레이·로고 에셋(public/vibecut.png)/전 로케일 사용자 문자열 103곳
+- LICENSE에 "Copyright (c) 2026 DaeHyun Nam (Vibecut)" 추가 (원저작자 고지 보존), README를 AI 어시스턴트 중심으로 재작성 + OpenScreen 크레딧
+- 단일 인스턴스 락 네임스페이스 분리 → 레거시 패키지 Openscreen.app이 더 이상 dev 실행을 차단하지 못함
+- 데이터 호환을 위해 의도적 미변경: localStorage 키, OPENSCREEN_* env, .openscreen 확장자 (후속 pending 참조)
+
+**Learned**: package name 변경은 Electron userData 경로를 옮긴다(설정 초기화) — 리브랜딩 커밋 메시지에 데이터 영향 명시가 필수. i18n 브랜드 치환은 JSON "값만" 워커로 돌려야 키 참조가 안 깨진다.
+
 ## Pending
 - [x] 브랜드명 확정: **Vibecut** (2026-07-16 — "바이브 편집", 말로 시키는 AI 편집이라는 차별점을 이름에 담음. CapCut 연상/상표 충돌은 공개 전 확인)
 - [x] Vibecut 리브랜딩 적용 (2026-07-17): productName/appId(app.vibecut)/package명/창 타이틀/메뉴/트레이·로고 에셋/전 로케일 103곳 + LICENSE 저작권 줄 + README 재작성(AI 중심, OpenScreen 크레딧)

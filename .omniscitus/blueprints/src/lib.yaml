@@ -1717,7 +1717,7 @@ files:
     created: 2026-07-16
     last_modified: 2026-07-16T09:03:38.866Z
     change_count: 1
-    purpose: ""
+    purpose: "자막 annotation → SubRip(.srt) 직렬화 (캡션 트랙 필터/정렬/타임코드)"
     change_log:
       - date: 2026-07-16T09:03:38.866Z
         action: write
@@ -1728,7 +1728,7 @@ files:
     created: 2026-07-16
     last_modified: 2026-07-16T09:03:45.585Z
     change_count: 1
-    purpose: ""
+    purpose: "SRT 직렬화 테스트 (정렬/타임코드/비캡션 제외)"
     change_log:
       - date: 2026-07-16T09:03:45.585Z
         action: write

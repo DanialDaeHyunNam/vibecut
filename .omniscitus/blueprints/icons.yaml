@@ -8,8 +8,19 @@ files:
     created: 2026-07-16
     last_modified: 2026-07-16T09:21:17.733Z
     change_count: 1
-    purpose: ""
+    purpose: "앱 아이콘 SVG 마스터 (다크 스쿼클 + 바이올렛 REC 링/도트 + AI 스파클)"
     change_log:
       - date: 2026-07-16T09:21:17.733Z
+        action: write
+        source: "claude:Dan"
+  "icons/cinerec-tray.svg":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-16
+    last_modified: 2026-07-16T10:00:00.000Z
+    change_count: 1
+    purpose: "메뉴바 트레이 아이콘 SVG (투명 배경, 링+도트+스파클만)"
+    change_log:
+      - date: 2026-07-16T10:00:00.000Z
         action: write
         source: "claude:Dan"
