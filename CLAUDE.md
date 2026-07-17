@@ -1,6 +1,6 @@
 # cinerec — Recorded/Screen Studio 클론 (OpenScreen 포크)
 
-> 폴더명 `cinerec`는 작업용 코드네임. 브랜딩 확정 시 변경 가능.
+> 폴더명 `cinerec`는 작업용 코드네임. **브랜드명 확정: Vibecut** (2026-07-16, appId app.vibecut).
 
 ## 목표
 

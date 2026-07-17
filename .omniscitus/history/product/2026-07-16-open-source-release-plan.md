@@ -23,7 +23,8 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 
 ## Pending
 - [x] 브랜드명 확정: **Vibecut** (2026-07-16 — "바이브 편집", 말로 시키는 AI 편집이라는 차별점을 이름에 담음. CapCut 연상/상표 충돌은 공개 전 확인)
-- [ ] Vibecut 리브랜딩 적용: productName/appId/package name/트레이·독 표기/윈도우 타이틀/README + LICENSE에 자체 저작권 줄 추가 + README 재작성(스크린샷/데모 GIF, "based on OpenScreen" 크레딧, AI 기능 소개)
+- [x] Vibecut 리브랜딩 적용 (2026-07-17): productName/appId(app.vibecut)/package명/창 타이틀/메뉴/트레이·로고 에셋/전 로케일 103곳 + LICENSE 저작권 줄 + README 재작성(AI 중심, OpenScreen 크레딧)
+- [ ] 리브랜딩 후속: .openscreen 프로젝트 확장자(.vibecut 병행 지원), localStorage 키/OPENSCREEN_* env 정리, SettingsPanel의 버그리포트 링크(현재 upstream repo로 향함 — 자체 repo 생성 후 교체), 데모 GIF를 README에 추가
 - [ ] `npx license-checker`로 전체 의존성 라이선스 스윕
 - [ ] 데모 영상: cinerec으로 cinerec 홍보 영상을 찍기 (AI 자동편집 사용 — 도그푸딩 스토리가 곧 마케팅)
 - [ ] 자체 git repo 분리 + GitHub 공개 (card-news 전례 따름)
