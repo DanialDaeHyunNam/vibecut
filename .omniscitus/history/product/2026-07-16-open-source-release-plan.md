@@ -49,6 +49,8 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 - [ ] Vercel Web Analytics 활성화 — 대시보드 → vibecut 프로젝트 → Analytics 탭 → Enable (스크립트 태그는 페이지에 이미 있음, API로는 enable 불가였음). 방문자 집계는 이걸로, 다운로드 집계는 GitHub release download_count로
 - [ ] 커스텀 도메인 검토 — vibecut.vercel.app은 선점됨(현재 vibecut-orcin.vercel.app). vibecut.app 등 구매 시 Vercel 도메인 연결 + README/og:image URL 교체
 
+- [x] 원격 정책 매니페스트(킬스위치) 구축 (2026-07-17): `site/provider-policy.json` → 앱이 하루 1회 fetch(userData 캐시, fail-open). **운영법**: 제공사 약관 변경 감지 시 JSON에서 해당 프로바이더를 `"notice"`(+message {en,ko,...}, link) 또는 `"disabled"`로 바꾸고 `vercel deploy --cwd site --prod --yes` — 설치된 전 앱이 24시간 내 반응(notice=호박색 배너, disabled=게이트+API key 안내). 구독 프로바이더(Claude/ChatGPT) 첫 사용 시 1회 고지 카드. 프라이버시 공개는 README/랜딩에 명시
+
 ## Notes
 관련: [[2026-07-16-ai-editing-assistant]] (차별화 포인트), [[2026-07-14-cinerec-fork-bootstrap]] (MIT 포크 결정).
 배포(노터라이즈) 항목은 부트스트랩 유닛 Pending과 이어짐.
