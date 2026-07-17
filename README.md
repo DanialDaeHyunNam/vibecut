@@ -96,6 +96,8 @@ npm test                   # vitest (Node 22+)
 
 Requirements: Node 22.x, and for the AI assistant one of: a [Claude](https://claude.com) subscription (Claude Code login), a ChatGPT subscription ([Codex CLI](https://github.com/openai/codex)), or a Google account ([Gemini CLI](https://github.com/google-gemini/gemini-cli)).
 
+Contributing — human or AI agent: start with [ARCHITECTURE.md](ARCHITECTURE.md) (system map, data flows, invariants) and [AGENTS.md](AGENTS.md) (commands, conventions, gotchas). The codebase is deliberately structured so LLM agents can navigate it: one tool registry, one mutation gateway, pure logic extracted into testable modules.
+
 ## 🙏 Credits & license
 
 Vibecut is built on [OpenScreen](https://github.com/EtienneLescot/openscreen) by [Siddharth Vaddem](https://github.com/siddharthvaddem) and the community continuation by [Etienne Lescot](https://github.com/EtienneLescot) — the recording pipeline, timeline editor, and export engine come from that excellent foundation.
