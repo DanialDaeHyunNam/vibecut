@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "{{name}} API 金鑰（選用——代替登入）",
 	"apiKeySaved": "已儲存 {{name}} API 金鑰",
 	"noApiKeyTitle": "需要 {{name}} API 金鑰",
-	"noApiKeyBody": "將 {{name}} API 金鑰貼到模型選擇器下方的欄位。\n取得位置：{{source}}。"
+	"noApiKeyBody": "將 {{name}} API 金鑰貼到模型選擇器下方的欄位。\n取得位置：{{source}}。",
+	"subscriptionNotice": "此功能透過你自己的 {{name}} 訂閱連接，並受提供方條款約束；條款可能變更，若有變更 Vibecut 會在此處提醒你。",
+	"subscriptionNoticeOk": "知道了",
+	"policyDisabledTitle": "{{name}} 訂閱登入已暫停",
+	"policyDisabledBody": "提供方政策已變更，為保護你的帳號，此登入方式已停用。請改用 API 金鑰（模型選擇器下方的欄位），或稍後再試。",
+	"policyLearnMore": "了解更多",
+	"dismiss": "關閉"
 }

@@ -76,6 +76,7 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 	const [provider, setProviderState] = useState<AiProviderId>("claude-code");
 	const [model, setModelState] = useState<string>("claude-opus-4-8");
 	const [status, setStatus] = useState<AiProviderStatus | null>(null);
+	const [policy, setPolicy] = useState<AiProviderPolicy | null>(null);
 	const [items, setItems] = useState<AiChatItem[]>([]);
 	const [sessionId, setSessionId] = useState<string | null>(null);
 	const [busy, setBusy] = useState(false);
@@ -134,6 +135,14 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 				setStatus(await window.electronAPI.aiProviderStatus(activeProvider));
 			} catch (error) {
 				console.error("Failed to initialize AI chat:", error);
+			}
+			// Remote policy manifest (kill switch) — fail-open, so a failure
+			// here just means no banner.
+			try {
+				const remotePolicy = await window.electronAPI.aiProviderPolicy();
+				if (!cancelled) setPolicy(remotePolicy);
+			} catch {
+				// Offline or endpoint unreachable — proceed without a policy.
 			}
 		})();
 		return () => {
@@ -321,6 +330,7 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 		model,
 		setModel,
 		status,
+		policy,
 		refreshStatus,
 		items,
 		busy,

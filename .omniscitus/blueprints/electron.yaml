@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T13:20:13.020Z
+updated: 2026-07-17T13:34:38.537Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -30,10 +30,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T09:04:36.274Z
-    change_count: 61
+    last_modified: 2026-07-17T13:31:50.907Z
+    change_count: 63
     purpose: "Electron main process — electron-env.d.ts."
     change_log:
+      - date: 2026-07-17T13:31:50.907Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T13:31:45.834Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:04:36.274Z
         action: edit
         source: "claude:Dan"
@@ -1062,10 +1068,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T09:04:33.984Z
-    change_count: 60
+    last_modified: 2026-07-17T13:31:36.734Z
+    change_count: 61
     purpose: "Preload bridge — exposes native APIs to the renderer."
     change_log:
+      - date: 2026-07-17T13:31:36.734Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:04:33.984Z
         action: edit
         source: "claude:Dan"
@@ -1388,10 +1397,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T13:19:20.273Z
-    change_count: 5
+    last_modified: 2026-07-17T13:31:35.113Z
+    change_count: 7
     purpose: "AI 채팅 IPC — 프로바이더 상태/설정, 세션 생성·재개·중단, 이벤트 릴레이"
     change_log:
+      - date: 2026-07-17T13:31:35.113Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T13:31:33.135Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:19:20.273Z
         action: edit
         source: "claude:Dan"
@@ -1525,5 +1540,27 @@ files:
     purpose: ""
     change_log:
       - date: 2026-07-17T10:48:04.120Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providerPolicy.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T13:31:26.200Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T13:31:26.200Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/providerPolicy.test.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T13:34:38.537Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T13:34:38.537Z
         action: write
         source: "claude:Dan"

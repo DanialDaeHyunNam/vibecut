@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "{{name}} API key (optional — instead of signing in)",
 	"apiKeySaved": "{{name}} API key saved",
 	"noApiKeyTitle": "{{name}} API key needed",
-	"noApiKeyBody": "Paste your {{name}} API key in the field under the model picker.\nGet one from {{source}}."
+	"noApiKeyBody": "Paste your {{name}} API key in the field under the model picker.\nGet one from {{source}}.",
+	"subscriptionNotice": "This connects through your own {{name}} subscription and is subject to the provider's terms, which can change. If they do, Vibecut will notify you right here.",
+	"subscriptionNoticeOk": "Got it",
+	"policyDisabledTitle": "{{name}} subscription sign-in is paused",
+	"policyDisabledBody": "The provider's policy changed, so this sign-in method is disabled to protect your account. Use an API key instead (field under the model picker), or check back later.",
+	"policyLearnMore": "Learn more",
+	"dismiss": "Dismiss"
 }

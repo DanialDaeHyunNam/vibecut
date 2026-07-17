@@ -305,6 +305,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
 	aiListProviders: () => {
 		return ipcRenderer.invoke("ai-list-providers");
 	},
+	aiProviderPolicy: () => {
+		return ipcRenderer.invoke("ai-provider-policy");
+	},
 	aiGetSettings: () => {
 		return ipcRenderer.invoke("ai-get-settings");
 	},

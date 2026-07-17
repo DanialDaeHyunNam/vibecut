@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "Chiave API {{name}} (facoltativa — in alternativa all'accesso)",
 	"apiKeySaved": "Chiave API {{name}} salvata",
 	"noApiKeyTitle": "Serve una chiave API {{name}}",
-	"noApiKeyBody": "Incolla la tua chiave API {{name}} nel campo sotto il selettore dei modelli.\nOttienila su {{source}}."
+	"noApiKeyBody": "Incolla la tua chiave API {{name}} nel campo sotto il selettore dei modelli.\nOttienila su {{source}}.",
+	"subscriptionNotice": "Questa funzione si collega tramite il tuo abbonamento {{name}} ed è soggetta ai termini del provider, che possono cambiare. In tal caso Vibecut ti avviserà proprio qui.",
+	"subscriptionNoticeOk": "Capito",
+	"policyDisabledTitle": "L'accesso con abbonamento {{name}} è in pausa",
+	"policyDisabledBody": "La policy del provider è cambiata: questo metodo è disattivato per proteggere il tuo account. Usa una chiave API (campo sotto il selettore dei modelli) o riprova più tardi.",
+	"policyLearnMore": "Scopri di più",
+	"dismiss": "Chiudi"
 }

@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "مفتاح {{name}} API (اختياري — بدلًا من تسجيل الدخول)",
 	"apiKeySaved": "تم حفظ مفتاح {{name}} API",
 	"noApiKeyTitle": "مطلوب مفتاح {{name}} API",
-	"noApiKeyBody": "الصق مفتاح {{name}} API في الحقل أسفل مُحدد النماذج.\nاحصل عليه من {{source}}."
+	"noApiKeyBody": "الصق مفتاح {{name}} API في الحقل أسفل مُحدد النماذج.\nاحصل عليه من {{source}}.",
+	"subscriptionNotice": "تتصل هذه الميزة عبر اشتراكك الخاص في {{name}} وتخضع لشروط المزوّد، وقد تتغير. إذا تغيّرت فسيخبرك Vibecut هنا مباشرة.",
+	"subscriptionNoticeOk": "فهمت",
+	"policyDisabledTitle": "تم إيقاف تسجيل الدخول باشتراك {{name}} مؤقتًا",
+	"policyDisabledBody": "تغيّرت سياسة المزوّد، فتم تعطيل طريقة تسجيل الدخول هذه لحماية حسابك. استخدم مفتاح API (الحقل أسفل مُحدد النماذج) أو عد لاحقًا.",
+	"policyLearnMore": "معرفة المزيد",
+	"dismiss": "إغلاق"
 }

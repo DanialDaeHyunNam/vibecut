@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "{{name}} API anahtarı (isteğe bağlı — giriş yerine)",
 	"apiKeySaved": "{{name}} API anahtarı kaydedildi",
 	"noApiKeyTitle": "{{name}} API anahtarı gerekli",
-	"noApiKeyBody": "{{name}} API anahtarınızı model seçicinin altındaki alana yapıştırın.\nAnahtar: {{source}}."
+	"noApiKeyBody": "{{name}} API anahtarınızı model seçicinin altındaki alana yapıştırın.\nAnahtar: {{source}}.",
+	"subscriptionNotice": "Bu özellik kendi {{name}} aboneliğinizle bağlanır ve sağlayıcının değişebilen şartlarına tabidir. Değişirse Vibecut tam burada bildirir.",
+	"subscriptionNoticeOk": "Anladım",
+	"policyDisabledTitle": "{{name}} abonelik girişi duraklatıldı",
+	"policyDisabledBody": "Sağlayıcının politikası değişti; hesabınızı korumak için bu giriş yöntemi devre dışı bırakıldı. API anahtarı kullanın (model seçicinin altındaki alan) veya daha sonra tekrar deneyin.",
+	"policyLearnMore": "Daha fazla bilgi",
+	"dismiss": "Kapat"
 }

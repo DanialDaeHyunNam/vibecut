@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "{{name}} API キー（任意 — サインインの代わり）",
 	"apiKeySaved": "{{name}} API キーを保存済み",
 	"noApiKeyTitle": "{{name}} API キーが必要です",
-	"noApiKeyBody": "モデル選択の下の入力欄に {{name}} API キーを貼り付けてください。\n取得先: {{source}}"
+	"noApiKeyBody": "モデル選択の下の入力欄に {{name}} API キーを貼り付けてください。\n取得先: {{source}}",
+	"subscriptionNotice": "この機能はご自身の {{name}} サブスクリプションで認証され、提供元の利用規約が適用されます。規約は変更されることがあり、その際はここでお知らせします。",
+	"subscriptionNoticeOk": "了解",
+	"policyDisabledTitle": "{{name}} のサブスクリプションログインは一時停止中です",
+	"policyDisabledBody": "提供元のポリシー変更により、アカウント保護のためこのログイン方法を無効にしました。モデル選択の下の欄で API キーに切り替えるか、後ほどご確認ください。",
+	"policyLearnMore": "詳細",
+	"dismiss": "閉じる"
 }

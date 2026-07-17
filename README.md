@@ -40,6 +40,7 @@ The agent **sees** your video (frame sampling), **hears** it (on-device Whisper 
 - **18 editing tools**: zoom / trim / speed / caption CRUD, frame styling (wallpaper, padding, shadows, webcam PIP), SRT export, and `ask_user` interactive questions.
 - **One-click flows**: "Understand & brief me" and "Auto-edit this video" (asks your zoom style, target length, and caption language first).
 - **Per-project chat memory** that survives restarts — the agent resumes the same session.
+- **Provider-policy safety net**: subscription sign-ins are governed by each AI provider's terms, which shifted several times in 2026. Vibecut checks one small static policy file daily (a single JSON GET — nothing about you or your usage is sent) and will warn in-app, or pause a sign-in method, if a provider's policy changes — so a policy shift never silently puts your account at risk.
 
 ## 🎥 Recording & editing
 

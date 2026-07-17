@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "Khóa API {{name}} (tùy chọn — thay cho đăng nhập)",
 	"apiKeySaved": "Đã lưu khóa API {{name}}",
 	"noApiKeyTitle": "Cần khóa API {{name}}",
-	"noApiKeyBody": "Dán khóa API {{name}} vào ô bên dưới phần chọn mô hình.\nLấy khóa tại {{source}}."
+	"noApiKeyBody": "Dán khóa API {{name}} vào ô bên dưới phần chọn mô hình.\nLấy khóa tại {{source}}.",
+	"subscriptionNotice": "Tính năng này kết nối qua gói đăng ký {{name}} của chính bạn và tuân theo điều khoản của nhà cung cấp, vốn có thể thay đổi. Nếu thay đổi, Vibecut sẽ thông báo ngay tại đây.",
+	"subscriptionNoticeOk": "Đã hiểu",
+	"policyDisabledTitle": "Đăng nhập bằng gói {{name}} đang tạm dừng",
+	"policyDisabledBody": "Chính sách của nhà cung cấp đã thay đổi; phương thức này bị tắt để bảo vệ tài khoản của bạn. Hãy dùng khóa API (ô bên dưới phần chọn mô hình) hoặc quay lại sau.",
+	"policyLearnMore": "Tìm hiểu thêm",
+	"dismiss": "Đóng"
 }

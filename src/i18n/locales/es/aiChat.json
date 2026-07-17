@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "Clave API de {{name}} (opcional — en lugar de iniciar sesión)",
 	"apiKeySaved": "Clave API de {{name}} guardada",
 	"noApiKeyTitle": "Se necesita una clave API de {{name}}",
-	"noApiKeyBody": "Pega tu clave API de {{name}} en el campo bajo el selector de modelos.\nConsíguela en {{source}}."
+	"noApiKeyBody": "Pega tu clave API de {{name}} en el campo bajo el selector de modelos.\nConsíguela en {{source}}.",
+	"subscriptionNotice": "Esto se conecta con tu propia suscripción de {{name}} y está sujeto a los términos del proveedor, que pueden cambiar. Si cambian, Vibecut te avisará aquí mismo.",
+	"subscriptionNoticeOk": "Entendido",
+	"policyDisabledTitle": "El inicio de sesión por suscripción de {{name}} está en pausa",
+	"policyDisabledBody": "La política del proveedor cambió, así que este método se ha desactivado para proteger tu cuenta. Usa una clave API (campo bajo el selector de modelos) o vuelve más tarde.",
+	"policyLearnMore": "Más información",
+	"dismiss": "Cerrar"
 }

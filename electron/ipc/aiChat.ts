@@ -1,4 +1,5 @@
 import type { BrowserWindow, IpcMain } from "electron";
+import { getProviderPolicy } from "../ai/providerPolicy";
 import { getAiProvider, listAiProviders } from "../ai/providers";
 import type { AiChatEvent, AiChatSession, AiProviderId } from "../ai/providers/types";
 import {
@@ -55,6 +56,10 @@ export function registerAiChatHandlers(
 			return { available: false, reason: "error", detail: `Unknown provider: ${providerId}` };
 		}
 		return provider.getStatus();
+	});
+
+	ipcMain.handle("ai-provider-policy", async () => {
+		return getProviderPolicy();
 	});
 
 	ipcMain.handle("ai-list-providers", async () => {

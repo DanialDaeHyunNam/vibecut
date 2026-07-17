@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "Clé API {{name}} (optionnelle — au lieu de la connexion)",
 	"apiKeySaved": "Clé API {{name}} enregistrée",
 	"noApiKeyTitle": "Clé API {{name}} requise",
-	"noApiKeyBody": "Collez votre clé API {{name}} dans le champ sous le sélecteur de modèles.\nObtenez-la sur {{source}}."
+	"noApiKeyBody": "Collez votre clé API {{name}} dans le champ sous le sélecteur de modèles.\nObtenez-la sur {{source}}.",
+	"subscriptionNotice": "Cette fonction se connecte via votre propre abonnement {{name}} et est soumise aux conditions du fournisseur, qui peuvent changer. Le cas échéant, Vibecut vous préviendra ici même.",
+	"subscriptionNoticeOk": "Compris",
+	"policyDisabledTitle": "La connexion par abonnement {{name}} est suspendue",
+	"policyDisabledBody": "La politique du fournisseur a changé ; cette méthode est désactivée pour protéger votre compte. Utilisez une clé API (champ sous le sélecteur de modèles) ou revenez plus tard.",
+	"policyLearnMore": "En savoir plus",
+	"dismiss": "Fermer"
 }

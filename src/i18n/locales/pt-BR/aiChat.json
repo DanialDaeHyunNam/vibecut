@@ -54,5 +54,11 @@
 	"apiKeyOptionalPlaceholder": "Chave de API do {{name}} (opcional — em vez de fazer login)",
 	"apiKeySaved": "Chave de API do {{name}} salva",
 	"noApiKeyTitle": "É necessária uma chave de API do {{name}}",
-	"noApiKeyBody": "Cole sua chave de API do {{name}} no campo abaixo do seletor de modelos.\nObtenha uma em {{source}}."
+	"noApiKeyBody": "Cole sua chave de API do {{name}} no campo abaixo do seletor de modelos.\nObtenha uma em {{source}}.",
+	"subscriptionNotice": "Isto se conecta pela sua própria assinatura do {{name}} e está sujeito aos termos do provedor, que podem mudar. Se mudarem, o Vibecut avisará você bem aqui.",
+	"subscriptionNoticeOk": "Entendi",
+	"policyDisabledTitle": "O login por assinatura do {{name}} está pausado",
+	"policyDisabledBody": "A política do provedor mudou; este método foi desativado para proteger sua conta. Use uma chave de API (campo abaixo do seletor de modelos) ou volte mais tarde.",
+	"policyLearnMore": "Saiba mais",
+	"dismiss": "Fechar"
 }

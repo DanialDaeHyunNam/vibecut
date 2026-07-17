@@ -1,15 +1,21 @@
 version: 1
-updated: 2026-07-17T13:23:49.586Z
+updated: 2026-07-17T13:34:49.641Z
 
 files:
   "site/index.html":
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T13:23:49.586Z
-    change_count: 26
+    last_modified: 2026-07-17T13:34:49.641Z
+    change_count: 28
     purpose: ""
     change_log:
+      - date: 2026-07-17T13:34:49.641Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T13:34:45.217Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:23:49.586Z
         action: edit
         source: "claude:Dan"
@@ -86,5 +92,16 @@ files:
         action: edit
         source: "claude:Dan"
       - date: 2026-07-17T08:22:35.555Z
+        action: write
+        source: "claude:Dan"
+  "site/provider-policy.json":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-17
+    last_modified: 2026-07-17T13:31:26.973Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-17T13:31:26.973Z
         action: write
         source: "claude:Dan"

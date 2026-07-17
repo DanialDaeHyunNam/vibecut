@@ -1,0 +1,9 @@
+{
+	"updatedAt": "2026-07-17",
+	"providers": {
+		"claude-code": { "status": "ok" },
+		"openai": { "status": "ok" },
+		"gemini": { "status": "ok" },
+		"grok": { "status": "ok" }
+	}
+}

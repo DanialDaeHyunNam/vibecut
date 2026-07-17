@@ -319,6 +319,7 @@ interface Window {
 		}) => Promise<{ success: boolean; path?: string; canceled?: boolean; error?: string }>;
 		aiProviderStatus: (providerId: AiProviderId) => Promise<AiProviderStatus>;
 		aiListProviders: () => Promise<AiProviderListing[]>;
+		aiProviderPolicy: () => Promise<AiProviderPolicy>;
 		aiGetSettings: () => Promise<AiSettingsPublic>;
 		aiSaveSettings: (update: {
 			provider?: AiProviderId;
@@ -368,6 +369,19 @@ type AiProviderStatus =
 			reason: "not-installed" | "not-authenticated" | "no-api-key" | "coming-soon" | "error";
 			detail?: string;
 	  };
+
+type AiProviderPolicyStatus = "ok" | "notice" | "disabled";
+
+interface AiProviderPolicyEntry {
+	status: AiProviderPolicyStatus;
+	message?: Record<string, string>;
+	link?: string;
+}
+
+interface AiProviderPolicy {
+	updatedAt: string;
+	providers: Partial<Record<AiProviderId, AiProviderPolicyEntry>>;
+}
 
 interface AiModelInfo {
 	id: string;
