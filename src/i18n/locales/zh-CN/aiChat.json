@@ -44,5 +44,12 @@
 		"next": "下一步",
 		"answered": "回答已发送"
 	},
-	"actionsMenu": "快捷操作"
+	"actionsMenu": "快捷操作",
+	"cliNotInstalledTitle": "未找到 {{name}} CLI",
+	"cliNotInstalledBody": "AI 助手通过 CLI 使用你的 {{name}} 订阅。\n安装：{{install}}\n完成后点击“重新检查”。",
+	"cliNotAuthenticatedTitle": "登录 {{name}}",
+	"cliNotAuthenticatedBody": "打开终端，运行 {{login}} 并完成登录。\n完成后点击“重新检查”。",
+	"grokApiKeyPlaceholder": "Grok API 密钥（即将支持）",
+	"grokApiKeySaved": "已保存 Grok API 密钥",
+	"apiKeySave": "保存"
 }

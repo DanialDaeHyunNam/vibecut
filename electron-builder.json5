@@ -35,6 +35,12 @@
   // Asset layout contract: "wallpapers/" and "cursors/" under resourcesPath must
   // align with assetBaseDir in electron/preload.ts (packaged branch).
   "extraResources": [
+    // Stdio MCP bridge spawned by external CLI agents (Codex/Gemini) — must be
+    // a plain file outside the asar; see electron/ai/cliDiscovery.ts.
+    {
+      "from": "electron/ai/mcpBridge.cjs",
+      "to": "ai/mcpBridge.cjs"
+    },
     {
       "from": "public/wallpapers",
       "to": "wallpapers"

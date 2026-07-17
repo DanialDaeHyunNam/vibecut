@@ -44,5 +44,12 @@
 		"next": "Next",
 		"answered": "Answer sent"
 	},
-	"actionsMenu": "Quick actions"
+	"actionsMenu": "Quick actions",
+	"cliNotInstalledTitle": "{{name}} CLI not found",
+	"cliNotInstalledBody": "The AI assistant uses your {{name}} subscription through its CLI.\nInstall it: {{install}}\nThen press Check again.",
+	"cliNotAuthenticatedTitle": "Sign in to {{name}}",
+	"cliNotAuthenticatedBody": "Open a terminal, run {{login}}, and finish signing in.\nWhen you're done, press Check again.",
+	"grokApiKeyPlaceholder": "Grok API key (support coming soon)",
+	"grokApiKeySaved": "Grok API key saved",
+	"apiKeySave": "Save"
 }

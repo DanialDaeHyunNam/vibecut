@@ -44,5 +44,12 @@
 		"next": "Avanti",
 		"answered": "Risposta inviata"
 	},
-	"actionsMenu": "Azioni rapide"
+	"actionsMenu": "Azioni rapide",
+	"cliNotInstalledTitle": "CLI di {{name}} non trovata",
+	"cliNotInstalledBody": "L'assistente IA usa il tuo abbonamento {{name}} tramite la sua CLI.\nInstallala: {{install}}\nPoi premi Ricontrolla.",
+	"cliNotAuthenticatedTitle": "Accedi a {{name}}",
+	"cliNotAuthenticatedBody": "Apri un terminale, esegui {{login}} e completa l'accesso.\nQuando hai finito, premi Ricontrolla.",
+	"grokApiKeyPlaceholder": "Chiave API Grok (in arrivo)",
+	"grokApiKeySaved": "Chiave API Grok salvata",
+	"apiKeySave": "Salva"
 }

@@ -291,12 +291,24 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 
 	const setModel = useCallback(
 		(newModel: string) => {
+			// The picker lists every provider's models in one flat menu, so a
+			// model choice can also be a provider switch.
+			const owner = providers.find((entry) => entry.models.some((m) => m.id === newModel));
+			const nextProvider = owner?.id ?? provider;
 			setModelState(newModel);
-			void window.electronAPI.aiSaveSettings({ modelByProvider: { [provider]: newModel } });
+			if (nextProvider !== provider) {
+				setProviderState(nextProvider);
+				setStatus(null);
+				void window.electronAPI.aiProviderStatus(nextProvider).then(setStatus);
+			}
+			void window.electronAPI.aiSaveSettings({
+				provider: nextProvider,
+				modelByProvider: { [nextProvider]: newModel },
+			});
 			// Session context lives in the provider process; switching models starts fresh.
 			void window.electronAPI.aiChatReset();
 		},
-		[provider],
+		[provider, providers],
 	);
 
 	const refreshStatus = useCallback(async () => {

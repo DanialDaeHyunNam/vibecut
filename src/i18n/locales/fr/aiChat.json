@@ -44,5 +44,12 @@
 		"next": "Suivant",
 		"answered": "Réponse envoyée"
 	},
-	"actionsMenu": "Actions rapides"
+	"actionsMenu": "Actions rapides",
+	"cliNotInstalledTitle": "CLI {{name}} introuvable",
+	"cliNotInstalledBody": "L'assistant IA utilise votre abonnement {{name}} via sa CLI.\nInstallez-la : {{install}}\nPuis appuyez sur Revérifier.",
+	"cliNotAuthenticatedTitle": "Connectez-vous à {{name}}",
+	"cliNotAuthenticatedBody": "Ouvrez un terminal, lancez {{login}} et terminez la connexion.\nEnsuite, appuyez sur Revérifier.",
+	"grokApiKeyPlaceholder": "Clé API Grok (bientôt disponible)",
+	"grokApiKeySaved": "Clé API Grok enregistrée",
+	"apiKeySave": "Enregistrer"
 }

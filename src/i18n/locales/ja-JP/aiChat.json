@@ -44,5 +44,12 @@
 		"next": "次へ",
 		"answered": "回答済み"
 	},
-	"actionsMenu": "クイックアクション"
+	"actionsMenu": "クイックアクション",
+	"cliNotInstalledTitle": "{{name}} CLI が見つかりません",
+	"cliNotInstalledBody": "AIアシスタントは {{name}} のサブスクリプションを CLI 経由で利用します。\nインストール: {{install}}\n完了したら「再確認」を押してください。",
+	"cliNotAuthenticatedTitle": "{{name}} にサインイン",
+	"cliNotAuthenticatedBody": "ターミナルで {{login}} を実行してサインインしてください。\n完了したら「再確認」を押してください。",
+	"grokApiKeyPlaceholder": "Grok API キー（近日対応）",
+	"grokApiKeySaved": "Grok API キーを保存済み",
+	"apiKeySave": "保存"
 }

@@ -44,5 +44,12 @@
 		"next": "다음",
 		"answered": "답변 전송됨"
 	},
-	"actionsMenu": "빠른 작업"
+	"actionsMenu": "빠른 작업",
+	"cliNotInstalledTitle": "{{name}} CLI를 찾을 수 없어요",
+	"cliNotInstalledBody": "AI 어시스턴트는 {{name}} 구독을 CLI로 연동해요.\n설치: {{install}}\n설치 후 다시 확인을 눌러주세요.",
+	"cliNotAuthenticatedTitle": "{{name}} 로그인이 필요해요",
+	"cliNotAuthenticatedBody": "터미널에서 {{login}} 을 실행해 로그인해 주세요.\n완료되면 다시 확인을 눌러주세요.",
+	"grokApiKeyPlaceholder": "Grok API 키 (지원 예정)",
+	"grokApiKeySaved": "Grok API 키 저장됨",
+	"apiKeySave": "저장"
 }

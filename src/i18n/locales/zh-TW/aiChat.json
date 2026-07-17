@@ -44,5 +44,12 @@
 		"next": "下一步",
 		"answered": "回答已送出"
 	},
-	"actionsMenu": "快速操作"
+	"actionsMenu": "快速操作",
+	"cliNotInstalledTitle": "找不到 {{name}} CLI",
+	"cliNotInstalledBody": "AI 助理透過 CLI 使用你的 {{name}} 訂閱。\n安裝：{{install}}\n完成後按「重新檢查」。",
+	"cliNotAuthenticatedTitle": "登入 {{name}}",
+	"cliNotAuthenticatedBody": "開啟終端機，執行 {{login}} 並完成登入。\n完成後按「重新檢查」。",
+	"grokApiKeyPlaceholder": "Grok API 金鑰（即將支援）",
+	"grokApiKeySaved": "已儲存 Grok API 金鑰",
+	"apiKeySave": "儲存"
 }

@@ -1,4 +1,6 @@
 import { ClaudeCodeProvider } from "./claudeCode";
+import { CodexCliProvider } from "./codexCli";
+import { GeminiCliProvider } from "./geminiCli";
 import type {
 	AiChatSession,
 	AiChatSessionOptions,
@@ -9,9 +11,10 @@ import type {
 } from "./types";
 
 /**
- * Placeholder for API-key providers (OpenAI/Gemini/Grok). They render as
- * disabled "coming soon" rows in the model picker until implemented; the
- * settings schema (ai-settings.json apiKeys) is already in place for them.
+ * Placeholder for API-key providers not implemented yet (Grok). They render
+ * as disabled "coming soon" rows in the model picker; the settings schema
+ * (ai-settings.json apiKeys) already stores their keys so the UI can collect
+ * one ahead of the implementation.
  */
 class ComingSoonProvider implements AiProvider {
 	readonly requiresApiKey = true;
@@ -36,8 +39,10 @@ class ComingSoonProvider implements AiProvider {
 
 const providers: Record<AiProviderId, AiProvider> = {
 	"claude-code": new ClaudeCodeProvider(),
-	openai: new ComingSoonProvider("openai", "OpenAI"),
-	gemini: new ComingSoonProvider("gemini", "Gemini"),
+	// The "openai" slot is served by the Codex CLI: same ChatGPT-subscription
+	// trick as Claude Code — no API key, reuse the CLI's login.
+	openai: new CodexCliProvider(),
+	gemini: new GeminiCliProvider(),
 	grok: new ComingSoonProvider("grok", "Grok"),
 };
 

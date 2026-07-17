@@ -44,5 +44,12 @@
 		"next": "İleri",
 		"answered": "Yanıt gönderildi"
 	},
-	"actionsMenu": "Hızlı işlemler"
+	"actionsMenu": "Hızlı işlemler",
+	"cliNotInstalledTitle": "{{name}} CLI bulunamadı",
+	"cliNotInstalledBody": "Yapay zekâ asistanı {{name}} aboneliğinizi CLI üzerinden kullanır.\nKurulum: {{install}}\nArdından Tekrar kontrol et'e basın.",
+	"cliNotAuthenticatedTitle": "{{name}} hesabınıza giriş yapın",
+	"cliNotAuthenticatedBody": "Bir terminal açın, {{login}} komutunu çalıştırın ve girişi tamamlayın.\nBittiğinde Tekrar kontrol et'e basın.",
+	"grokApiKeyPlaceholder": "Grok API anahtarı (yakında)",
+	"grokApiKeySaved": "Grok API anahtarı kaydedildi",
+	"apiKeySave": "Kaydet"
 }

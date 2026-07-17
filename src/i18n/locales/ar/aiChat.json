@@ -44,5 +44,12 @@
 		"next": "التالي",
 		"answered": "تم إرسال الإجابة"
 	},
-	"actionsMenu": "إجراءات سريعة"
+	"actionsMenu": "إجراءات سريعة",
+	"cliNotInstalledTitle": "لم يتم العثور على {{name}} CLI",
+	"cliNotInstalledBody": "يستخدم مساعد الذكاء الاصطناعي اشتراكك في {{name}} عبر واجهة سطر الأوامر.\nالتثبيت: {{install}}\nثم اضغط \"تحقق مرة أخرى\".",
+	"cliNotAuthenticatedTitle": "سجّل الدخول إلى {{name}}",
+	"cliNotAuthenticatedBody": "افتح الطرفية ونفّذ {{login}} وأكمل تسجيل الدخول.\nعند الانتهاء اضغط \"تحقق مرة أخرى\".",
+	"grokApiKeyPlaceholder": "مفتاح Grok API (قريبًا)",
+	"grokApiKeySaved": "تم حفظ مفتاح Grok API",
+	"apiKeySave": "حفظ"
 }

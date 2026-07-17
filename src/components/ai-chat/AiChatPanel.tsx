@@ -22,20 +22,33 @@ export function AiChatPanel({ getSnapshot, storageKey }: AiChatPanelProps) {
 	const t = useScopedT("aiChat");
 	const chat = useAiChat(getSnapshot, storageKey);
 
+	// CLI-backed providers other than Claude share templated gate copy.
+	const cliInfo: Partial<Record<AiProviderId, { name: string; install: string; login: string }>> = {
+		openai: { name: "Codex", install: "npm install -g @openai/codex", login: "codex login" },
+		gemini: { name: "Gemini CLI", install: "npm install -g @google/gemini-cli", login: "gemini" },
+	};
+
 	const gate = (() => {
 		if (!chat.status || chat.status.available) return null;
+		const cli = cliInfo[chat.provider];
 		switch (chat.status.reason) {
 			case "not-installed":
 				return {
 					icon: <PackageX className="h-8 w-8 text-white/30" />,
-					title: t("notInstalledTitle"),
-					body: t("notInstalledBody"),
+					title: cli ? t("cliNotInstalledTitle", { name: cli.name }) : t("notInstalledTitle"),
+					body: cli
+						? t("cliNotInstalledBody", { name: cli.name, install: cli.install })
+						: t("notInstalledBody"),
 				};
 			case "not-authenticated":
 				return {
 					icon: <LogIn className="h-8 w-8 text-white/30" />,
-					title: t("notAuthenticatedTitle"),
-					body: t("notAuthenticatedBody"),
+					title: cli
+						? t("cliNotAuthenticatedTitle", { name: cli.name })
+						: t("notAuthenticatedTitle"),
+					body: cli
+						? t("cliNotAuthenticatedBody", { name: cli.name, login: cli.login })
+						: t("notAuthenticatedBody"),
 				};
 			default:
 				return {

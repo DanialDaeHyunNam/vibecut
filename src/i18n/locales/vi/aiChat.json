@@ -44,5 +44,12 @@
 		"next": "Tiếp",
 		"answered": "Đã gửi câu trả lời"
 	},
-	"actionsMenu": "Thao tác nhanh"
+	"actionsMenu": "Thao tác nhanh",
+	"cliNotInstalledTitle": "Không tìm thấy CLI {{name}}",
+	"cliNotInstalledBody": "Trợ lý AI dùng gói đăng ký {{name}} của bạn thông qua CLI.\nCài đặt: {{install}}\nSau đó nhấn Kiểm tra lại.",
+	"cliNotAuthenticatedTitle": "Đăng nhập vào {{name}}",
+	"cliNotAuthenticatedBody": "Mở terminal, chạy {{login}} và hoàn tất đăng nhập.\nXong thì nhấn Kiểm tra lại.",
+	"grokApiKeyPlaceholder": "Khóa API Grok (sắp hỗ trợ)",
+	"grokApiKeySaved": "Đã lưu khóa API Grok",
+	"apiKeySave": "Lưu"
 }

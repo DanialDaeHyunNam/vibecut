@@ -44,5 +44,12 @@
 		"next": "Далее",
 		"answered": "Ответ отправлен"
 	},
-	"actionsMenu": "Быстрые действия"
+	"actionsMenu": "Быстрые действия",
+	"cliNotInstalledTitle": "CLI {{name}} не найден",
+	"cliNotInstalledBody": "ИИ-ассистент использует вашу подписку {{name}} через CLI.\nУстановите: {{install}}\nЗатем нажмите «Проверить снова».",
+	"cliNotAuthenticatedTitle": "Войдите в {{name}}",
+	"cliNotAuthenticatedBody": "Откройте терминал, выполните {{login}} и завершите вход.\nЗатем нажмите «Проверить снова».",
+	"grokApiKeyPlaceholder": "API-ключ Grok (скоро)",
+	"grokApiKeySaved": "API-ключ Grok сохранён",
+	"apiKeySave": "Сохранить"
 }
