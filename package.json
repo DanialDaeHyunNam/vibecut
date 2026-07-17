@@ -1,6 +1,7 @@
 {
 	"name": "vibecut",
 	"private": true,
+	"license": "MIT",
 	"version": "1.6.0",
 	"type": "module",
 	"packageManager": "npm@10.9.4",
