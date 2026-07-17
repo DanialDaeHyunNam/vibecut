@@ -10,6 +10,17 @@
   <img src="https://img.shields.io/badge/license-MIT-8B7CFF?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey?style=for-the-badge" alt="Platform" />
   <img src="https://img.shields.io/badge/AI-Claude%20subscription%2C%20no%20API%20key-7C5CFF?style=for-the-badge" alt="AI" />
+  <img src="https://img.shields.io/github/downloads/DanialDaeHyunNam/vibecut/total?style=for-the-badge&color=8B7CFF" alt="Downloads" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
+    <img src="https://img.shields.io/badge/⬇%20Download%20for%20macOS-Apple%20Silicon%20·%20Intel-111111?style=for-the-badge&logo=apple" alt="Download for macOS" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
+    <img src="https://img.shields.io/badge/⬇%20Download%20for%20Windows-Setup%20.exe-0078D4?style=for-the-badge" alt="Download for Windows" />
+  </a>
 </p>
 
 ---
@@ -22,9 +33,9 @@ The agent **sees** your video (frame sampling), **hears** it (on-device Whisper 
 
 ## ✨ AI editing assistant
 
-- **Runs on your Claude subscription** via Claude Code — no API key, nothing leaves your machine except the model calls you already pay for. OpenAI (Codex) and Gemini CLI support is on the roadmap.
+- **Runs on the subscriptions you already have** — no API key. Claude (via Claude Code), ChatGPT (via the Codex CLI), or Google (via the Gemini CLI); nothing leaves your machine except the model calls you already pay for.
 - **Multimodal context**: project state, click telemetry, video frames, narration transcript.
-- **16 editing tools**: zoom / trim / speed / caption CRUD, frame styling (wallpaper, padding, shadows, webcam PIP), SRT export, and `ask_user` interactive questions.
+- **18 editing tools**: zoom / trim / speed / caption CRUD, frame styling (wallpaper, padding, shadows, webcam PIP), SRT export, and `ask_user` interactive questions.
 - **One-click flows**: "Understand & brief me" and "Auto-edit this video" (asks your zoom style, target length, and caption language first).
 - **Per-project chat memory** that survives restarts — the agent resumes the same session.
 
@@ -38,6 +49,40 @@ Everything from OpenScreen, refined:
 - Caption export: burn-in toggle + standalone `.srt` (SubRip) sidecar
 - Backgrounds, padding, shadows, webcam layouts, MP4/GIF export, 14 languages
 
+## 📦 Download & install
+
+Get the latest build from the [Releases page](https://github.com/DanialDaeHyunNam/vibecut/releases/latest):
+
+| Platform | File |
+|---|---|
+| macOS (Apple Silicon) | `Vibecut-Mac-arm64-<version>-Installer.dmg` |
+| macOS (Intel) | `Vibecut-Mac-x64-<version>-Installer.dmg` |
+| Windows 10/11 | `Vibecut.Setup.<version>.exe` |
+| Linux | Build from source (AppImage/deb/pacman targets) — see Development below |
+
+> If no release is listed yet, the first packaged build is still on its way — build from source in the meantime (see Development below).
+
+### About the "unverified developer" warning
+
+When you first open Vibecut, your OS will warn that the app is from an unverified/unidentified developer. **This message means the app hasn't been code-signed with a paid developer certificate (Apple Developer Program / Windows EV certificate) — it is not a malware detection.** Vibecut is fully open source: you can read every line of what you're running, compare the release to the tagged source, or build it yourself.
+
+To open it anyway:
+
+- **macOS 15 (Sequoia) and later**: open the app once (the warning appears), then go to **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**.
+- **Older macOS**: right-click (Control-click) `Vibecut.app` → **Open** → **Open**.
+- **Windows**: when SmartScreen shows "Windows protected your PC", click **More info** → **Run anyway**.
+
+Only download Vibecut from this repository's Releases page. If you got it anywhere else, don't trust it — build from source instead.
+
+### Getting started
+
+1. **First launch (macOS)**: grant **Screen Recording** and **Accessibility** permissions when prompted (Accessibility powers the click tracking that drives automatic zooms). Camera/microphone are only requested if you turn them on.
+2. Pick what to record — a display, window, or area — and optionally enable your webcam (a floating self-view appears; it's not burned into the capture) and microphone. Hit **Record**.
+3. **Stop** when done. The editor opens with cinematic zooms already placed from your clicks.
+4. Open the **AI** tab in the right rail and tell it what you want: *"Auto-edit this video"*, *"Zoom in when I click the export button"*, *"Add Korean subtitles and save them as SRT"*. It will watch the frames, read your narration, and ask before big changes.
+   - Sign-in: uses your existing **Claude Code** login (`claude` → `/login` once in any terminal), or the **Codex CLI** (`codex login`) / **Gemini CLI** (`gemini`) if you prefer those subscriptions.
+5. Export as MP4 or GIF — captions can be burned in and/or saved as a `.srt` sidecar.
+
 ## 🚀 Development
 
 ```bash
@@ -47,7 +92,7 @@ npm run dev                # Vite + Electron
 npm test                   # vitest (Node 22+)
 ```
 
-Requirements: Node 22.x, and for the AI assistant a [Claude](https://claude.com) subscription logged in via Claude Code (`claude` → `/login` once in any terminal).
+Requirements: Node 22.x, and for the AI assistant one of: a [Claude](https://claude.com) subscription (Claude Code login), a ChatGPT subscription ([Codex CLI](https://github.com/openai/codex)), or a Google account ([Gemini CLI](https://github.com/google-gemini/gemini-cli)).
 
 ## 🙏 Credits & license
 
