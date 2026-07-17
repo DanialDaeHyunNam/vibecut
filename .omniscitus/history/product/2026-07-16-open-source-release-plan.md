@@ -35,7 +35,7 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 - [x] Vibecut 리브랜딩 적용 (2026-07-17): productName/appId(app.vibecut)/package명/창 타이틀/메뉴/트레이·로고 에셋/전 로케일 103곳 + LICENSE 저작권 줄 + README 재작성(AI 중심, OpenScreen 크레딧)
 - [ ] 리브랜딩 후속: .openscreen 프로젝트 확장자(.vibecut 병행 지원), localStorage 키/OPENSCREEN_* env 정리, SettingsPanel의 버그리포트 링크(현재 upstream repo로 향함 — 자체 repo 생성 후 교체), 데모 GIF를 README에 추가
 - [ ] 첫 릴리스 발행 시 README 정리: 다운로드 섹션의 "first packaged build is still on its way" 안내 문구 제거 (2026-07-17에 다운로드 버튼/미서명 경고 안내/Getting started 추가 — 버튼은 releases/latest로 연결, 릴리스 생성 전에는 404 대신 릴리스 목록으로 감). 릴리스 자산 파일명은 electron-builder artifactName 그대로여야 표의 파일명과 일치
-- [ ] `npx license-checker`로 전체 의존성 라이선스 스윕
+- [x] `npx license-checker` 의존성 스윕 (2026-07-17): GPL/AGPL 없음 ✅. 결과: MIT 470·ISC 21·BSD 18·Apache 17 등 전부 무해. 플래그 항목 판정 — mediabunny(MPL-2.0: 파일단위 약한 카피레프트, 미수정 사용이라 문제없음), gsap(Custom: Webflow 인수 후 상업 포함 전면 무료), web-demuxer/flatbuffers(휴리스틱 별표, 실제 MIT/Apache-2.0), 루트 package.json UNLICENSED→"license": "MIT" 수정 완료. **Agent SDK(Anthropic 약관)만 남은 쟁점 — B4 패키징 때 동봉 재배포 약관 확인**
 - [ ] 데모 영상: cinerec으로 cinerec 홍보 영상을 찍기 (AI 자동편집 사용 — 도그푸딩 스토리가 곧 마케팅)
 - [x] 자체 git repo 분리 + GitHub 공개 (2026-07-17: https://github.com/DanialDaeHyunNam/vibecut — public, main 푸시 완료. shallow clone이라 `git fetch --unshallow upstream` 후 푸시. upstream 태그는 의도적으로 미푸시, upstream remote는 유지)
 - [ ] 홍보: Show HN / Product Hunt / X·Threads 데모 클립 / GeekNews·disquiet(한국) / r/opensource / awesome-electron 류 리스트 PR
