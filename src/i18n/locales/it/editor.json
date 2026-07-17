@@ -74,5 +74,21 @@
 			"annotation": "Annotazione",
 			"blur": "Sfocatura"
 		}
-	}
+	},
+	"emptyState": {
+		"title": "Nessun progetto aperto",
+		"description": "Importa un video per iniziare a modificare, oppure carica un progetto Vibecut esistente.",
+		"dragDropHint": "oppure trascina qui un file di progetto .openscreen",
+		"dropOverlay": "Rilascia il file di progetto per aprirlo",
+		"importVideoButton": "Importa file video…",
+		"loadProjectButton": "Carica progetto…",
+		"supportedFormats": "Formati supportati: MP4, MOV, WebM, MKV, AVI, M4V, WMV",
+		"dropErrors": {
+			"couldNotOpenTitle": "Impossibile aprire il file",
+			"couldNotOpenMessage": "Impossibile aprire il file di progetto. Il video a cui fa riferimento potrebbe essere stato spostato o eliminato.",
+			"unsupportedFormatTitle": "Formato non supportato",
+			"unsupportedFormatMessage": "Qui puoi rilasciare solo file di progetto .openscreen. Per importare un file video, usa il pulsante \"Importa file video…\" in questa schermata."
+		}
+	},
+	"loadingEditor": "Caricamento editor..."
 }

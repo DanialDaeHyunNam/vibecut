@@ -5,7 +5,11 @@
 		"addTrim": "Thêm Cắt (T)",
 		"addAnnotation": "Thêm Chú thích (A)",
 		"addBlur": "Thêm Làm mờ (B)",
-		"addSpeed": "Thêm Tốc độ (S)"
+		"addSpeed": "Thêm Tốc độ (S)",
+		"autoZoomOn": "Đề xuất thu phóng tự động đang bật — nhấp để xóa các vùng thu phóng được đề xuất",
+		"autoZoomOff": "Đề xuất thu phóng tự động đang tắt — nhấp để đề xuất thu phóng từ con trỏ",
+		"autoFocusAllOn": "Tự động lấy nét đang bật cho mọi vùng thu phóng — nhấp để chuyển tất cả sang thủ công",
+		"autoFocusAllOff": "Tự động lấy nét mọi vùng thu phóng (máy quay đi theo con trỏ)"
 	},
 	"hints": {
 		"pressZoom": "Nhấn Z để thêm thu phóng",

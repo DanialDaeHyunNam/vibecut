@@ -9,7 +9,8 @@
 			"title": "포커스 모드",
 			"manual": "수동",
 			"auto": "자동",
-			"autoDescription": "녹화된 커서 위치를 따라 카메라가 이동합니다"
+			"autoDescription": "녹화된 커서 위치를 따라 카메라가 이동합니다",
+			"lockedDisclaimer": "타임라인의 전역 자동 초점 토글이 제어하고 있어요. 줌별로 초점 모드를 설정하려면 토글을 꺼 주세요."
 		},
 		"threeD": {
 			"title": "3D 회전",
@@ -219,7 +220,8 @@
 		"smoothing": "부드러움",
 		"motionBlur": "모션 블러",
 		"clickBounce": "클릭 바운스",
-		"clipToBounds": "캔버스에 맞춰 자르기"
+		"clipToBounds": "캔버스에 맞춰 자르기",
+		"clipToBoundsDescription": "커서를 영상 프레임 안에 유지해요. 끄면 커서가 가장자리를 벗어날 수 있어요 — 확대·이동 시 유용해요."
 	},
 	"language": {
 		"title": "언어"

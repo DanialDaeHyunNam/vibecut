@@ -8,7 +8,8 @@
 			"title": "Modo de Foco",
 			"manual": "Manual",
 			"auto": "Automático",
-			"autoDescription": "A câmera segue a posição do cursor gravado"
+			"autoDescription": "A câmera segue a posição do cursor gravado",
+			"lockedDisclaimer": "Controlado pelo botão global de foco automático na linha do tempo. Desative-o para definir o modo de foco por zoom."
 		},
 		"threeD": {
 			"title": "Rotação 3D",
@@ -23,7 +24,8 @@
 			"x": "X (%)",
 			"y": "Y (%)",
 			"hint": "0 = mais à esquerda / topo, 100 = mais à direita / inferior"
-		}
+		},
+		"previewHold": "Segure para pré-visualizar o zoom"
 	},
 	"speed": {
 		"playbackSpeed": "Velocidade de Reprodução",
@@ -47,7 +49,8 @@
 		"webcamShape": "Formato da Câmera",
 		"webcamSize": "Tamanho da Webcam",
 		"reactiveWebcam": "Encolher ao ampliar",
-		"reactiveWebcamDescription": "A câmera diminui suavemente enquanto o vídeo está ampliado, para não atrapalhar."
+		"reactiveWebcamDescription": "A câmera diminui suavemente enquanto o vídeo está ampliado, para não atrapalhar.",
+		"mirrorWebcam": "Espelhar webcam"
 	},
 	"effects": {
 		"title": "Efeitos de Vídeo",
@@ -100,7 +103,8 @@
 	},
 	"project": {
 		"save": "Salvar Projeto",
-		"load": "Carregar Projeto"
+		"load": "Carregar Projeto",
+		"new": "Novo projeto"
 	},
 	"export": {
 		"videoButton": "Exportar Vídeo",
@@ -109,10 +113,6 @@
 		"burnCaptions": "Burn captions into video",
 		"saveSrt": "Also save .srt subtitle file",
 		"captionsPreviewOnly": "Captions stay preview-only and are excluded from the exported video"
-	},
-	"links": {
-		"reportBug": "Relatar Bug",
-		"starOnGithub": "Dar Estrela no GitHub"
 	},
 	"imageUpload": {
 		"invalidFileType": "Tipo de arquivo inválido",
@@ -209,5 +209,25 @@
 	},
 	"language": {
 		"title": "Idioma"
+	},
+	"textAnimation": {
+		"title": "Animação de texto",
+		"selectAnimation": "Selecionar animação",
+		"none": "Nenhuma",
+		"fade": "Esmaecer",
+		"pop": "Pop",
+		"pulse": "Pulsar",
+		"rise": "Subir",
+		"slideLeft": "Deslizar para a esquerda",
+		"typewriter": "Máquina de escrever"
+	},
+	"support": {
+		"reportBug": "Relatar bug",
+		"saveDiagnostics": "Salvar diagnósticos",
+		"starOnGithub": "Dar estrela no GitHub"
+	},
+	"timeline": {
+		"title": "Linha do tempo",
+		"waveform": "Mostrar forma de onda do áudio na faixa de corte"
 	}
 }

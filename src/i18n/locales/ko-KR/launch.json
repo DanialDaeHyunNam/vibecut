@@ -20,7 +20,8 @@
 			"numberedList": "번호 매기기 목록",
 			"blockquote": "인용문",
 			"codeBlock": "코드 블록"
-		}
+		},
+		"openStudio": "스튜디오 열기"
 	},
 	"audio": {
 		"enableSystemAudio": "시스템 오디오 활성화",
@@ -45,7 +46,10 @@
 		"loading": "소스 불러오는 중...",
 		"screens": "화면 ({{count}}개)",
 		"windows": "창 ({{count}}개)",
-		"defaultSourceName": "화면"
+		"defaultSourceName": "화면",
+		"emptyTitle": "화면이나 창을 찾을 수 없어요",
+		"emptyDescription": "화면 기록 권한을 방금 허용했다면 이 목록을 새로고침해 주세요. macOS에서는 Vibecut을 다시 열어야 할 수 있어요.",
+		"loadFailedDescription": "Vibecut이 캡처 소스를 불러오지 못했어요. 목록을 새로고침한 뒤 다시 시도해 주세요."
 	},
 	"recording": {
 		"selectSource": "녹화할 소스를 선택해 주세요",

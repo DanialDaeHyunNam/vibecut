@@ -20,7 +20,8 @@
 			"numberedList": "有序列表",
 			"blockquote": "引用",
 			"codeBlock": "代码块"
-		}
+		},
+		"openStudio": "打开 Studio"
 	},
 	"audio": {
 		"enableSystemAudio": "启用系统音频",
@@ -45,7 +46,10 @@
 		"loading": "正在加载源...",
 		"screens": "屏幕 ({{count}})",
 		"windows": "窗口 ({{count}})",
-		"defaultSourceName": "屏幕"
+		"defaultSourceName": "屏幕",
+		"emptyTitle": "未找到屏幕或窗口",
+		"emptyDescription": "如果你刚授予屏幕录制权限，请重新加载此选择器。在 macOS 上可能需要重新打开 Vibecut。",
+		"loadFailedDescription": "Vibecut 无法加载捕获源。请重新加载此选择器并重试。"
 	},
 	"recording": {
 		"selectSource": "请选择要录制的源",

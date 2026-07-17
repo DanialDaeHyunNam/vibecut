@@ -8,7 +8,8 @@
 			"title": "Modo de enfoque",
 			"manual": "Manual",
 			"auto": "Auto",
-			"autoDescription": "La cámara sigue la posición del cursor grabado"
+			"autoDescription": "La cámara sigue la posición del cursor grabado",
+			"lockedDisclaimer": "Controlado por el interruptor global de enfoque automático en la línea de tiempo. Desactívalo para configurar el modo de enfoque por zoom."
 		},
 		"threeD": {
 			"title": "Rotación 3D",
@@ -219,7 +220,8 @@
 		"smoothing": "Suavizado",
 		"motionBlur": "Desenfoque de movimiento",
 		"clickBounce": "Rebote al clic",
-		"clipToBounds": "Recortar al lienzo"
+		"clipToBounds": "Recortar al lienzo",
+		"clipToBoundsDescription": "Mantiene el cursor dentro del cuadro del vídeo. Desactívalo para permitir que el cursor sobresalga de los bordes; útil al hacer zoom o desplazar."
 	},
 	"language": {
 		"title": "Idioma"

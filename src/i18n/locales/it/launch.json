@@ -20,7 +20,8 @@
 			"numberedList": "Elenco numerato",
 			"blockquote": "Citazione",
 			"codeBlock": "Blocco di codice"
-		}
+		},
+		"openStudio": "Apri Studio"
 	},
 	"audio": {
 		"enableSystemAudio": "Abilita audio di sistema",
@@ -45,7 +46,10 @@
 		"loading": "Caricamento sorgenti...",
 		"screens": "Schermi ({{count}})",
 		"windows": "Finestre ({{count}})",
-		"defaultSourceName": "Schermo"
+		"defaultSourceName": "Schermo",
+		"emptyTitle": "Nessuno schermo o finestra trovati",
+		"emptyDescription": "Se hai appena concesso il permesso di registrazione dello schermo, ricarica questo selettore. Su macOS potrebbe essere necessario riaprire Vibecut.",
+		"loadFailedDescription": "Vibecut non è riuscito a caricare le sorgenti di cattura. Ricarica questo selettore e riprova."
 	},
 	"recording": {
 		"selectSource": "Seleziona una sorgente da registrare",

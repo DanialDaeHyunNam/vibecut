@@ -41,7 +41,8 @@
 		"cameraDenied": "Acesso à câmera negado. A gravação continuará sem webcam.",
 		"cameraDisconnected": "Webcam desconectada.",
 		"cameraNotFound": "Câmera não encontrada.",
-		"permissionDenied": "Permissão de gravação negada. Por favor, permita a gravação de tela."
+		"permissionDenied": "Permissão de gravação negada. Por favor, permita a gravação de tela.",
+		"accessibilityAllowAndRetry": "Permita o acesso de Acessibilidade para o Vibecut e pressione gravar novamente para iniciar a contagem regressiva."
 	},
 	"autoCaptions": {
 		"button": "Legendas automáticas",
@@ -73,5 +74,21 @@
 			"annotation": "Anotação",
 			"blur": "Desfoque"
 		}
-	}
+	},
+	"emptyState": {
+		"title": "Nenhum projeto aberto",
+		"description": "Importe um vídeo para começar a editar ou carregue um projeto Vibecut existente.",
+		"dragDropHint": "ou arraste e solte um arquivo de projeto .openscreen aqui",
+		"dropOverlay": "Solte o arquivo de projeto para abrir",
+		"importVideoButton": "Importar arquivo de vídeo…",
+		"loadProjectButton": "Carregar projeto…",
+		"supportedFormats": "Formatos compatíveis: MP4, MOV, WebM, MKV, AVI, M4V, WMV",
+		"dropErrors": {
+			"couldNotOpenTitle": "Não foi possível abrir o arquivo",
+			"couldNotOpenMessage": "O arquivo de projeto não pôde ser aberto. O vídeo referenciado pode ter sido movido ou excluído.",
+			"unsupportedFormatTitle": "Formato não compatível",
+			"unsupportedFormatMessage": "Somente arquivos de projeto .openscreen podem ser soltos aqui. Para importar um arquivo de vídeo, use o botão \"Importar arquivo de vídeo…\" nesta tela."
+		}
+	},
+	"loadingEditor": "Carregando editor..."
 }

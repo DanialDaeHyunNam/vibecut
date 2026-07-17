@@ -18,7 +18,10 @@
 			"numberedList": "Lista numerada",
 			"blockquote": "Citação",
 			"codeBlock": "Bloco de código"
-		}
+		},
+		"openStudio": "Abrir Studio",
+		"useHorizontalTray": "Usar bandeja horizontal",
+		"useVerticalTray": "Usar bandeja vertical"
 	},
 	"audio": {
 		"enableSystemAudio": "Ativar áudio do sistema",
@@ -43,7 +46,10 @@
 		"loading": "Carregando fontes...",
 		"screens": "Telas ({{count}})",
 		"windows": "Janelas ({{count}})",
-		"defaultSourceName": "Tela"
+		"defaultSourceName": "Tela",
+		"emptyTitle": "Nenhuma tela ou janela encontrada",
+		"emptyDescription": "Se você acabou de conceder a permissão de gravação de tela, recarregue este seletor. No macOS, pode ser necessário reabrir o Vibecut.",
+		"loadFailedDescription": "O Vibecut não conseguiu carregar as fontes de captura. Recarregue este seletor e tente novamente."
 	},
 	"recording": {
 		"selectSource": "Por favor, selecione uma fonte para gravar",

@@ -5,7 +5,11 @@
 		"addTrim": "添加剪辑 (T)",
 		"addAnnotation": "添加标注 (A)",
 		"addSpeed": "添加速度 (S)",
-		"addBlur": "添加模糊 (B)"
+		"addBlur": "添加模糊 (B)",
+		"autoZoomOn": "自动缩放建议已开启——点击以移除建议的缩放",
+		"autoZoomOff": "自动缩放建议已关闭——点击以根据光标生成缩放建议",
+		"autoFocusAllOn": "所有缩放的自动聚焦已开启——点击将全部切换为手动",
+		"autoFocusAllOff": "所有缩放自动聚焦（镜头跟随光标）"
 	},
 	"hints": {
 		"pressZoom": "按 Z 添加缩放",

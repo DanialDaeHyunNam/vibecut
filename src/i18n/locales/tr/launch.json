@@ -20,7 +20,8 @@
 			"numberedList": "Numaralı liste",
 			"blockquote": "Alıntı",
 			"codeBlock": "Kod bloğu"
-		}
+		},
+		"openStudio": "Studio'yu aç"
 	},
 	"audio": {
 		"enableSystemAudio": "Sistem sesini etkinleştir",
@@ -45,7 +46,10 @@
 		"loading": "Kaynaklar yükleniyor...",
 		"screens": "Ekranlar ({{count}})",
 		"windows": "Pencereler ({{count}})",
-		"defaultSourceName": "Ekran"
+		"defaultSourceName": "Ekran",
+		"emptyTitle": "Ekran veya pencere bulunamadı",
+		"emptyDescription": "Ekran kaydı iznini az önce verdiyseniz bu seçiciyi yeniden yükleyin. macOS'ta Vibecut'ı yeniden açmanız gerekebilir.",
+		"loadFailedDescription": "Vibecut yakalama kaynaklarını yükleyemedi. Bu seçiciyi yeniden yükleyip tekrar deneyin."
 	},
 	"recording": {
 		"selectSource": "Lütfen kayıt için bir kaynak seçin",

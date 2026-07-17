@@ -20,7 +20,8 @@
 			"numberedList": "番号付きリスト",
 			"blockquote": "引用",
 			"codeBlock": "コードブロック"
-		}
+		},
+		"openStudio": "Studio を開く"
 	},
 	"audio": {
 		"enableSystemAudio": "システム音声を有効にする",
@@ -45,7 +46,10 @@
 		"loading": "ソースを読み込み中...",
 		"screens": "画面 ({{count}})",
 		"windows": "ウィンドウ ({{count}})",
-		"defaultSourceName": "画面"
+		"defaultSourceName": "画面",
+		"emptyTitle": "画面またはウィンドウが見つかりません",
+		"emptyDescription": "画面収録の許可を付与した直後の場合は、このピッカーを再読み込みしてください。macOS では Vibecut の再起動が必要な場合があります。",
+		"loadFailedDescription": "Vibecut はキャプチャソースを読み込めませんでした。ピッカーを再読み込みして、もう一度お試しください。"
 	},
 	"recording": {
 		"selectSource": "録画するソースを選択してください",

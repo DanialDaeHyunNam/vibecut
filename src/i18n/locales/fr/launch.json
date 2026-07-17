@@ -20,7 +20,8 @@
 			"numberedList": "Liste numérotée",
 			"blockquote": "Citation",
 			"codeBlock": "Bloc de code"
-		}
+		},
+		"openStudio": "Ouvrir Studio"
 	},
 	"audio": {
 		"enableSystemAudio": "Activer l'audio système",
@@ -45,7 +46,10 @@
 		"loading": "Chargement des sources...",
 		"screens": "Écrans ({{count}})",
 		"windows": "Fenêtres ({{count}})",
-		"defaultSourceName": "Écran"
+		"defaultSourceName": "Écran",
+		"emptyTitle": "Aucun écran ni fenêtre trouvé",
+		"emptyDescription": "Si vous venez d'accorder l'autorisation d'enregistrement d'écran, rechargez ce sélecteur. Sur macOS, vous devrez peut-être rouvrir Vibecut.",
+		"loadFailedDescription": "Vibecut n'a pas pu charger les sources de capture. Rechargez ce sélecteur et réessayez."
 	},
 	"recording": {
 		"selectSource": "Veuillez sélectionner une source à enregistrer",

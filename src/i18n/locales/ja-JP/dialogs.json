@@ -59,7 +59,9 @@
 		"discardAndLoadProject": "破棄してプロジェクトを読み込む",
 		"loadProject": "プロジェクトを読み込む…",
 		"saveProject": "プロジェクトを保存…",
-		"saveProjectAs": "プロジェクトを名前を付けて保存…"
+		"saveProjectAs": "プロジェクトを名前を付けて保存…",
+		"importVideo": "動画ファイルを読み込む…",
+		"newProject": "新規プロジェクト"
 	},
 	"fileDialogs": {
 		"saveGif": "エクスポートしたGIFを保存",
