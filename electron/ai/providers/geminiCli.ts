@@ -1,10 +1,9 @@
-import { type ChildProcess, spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { findExecutable, mcpBridgeLaunch } from "../cliDiscovery";
-import { AiToolHost } from "../toolHost";
+import { PerTurnCliSession } from "./cliSession";
 import type {
 	AiChatSession,
 	AiChatSessionOptions,
@@ -62,55 +61,44 @@ function isAuthErrorText(text: string): boolean {
  * in the workspace's GEMINI.md; MCP wiring and built-in tool lockdown live in
  * the workspace's .gemini/settings.json (project-level settings).
  */
-class GeminiCliSession implements AiChatSession {
-	private readonly host: AiToolHost;
-	private child: ChildProcess | null = null;
-	private disposed = false;
-	private workspacePromise: Promise<string> | null = null;
+class GeminiCliSession extends PerTurnCliSession {
+	protected readonly workspacePrefix = "vibecut-gemini-";
 	private readonly history: Array<{ role: "user" | "assistant"; text: string }> = [];
-	private readonly queue: string[] = [];
-	private draining = false;
 
 	constructor(
-		private readonly options: AiChatSessionOptions,
+		options: AiChatSessionOptions,
 		private readonly binaryPath: string,
 	) {
-		this.host = new AiToolHost(options.executeTool, options.onEvent);
+		super(options);
 	}
 
-	private ensureWorkspace(): Promise<string> {
-		this.workspacePromise ??= (async () => {
-			await this.host.start();
-			const bridge = mcpBridgeLaunch(this.host);
-			const dir = await fs.mkdtemp(path.join(os.tmpdir(), "vibecut-gemini-"));
-			await fs.writeFile(path.join(dir, "GEMINI.md"), this.options.systemPrompt, "utf-8");
-			await fs.mkdir(path.join(dir, ".gemini"), { recursive: true });
-			const settings = {
-				mcpServers: {
-					cinerec: {
-						command: bridge.command,
-						args: bridge.args,
-						env: bridge.env,
-						// Auto-approve our own tools; there is no interactive consent
-						// prompt in headless mode.
-						trust: true,
-						// ask_user / get_transcript can block for minutes.
-						timeout: 600_000,
-					},
+	protected async prepareWorkspace(dir: string): Promise<void> {
+		const bridge = mcpBridgeLaunch(this.host);
+		await fs.writeFile(path.join(dir, "GEMINI.md"), this.options.systemPrompt, "utf-8");
+		await fs.mkdir(path.join(dir, ".gemini"), { recursive: true });
+		const settings = {
+			mcpServers: {
+				cinerec: {
+					command: bridge.command,
+					args: bridge.args,
+					env: bridge.env,
+					// Auto-approve our own tools; there is no interactive consent
+					// prompt in headless mode.
+					trust: true,
+					// ask_user / get_transcript can block for minutes.
+					timeout: 600_000,
 				},
-				// Old and new settings schema spellings, so the lockdown holds
-				// across Gemini CLI versions.
-				excludeTools: EXCLUDED_BUILTIN_TOOLS,
-				tools: { exclude: EXCLUDED_BUILTIN_TOOLS },
-			};
-			await fs.writeFile(
-				path.join(dir, ".gemini", "settings.json"),
-				JSON.stringify(settings, null, 2),
-				"utf-8",
-			);
-			return dir;
-		})();
-		return this.workspacePromise;
+			},
+			// Old and new settings schema spellings, so the lockdown holds
+			// across Gemini CLI versions.
+			excludeTools: EXCLUDED_BUILTIN_TOOLS,
+			tools: { exclude: EXCLUDED_BUILTIN_TOOLS },
+		};
+		await fs.writeFile(
+			path.join(dir, ".gemini", "settings.json"),
+			JSON.stringify(settings, null, 2),
+			"utf-8",
+		);
 	}
 
 	private buildPrompt(text: string): string {
@@ -122,150 +110,55 @@ class GeminiCliSession implements AiChatSession {
 		return `Conversation so far (for context — do not repeat it):\n\n${transcript}\n\nUser: ${text}`;
 	}
 
-	send(text: string): void {
-		if (this.disposed) return;
-		this.queue.push(text);
-		void this.drain();
-	}
-
-	private async drain(): Promise<void> {
-		if (this.draining) return;
-		this.draining = true;
-		try {
-			while (this.queue.length > 0 && !this.disposed) {
-				const text = this.queue.shift() as string;
-				await this.runTurn(text);
-			}
-		} finally {
-			this.draining = false;
-		}
-	}
-
-	private runTurn(text: string): Promise<void> {
-		return new Promise((resolve) => {
-			void (async () => {
-				let workspace: string;
-				try {
-					workspace = await this.ensureWorkspace();
-				} catch (error) {
-					this.options.onEvent({
-						type: "error",
-						code: "unknown",
-						message: error instanceof Error ? error.message : String(error),
-					});
-					resolve();
-					return;
+	protected runTurn(text: string, workspace: string): Promise<void> {
+		return this.runChild({
+			command: this.binaryPath,
+			args: [
+				"--model",
+				this.options.model,
+				"--output-format",
+				"json",
+				"--prompt",
+				this.buildPrompt(text),
+			],
+			cwd: workspace,
+			env: { ...process.env, NO_COLOR: "1" },
+			collectStdout: true,
+			onClose: ({ code, stdout, stderrTail }) => {
+				const response = extractResponse(stdout);
+				if (response) {
+					this.history.push({ role: "user", text });
+					this.history.push({ role: "assistant", text: response });
+					this.emit({ type: "text-delta", text: response });
 				}
-				if (this.disposed) {
-					resolve();
-					return;
+				if (code !== 0 && code !== null && !response) {
+					const detail = stderrTail.trim() || stdout.trim() || `Gemini exited with code ${code}.`;
+					this.emitError(detail, isAuthErrorText(detail) ? "not-authenticated" : "unknown");
 				}
-
-				const child = spawn(
-					this.binaryPath,
-					[
-						"--model",
-						this.options.model,
-						"--output-format",
-						"json",
-						"--prompt",
-						this.buildPrompt(text),
-					],
-					{
-						cwd: workspace,
-						env: { ...process.env, NO_COLOR: "1" },
-						stdio: ["ignore", "pipe", "pipe"],
-					},
-				);
-				this.child = child;
-
-				let stdout = "";
-				let stderrTail = "";
-				child.stdout?.on("data", (chunk: Buffer) => {
-					stdout += chunk.toString();
-				});
-				child.stderr?.on("data", (chunk: Buffer) => {
-					stderrTail = (stderrTail + chunk.toString()).slice(-4096);
-				});
-
-				child.on("error", (error) => {
-					this.child = null;
-					this.options.onEvent({ type: "error", code: "unknown", message: error.message });
-					resolve();
-				});
-
-				child.on("close", (code) => {
-					this.child = null;
-					if (this.disposed) {
-						resolve();
-						return;
-					}
-					const response = this.extractResponse(stdout);
-					if (response) {
-						this.history.push({ role: "user", text });
-						this.history.push({ role: "assistant", text: response });
-						this.options.onEvent({ type: "text-delta", text: response });
-					}
-					if (code !== 0 && code !== null && !response) {
-						const detail = stderrTail.trim() || stdout.trim() || `Gemini exited with code ${code}.`;
-						this.options.onEvent({
-							type: "error",
-							code: isAuthErrorText(detail) ? "not-authenticated" : "unknown",
-							message: detail,
-						});
-					}
-					this.options.onEvent({ type: "turn-done" });
-					resolve();
-				});
-			})();
+				this.emit({ type: "turn-done" });
+			},
 		});
 	}
+}
 
-	/** `--output-format json` prints {response, stats}; fall back to raw text. */
-	private extractResponse(stdout: string): string | null {
-		const trimmed = stdout.trim();
-		if (!trimmed) return null;
-		const jsonStart = trimmed.indexOf("{");
-		if (jsonStart >= 0) {
-			try {
-				const parsed = JSON.parse(trimmed.slice(jsonStart)) as {
-					response?: unknown;
-					error?: { message?: string };
-				};
-				if (typeof parsed.response === "string" && parsed.response) return parsed.response;
-				if (parsed.error?.message) return null;
-			} catch {
-				// Not JSON — some CLI versions print plain text in -p mode.
-			}
+/** `--output-format json` prints {response, stats}; fall back to raw text. */
+function extractResponse(stdout: string): string | null {
+	const trimmed = stdout.trim();
+	if (!trimmed) return null;
+	const jsonStart = trimmed.indexOf("{");
+	if (jsonStart >= 0) {
+		try {
+			const parsed = JSON.parse(trimmed.slice(jsonStart)) as {
+				response?: unknown;
+				error?: { message?: string };
+			};
+			if (typeof parsed.response === "string" && parsed.response) return parsed.response;
+			if (parsed.error?.message) return null;
+		} catch {
+			// Not JSON — some CLI versions print plain text in -p mode.
 		}
-		return jsonStart === 0 ? null : trimmed;
 	}
-
-	async cancel(): Promise<void> {
-		this.queue.length = 0;
-		const child = this.child;
-		if (child) {
-			child.kill("SIGINT");
-			setTimeout(() => {
-				if (!child.killed) child.kill("SIGKILL");
-			}, 2000).unref();
-		}
-		this.options.onEvent({ type: "error", code: "aborted", message: "Cancelled." });
-	}
-
-	dispose(): void {
-		if (this.disposed) return;
-		this.disposed = true;
-		this.queue.length = 0;
-		this.child?.kill("SIGKILL");
-		this.child = null;
-		this.host.close();
-		void this.workspacePromise
-			?.then((dir) => fs.rm(dir, { recursive: true, force: true }))
-			.catch(() => {
-				// Temp-dir cleanup is best-effort.
-			});
-	}
+	return jsonStart === 0 ? null : trimmed;
 }
 
 export class GeminiCliProvider implements AiProvider {

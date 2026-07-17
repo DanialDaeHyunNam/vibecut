@@ -1,11 +1,9 @@
-import { type ChildProcess, spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import readline from "node:readline";
 import { findExecutable, mcpBridgeLaunch } from "../cliDiscovery";
-import { AiToolHost } from "../toolHost";
+import { PerTurnCliSession } from "./cliSession";
 import { parseCodexEventLine } from "./codexEvents";
 import type {
 	AiChatSession,
@@ -47,214 +45,111 @@ function tomlInlineTable(entries: Record<string, string>): string {
 }
 
 /**
- * Chat session backed by the Codex CLI (ChatGPT subscription auth). Codex has
- * no long-lived streaming-input mode, so each turn is one `codex exec --json`
- * run; conversation memory rides on `codex exec resume <session-id>`. Editor
- * tools reach the agent through the stdio MCP bridge configured via -c
- * overrides, pointing back at this session's tool host.
+ * Chat session backed by the Codex CLI (ChatGPT subscription auth). Each turn
+ * is one `codex exec --json` run; conversation memory rides on
+ * `codex exec resume <session-id>`. Editor tools reach the agent through the
+ * stdio MCP bridge configured via -c overrides, pointing back at this
+ * session's tool host.
  */
-class CodexCliSession implements AiChatSession {
-	private readonly host: AiToolHost;
-	private child: ChildProcess | null = null;
-	private disposed = false;
-	private workspacePromise: Promise<string> | null = null;
+class CodexCliSession extends PerTurnCliSession {
+	protected readonly workspacePrefix = "vibecut-codex-";
 	private sessionId: string | null;
-	private readonly queue: string[] = [];
-	private draining = false;
 
 	constructor(
-		private readonly options: AiChatSessionOptions,
+		options: AiChatSessionOptions,
 		private readonly binaryPath: string,
 	) {
-		this.host = new AiToolHost(options.executeTool, options.onEvent);
+		super(options);
 		this.sessionId = options.resumeSessionId?.startsWith(RESUME_PREFIX)
 			? options.resumeSessionId.slice(RESUME_PREFIX.length)
 			: null;
 	}
 
-	/** Temp dir acting as the agent's cwd: AGENTS.md carries the system prompt. */
-	private ensureWorkspace(): Promise<string> {
-		this.workspacePromise ??= (async () => {
-			const dir = await fs.mkdtemp(path.join(os.tmpdir(), "vibecut-codex-"));
-			await fs.writeFile(path.join(dir, "AGENTS.md"), this.options.systemPrompt, "utf-8");
-			await this.host.start();
-			return dir;
-		})();
-		return this.workspacePromise;
+	/** AGENTS.md in the workspace carries the system prompt (Codex reads cwd). */
+	protected async prepareWorkspace(dir: string): Promise<void> {
+		await fs.writeFile(path.join(dir, "AGENTS.md"), this.options.systemPrompt, "utf-8");
 	}
 
-	send(text: string): void {
-		if (this.disposed) return;
-		this.queue.push(text);
-		void this.drain();
-	}
+	protected runTurn(text: string, workspace: string): Promise<void> {
+		const bridge = mcpBridgeLaunch(this.host);
+		const args = [
+			"exec",
+			...(this.sessionId ? ["resume", this.sessionId] : []),
+			"--json",
+			// The agent must only edit through our MCP tools; read-only keeps
+			// Codex's built-in shell from touching anything.
+			"--sandbox",
+			"read-only",
+			"--skip-git-repo-check",
+			"--cd",
+			workspace,
+			"--model",
+			this.options.model,
+			"-c",
+			`mcp_servers.cinerec.command=${JSON.stringify(bridge.command)}`,
+			"-c",
+			`mcp_servers.cinerec.args=${JSON.stringify(bridge.args)}`,
+			"-c",
+			`mcp_servers.cinerec.env=${tomlInlineTable(bridge.env)}`,
+			"-c",
+			// ask_user / get_transcript can block for minutes.
+			"mcp_servers.cinerec.tool_timeout_sec=600",
+			text,
+		];
 
-	private async drain(): Promise<void> {
-		if (this.draining) return;
-		this.draining = true;
-		try {
-			while (this.queue.length > 0 && !this.disposed) {
-				const text = this.queue.shift() as string;
-				await this.runTurn(text);
-			}
-		} finally {
-			this.draining = false;
-		}
-	}
+		let emittedThisTurn = false;
+		let sawDelta = false;
 
-	private runTurn(text: string): Promise<void> {
-		return new Promise((resolve) => {
-			void (async () => {
-				let workspace: string;
-				try {
-					workspace = await this.ensureWorkspace();
-				} catch (error) {
-					this.options.onEvent({
-						type: "error",
-						code: "unknown",
-						message: error instanceof Error ? error.message : String(error),
-					});
-					resolve();
-					return;
-				}
-				if (this.disposed) {
-					resolve();
-					return;
-				}
-
-				const bridge = mcpBridgeLaunch(this.host);
-				const args = [
-					"exec",
-					...(this.sessionId ? ["resume", this.sessionId] : []),
-					"--json",
-					// The agent must only edit through our MCP tools; read-only keeps
-					// Codex's built-in shell from touching anything.
-					"--sandbox",
-					"read-only",
-					"--skip-git-repo-check",
-					"--cd",
-					workspace,
-					"--model",
-					this.options.model,
-					"-c",
-					`mcp_servers.cinerec.command=${JSON.stringify(bridge.command)}`,
-					"-c",
-					`mcp_servers.cinerec.args=${JSON.stringify(bridge.args)}`,
-					"-c",
-					`mcp_servers.cinerec.env=${tomlInlineTable(bridge.env)}`,
-					"-c",
-					// ask_user / get_transcript can block for minutes.
-					"mcp_servers.cinerec.tool_timeout_sec=600",
-					text,
-				];
-
-				const child = spawn(this.binaryPath, args, {
-					cwd: workspace,
-					env: { ...process.env, RUST_LOG: "error" },
-					stdio: ["ignore", "pipe", "pipe"],
-				});
-				this.child = child;
-
-				let emittedThisTurn = false;
-				let sawDelta = false;
-				let stderrTail = "";
-
-				readline
-					.createInterface({ input: child.stdout as NodeJS.ReadableStream })
-					.on("line", (line) => {
-						const action = parseCodexEventLine(line);
-						if (!action || this.disposed) return;
-						switch (action.kind) {
-							case "session":
-								this.sessionId = action.sessionId;
-								this.options.onEvent({
-									type: "session-started",
-									sessionId: `${RESUME_PREFIX}${action.sessionId}`,
-								});
-								break;
-							case "delta":
-								sawDelta = true;
-								emittedThisTurn = true;
-								this.options.onEvent({ type: "text-delta", text: action.text });
-								break;
-							case "message":
-								// Streams that emit deltas repeat the full text in a final
-								// message event — skip it to avoid doubling.
-								if (sawDelta) {
-									sawDelta = false;
-									break;
-								}
-								this.options.onEvent({
-									type: "text-delta",
-									text: emittedThisTurn ? `\n\n${action.text}` : action.text,
-								});
-								emittedThisTurn = true;
-								break;
-							case "error":
-								this.options.onEvent({
-									type: "error",
-									code: isAuthErrorText(action.message) ? "not-authenticated" : "unknown",
-									message: action.message,
-								});
-								break;
-						}
-					});
-
-				child.stderr?.on("data", (chunk: Buffer) => {
-					stderrTail = (stderrTail + chunk.toString()).slice(-4096);
-				});
-
-				child.on("error", (error) => {
-					this.child = null;
-					this.options.onEvent({ type: "error", code: "unknown", message: error.message });
-					resolve();
-				});
-
-				child.on("close", (code) => {
-					this.child = null;
-					if (this.disposed) {
-						resolve();
-						return;
-					}
-					if (code !== 0 && code !== null) {
-						const detail = stderrTail.trim() || `Codex exited with code ${code}.`;
-						this.options.onEvent({
-							type: "error",
-							code: isAuthErrorText(detail) ? "not-authenticated" : "unknown",
-							message: detail,
+		return this.runChild({
+			command: this.binaryPath,
+			args,
+			cwd: workspace,
+			env: { ...process.env, RUST_LOG: "error" },
+			onStdoutLine: (line) => {
+				const action = parseCodexEventLine(line);
+				if (!action) return;
+				switch (action.kind) {
+					case "session":
+						this.sessionId = action.sessionId;
+						this.emit({
+							type: "session-started",
+							sessionId: `${RESUME_PREFIX}${action.sessionId}`,
 						});
-					}
-					this.options.onEvent({ type: "turn-done" });
-					resolve();
-				});
-			})();
+						break;
+					case "delta":
+						sawDelta = true;
+						emittedThisTurn = true;
+						this.emit({ type: "text-delta", text: action.text });
+						break;
+					case "message":
+						// Streams that emit deltas repeat the full text in a final
+						// message event — skip it to avoid doubling.
+						if (sawDelta) {
+							sawDelta = false;
+							break;
+						}
+						this.emit({
+							type: "text-delta",
+							text: emittedThisTurn ? `\n\n${action.text}` : action.text,
+						});
+						emittedThisTurn = true;
+						break;
+					case "error":
+						this.emitError(
+							action.message,
+							isAuthErrorText(action.message) ? "not-authenticated" : "unknown",
+						);
+						break;
+				}
+			},
+			onClose: ({ code, stderrTail }) => {
+				if (code !== 0 && code !== null) {
+					const detail = stderrTail.trim() || `Codex exited with code ${code}.`;
+					this.emitError(detail, isAuthErrorText(detail) ? "not-authenticated" : "unknown");
+				}
+				this.emit({ type: "turn-done" });
+			},
 		});
-	}
-
-	async cancel(): Promise<void> {
-		this.queue.length = 0;
-		const child = this.child;
-		if (child) {
-			child.kill("SIGINT");
-			setTimeout(() => {
-				if (!child.killed) child.kill("SIGKILL");
-			}, 2000).unref();
-		}
-		this.options.onEvent({ type: "error", code: "aborted", message: "Cancelled." });
-	}
-
-	dispose(): void {
-		if (this.disposed) return;
-		this.disposed = true;
-		this.queue.length = 0;
-		this.child?.kill("SIGKILL");
-		this.child = null;
-		this.host.close();
-		void this.workspacePromise
-			?.then((dir) => fs.rm(dir, { recursive: true, force: true }))
-			.catch(() => {
-				// Temp-dir cleanup is best-effort.
-			});
 	}
 }
 
