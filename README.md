@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-8B7CFF?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey?style=for-the-badge" alt="Platform" />
-  <img src="https://img.shields.io/badge/AI-Claude%20subscription%2C%20no%20API%20key-7C5CFF?style=for-the-badge" alt="AI" />
+  <img src="https://img.shields.io/badge/AI-Claude%20%C2%B7%20ChatGPT%20%C2%B7%20Gemini-7C5CFF?style=for-the-badge" alt="AI" />
   <img src="https://img.shields.io/github/downloads/DanialDaeHyunNam/vibecut/total?style=for-the-badge&color=8B7CFF" alt="Downloads" />
 </p>
 
@@ -35,7 +35,7 @@ The agent **sees** your video (frame sampling), **hears** it (on-device Whisper 
 
 ## ✨ AI editing assistant
 
-- **Runs on the subscriptions you already have** — no API key. Claude (via Claude Code), ChatGPT (via the Codex CLI), or Google (via the Gemini CLI); nothing leaves your machine except the model calls you already pay for.
+- **Bring the AI you already have** — Claude and ChatGPT connect through your existing subscriptions (via the official [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) and [Codex CLI](https://github.com/openai/codex)); Gemini uses a free [Google AI Studio API key](https://aistudio.google.com/apikey), per Google's terms for third-party tools. Vibecut only drives the official CLIs — it never extracts or proxies your login tokens. An Anthropic API key also works as an alternative to Claude sign-in.
 - **Multimodal context**: project state, click telemetry, video frames, narration transcript.
 - **18 editing tools**: zoom / trim / speed / caption CRUD, frame styling (wallpaper, padding, shadows, webcam PIP), SRT export, and `ask_user` interactive questions.
 - **One-click flows**: "Understand & brief me" and "Auto-edit this video" (asks your zoom style, target length, and caption language first).
@@ -82,7 +82,7 @@ Only download Vibecut from this repository's Releases page. If you got it anywhe
 2. Pick what to record — a display, window, or area — and optionally enable your webcam (a floating self-view appears; it's not burned into the capture) and microphone. Hit **Record**.
 3. **Stop** when done. The editor opens with cinematic zooms already placed from your clicks.
 4. Open the **AI** tab in the right rail and tell it what you want: *"Auto-edit this video"*, *"Zoom in when I click the export button"*, *"Add Korean subtitles and save them as SRT"*. It will watch the frames, read your narration, and ask before big changes.
-   - Sign-in: uses your existing **Claude Code** login (`claude` → `/login` once in any terminal), or the **Codex CLI** (`codex login`) / **Gemini CLI** (`gemini`) if you prefer those subscriptions.
+   - Sign-in: your existing **Claude** login (`claude` → `/login` once in any terminal) or an Anthropic API key; **ChatGPT** via `codex login`; **Gemini** via a free [AI Studio API key](https://aistudio.google.com/apikey) pasted under the model picker.
 5. Export as MP4 or GIF — captions can be burned in and/or saved as a `.srt` sidecar.
 
 ## 🚀 Development
@@ -94,7 +94,7 @@ npm run dev                # Vite + Electron
 npm test                   # vitest (Node 22+)
 ```
 
-Requirements: Node 22.x, and for the AI assistant one of: a [Claude](https://claude.com) subscription (Claude Code login), a ChatGPT subscription ([Codex CLI](https://github.com/openai/codex)), or a Google account ([Gemini CLI](https://github.com/google-gemini/gemini-cli)).
+Requirements: Node 22.x, and for the AI assistant one of: a [Claude](https://claude.com) subscription or Anthropic API key, a ChatGPT subscription ([Codex CLI](https://github.com/openai/codex)), or a free [Google AI Studio API key](https://aistudio.google.com/apikey) ([Gemini CLI](https://github.com/google-gemini/gemini-cli) installed).
 
 Contributing — human or AI agent: start with [ARCHITECTURE.md](ARCHITECTURE.md) (system map, data flows, invariants) and [AGENTS.md](AGENTS.md) (commands, conventions, gotchas). The codebase is deliberately structured so LLM agents can navigate it: one tool registry, one mutation gateway, pure logic extracted into testable modules.
 

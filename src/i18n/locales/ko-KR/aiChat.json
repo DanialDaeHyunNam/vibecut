@@ -8,10 +8,10 @@
 	"pickModel": "모델",
 	"comingSoon": "곧 지원",
 	"retry": "다시 확인",
-	"notInstalledTitle": "Claude Code 런타임 없음",
-	"notInstalledBody": "내장 Claude Code 바이너리를 찾을 수 없습니다.\n프로젝트 폴더에서 npm install 후 앱을 재시작하세요.",
-	"notAuthenticatedTitle": "Claude Code 로그인 필요",
-	"notAuthenticatedBody": "AI 어시스턴트는 Claude Code를 통해 Claude 구독을 사용합니다.\n터미널에서 claude 실행 후 /login 을 입력하세요.\n완료되면 다시 확인을 누르세요.",
+	"notInstalledTitle": "Claude 런타임이 없어요",
+	"notInstalledBody": "내장 Claude 에이전트 바이너리를 찾지 못했어요.\n프로젝트 폴더에서 npm install 후 앱을 다시 실행해 주세요.",
+	"notAuthenticatedTitle": "Claude 로그인이 필요해요",
+	"notAuthenticatedBody": "AI 어시스턴트는 Claude 구독으로 동작해요.\n터미널에서 claude 실행 후 /login 하거나, 아래에 Anthropic API 키를 저장해 주세요.\n완료되면 다시 확인을 눌러주세요.",
 	"unavailableTitle": "AI 어시스턴트를 사용할 수 없음",
 	"tool": {
 		"get_project_context": "프로젝트 읽는 중",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "AI 어시스턴트는 {{name}} 구독을 CLI로 연동해요.\n설치: {{install}}\n설치 후 다시 확인을 눌러주세요.",
 	"cliNotAuthenticatedTitle": "{{name}} 로그인이 필요해요",
 	"cliNotAuthenticatedBody": "터미널에서 {{login}} 을 실행해 로그인해 주세요.\n완료되면 다시 확인을 눌러주세요.",
-	"grokApiKeyPlaceholder": "Grok API 키 (지원 예정)",
-	"grokApiKeySaved": "Grok API 키 저장됨",
-	"apiKeySave": "저장"
+	"apiKeySave": "저장",
+	"apiKeyPlaceholder": "{{name}} API 키",
+	"apiKeyOptionalPlaceholder": "{{name}} API 키 (선택 — 로그인 대신)",
+	"apiKeySaved": "{{name}} API 키 저장됨",
+	"noApiKeyTitle": "{{name}} API 키가 필요해요",
+	"noApiKeyBody": "모델 선택 아래 입력란에 {{name}} API 키를 붙여넣어 주세요.\n키 발급: {{source}}"
 }

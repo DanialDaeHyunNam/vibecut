@@ -1,8 +1,7 @@
-import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
-import os from "node:os";
 import path from "node:path";
 import { findExecutable, mcpBridgeLaunch } from "../cliDiscovery";
+import { loadAiSettings } from "../settings";
 import { PerTurnCliSession } from "./cliSession";
 import type {
 	AiChatSession,
@@ -55,11 +54,16 @@ function isAuthErrorText(text: string): boolean {
 }
 
 /**
- * Chat session backed by the Gemini CLI (Google-account login). Gemini has no
- * non-interactive session resume, so each turn is a fresh `gemini -p` run and
- * the session replays its own transcript as context. The system prompt lives
- * in the workspace's GEMINI.md; MCP wiring and built-in tool lockdown live in
- * the workspace's .gemini/settings.json (project-level settings).
+ * Chat session backed by the Gemini CLI, authenticated with an AI Studio API
+ * key injected as GEMINI_API_KEY. Key auth (not Google login) is deliberate:
+ * Google's 2026-02 service update prohibits "using Gemini CLI OAuth with
+ * third-party software" and has suspended accounts over it, while explicitly
+ * recommending API keys for third-party agents — so Vibecut never touches the
+ * user's Google login. Gemini has no non-interactive session resume, so each
+ * turn is a fresh `gemini -p` run and the session replays its own transcript
+ * as context. The system prompt lives in the workspace's GEMINI.md; MCP
+ * wiring and built-in tool lockdown live in the workspace's
+ * .gemini/settings.json (project-level settings).
  */
 class GeminiCliSession extends PerTurnCliSession {
 	protected readonly workspacePrefix = "vibecut-gemini-";
@@ -122,7 +126,11 @@ class GeminiCliSession extends PerTurnCliSession {
 				this.buildPrompt(text),
 			],
 			cwd: workspace,
-			env: { ...process.env, NO_COLOR: "1" },
+			env: {
+				...process.env,
+				NO_COLOR: "1",
+				...(this.options.apiKey ? { GEMINI_API_KEY: this.options.apiKey } : {}),
+			},
 			collectStdout: true,
 			onClose: ({ code, stdout, stderrTail }) => {
 				const response = extractResponse(stdout);
@@ -163,8 +171,8 @@ function extractResponse(stdout: string): string | null {
 
 export class GeminiCliProvider implements AiProvider {
 	readonly id = "gemini" as const;
-	readonly label = "Gemini CLI";
-	readonly requiresApiKey = false;
+	readonly label = "Gemini";
+	readonly requiresApiKey = true;
 
 	listModels(): AiModelInfo[] {
 		return MODELS;
@@ -180,17 +188,17 @@ export class GeminiCliProvider implements AiProvider {
 					"Gemini CLI not found. Install with `npm install -g @google/gemini-cli` (or `brew install gemini-cli`).",
 			};
 		}
-		const geminiDir = path.join(os.homedir(), ".gemini");
-		const authenticated =
-			existsSync(path.join(geminiDir, "oauth_creds.json")) ||
-			existsSync(path.join(geminiDir, "google_accounts.json")) ||
+		const settings = await loadAiSettings();
+		const hasKey =
+			Boolean(settings.apiKeys.gemini) ||
 			Boolean(process.env.GEMINI_API_KEY) ||
 			Boolean(process.env.GOOGLE_API_KEY);
-		if (!authenticated) {
+		if (!hasKey) {
 			return {
 				available: false,
-				reason: "not-authenticated",
-				detail: "Run `gemini` in a terminal once and sign in with your Google account.",
+				reason: "no-api-key",
+				detail:
+					"Save a Gemini API key (free from Google AI Studio — aistudio.google.com/apikey). Google login is not used: Google's terms prohibit third-party software from using Gemini CLI OAuth.",
 			};
 		}
 		return { available: true };

@@ -85,12 +85,17 @@ The right-rail chat panel drives a tool-using agent. Key design decisions:
    (`types.ts`: `listModels`, `getStatus`, `createSession`):
    - `claudeCode.ts` — long-lived Agent SDK `query()` with streaming input;
      conversation memory lives in the CLI process; `resume` continues after
-     app restarts. No API key: reuses the user's Claude Code login.
+     app restarts. Auth: the user's existing Claude login, or a stored
+     Anthropic API key injected into the spawned CLI's env. (UI label is
+     "Claude" — Anthropic's partner branding guidelines prohibit "Claude
+     Code" as a product-facing name.)
    - `codexCli.ts` / `geminiCli.ts` — per-turn CLI spawns built on
      `cliSession.ts` (`PerTurnCliSession`: send queue, lazy temp workspace,
      tool-host lifecycle, cancel/dispose). Codex resumes via
-     `codex exec resume <id>`; Gemini replays its own transcript because it
-     has no headless resume.
+     `codex exec resume <id>` (ChatGPT login); Gemini replays its own
+     transcript because it has no headless resume, and authenticates with an
+     AI Studio API key injected as `GEMINI_API_KEY` — never the user's Google
+     login, which Google's terms prohibit third-party software from using.
    - Session ids handed to the renderer are namespaced (`codex:<id>`) so one
      provider never resumes another's persisted session.
 4. **External CLIs get tools via a bridge** — the CLI spawns

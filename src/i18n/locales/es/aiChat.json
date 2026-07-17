@@ -8,10 +8,10 @@
 	"pickModel": "Modelo",
 	"comingSoon": "Próximamente",
 	"retry": "Comprobar de nuevo",
-	"notInstalledTitle": "Falta el runtime de Claude Code",
-	"notInstalledBody": "No se encontró el binario integrado de Claude Code.\nEjecuta npm install en la carpeta del proyecto y reinicia la app.",
-	"notAuthenticatedTitle": "Inicia sesión en Claude Code",
-	"notAuthenticatedBody": "El asistente de IA usa tu suscripción de Claude a través de Claude Code.\nAbre una terminal, ejecuta claude y escribe /login.\nCuando termines, pulsa Comprobar de nuevo.",
+	"notInstalledTitle": "Falta el runtime de Claude",
+	"notInstalledBody": "No se encontró el binario del agente Claude incluido.\nEjecuta npm install en la carpeta del proyecto y reinicia la app.",
+	"notAuthenticatedTitle": "Inicia sesión en Claude",
+	"notAuthenticatedBody": "El asistente de IA usa tu suscripción de Claude.\nAbre una terminal, ejecuta claude y escribe /login — o guarda una clave API de Anthropic abajo.\nCuando termines, pulsa Volver a comprobar.",
 	"unavailableTitle": "Asistente de IA no disponible",
 	"tool": {
 		"get_project_context": "Leyendo proyecto",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "El asistente de IA usa tu suscripción de {{name}} a través de su CLI.\nInstálala: {{install}}\nLuego pulsa Volver a comprobar.",
 	"cliNotAuthenticatedTitle": "Inicia sesión en {{name}}",
 	"cliNotAuthenticatedBody": "Abre una terminal, ejecuta {{login}} y completa el inicio de sesión.\nCuando termines, pulsa Volver a comprobar.",
-	"grokApiKeyPlaceholder": "Clave API de Grok (próximamente)",
-	"grokApiKeySaved": "Clave API de Grok guardada",
-	"apiKeySave": "Guardar"
+	"apiKeySave": "Guardar",
+	"apiKeyPlaceholder": "Clave API de {{name}}",
+	"apiKeyOptionalPlaceholder": "Clave API de {{name}} (opcional — en lugar de iniciar sesión)",
+	"apiKeySaved": "Clave API de {{name}} guardada",
+	"noApiKeyTitle": "Se necesita una clave API de {{name}}",
+	"noApiKeyBody": "Pega tu clave API de {{name}} en el campo bajo el selector de modelos.\nConsíguela en {{source}}."
 }

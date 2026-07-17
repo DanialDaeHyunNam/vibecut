@@ -8,10 +8,10 @@
 	"pickModel": "Model",
 	"comingSoon": "Coming soon",
 	"retry": "Check again",
-	"notInstalledTitle": "Claude Code runtime missing",
-	"notInstalledBody": "The bundled Claude Code binary was not found.\nRun npm install in the project folder and restart the app.",
-	"notAuthenticatedTitle": "Sign in to Claude Code",
-	"notAuthenticatedBody": "The AI assistant uses your Claude subscription through Claude Code.\nOpen a terminal, run claude, then type /login.\nWhen you're done, press Check again.",
+	"notInstalledTitle": "Claude runtime missing",
+	"notInstalledBody": "The bundled Claude agent binary was not found.\nRun npm install in the project folder and restart the app.",
+	"notAuthenticatedTitle": "Sign in to Claude",
+	"notAuthenticatedBody": "The AI assistant uses your Claude subscription.\nOpen a terminal, run claude, then type /login — or save an Anthropic API key below.\nWhen you're done, press Check again.",
 	"unavailableTitle": "AI assistant unavailable",
 	"tool": {
 		"get_project_context": "Reading project",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "The AI assistant uses your {{name}} subscription through its CLI.\nInstall it: {{install}}\nThen press Check again.",
 	"cliNotAuthenticatedTitle": "Sign in to {{name}}",
 	"cliNotAuthenticatedBody": "Open a terminal, run {{login}}, and finish signing in.\nWhen you're done, press Check again.",
-	"grokApiKeyPlaceholder": "Grok API key (support coming soon)",
-	"grokApiKeySaved": "Grok API key saved",
-	"apiKeySave": "Save"
+	"apiKeySave": "Save",
+	"apiKeyPlaceholder": "{{name}} API key",
+	"apiKeyOptionalPlaceholder": "{{name}} API key (optional — instead of signing in)",
+	"apiKeySaved": "{{name}} API key saved",
+	"noApiKeyTitle": "{{name}} API key needed",
+	"noApiKeyBody": "Paste your {{name}} API key in the field under the model picker.\nGet one from {{source}}."
 }

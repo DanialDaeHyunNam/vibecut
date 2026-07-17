@@ -8,10 +8,10 @@
 	"pickModel": "النموذج",
 	"comingSoon": "قريبًا",
 	"retry": "تحقّق مجددًا",
-	"notInstalledTitle": "بيئة Claude Code غير موجودة",
-	"notInstalledBody": "لم يتم العثور على ملف Claude Code المدمج.\nنفّذ npm install في مجلد المشروع ثم أعد تشغيل التطبيق.",
-	"notAuthenticatedTitle": "سجّل الدخول إلى Claude Code",
-	"notAuthenticatedBody": "يستخدم مساعد الذكاء الاصطناعي اشتراكك في Claude عبر Claude Code.\nافتح الطرفية ونفّذ claude ثم اكتب ‎/login.\nبعد الانتهاء اضغط تحقّق مجددًا.",
+	"notInstalledTitle": "بيئة تشغيل Claude غير موجودة",
+	"notInstalledBody": "لم يتم العثور على ملف وكيل Claude المضمّن.\nنفّذ npm install في مجلد المشروع ثم أعد تشغيل التطبيق.",
+	"notAuthenticatedTitle": "سجّل الدخول إلى Claude",
+	"notAuthenticatedBody": "يعمل مساعد الذكاء الاصطناعي عبر اشتراكك في Claude.\nافتح الطرفية ونفّذ claude ثم اكتب ‎/login — أو احفظ مفتاح Anthropic API أدناه.\nعند الانتهاء اضغط \"تحقق مرة أخرى\".",
 	"unavailableTitle": "مساعد الذكاء الاصطناعي غير متاح",
 	"tool": {
 		"get_project_context": "قراءة المشروع",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "يستخدم مساعد الذكاء الاصطناعي اشتراكك في {{name}} عبر واجهة سطر الأوامر.\nالتثبيت: {{install}}\nثم اضغط \"تحقق مرة أخرى\".",
 	"cliNotAuthenticatedTitle": "سجّل الدخول إلى {{name}}",
 	"cliNotAuthenticatedBody": "افتح الطرفية ونفّذ {{login}} وأكمل تسجيل الدخول.\nعند الانتهاء اضغط \"تحقق مرة أخرى\".",
-	"grokApiKeyPlaceholder": "مفتاح Grok API (قريبًا)",
-	"grokApiKeySaved": "تم حفظ مفتاح Grok API",
-	"apiKeySave": "حفظ"
+	"apiKeySave": "حفظ",
+	"apiKeyPlaceholder": "مفتاح {{name}} API",
+	"apiKeyOptionalPlaceholder": "مفتاح {{name}} API (اختياري — بدلًا من تسجيل الدخول)",
+	"apiKeySaved": "تم حفظ مفتاح {{name}} API",
+	"noApiKeyTitle": "مطلوب مفتاح {{name}} API",
+	"noApiKeyBody": "الصق مفتاح {{name}} API في الحقل أسفل مُحدد النماذج.\nاحصل عليه من {{source}}."
 }

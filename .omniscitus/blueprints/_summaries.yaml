@@ -18,7 +18,7 @@ summaries:
     description: "IPC handlers — recording, project files, AI chat, webcam self-view, SRT save"
     generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: false
+    stale: true
     file_count: 4
   "electron/native":
     description: "Platform helpers — Swift ScreenCaptureKit (macOS), C++ WGC (Windows)"

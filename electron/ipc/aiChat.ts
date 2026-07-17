@@ -1,7 +1,12 @@
 import type { BrowserWindow, IpcMain } from "electron";
 import { getAiProvider, listAiProviders } from "../ai/providers";
 import type { AiChatEvent, AiChatSession, AiProviderId } from "../ai/providers/types";
-import { loadAiSettings, saveAiSettings, toPublicSettings } from "../ai/settings";
+import {
+	getDecryptedApiKey,
+	loadAiSettings,
+	saveAiSettings,
+	toPublicSettings,
+} from "../ai/settings";
 import { buildSystemPrompt, formatSnapshot, type ProjectSnapshot } from "../ai/systemPrompt";
 import { RendererToolBridge } from "../ai/toolBridge";
 
@@ -102,6 +107,7 @@ export function registerAiChatHandlers(
 					executeTool: (name, input) => toolBridge.call(name, input),
 					onEvent: emit,
 					resumeSessionId: payload.resumeSessionId,
+					apiKey: await getDecryptedApiKey(payload.provider),
 				});
 				sessionKey = key;
 			} catch (error) {

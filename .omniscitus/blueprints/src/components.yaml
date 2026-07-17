@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T07:29:37.340Z
+updated: 2026-07-17T13:24:47.152Z
 
 files:
   "src/components/launch/CountdownOverlay.tsx":
@@ -2429,10 +2429,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T07:29:37.340Z
-    change_count: 2
+    last_modified: 2026-07-17T13:24:47.152Z
+    change_count: 4
     purpose: "프로바이더 그룹별 모델 선택 드롭다운 (비활성 coming-soon 행 포함)"
     change_log:
+      - date: 2026-07-17T13:24:47.152Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T13:21:00.227Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-17T07:29:37.340Z
         action: write
         source: "claude:Dan"
@@ -2443,10 +2449,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T07:29:14.704Z
-    change_count: 7
+    last_modified: 2026-07-17T13:21:20.755Z
+    change_count: 8
     purpose: "AI 탭 루트 — 미설치/미로그인 게이트 + 대화 UI 조립"
     change_log:
+      - date: 2026-07-17T13:21:20.755Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-17T07:29:14.704Z
         action: edit
         source: "claude:Dan"

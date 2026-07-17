@@ -8,10 +8,10 @@
 	"pickModel": "Model",
 	"comingSoon": "Yakında",
 	"retry": "Tekrar kontrol et",
-	"notInstalledTitle": "Claude Code çalışma ortamı bulunamadı",
-	"notInstalledBody": "Paketlenmiş Claude Code ikili dosyası bulunamadı.\nProje klasöründe npm install çalıştırın ve uygulamayı yeniden başlatın.",
-	"notAuthenticatedTitle": "Claude Code'da oturum açın",
-	"notAuthenticatedBody": "YZ asistanı, Claude aboneliğinizi Claude Code üzerinden kullanır.\nBir terminal açın, claude komutunu çalıştırın ve /login yazın.\nBitince Tekrar kontrol et'e basın.",
+	"notInstalledTitle": "Claude çalışma zamanı eksik",
+	"notInstalledBody": "Paketle gelen Claude aracı ikili dosyası bulunamadı.\nProje klasöründe npm install çalıştırıp uygulamayı yeniden başlatın.",
+	"notAuthenticatedTitle": "Claude hesabınıza giriş yapın",
+	"notAuthenticatedBody": "Yapay zekâ asistanı Claude aboneliğinizle çalışır.\nBir terminal açın, claude komutunu çalıştırıp /login yazın — veya aşağıya bir Anthropic API anahtarı kaydedin.\nBittiğinde Tekrar kontrol et'e basın.",
 	"unavailableTitle": "YZ asistanı kullanılamıyor",
 	"tool": {
 		"get_project_context": "Proje okunuyor",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "Yapay zekâ asistanı {{name}} aboneliğinizi CLI üzerinden kullanır.\nKurulum: {{install}}\nArdından Tekrar kontrol et'e basın.",
 	"cliNotAuthenticatedTitle": "{{name}} hesabınıza giriş yapın",
 	"cliNotAuthenticatedBody": "Bir terminal açın, {{login}} komutunu çalıştırın ve girişi tamamlayın.\nBittiğinde Tekrar kontrol et'e basın.",
-	"grokApiKeyPlaceholder": "Grok API anahtarı (yakında)",
-	"grokApiKeySaved": "Grok API anahtarı kaydedildi",
-	"apiKeySave": "Kaydet"
+	"apiKeySave": "Kaydet",
+	"apiKeyPlaceholder": "{{name}} API anahtarı",
+	"apiKeyOptionalPlaceholder": "{{name}} API anahtarı (isteğe bağlı — giriş yerine)",
+	"apiKeySaved": "{{name}} API anahtarı kaydedildi",
+	"noApiKeyTitle": "{{name}} API anahtarı gerekli",
+	"noApiKeyBody": "{{name}} API anahtarınızı model seçicinin altındaki alana yapıştırın.\nAnahtar: {{source}}."
 }

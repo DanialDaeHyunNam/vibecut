@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T12:49:26.314Z
+updated: 2026-07-17T13:24:18.474Z
 
 files:
   ".editorconfig":
@@ -210,10 +210,22 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-17T12:49:26.314Z
-    change_count: 42
+    last_modified: 2026-07-17T13:24:18.474Z
+    change_count: 46
     purpose: "Upstream OpenScreen README — install, platform capture notes, community links."
     change_log:
+      - date: 2026-07-17T13:24:18.474Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T13:24:02.440Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T13:23:59.155Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T13:23:56.766Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T12:49:26.314Z
         action: edit
         source: "claude:Dan"
@@ -722,10 +734,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T12:47:56.032Z
-    change_count: 1
+    last_modified: 2026-07-17T13:24:08.530Z
+    change_count: 2
     purpose: ""
     change_log:
+      - date: 2026-07-17T13:24:08.530Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T12:47:56.032Z
         action: write
         source: "claude:Dan"

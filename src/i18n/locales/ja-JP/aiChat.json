@@ -8,10 +8,10 @@
 	"pickModel": "モデル",
 	"comingSoon": "近日対応",
 	"retry": "再確認",
-	"notInstalledTitle": "Claude Code ランタイムが見つかりません",
-	"notInstalledBody": "同梱の Claude Code バイナリが見つかりません。\nプロジェクトフォルダで npm install を実行し、アプリを再起動してください。",
-	"notAuthenticatedTitle": "Claude Code にログインしてください",
-	"notAuthenticatedBody": "AIアシスタントは Claude Code 経由で Claude サブスクリプションを使用します。\nターミナルで claude を実行し、/login と入力してください。\n完了したら「再確認」を押してください。",
+	"notInstalledTitle": "Claude ランタイムが見つかりません",
+	"notInstalledBody": "同梱の Claude エージェントバイナリが見つかりません。\nプロジェクトフォルダで npm install を実行し、アプリを再起動してください。",
+	"notAuthenticatedTitle": "Claude にサインイン",
+	"notAuthenticatedBody": "AIアシスタントは Claude のサブスクリプションで動作します。\nターミナルで claude を実行して /login するか、下に Anthropic API キーを保存してください。\n完了したら「再確認」を押してください。",
 	"unavailableTitle": "AIアシスタントを利用できません",
 	"tool": {
 		"get_project_context": "プロジェクトを読み込み中",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "AIアシスタントは {{name}} のサブスクリプションを CLI 経由で利用します。\nインストール: {{install}}\n完了したら「再確認」を押してください。",
 	"cliNotAuthenticatedTitle": "{{name}} にサインイン",
 	"cliNotAuthenticatedBody": "ターミナルで {{login}} を実行してサインインしてください。\n完了したら「再確認」を押してください。",
-	"grokApiKeyPlaceholder": "Grok API キー（近日対応）",
-	"grokApiKeySaved": "Grok API キーを保存済み",
-	"apiKeySave": "保存"
+	"apiKeySave": "保存",
+	"apiKeyPlaceholder": "{{name}} API キー",
+	"apiKeyOptionalPlaceholder": "{{name}} API キー（任意 — サインインの代わり）",
+	"apiKeySaved": "{{name}} API キーを保存済み",
+	"noApiKeyTitle": "{{name}} API キーが必要です",
+	"noApiKeyBody": "モデル選択の下の入力欄に {{name}} API キーを貼り付けてください。\n取得先: {{source}}"
 }

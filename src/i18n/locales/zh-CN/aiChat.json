@@ -8,10 +8,10 @@
 	"pickModel": "模型",
 	"comingSoon": "即将支持",
 	"retry": "重新检查",
-	"notInstalledTitle": "缺少 Claude Code 运行时",
-	"notInstalledBody": "未找到内置的 Claude Code 可执行文件。\n请在项目文件夹运行 npm install 并重启应用。",
-	"notAuthenticatedTitle": "请登录 Claude Code",
-	"notAuthenticatedBody": "AI 助手通过 Claude Code 使用你的 Claude 订阅。\n打开终端，运行 claude 并输入 /login。\n完成后点击“重新检查”。",
+	"notInstalledTitle": "缺少 Claude 运行时",
+	"notInstalledBody": "未找到内置的 Claude 代理二进制文件。\n请在项目文件夹运行 npm install 并重启应用。",
+	"notAuthenticatedTitle": "登录 Claude",
+	"notAuthenticatedBody": "AI 助手通过你的 Claude 订阅运行。\n打开终端，运行 claude 并输入 /login——或在下方保存 Anthropic API 密钥。\n完成后点击“重新检查”。",
 	"unavailableTitle": "AI 助手不可用",
 	"tool": {
 		"get_project_context": "读取项目中",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "AI 助手通过 CLI 使用你的 {{name}} 订阅。\n安装：{{install}}\n完成后点击“重新检查”。",
 	"cliNotAuthenticatedTitle": "登录 {{name}}",
 	"cliNotAuthenticatedBody": "打开终端，运行 {{login}} 并完成登录。\n完成后点击“重新检查”。",
-	"grokApiKeyPlaceholder": "Grok API 密钥（即将支持）",
-	"grokApiKeySaved": "已保存 Grok API 密钥",
-	"apiKeySave": "保存"
+	"apiKeySave": "保存",
+	"apiKeyPlaceholder": "{{name}} API 密钥",
+	"apiKeyOptionalPlaceholder": "{{name}} API 密钥（可选——代替登录）",
+	"apiKeySaved": "已保存 {{name}} API 密钥",
+	"noApiKeyTitle": "需要 {{name}} API 密钥",
+	"noApiKeyBody": "将 {{name}} API 密钥粘贴到模型选择器下方的输入框。\n获取地址：{{source}}。"
 }

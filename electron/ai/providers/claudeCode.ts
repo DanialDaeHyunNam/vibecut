@@ -9,6 +9,7 @@ import {
 	type SDKUserMessage,
 } from "@anthropic-ai/claude-agent-sdk";
 import { app } from "electron";
+import { loadAiSettings } from "../settings";
 import { allowedToolNames, CINEREC_MCP_SERVER_NAME, createCinerecTools } from "../toolDefinitions";
 import type {
 	AiChatSession,
@@ -119,6 +120,16 @@ class ClaudeCodeSession implements AiChatSession {
 			options: {
 				model: options.model,
 				systemPrompt: options.systemPrompt,
+				// A stored Anthropic API key is the alternative to subscription
+				// login — inject it into the spawned CLI's environment.
+				...(options.apiKey
+					? {
+							env: {
+								...(process.env as Record<string, string>),
+								ANTHROPIC_API_KEY: options.apiKey,
+							},
+						}
+					: {}),
 				mcpServers: { [CINEREC_MCP_SERVER_NAME]: server },
 				// Editing happens only through our MCP tools; disable every
 				// built-in tool so the agent has no file/shell/network access.
@@ -229,8 +240,11 @@ class ClaudeCodeSession implements AiChatSession {
 }
 
 export class ClaudeCodeProvider implements AiProvider {
+	// Internal id stays "claude-code" (persisted in settings); the user-facing
+	// label must not use "Claude Code" — Anthropic's partner branding
+	// guidelines allow "Claude" / "Claude Agent" only.
 	readonly id = "claude-code" as const;
-	readonly label = "Claude Code";
+	readonly label = "Claude";
 	readonly requiresApiKey = false;
 
 	listModels(): AiModelInfo[] {
@@ -243,14 +257,17 @@ export class ClaudeCodeProvider implements AiProvider {
 			return {
 				available: false,
 				reason: "not-installed",
-				detail: "Bundled Claude Code binary not found in node_modules.",
+				detail: "Bundled Claude agent binary not found in node_modules.",
 			};
 		}
-		if (!looksAuthenticated()) {
+		const settings = await loadAiSettings();
+		const hasStoredKey = Boolean(settings.apiKeys["claude-code"]);
+		if (!looksAuthenticated() && !hasStoredKey && !process.env.ANTHROPIC_API_KEY) {
 			return {
 				available: false,
 				reason: "not-authenticated",
-				detail: "No Claude Code login found. Run `claude` in a terminal and use /login.",
+				detail:
+					"No Claude login found. Run `claude` in a terminal and use /login, or save an Anthropic API key below.",
 			};
 		}
 		return { available: true };

@@ -55,6 +55,12 @@ export interface AiChatSessionOptions {
 	onEvent: (event: AiChatEvent) => void;
 	/** Resume a prior CLI session so the agent keeps its conversation memory. */
 	resumeSessionId?: string;
+	/**
+	 * Decrypted API key stored for this provider (null when absent). Providers
+	 * that support key auth inject it into the spawned CLI's environment;
+	 * subscription-auth providers may use it as an alternative to login.
+	 */
+	apiKey?: string | null;
 }
 
 export interface AiChatSession {

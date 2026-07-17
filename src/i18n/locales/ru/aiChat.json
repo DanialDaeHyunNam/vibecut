@@ -8,10 +8,10 @@
 	"pickModel": "Модель",
 	"comingSoon": "Скоро",
 	"retry": "Проверить снова",
-	"notInstalledTitle": "Среда Claude Code не найдена",
-	"notInstalledBody": "Встроенный бинарный файл Claude Code не найден.\nВыполните npm install в папке проекта и перезапустите приложение.",
-	"notAuthenticatedTitle": "Войдите в Claude Code",
-	"notAuthenticatedBody": "ИИ-ассистент использует вашу подписку Claude через Claude Code.\nОткройте терминал, запустите claude и введите /login.\nЗатем нажмите «Проверить снова».",
+	"notInstalledTitle": "Среда Claude не найдена",
+	"notInstalledBody": "Встроенный бинарный файл агента Claude не найден.\nВыполните npm install в папке проекта и перезапустите приложение.",
+	"notAuthenticatedTitle": "Войдите в Claude",
+	"notAuthenticatedBody": "ИИ-ассистент работает через вашу подписку Claude.\nОткройте терминал, выполните claude и введите /login — или сохраните API-ключ Anthropic ниже.\nЗатем нажмите «Проверить снова».",
 	"unavailableTitle": "ИИ-ассистент недоступен",
 	"tool": {
 		"get_project_context": "Чтение проекта",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "ИИ-ассистент использует вашу подписку {{name}} через CLI.\nУстановите: {{install}}\nЗатем нажмите «Проверить снова».",
 	"cliNotAuthenticatedTitle": "Войдите в {{name}}",
 	"cliNotAuthenticatedBody": "Откройте терминал, выполните {{login}} и завершите вход.\nЗатем нажмите «Проверить снова».",
-	"grokApiKeyPlaceholder": "API-ключ Grok (скоро)",
-	"grokApiKeySaved": "API-ключ Grok сохранён",
-	"apiKeySave": "Сохранить"
+	"apiKeySave": "Сохранить",
+	"apiKeyPlaceholder": "API-ключ {{name}}",
+	"apiKeyOptionalPlaceholder": "API-ключ {{name}} (необязательно — вместо входа)",
+	"apiKeySaved": "API-ключ {{name}} сохранён",
+	"noApiKeyTitle": "Нужен API-ключ {{name}}",
+	"noApiKeyBody": "Вставьте API-ключ {{name}} в поле под выбором модели.\nПолучить ключ: {{source}}."
 }

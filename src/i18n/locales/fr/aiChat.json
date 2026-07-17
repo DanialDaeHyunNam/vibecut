@@ -8,10 +8,10 @@
 	"pickModel": "Modèle",
 	"comingSoon": "Bientôt disponible",
 	"retry": "Vérifier à nouveau",
-	"notInstalledTitle": "Runtime Claude Code introuvable",
-	"notInstalledBody": "Le binaire Claude Code intégré est introuvable.\nExécutez npm install dans le dossier du projet et redémarrez l'app.",
-	"notAuthenticatedTitle": "Connectez-vous à Claude Code",
-	"notAuthenticatedBody": "L'assistant IA utilise votre abonnement Claude via Claude Code.\nOuvrez un terminal, lancez claude puis tapez /login.\nEnsuite, appuyez sur Vérifier à nouveau.",
+	"notInstalledTitle": "Runtime Claude introuvable",
+	"notInstalledBody": "Le binaire de l'agent Claude inclus est introuvable.\nExécutez npm install dans le dossier du projet et relancez l'application.",
+	"notAuthenticatedTitle": "Connectez-vous à Claude",
+	"notAuthenticatedBody": "L'assistant IA fonctionne avec votre abonnement Claude.\nOuvrez un terminal, lancez claude puis tapez /login — ou enregistrez une clé API Anthropic ci-dessous.\nEnsuite, appuyez sur Revérifier.",
 	"unavailableTitle": "Assistant IA indisponible",
 	"tool": {
 		"get_project_context": "Lecture du projet",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "L'assistant IA utilise votre abonnement {{name}} via sa CLI.\nInstallez-la : {{install}}\nPuis appuyez sur Revérifier.",
 	"cliNotAuthenticatedTitle": "Connectez-vous à {{name}}",
 	"cliNotAuthenticatedBody": "Ouvrez un terminal, lancez {{login}} et terminez la connexion.\nEnsuite, appuyez sur Revérifier.",
-	"grokApiKeyPlaceholder": "Clé API Grok (bientôt disponible)",
-	"grokApiKeySaved": "Clé API Grok enregistrée",
-	"apiKeySave": "Enregistrer"
+	"apiKeySave": "Enregistrer",
+	"apiKeyPlaceholder": "Clé API {{name}}",
+	"apiKeyOptionalPlaceholder": "Clé API {{name}} (optionnelle — au lieu de la connexion)",
+	"apiKeySaved": "Clé API {{name}} enregistrée",
+	"noApiKeyTitle": "Clé API {{name}} requise",
+	"noApiKeyBody": "Collez votre clé API {{name}} dans le champ sous le sélecteur de modèles.\nObtenez-la sur {{source}}."
 }

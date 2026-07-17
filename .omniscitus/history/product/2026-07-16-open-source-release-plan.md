@@ -45,6 +45,7 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 - [x] 브랜드 테마 교체 — 바이올렛 팔레트 (2026-07-16)
 
 - [x] 랜딩페이지 (2026-07-17: https://vibecut-orcin.vercel.app — `site/` 단일 HTML, Vercel 프로젝트 `vibecut`(팀 dans-projects). daydreamvideo.com 참고: 히어로+CSS 에디터 목업+구독 3종+기능 그리드+미서명 경고 신뢰 섹션. 데모 영상 슬롯은 placeholder — B6 완료 시 `#demo` 섹션에 삽입. 배포: `vercel deploy --cwd site --prod --yes`)
+- [ ] 구독 인증 약관 후속 조치 (2026-07-17 조사 — 정지 리스크 질문의 답): ① **Claude**: 현재(6/15 정책 일시중단 기준) 구독으로 Agent SDK/서드파티 앱 사용 허용·구독 한도 차감. 단 UI 프로바이더 라벨 "Claude Code"는 파트너 브랜딩 가이드라인 위반 — "Claude"/"Claude Agent"로 개명 필요 + Anthropic API key 대안 입력 추가 권장. 정책 유동적(2월 금지→5월 SDK 크레딧→6월 중단), support.claude.com/en/articles/15036540 주시 ② **Codex**: 공식 CLI 스폰이라 안전한 편, OpenAI는 서드파티에 가장 관대(자동화는 API key 권장이 공식 입장) ③ **Gemini (액션 필요)**: Google이 "서드파티 소프트웨어에서 Gemini CLI OAuth 사용"을 명시 금지(3/25 단속, 실제 유료 계정 정지 사례) + 6/18부로 개인 티어 Google 로그인 개편 — Gemini는 **AI Studio API key를 GEMINI_API_KEY로 CLI에 넘기는 방식**(구글 공식 권장 경로)으로 전환하고 oauth_creds 감지 제거/경고 필요
 - [ ] Vercel Web Analytics 활성화 — 대시보드 → vibecut 프로젝트 → Analytics 탭 → Enable (스크립트 태그는 페이지에 이미 있음, API로는 enable 불가였음). 방문자 집계는 이걸로, 다운로드 집계는 GitHub release download_count로
 - [ ] 커스텀 도메인 검토 — vibecut.vercel.app은 선점됨(현재 vibecut-orcin.vercel.app). vibecut.app 등 구매 시 Vercel 도메인 연결 + README/og:image URL 교체
 

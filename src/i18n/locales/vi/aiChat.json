@@ -8,10 +8,10 @@
 	"pickModel": "Mô hình",
 	"comingSoon": "Sắp có",
 	"retry": "Kiểm tra lại",
-	"notInstalledTitle": "Thiếu môi trường Claude Code",
-	"notInstalledBody": "Không tìm thấy tệp nhị phân Claude Code đi kèm.\nChạy npm install trong thư mục dự án rồi khởi động lại ứng dụng.",
-	"notAuthenticatedTitle": "Đăng nhập Claude Code",
-	"notAuthenticatedBody": "Trợ lý AI dùng gói thuê bao Claude của bạn thông qua Claude Code.\nMở terminal, chạy claude rồi gõ /login.\nXong thì bấm Kiểm tra lại.",
+	"notInstalledTitle": "Thiếu runtime Claude",
+	"notInstalledBody": "Không tìm thấy tệp nhị phân của tác tử Claude đi kèm.\nChạy npm install trong thư mục dự án rồi khởi động lại ứng dụng.",
+	"notAuthenticatedTitle": "Đăng nhập vào Claude",
+	"notAuthenticatedBody": "Trợ lý AI dùng gói đăng ký Claude của bạn.\nMở terminal, chạy claude rồi gõ /login — hoặc lưu khóa API Anthropic bên dưới.\nXong thì nhấn Kiểm tra lại.",
 	"unavailableTitle": "Trợ lý AI không khả dụng",
 	"tool": {
 		"get_project_context": "Đang đọc dự án",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "Trợ lý AI dùng gói đăng ký {{name}} của bạn thông qua CLI.\nCài đặt: {{install}}\nSau đó nhấn Kiểm tra lại.",
 	"cliNotAuthenticatedTitle": "Đăng nhập vào {{name}}",
 	"cliNotAuthenticatedBody": "Mở terminal, chạy {{login}} và hoàn tất đăng nhập.\nXong thì nhấn Kiểm tra lại.",
-	"grokApiKeyPlaceholder": "Khóa API Grok (sắp hỗ trợ)",
-	"grokApiKeySaved": "Đã lưu khóa API Grok",
-	"apiKeySave": "Lưu"
+	"apiKeySave": "Lưu",
+	"apiKeyPlaceholder": "Khóa API {{name}}",
+	"apiKeyOptionalPlaceholder": "Khóa API {{name}} (tùy chọn — thay cho đăng nhập)",
+	"apiKeySaved": "Đã lưu khóa API {{name}}",
+	"noApiKeyTitle": "Cần khóa API {{name}}",
+	"noApiKeyBody": "Dán khóa API {{name}} vào ô bên dưới phần chọn mô hình.\nLấy khóa tại {{source}}."
 }

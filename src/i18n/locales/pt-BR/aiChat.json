@@ -8,10 +8,10 @@
 	"pickModel": "Modelo",
 	"comingSoon": "Em breve",
 	"retry": "Verificar novamente",
-	"notInstalledTitle": "Runtime do Claude Code ausente",
-	"notInstalledBody": "O binário integrado do Claude Code não foi encontrado.\nExecute npm install na pasta do projeto e reinicie o app.",
-	"notAuthenticatedTitle": "Entre no Claude Code",
-	"notAuthenticatedBody": "O assistente de IA usa sua assinatura do Claude via Claude Code.\nAbra um terminal, execute claude e digite /login.\nDepois, toque em Verificar novamente.",
+	"notInstalledTitle": "Runtime do Claude ausente",
+	"notInstalledBody": "O binário do agente Claude incluído não foi encontrado.\nExecute npm install na pasta do projeto e reinicie o app.",
+	"notAuthenticatedTitle": "Entre no Claude",
+	"notAuthenticatedBody": "O assistente de IA usa sua assinatura do Claude.\nAbra um terminal, execute claude e digite /login — ou salve uma chave de API da Anthropic abaixo.\nQuando terminar, toque em Verificar novamente.",
 	"unavailableTitle": "Assistente de IA indisponível",
 	"tool": {
 		"get_project_context": "Lendo projeto",
@@ -49,7 +49,10 @@
 	"cliNotInstalledBody": "O assistente de IA usa sua assinatura do {{name}} pela CLI.\nInstale: {{install}}\nDepois toque em Verificar novamente.",
 	"cliNotAuthenticatedTitle": "Entre no {{name}}",
 	"cliNotAuthenticatedBody": "Abra um terminal, execute {{login}} e conclua o login.\nQuando terminar, toque em Verificar novamente.",
-	"grokApiKeyPlaceholder": "Chave de API do Grok (em breve)",
-	"grokApiKeySaved": "Chave de API do Grok salva",
-	"apiKeySave": "Salvar"
+	"apiKeySave": "Salvar",
+	"apiKeyPlaceholder": "Chave de API do {{name}}",
+	"apiKeyOptionalPlaceholder": "Chave de API do {{name}} (opcional — em vez de fazer login)",
+	"apiKeySaved": "Chave de API do {{name}} salva",
+	"noApiKeyTitle": "É necessária uma chave de API do {{name}}",
+	"noApiKeyBody": "Cole sua chave de API do {{name}} no campo abaixo do seletor de modelos.\nObtenha uma em {{source}}."
 }
