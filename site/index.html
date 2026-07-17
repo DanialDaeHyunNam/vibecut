@@ -210,6 +210,69 @@
   .show-card figcaption strong { display: block; color: var(--text); font-size: 14px; margin-bottom: 2px; }
   @media (max-width: 720px) { .show-grid { grid-template-columns: 1fr; } }
 
+  /* ---- download modal ---- */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    background: rgba(5, 4, 10, 0.72); backdrop-filter: blur(6px); padding: 20px;
+  }
+  .modal-overlay[hidden] { display: none; }
+  .modal {
+    position: relative; width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto;
+    background: var(--panel-2); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px;
+    padding: 30px 30px 26px; box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+    animation: modal-in 0.18s ease;
+  }
+  @keyframes modal-in { from { transform: translateY(10px) scale(0.98); opacity: 0; } }
+  .modal-x {
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border-radius: 8px;
+    background: none; border: none; color: var(--faint); font-size: 18px; cursor: pointer;
+  }
+  .modal-x:hover { background: rgba(255, 255, 255, 0.06); color: var(--text); }
+  .modal h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .modal-lead { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+  .modal-lead strong { color: var(--text); }
+
+  .os-mock { border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+  .os-mock-label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
+  /* macOS Gatekeeper dialog replica */
+  .gk {
+    max-width: 270px; margin: 0 auto; background: #ececf0; color: #1d1d22; border-radius: 12px;
+    padding: 18px 16px 14px; text-align: center; font-size: 11.5px; line-height: 1.45;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+  }
+  .gk .gk-icon { width: 36px; height: 36px; border-radius: 9px; margin-bottom: 8px; }
+  .gk b { display: block; font-size: 12.5px; margin-bottom: 4px; }
+  .gk p { color: #55555e; margin-bottom: 12px; }
+  .gk .gk-btns { display: flex; flex-direction: column; gap: 5px; }
+  .gk .gk-btn { padding: 6px 0; border-radius: 7px; background: #fff; border: 1px solid #d5d5dc; font-weight: 500; }
+  .gk .gk-btn.blue { background: #2f6fed; color: #fff; border-color: #2f6fed; }
+  /* Windows SmartScreen replica */
+  .ss {
+    max-width: 320px; margin: 0 auto; background: #0f3f8c; color: #fff; border-radius: 4px;
+    padding: 18px 20px; font-size: 11.5px; line-height: 1.5;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+  }
+  .ss b { display: block; font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .ss p { color: rgba(255, 255, 255, 0.75); margin-bottom: 4px; }
+  .ss .ss-more { color: #9ec1ff; text-decoration: underline; }
+  .ss .ss-btn { float: right; margin-top: 10px; background: rgba(255, 255, 255, 0.18); padding: 6px 16px; border-radius: 3px; font-weight: 500; }
+  .os-steps { list-style: none; counter-reset: step; margin-top: 16px; }
+  .os-steps li {
+    counter-increment: step; position: relative; padding-left: 34px; margin-bottom: 9px;
+    font-size: 13.5px; color: var(--muted);
+  }
+  .os-steps li strong { color: var(--text); }
+  .os-steps li::before {
+    content: counter(step); position: absolute; left: 0; top: 1px;
+    width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 11.5px; font-weight: 700; color: var(--violet);
+    background: rgba(139, 124, 255, 0.12); border: 1px solid rgba(139, 124, 255, 0.3);
+  }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+  .modal-actions .btn { flex: 1; justify-content: center; font-size: 14px; padding: 11px 16px; }
+  .modal-foot { margin-top: 14px; font-size: 12px; color: var(--faint); text-align: center; }
+  .modal-foot a { text-decoration: underline; text-underline-offset: 3px; color: var(--muted); }
+
   .trust { max-width: 760px; margin: 0 auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 30px; }
   .trust h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
   .trust p { font-size: 14.5px; color: var(--muted); margin-bottom: 10px; }
@@ -243,7 +306,7 @@
       <a href="#trust">Security</a>
       <a href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <a class="nav-cta" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">Download</a>
+    <a class="nav-cta js-download" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">Download</a>
   </div>
 </nav>
 
@@ -257,11 +320,11 @@
       on the AI subscription you already have. No API key. No keyframes.
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
+      <a class="btn btn-primary js-download" data-os="mac" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.7 19.5c-.8 1.2-1.7 2.4-3 2.4s-1.8-.8-3.3-.8-2 .8-3.3.8-2.3-1.3-3.1-2.5C4.2 17 2.9 12.5 4.7 9.4c.9-1.5 2.5-2.5 4.2-2.5 1.3 0 2.5.9 3.3.9.8 0 2.3-1.1 3.9-.9.7 0 2.5.3 3.7 2-3.1 1.7-2.6 6.1.9 7.5-.6 1.3-1.3 2.6-2 3.1zM13 3.5c.7-.8 1.2-2 1-3.5-1.3.1-2.8.9-3.6 1.9-.7.8-1.3 2-1.1 3.4 1.4.1 2.9-.7 3.7-1.8z"/></svg>
         Download for macOS
       </a>
-      <a class="btn btn-ghost" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
+      <a class="btn btn-ghost js-download" data-os="win" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3V5.5zM3 18.5v-6h7.5v7.1L3 18.5zM11.5 4.2 21 3v8.5h-9.5V4.2zM21 21l-9.5-1.3v-7.2H21V21z"/></svg>
         Download for Windows
       </a>
@@ -435,6 +498,102 @@
     </div>
   </div>
 </footer>
+
+<div class="modal-overlay" id="dl-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="dl-title">
+    <button class="modal-x" id="dl-close" aria-label="Close">✕</button>
+    <h3 id="dl-title">One thing before you download</h3>
+    <p class="modal-lead">
+      Vibecut is free and open source, but it isn't code-signed with a paid developer certificate yet —
+      so your OS shows a warning on first launch. <strong>It's a missing-signature notice, not a malware
+      detection.</strong> Here's exactly what you'll see, and what to do:
+    </p>
+
+    <div class="os-block" data-os="mac">
+      <div class="os-mock" style="background:radial-gradient(90% 130% at 50% 0%, #2a2438, #191521)">
+        <div class="os-mock-label">You'll see this on first open</div>
+        <div class="gk">
+          <img class="gk-icon" src="logo.png" alt="" />
+          <b>"Vibecut" Not Opened</b>
+          <p>Apple could not verify "Vibecut" is free of malware that may harm your Mac or compromise your privacy.</p>
+          <div class="gk-btns">
+            <span class="gk-btn blue">Done</span>
+            <span class="gk-btn">Move to Trash</span>
+          </div>
+        </div>
+      </div>
+      <ol class="os-steps">
+        <li>Open Vibecut once and click <strong>Done</strong> (not Move to Trash).</li>
+        <li>Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll down, click <strong>Open Anyway</strong>.<br /><span style="font-size:12px; color:var(--faint)">On macOS 14 or older: just right-click Vibecut.app → Open → Open.</span></li>
+        <li>That's it — the warning never comes back.</li>
+      </ol>
+    </div>
+
+    <div class="os-block" data-os="win">
+      <div class="os-mock" style="background:radial-gradient(90% 130% at 50% 0%, #23283a, #171522)">
+        <div class="os-mock-label">You'll see this when running the installer</div>
+        <div class="ss">
+          <b>Windows protected your PC</b>
+          <p>Microsoft Defender SmartScreen prevented an unrecognized app from starting. Running this app might put your PC at risk.</p>
+          <span class="ss-more">More info</span>
+          <span class="ss-btn">Don't run</span>
+          <div style="clear:both"></div>
+        </div>
+      </div>
+      <ol class="os-steps">
+        <li>Click <strong>More info</strong> on the SmartScreen dialog.</li>
+        <li>Click <strong>Run anyway</strong> — the button appears after step 1.</li>
+        <li>That's it — Windows remembers your choice.</li>
+      </ol>
+    </div>
+
+    <div class="modal-actions">
+      <a class="btn btn-primary" id="dl-continue" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest" target="_blank" rel="noopener">Got it — download</a>
+      <button class="btn btn-ghost" id="dl-cancel" type="button">Cancel</button>
+    </div>
+    <p class="modal-foot">
+      Downloads are hosted on GitHub Releases — no account needed.
+      Don't trust us? <a href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">Read the source</a> or build it yourself.
+    </p>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const modal = document.getElementById("dl-modal");
+    const blocks = modal.querySelectorAll(".os-block");
+
+    function openModal(os) {
+      blocks.forEach((block) => {
+        block.style.display = block.dataset.os === os ? "" : "none";
+      });
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".js-download").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        // Nav button has no data-os — guess from the platform.
+        const os = link.dataset.os || (/win/i.test(navigator.platform) ? "win" : "mac");
+        openModal(os);
+      });
+    });
+    document.getElementById("dl-close").addEventListener("click", closeModal);
+    document.getElementById("dl-cancel").addEventListener("click", closeModal);
+    document.getElementById("dl-continue").addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.hidden) closeModal();
+    });
+  })();
+</script>
 
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
