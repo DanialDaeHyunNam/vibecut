@@ -44,6 +44,10 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 - [x] 자체 앱 아이콘 제작 (2026-07-16, icons/cinerec-icon.svg + icns/ico/png 세트)
 - [x] 브랜드 테마 교체 — 바이올렛 팔레트 (2026-07-16)
 
+- [x] 랜딩페이지 (2026-07-17: https://vibecut-orcin.vercel.app — `site/` 단일 HTML, Vercel 프로젝트 `vibecut`(팀 dans-projects). daydreamvideo.com 참고: 히어로+CSS 에디터 목업+구독 3종+기능 그리드+미서명 경고 신뢰 섹션. 데모 영상 슬롯은 placeholder — B6 완료 시 `#demo` 섹션에 삽입. 배포: `vercel deploy --cwd site --prod --yes`)
+- [ ] Vercel Web Analytics 활성화 — 대시보드 → vibecut 프로젝트 → Analytics 탭 → Enable (스크립트 태그는 페이지에 이미 있음, API로는 enable 불가였음). 방문자 집계는 이걸로, 다운로드 집계는 GitHub release download_count로
+- [ ] 커스텀 도메인 검토 — vibecut.vercel.app은 선점됨(현재 vibecut-orcin.vercel.app). vibecut.app 등 구매 시 Vercel 도메인 연결 + README/og:image URL 교체
+
 ## Notes
 관련: [[2026-07-16-ai-editing-assistant]] (차별화 포인트), [[2026-07-14-cinerec-fork-bootstrap]] (MIT 포크 결정).
 배포(노터라이즈) 항목은 부트스트랩 유닛 Pending과 이어짐.

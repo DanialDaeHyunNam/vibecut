@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vibecut — Record, then tell the AI how to edit it</title>
+<meta name="description" content="Open-source screen recorder with an AI editor built in. It watches your video, hears your narration, and edits for you — cinematic zooms, cuts, captions. Runs on the AI subscriptions you already have." />
+<link rel="icon" type="image/png" href="favicon.png" />
+<meta property="og:title" content="Vibecut — vibe-edit your screen recordings" />
+<meta property="og:description" content="Record, then just say what you want. Free, open source, local-first. Works with your Claude, ChatGPT, or Gemini subscription — no API key." />
+<meta property="og:image" content="https://vibecut-orcin.vercel.app/og.png" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0a10;
+    --bg-soft: #121017;
+    --panel: #17141f;
+    --panel-2: #1d1928;
+    --line: rgba(255, 255, 255, 0.08);
+    --text: #f2f0f7;
+    --muted: rgba(242, 240, 247, 0.62);
+    --faint: rgba(242, 240, 247, 0.38);
+    --violet: #8b7cff;
+    --violet-deep: #6a56f2;
+    --glow: rgba(139, 124, 255, 0.35);
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- nav ---- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(11, 10, 16, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; gap: 20px; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; }
+  .brand img { width: 26px; height: 26px; border-radius: 6px; }
+  .nav-links { display: flex; gap: 22px; margin-left: auto; font-size: 14px; color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 13.5px; font-weight: 600; padding: 8px 14px; border-radius: 9px;
+    background: var(--violet); color: #14101f;
+  }
+  .nav-cta:hover { background: #9d90ff; }
+
+  /* ---- hero ---- */
+  .hero { position: relative; padding: 88px 0 40px; text-align: center; }
+  .hero::before {
+    content: ""; position: absolute; inset: -200px 0 auto; height: 560px; pointer-events: none;
+    background:
+      radial-gradient(560px 300px at 50% 10%, rgba(139, 124, 255, 0.16), transparent 70%),
+      radial-gradient(800px 400px at 80% -10%, rgba(106, 86, 242, 0.10), transparent 70%);
+  }
+  .pill {
+    position: relative; display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--violet); background: rgba(139, 124, 255, 0.10);
+    border: 1px solid rgba(139, 124, 255, 0.25);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 26px;
+  }
+  h1 {
+    position: relative; font-size: clamp(38px, 6vw, 62px); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1.08; max-width: 800px; margin: 0 auto;
+  }
+  h1 em { font-style: normal; background: linear-gradient(100deg, #b3a8ff, #8b7cff 55%, #c98bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub {
+    position: relative; max-width: 640px; margin: 22px auto 0;
+    font-size: clamp(16px, 2vw, 18.5px); color: var(--muted);
+  }
+  .cta-row { position: relative; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 34px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 15px; font-weight: 600; padding: 13px 22px; border-radius: 12px;
+    transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--violet); color: #14101f; box-shadow: 0 8px 30px var(--glow); }
+  .btn-primary:hover { background: #9d90ff; }
+  .btn-ghost { background: var(--panel); border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: rgba(255, 255, 255, 0.2); }
+  .btn svg { width: 17px; height: 17px; flex: none; }
+  .cta-note { position: relative; margin-top: 16px; font-size: 13px; color: var(--faint); }
+  .cta-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .cta-note a:hover { color: var(--text); }
+
+  /* ---- editor mockup ---- */
+  .mock-wrap { position: relative; margin: 56px auto 0; max-width: 960px; padding: 0 24px; }
+  .mock {
+    border: 1px solid rgba(255, 255, 255, 0.10); border-radius: 16px; overflow: hidden;
+    background: #141119;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(139, 124, 255, 0.06), 0 -20px 120px -60px var(--glow);
+    text-align: left; font-size: 12px;
+  }
+  .mock-titlebar {
+    display: flex; align-items: center; gap: 6px; padding: 10px 14px;
+    background: #191521; border-bottom: 1px solid var(--line);
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .mock-title { margin: 0 auto; font-size: 11.5px; color: var(--faint); letter-spacing: 0.02em; }
+  .mock-body { display: grid; grid-template-columns: 1fr 292px; min-height: 340px; }
+  .mock-stage { position: relative; display: flex; align-items: center; justify-content: center; padding: 26px; background: radial-gradient(120% 140% at 20% 0%, #2a2140 0%, #1a1526 55%, #141119 100%); }
+  .mock-video {
+    width: 100%; max-width: 480px; aspect-ratio: 16 / 9; border-radius: 10px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+  }
+  .mock-window {
+    position: absolute; inset: 12% 10%; background: #f5f4f8; border-radius: 8px;
+    transform: scale(1.35) translate(-6%, 4%); transform-origin: 30% 60%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .mock-window::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 14%; background: #e6e4ee; border-radius: 8px 8px 0 0; }
+  .mw-line { position: absolute; left: 8%; height: 6%; border-radius: 4px; background: #d4d1de; }
+  .mock-cursor {
+    position: absolute; left: 46%; top: 58%; width: 34px; height: 34px; border-radius: 50%;
+    border: 2.5px solid var(--violet); background: rgba(139, 124, 255, 0.22);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.25); opacity: 0.5; } }
+  .zoom-badge {
+    position: absolute; left: 14px; bottom: 14px; font-size: 10.5px; font-weight: 600;
+    color: #cfc8ff; background: rgba(20, 16, 31, 0.75); border: 1px solid rgba(139, 124, 255, 0.35);
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .mock-chat { display: flex; flex-direction: column; border-left: 1px solid var(--line); background: #151220; }
+  .mock-chat-head { display: flex; gap: 14px; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--faint); }
+  .mock-chat-head .on { color: var(--violet); font-weight: 600; }
+  .mock-msgs { display: flex; flex-direction: column; gap: 9px; padding: 13px; flex: 1; }
+  .msg { max-width: 92%; padding: 8px 11px; border-radius: 10px; line-height: 1.5; font-size: 11.5px; }
+  .msg.user { align-self: flex-end; background: #2b2440; color: #e9e5fa; }
+  .msg.ai { align-self: flex-start; background: #1d1929; color: var(--muted); border: 1px solid var(--line); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-size: 10.5px; color: #b9aefc; background: rgba(139, 124, 255, 0.10); border: 1px solid rgba(139, 124, 255, 0.22); padding: 4px 9px; border-radius: 999px; }
+  .chip::before { content: "✓"; font-size: 9px; }
+  .chip.spin::before { content: "◐"; animation: spin 1s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .mock-input { margin: 0 13px 13px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--faint); font-size: 11.5px; background: #131020; }
+  .mock-timeline { grid-column: 1 / -1; border-top: 1px solid var(--line); background: #131020; padding: 12px 16px; }
+  .tl-row { display: flex; align-items: center; gap: 8px; margin-top: 7px; }
+  .tl-label { width: 44px; font-size: 9.5px; color: var(--faint); letter-spacing: 0.06em; }
+  .tl-track { position: relative; flex: 1; height: 16px; background: rgba(255, 255, 255, 0.04); border-radius: 5px; }
+  .tl-seg { position: absolute; top: 2px; bottom: 2px; border-radius: 4px; }
+  .tl-zoom { background: linear-gradient(180deg, #8b7cff, #6a56f2); opacity: 0.85; }
+  .tl-cut { background: #3f3552; }
+  .tl-cap { background: #35563f; }
+  .playhead { position: absolute; top: -34px; bottom: 0; left: 38%; width: 1.5px; background: #ff6b81; }
+  .playhead::before { content: ""; position: absolute; top: 0; left: -4px; border: 5px solid transparent; border-top-color: #ff6b81; }
+
+  /* ---- sections ---- */
+  section { padding: 84px 0; }
+  .sec-head { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+  .sec-head h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; letter-spacing: -0.02em; }
+  .sec-head p { margin-top: 12px; color: var(--muted); font-size: 16px; }
+
+  .subs { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .sub-card {
+    display: flex; align-items: center; gap: 10px; padding: 14px 22px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    font-weight: 600; font-size: 15px;
+  }
+  .sub-card small { display: block; font-weight: 400; font-size: 12px; color: var(--faint); }
+  .sub-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px 22px; transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover { border-color: rgba(139, 124, 255, 0.35); transform: translateY(-2px); }
+  .card .ico { font-size: 22px; }
+  .card h3 { font-size: 16px; font-weight: 700; margin: 12px 0 7px; }
+  .card p { font-size: 13.8px; color: var(--muted); }
+
+  .demo-frame {
+    position: relative; max-width: 860px; margin: 0 auto; aspect-ratio: 16 / 9;
+    border: 1px dashed rgba(139, 124, 255, 0.35); border-radius: 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    background: radial-gradient(80% 120% at 50% 0%, rgba(139, 124, 255, 0.07), transparent 70%);
+    color: var(--faint);
+  }
+  .demo-frame .play {
+    width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(139, 124, 255, 0.12); border: 1px solid rgba(139, 124, 255, 0.35); color: var(--violet); font-size: 20px;
+  }
+
+  .trust { max-width: 760px; margin: 0 auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 30px; }
+  .trust h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .trust p { font-size: 14.5px; color: var(--muted); margin-bottom: 10px; }
+  .trust p:last-child { margin-bottom: 0; }
+  .trust strong { color: var(--text); }
+  .trust code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 5px; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0 48px; font-size: 13.5px; color: var(--faint); }
+  .foot-inner { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+  .foot-inner .brand { font-size: 14.5px; }
+  .foot-links { display: flex; gap: 18px; margin-left: auto; }
+  .foot-links a:hover { color: var(--text); }
+
+  @media (max-width: 840px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+    .mock-body { grid-template-columns: 1fr; }
+    .mock-chat { border-left: none; border-top: 1px solid var(--line); }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#"><img src="logo.png" alt="" />Vibecut</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#demo">Demo</a>
+      <a href="#trust">Security</a>
+      <a href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <a class="nav-cta" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">Download</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="pill">Free &amp; open source · MIT</span>
+    <h1>Record your screen.<br />Then just <em>say what you want</em>.</h1>
+    <p class="sub">
+      Vibecut is a screen recorder with an AI editor built in. It watches your video,
+      hears your narration, and does the editing — cinematic zooms, cuts, captions —
+      on the AI subscription you already have. No API key. No keyframes.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.7 19.5c-.8 1.2-1.7 2.4-3 2.4s-1.8-.8-3.3-.8-2 .8-3.3.8-2.3-1.3-3.1-2.5C4.2 17 2.9 12.5 4.7 9.4c.9-1.5 2.5-2.5 4.2-2.5 1.3 0 2.5.9 3.3.9.8 0 2.3-1.1 3.9-.9.7 0 2.5.3 3.7 2-3.1 1.7-2.6 6.1.9 7.5-.6 1.3-1.3 2.6-2 3.1zM13 3.5c.7-.8 1.2-2 1-3.5-1.3.1-2.8.9-3.6 1.9-.7.8-1.3 2-1.1 3.4 1.4.1 2.9-.7 3.7-1.8z"/></svg>
+        Download for macOS
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3V5.5zM3 18.5v-6h7.5v7.1L3 18.5zM11.5 4.2 21 3v8.5h-9.5V4.2zM21 21l-9.5-1.3v-7.2H21V21z"/></svg>
+        Download for Windows
+      </a>
+    </div>
+    <p class="cta-note">
+      Unsigned build — your OS will ask before the first launch. <a href="#trust">Why, and how to open it →</a>
+    </p>
+  </div>
+
+  <div class="mock-wrap">
+    <div class="mock" role="img" aria-label="The Vibecut editor: video preview with an automatic zoom, an AI chat panel applying edits, and a timeline with zoom, cut and caption regions.">
+      <div class="mock-titlebar">
+        <span class="dot" style="background:#ff5f57"></span>
+        <span class="dot" style="background:#febc2e"></span>
+        <span class="dot" style="background:#28c840"></span>
+        <span class="mock-title">Vibecut — product-walkthrough.vibecut</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-stage">
+          <div class="mock-video">
+            <div class="mock-window">
+              <span class="mw-line" style="top:24%; width:52%"></span>
+              <span class="mw-line" style="top:36%; width:70%"></span>
+              <span class="mw-line" style="top:48%; width:44%"></span>
+              <span class="mw-line" style="top:64%; width:30%; background:#8b7cff"></span>
+            </div>
+            <div class="mock-cursor"></div>
+            <span class="zoom-badge">Auto zoom · 2.4×</span>
+          </div>
+        </div>
+        <div class="mock-chat">
+          <div class="mock-chat-head"><span>Settings</span><span class="on">AI</span></div>
+          <div class="mock-msgs">
+            <div class="msg user">Auto-edit this video — keep it tight, Korean subtitles.</div>
+            <div class="chip">Viewing frames</div>
+            <div class="chip">Listening to narration</div>
+            <div class="chip">Add zoom × 6</div>
+            <div class="chip">Add captions × 22</div>
+            <div class="chip spin">Cutting dead air</div>
+            <div class="msg ai">Done — 6 zooms following your clicks, 14s of silence removed, subtitles added. 01:42 → 01:12.</div>
+          </div>
+          <div class="mock-input">Describe an edit…</div>
+        </div>
+        <div class="mock-timeline">
+          <div class="tl-row"><span class="tl-label">ZOOM</span>
+            <div class="tl-track">
+              <span class="tl-seg tl-zoom" style="left:4%; width:11%"></span>
+              <span class="tl-seg tl-zoom" style="left:22%; width:8%"></span>
+              <span class="tl-seg tl-zoom" style="left:41%; width:13%"></span>
+              <span class="tl-seg tl-zoom" style="left:63%; width:9%"></span>
+              <span class="tl-seg tl-zoom" style="left:81%; width:12%"></span>
+              <span class="playhead"></span>
+            </div>
+          </div>
+          <div class="tl-row"><span class="tl-label">CUT</span>
+            <div class="tl-track">
+              <span class="tl-seg tl-cut" style="left:16%; width:5%"></span>
+              <span class="tl-seg tl-cut" style="left:56%; width:6%"></span>
+            </div>
+          </div>
+          <div class="tl-row"><span class="tl-label">CC</span>
+            <div class="tl-track">
+              <span class="tl-seg tl-cap" style="left:3%; width:22%"></span>
+              <span class="tl-seg tl-cap" style="left:28%; width:30%"></span>
+              <span class="tl-seg tl-cap" style="left:61%; width:33%"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Runs on the subscription you already have</h2>
+      <p>No API key, no per-token bills. Vibecut talks to the agent CLIs on your machine and reuses their logins.</p>
+    </div>
+    <div class="subs">
+      <div class="sub-card"><span class="sub-dot" style="background:#d97757"></span><div>Claude<small>via Claude Code</small></div></div>
+      <div class="sub-card"><span class="sub-dot" style="background:#74aa9c"></span><div>ChatGPT<small>via Codex CLI</small></div></div>
+      <div class="sub-card"><span class="sub-dot" style="background:#4e8cf7"></span><div>Gemini<small>via Gemini CLI</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pro-looking videos, zero timeline fiddling</h2>
+      <p>Everything a launch video, bug report, or tutorial needs — recorded and edited in minutes.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="ico">🎯</div><h3>Automatic cinematic zooms</h3><p>OS-level click tracking places smooth, story-following zooms the moment you stop recording. No keyframes, ever.</p></div>
+      <div class="card"><div class="ico">💬</div><h3>Edit by chatting</h3><p>"Zoom in when I click export", "cut the boring part", "tighten it to a minute" — the agent applies real timeline edits, each one a single undo step.</p></div>
+      <div class="card"><div class="ico">👁️</div><h3>It sees and hears your video</h3><p>Frame sampling plus on-device Whisper transcription mean the AI edits based on what's actually on screen and what you said.</p></div>
+      <div class="card"><div class="ico">📝</div><h3>Captions &amp; SRT</h3><p>Auto-captions in the editor, burn-in on export, or a standalone .srt sidecar for YouTube and every other player.</p></div>
+      <div class="card"><div class="ico">🎨</div><h3>Beautiful frames</h3><p>Wallpapers, gradients, padding, shadows, rounded corners, webcam picture-in-picture — styled by hand or by asking the AI.</p></div>
+      <div class="card"><div class="ico">🔒</div><h3>Local-first &amp; private</h3><p>Recordings never leave your machine. The only network traffic is the model calls to the AI subscription you already trust.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="demo" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>See it edit itself</h2>
+      <p>The demo below is being made with Vibecut, edited by its own AI. Dogfooding in progress.</p>
+    </div>
+    <div class="demo-frame">
+      <div class="play">▶</div>
+      <div>Demo video coming soon</div>
+    </div>
+  </div>
+</section>
+
+<section id="trust" style="padding-top:0">
+  <div class="wrap">
+    <div class="trust">
+      <h3>About the "unverified developer" warning</h3>
+      <p>
+        The first time you open Vibecut, macOS or Windows will warn that it comes from an
+        <strong>unverified developer</strong>. That message means the app isn't code-signed with a paid
+        developer certificate — <strong>it is not a malware detection</strong>. Vibecut is fully open source:
+        every line you run is <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">public on GitHub</a>,
+        and you can build it from source yourself.
+      </p>
+      <p>
+        To open it: on <strong>macOS 15+</strong> go to System Settings → Privacy &amp; Security → <em>Open Anyway</em>
+        (older macOS: right-click the app → Open). On <strong>Windows</strong>, click <em>More info</em> → <em>Run anyway</em>
+        on the SmartScreen prompt.
+      </p>
+      <p>Download only from the official <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/DanialDaeHyunNam/vibecut/releases" target="_blank" rel="noopener">GitHub Releases page</a>. Vibecut is provided under the MIT license, as is.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span class="brand"><img src="logo.png" alt="" style="width:20px;height:20px;border-radius:5px" />Vibecut</span>
+    <span>© 2026 DaeHyun Nam · MIT · Built on <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/EtienneLescot/openscreen" target="_blank" rel="noopener">OpenScreen</a></span>
+    <div class="foot-links">
+      <a href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/DanialDaeHyunNam/vibecut/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/DanialDaeHyunNam/vibecut/releases" target="_blank" rel="noopener">Releases</a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

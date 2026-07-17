@@ -6,6 +6,8 @@
 
 <p align="center"><strong>Vibe-edit your screen recordings. Record, then tell the AI what you want — it watches the video, listens to your narration, and edits for you.</strong></p>
 
+<p align="center"><a href="https://vibecut-orcin.vercel.app"><strong>vibecut-orcin.vercel.app</strong></a></p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-8B7CFF?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey?style=for-the-badge" alt="Platform" />
