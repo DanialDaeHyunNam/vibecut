@@ -92,7 +92,7 @@ const isMac = process.platform === "darwin";
 const trayIconSize = isMac ? 16 : 24;
 
 // Tray Icons
-const defaultTrayIcon = getTrayIcon("openscreen.png", trayIconSize);
+const defaultTrayIcon = getTrayIcon("vibecut.png", trayIconSize);
 const recordingTrayIcon = getTrayIcon("rec-button.png", trayIconSize);
 
 function createWindow() {
@@ -163,7 +163,7 @@ function setupApplicationMenu() {
 			submenu: [
 				{
 					role: "about",
-					label: mainT("common", "actions.about") || "About OpenScreen",
+					label: mainT("common", "actions.about") || "About Vibecut",
 				},
 				{ type: "separator" },
 				{
@@ -173,7 +173,7 @@ function setupApplicationMenu() {
 				{ type: "separator" },
 				{
 					role: "hide",
-					label: mainT("common", "actions.hide") || "Hide OpenScreen",
+					label: mainT("common", "actions.hide") || "Hide Vibecut",
 				},
 				{
 					role: "hideOthers",
@@ -331,7 +331,7 @@ function updateTrayMenu(recording: boolean = false) {
 		? mainT("common", "actions.recordingStatus", {
 				source: selectedSourceName,
 			}) || `Recording: ${selectedSourceName}`
-		: "OpenScreen";
+		: "Vibecut";
 	const menuTemplate = recording
 		? [
 				{

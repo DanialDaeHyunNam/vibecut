@@ -1,7 +1,7 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "com.etiennelescot.openscreen",
+  "appId": "app.vibecut",
   "asar": true,
   // .node binaries can't be dlopen'd from inside an asar — must live unpacked.
   // The Agent SDK spawns a vendored native `claude` binary, so it must be unpacked too.
@@ -10,7 +10,7 @@
     "node_modules/@anthropic-ai/claude-agent-sdk/**",
     "node_modules/@anthropic-ai/claude-agent-sdk-*/**"
   ],
-  "productName": "Openscreen",
+  "productName": "Vibecut",
   // Fetch the auto-caption model + ORT wasm into caption-assets/ before packaging (idempotent).
   "beforePack": "scripts/before-pack.cjs",
   "npmRebuild": true,

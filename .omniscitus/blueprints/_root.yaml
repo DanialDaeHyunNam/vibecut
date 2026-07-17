@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-16T08:03:10.455Z
+updated: 2026-07-17T05:34:06.678Z
 
 files:
   ".editorconfig":
@@ -184,10 +184,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-05-24
-    change_count: 3
+    last_modified: 2026-07-17T05:33:33.746Z
+    change_count: 4
     purpose: "MIT license — original copyright (Siddharth Vaddem) must be preserved."
     change_log:
+      - date: 2026-07-17T05:33:33.746Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-05-24"
         action: write
         source: "user"
@@ -204,10 +207,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-01
-    change_count: 35
+    last_modified: 2026-07-17T05:34:06.678Z
+    change_count: 36
     purpose: "Upstream OpenScreen README — install, platform capture notes, community links."
     change_log:
+      - date: 2026-07-17T05:34:06.678Z
+        action: write
+        source: "claude:Dan"
       - date: "2026-07-01"
         action: edit
         source: "user"

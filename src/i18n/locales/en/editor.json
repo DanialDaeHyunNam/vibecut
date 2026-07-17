@@ -43,7 +43,7 @@
 		"cameraDisconnected": "Webcam disconnected.",
 		"cameraNotFound": "Camera not found.",
 		"permissionDenied": "Recording permission denied. Please allow screen recording.",
-		"accessibilityAllowAndRetry": "Allow Accessibility access for OpenScreen, then press record again to start the countdown."
+		"accessibilityAllowAndRetry": "Allow Accessibility access for Vibecut, then press record again to start the countdown."
 	},
 	"autoCaptions": {
 		"button": "Auto captions",
@@ -66,7 +66,7 @@
 	},
 	"emptyState": {
 		"title": "No project open",
-		"description": "Import a video to start editing, or load an existing OpenScreen project.",
+		"description": "Import a video to start editing, or load an existing Vibecut project.",
 		"importVideoButton": "Import Video File…",
 		"loadProjectButton": "Load Project…",
 		"supportedFormats": "Supported formats: MP4, MOV, WebM, MKV, AVI, M4V, WMV",

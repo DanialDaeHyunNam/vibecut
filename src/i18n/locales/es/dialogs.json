@@ -65,12 +65,12 @@
 		"saveGif": "Guardar GIF exportado",
 		"saveVideo": "Guardar video exportado",
 		"selectVideo": "Seleccionar archivo de video",
-		"saveProject": "Guardar proyecto OpenScreen",
-		"openProject": "Abrir proyecto OpenScreen",
+		"saveProject": "Guardar proyecto Vibecut",
+		"openProject": "Abrir proyecto Vibecut",
 		"gifImage": "Imagen GIF",
 		"mp4Video": "Video MP4",
 		"videoFiles": "Archivos de video",
-		"openscreenProject": "Proyecto OpenScreen",
+		"openscreenProject": "Proyecto Vibecut",
 		"allFiles": "Todos los archivos"
 	}
 }

@@ -35,7 +35,7 @@
 		"permissionDenied": "Kayıt izni reddedildi. Lütfen ekran kaydına izin verin.",
 		"cameraDisconnected": "Webcam bağlantısı kesildi.",
 		"cameraNotFound": "Kamera bulunamadı.",
-		"accessibilityAllowAndRetry": "OpenScreen için Erişilebilirlik erişimine izin verin, ardından geri sayımı başlatmak için tekrar kayda basın."
+		"accessibilityAllowAndRetry": "Vibecut için Erişilebilirlik erişimine izin verin, ardından geri sayımı başlatmak için tekrar kayda basın."
 	},
 	"loadingVideo": "Video yükleniyor...",
 	"loadingEditor": "Editör yükleniyor...",
@@ -66,7 +66,7 @@
 	},
 	"emptyState": {
 		"title": "Açık proje yok",
-		"description": "Düzenlemeye başlamak için bir video içe aktarın veya mevcut bir OpenScreen projesi yükleyin.",
+		"description": "Düzenlemeye başlamak için bir video içe aktarın veya mevcut bir Vibecut projesi yükleyin.",
 		"importVideoButton": "Video Dosyası İçe Aktar…",
 		"loadProjectButton": "Proje Yükle…",
 		"supportedFormats": "Desteklenen formatlar: MP4, MOV, WebM, MKV, AVI, M4V, WMV",

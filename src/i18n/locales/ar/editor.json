@@ -43,7 +43,7 @@
 		"cameraDisconnected": "تم فصل كاميرا الويب.",
 		"cameraNotFound": "لم يتم العثور على كاميرا.",
 		"permissionDenied": "تم رفض إذن التسجيل. يرجى السماح بتسجيل الشاشة.",
-		"accessibilityAllowAndRetry": "اسمح بوصول تسهيلات الاستخدام لـ OpenScreen، ثم اضغط على التسجيل مرة أخرى لبدء العد التنازلي."
+		"accessibilityAllowAndRetry": "اسمح بوصول تسهيلات الاستخدام لـ Vibecut، ثم اضغط على التسجيل مرة أخرى لبدء العد التنازلي."
 	},
 	"autoCaptions": {
 		"button": "التسميات التوضيحية التلقائية",
@@ -66,7 +66,7 @@
 	},
 	"emptyState": {
 		"title": "لا يوجد مشروع مفتوح",
-		"description": "استورد مقطع فيديو للبدء في التحرير، أو حمّل مشروع OpenScreen موجود.",
+		"description": "استورد مقطع فيديو للبدء في التحرير، أو حمّل مشروع Vibecut موجود.",
 		"importVideoButton": "استيراد ملف فيديو...",
 		"loadProjectButton": "تحميل مشروع...",
 		"supportedFormats": "الصيغ المدعومة: MP4، MOV، WebM، MKV، AVI، M4V، WMV",
