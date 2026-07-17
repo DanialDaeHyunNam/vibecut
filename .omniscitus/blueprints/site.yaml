@@ -1,15 +1,21 @@
 version: 1
-updated: 2026-07-17T08:23:20.140Z
+updated: 2026-07-17T08:27:09.164Z
 
 files:
   "site/index.html":
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T08:23:20.140Z
-    change_count: 2
+    last_modified: 2026-07-17T08:27:09.164Z
+    change_count: 4
     purpose: ""
     change_log:
+      - date: 2026-07-17T08:27:09.164Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-17T08:26:57.984Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T08:23:20.140Z
         action: edit
         source: "claude:Dan"
