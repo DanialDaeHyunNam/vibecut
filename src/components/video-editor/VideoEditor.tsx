@@ -3161,9 +3161,30 @@ export default function VideoEditor() {
 									onValueChange={(value) => setRailTab(value as "settings" | "ai")}
 									className="h-full flex flex-col min-h-0"
 								>
-									<TabsList className="grid w-full grid-cols-2 flex-shrink-0">
-										<TabsTrigger value="ai">{ta("tabAi")}</TabsTrigger>
-										<TabsTrigger value="settings">{ta("tabSettings")}</TabsTrigger>
+									<TabsList className="relative grid w-full grid-cols-2 flex-shrink-0">
+										{/* Sliding highlight: the active pill glides between the two
+										    tabs. With p-1 the right cell starts exactly at 50%, so
+										    animating `left` 4px↔50% lands pixel-perfect. */}
+										<span
+											aria-hidden
+											className="pointer-events-none absolute top-1 bottom-1 rounded-md bg-background shadow transition-[left] duration-200 ease-out"
+											style={{
+												width: "calc(50% - 4px)",
+												left: railTab === "settings" ? "50%" : "4px",
+											}}
+										/>
+										<TabsTrigger
+											value="ai"
+											className="relative z-10 transition-colors data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+										>
+											{ta("tabAi")}
+										</TabsTrigger>
+										<TabsTrigger
+											value="settings"
+											className="relative z-10 transition-colors data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+										>
+											{ta("tabSettings")}
+										</TabsTrigger>
 									</TabsList>
 									{/* forceMount keeps both panes alive: SettingsPanel keeps its
 										    internal accordion state and the chat keeps its transcript. */}
