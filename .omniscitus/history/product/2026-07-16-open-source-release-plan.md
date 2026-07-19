@@ -36,7 +36,8 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 - [ ] 리브랜딩 후속: .openscreen 프로젝트 확장자(.vibecut 병행 지원), localStorage 키/OPENSCREEN_* env 정리, SettingsPanel의 버그리포트 링크(현재 upstream repo로 향함 — 자체 repo 생성 후 교체), 데모 GIF를 README에 추가
 - [ ] 첫 릴리스 발행 시 README 정리: 다운로드 섹션의 "first packaged build is still on its way" 안내 문구 제거 (2026-07-17에 다운로드 버튼/미서명 경고 안내/Getting started 추가 — 버튼은 releases/latest로 연결, 릴리스 생성 전에는 404 대신 릴리스 목록으로 감). 릴리스 자산 파일명은 electron-builder artifactName 그대로여야 표의 파일명과 일치
 - [x] `npx license-checker` 의존성 스윕 (2026-07-17): GPL/AGPL 없음 ✅. 결과: MIT 470·ISC 21·BSD 18·Apache 17 등 전부 무해. 플래그 항목 판정 — mediabunny(MPL-2.0: 파일단위 약한 카피레프트, 미수정 사용이라 문제없음), gsap(Custom: Webflow 인수 후 상업 포함 전면 무료), web-demuxer/flatbuffers(휴리스틱 별표, 실제 MIT/Apache-2.0), 루트 package.json UNLICENSED→"license": "MIT" 수정 완료. **Agent SDK(Anthropic 약관)만 남은 쟁점 — B4 패키징 때 동봉 재배포 약관 확인**
-- [ ] 데모 영상: cinerec으로 cinerec 홍보 영상을 찍기 (AI 자동편집 사용 — 도그푸딩 스토리가 곧 마케팅)
+- [ ] 데모 영상(B6): cinerec으로 cinerec 홍보 영상을 찍기 (AI 자동편집 사용 — 도그푸딩 스토리가 곧 마케팅). **촬영 방식 결정(2026-07-19)**: Vibecut은 HUD(녹화 툴바)↔에디터가 단일 메인 윈도우를 번갈아 쓰는 구조라(`switch-to-editor`가 HUD를 닫음) + 단일 인스턴스 락 → 한 인스턴스로 "녹화 중 + 에디터 사용" 동시 불가. **권장: macOS Cmd+Shift+5로 에디터 사용 화면을 영역 녹화 → Vibecut에 Import Video로 불러와 편집**(EditorEmptyState "Import Video File…", showOpenDialog 이미 지원). **주의**: 임포트한 macOS 녹화본은 Vibecut 네이티브 클릭 텔레메트리가 없어 자동 줌이 안 뜸 → 수동 줌 또는 AI(프레임 비전)로 배치. 문서: docs/ai-providers.md
+- [ ] (보류, 릴리스 후) 녹화+에디터 동시 사용 지원 검토 — 단일 윈도우 HUD↔에디터 스왑 + 단일 인스턴스 락을 풀어야 하는 실제 아키텍처 변경. 일반 사용자는 거의 불필요하나 셀프-도그푸딩 녹화엔 유용. 릴리스 전엔 리스크가 커서 보류, B6는 위 Cmd+Shift+5 우회로 해결
 - [x] 자체 git repo 분리 + GitHub 공개 (2026-07-17: https://github.com/DanialDaeHyunNam/vibecut — public, main 푸시 완료. shallow clone이라 `git fetch --unshallow upstream` 후 푸시. upstream 태그는 의도적으로 미푸시, upstream remote는 유지)
 - [ ] 홍보: Show HN / Product Hunt / X·Threads 데모 클립 / GeekNews·disquiet(한국) / r/opensource / awesome-electron 류 리스트 PR
 - [ ] 패키지 배포 단계에서 Agent SDK 동봉 약관 확인 (code.claude.com/docs/en/legal-and-compliance)

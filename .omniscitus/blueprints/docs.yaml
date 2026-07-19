@@ -1,12 +1,12 @@
 version: 1
-updated: "2026-07-14"
+updated: 2026-07-19T14:48:48.657Z
 
 files:
   "docs/architecture/native-bridge.md":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Docs — native-bridge.md."
     change_log:
@@ -21,8 +21,8 @@ files:
   "docs/engineering/macos-native-recorder-roadmap.md":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-11"
-    last_modified: "2026-05-24"
+    created: 2026-05-11
+    last_modified: 2026-05-24
     change_count: 3
     purpose: "Docs — macos-native-recorder-roadmap.md."
     change_log:
@@ -41,8 +41,8 @@ files:
   "docs/engineering/windows-native-recorder-roadmap.md":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 10
     purpose: "Docs — windows-native-recorder-roadmap.md."
     change_log:
@@ -69,8 +69,8 @@ files:
   "docs/github-actions-workflows.md":
     status: active
     source: "user:psychosomat"
-    created: "2026-06-27"
-    last_modified: "2026-06-30"
+    created: 2026-06-27
+    last_modified: 2026-06-30
     change_count: 6
     purpose: "Docs — github-actions-workflows.md."
     change_log:
@@ -97,8 +97,8 @@ files:
   "docs/secrets.md":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-06-30"
-    last_modified: "2026-06-30"
+    created: 2026-06-30
+    last_modified: 2026-06-30
     change_count: 6
     purpose: "Docs — secrets.md."
     change_log:
@@ -125,8 +125,8 @@ files:
   "docs/testing/macos-native-cursor.md":
     status: active
     source: "user:Kelly Yang"
-    created: "2026-05-31"
-    last_modified: "2026-05-31"
+    created: 2026-05-31
+    last_modified: 2026-05-31
     change_count: 2
     purpose: "Docs — macos-native-cursor.md."
     change_log:
@@ -141,8 +141,8 @@ files:
   "docs/testing/windows-native-cursor.md":
     status: active
     source: "user:EtienneLescot"
-    created: "2026-05-05"
-    last_modified: "2026-05-24"
+    created: 2026-05-05
+    last_modified: 2026-05-24
     change_count: 6
     purpose: "Docs — windows-native-cursor.md."
     change_log:
@@ -169,8 +169,8 @@ files:
   "docs/tests/writing-tests.md":
     status: active
     source: "user:Marc Diaz"
-    created: "2026-05-07"
-    last_modified: "2026-05-24"
+    created: 2026-05-07
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Docs — writing-tests.md."
     change_log:
@@ -182,3 +182,14 @@ files:
         action: write
         source: "user"
         message: "fix: tests + how to write them"
+  "docs/ai-providers.md":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-19
+    last_modified: 2026-07-19T14:48:48.657Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-19T14:48:48.657Z
+        action: write
+        source: "claude:Dan"

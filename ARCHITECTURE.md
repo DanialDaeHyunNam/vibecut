@@ -113,6 +113,8 @@ The right-rail chat panel drives a tool-using agent. Key design decisions:
 6. **Settings** — `electron/ai/settings.ts` persists provider/model choice and
    API keys under `userData/ai-settings.json`; keys are encrypted with
    Electron `safeStorage` and never sent to the renderer (only booleans).
+   Per-provider decisions and how each is wired live in
+   [docs/ai-providers.md](docs/ai-providers.md).
 7. **Remote policy manifest** — `electron/ai/providerPolicy.ts` fetches
    `provider-policy.json` from the landing deployment (daily, cached in
    userData, fail-open) so a provider whose subscription terms change can be

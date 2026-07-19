@@ -6,7 +6,7 @@ summaries:
     description: "Upstream documentation"
     generated_at: 2026-07-14
     generated_by: migrate
-    stale: false
+    stale: true
     file_count: 8
   electron:
     description: "Electron main process — windows, IPC, recording, native bridges, AI agent (electron/ai)"
