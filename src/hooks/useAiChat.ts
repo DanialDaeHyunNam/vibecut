@@ -77,6 +77,9 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 	const [model, setModelState] = useState<string>("claude-opus-4-8");
 	const [status, setStatus] = useState<AiProviderStatus | null>(null);
 	const [policy, setPolicy] = useState<AiProviderPolicy | null>(null);
+	// Set once the agent tries the webcam-restyle tool this session, so the UI
+	// can surface the Decart key field only when it's actually needed.
+	const [restyleRequested, setRestyleRequested] = useState(false);
 	const [items, setItems] = useState<AiChatItem[]>([]);
 	const [sessionId, setSessionId] = useState<string | null>(null);
 	const [busy, setBusy] = useState(false);
@@ -121,7 +124,33 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 				]);
 				if (cancelled) return;
 				setProviders(listing);
-				const activeProvider = settings.provider;
+
+				// Preference order when auto-selecting a usable provider.
+				const PRIORITY: AiProviderId[] = ["claude-code", "openai", "gemini", "grok"];
+				let activeProvider = settings.provider;
+				let activeStatus: AiProviderStatus | null = null;
+
+				if (settings.providerExplicit) {
+					// The user picked a provider before — honor it and check its status.
+					activeStatus = await window.electronAPI.aiProviderStatus(activeProvider);
+				} else {
+					// First run (or never chosen): probe every provider and land on the
+					// first usable one in priority order, so the user starts on a
+					// provider they can actually run — not a login/key wall.
+					const statuses = await Promise.all(
+						PRIORITY.map(async (id) => ({
+							id,
+							status: await window.electronAPI.aiProviderStatus(id),
+						})),
+					);
+					if (cancelled) return;
+					const usable = statuses.find((entry) => entry.status.available);
+					const chosen = usable ?? statuses[0];
+					activeProvider = chosen.id;
+					activeStatus = chosen.status;
+				}
+				if (cancelled) return;
+
 				setProviderState(activeProvider);
 				const providerModels = listing.find((p) => p.id === activeProvider)?.models ?? [];
 				const savedModel = settings.modelByProvider[activeProvider];
@@ -132,7 +161,7 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 						? savedModel
 						: fallbackModel,
 				);
-				setStatus(await window.electronAPI.aiProviderStatus(activeProvider));
+				setStatus(activeStatus);
 			} catch (error) {
 				console.error("Failed to initialize AI chat:", error);
 			}
@@ -224,6 +253,7 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 					});
 					break;
 				case "tool-start":
+					if (event.name === "restyle_webcam") setRestyleRequested(true);
 					setItems((prev) => [
 						...prev,
 						{
@@ -331,6 +361,7 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 		setModel,
 		status,
 		policy,
+		restyleRequested,
 		refreshStatus,
 		items,
 		busy,

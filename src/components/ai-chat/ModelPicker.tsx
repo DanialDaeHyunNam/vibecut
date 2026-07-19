@@ -1,4 +1,4 @@
-import { Check, KeyRound, X } from "lucide-react";
+import { KeyRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,53 +12,40 @@ import {
 } from "@/components/ui/select";
 import { useScopedT } from "@/contexts/I18nContext";
 
-interface ModelPickerProps {
-	providers: AiProviderListing[];
-	provider: AiProviderId;
-	model: string;
-	onModelChange: (model: string) => void;
-	/** Fired after an API key is saved/removed so the parent can re-check provider status. */
-	onApiKeyChanged?: () => void;
-}
-
-/**
- * Services that take an API key in the picker. Gemini requires one (Google's
- * terms prohibit third-party software from using Gemini CLI OAuth, so Vibecut
- * uses AI Studio keys instead of the user's Google login). The Anthropic key
- * is an optional alternative to subscription login and only shows while that
- * provider is active. Decart powers the webcam restyle tool. Grok's key is
- * collected ahead of its provider implementation.
- */
-const KEY_ROWS: Array<{
+/** A key input the panel asks the picker to surface, only when it's needed. */
+export interface KeyPrompt {
 	keyId: AiKeyId;
 	name: string;
+	/** true = an optional alternative to sign-in (softer placeholder copy). */
 	optional: boolean;
-	whenProviderActive?: AiProviderId;
-}> = [
-	{ keyId: "gemini", name: "Gemini", optional: false },
-	{ keyId: "claude-code", name: "Anthropic", optional: true, whenProviderActive: "claude-code" },
-	{ keyId: "decart", name: "Decart", optional: false },
-	{ keyId: "grok", name: "Grok", optional: false },
-];
+}
+
+interface ModelPickerProps {
+	providers: AiProviderListing[];
+	model: string;
+	onModelChange: (model: string) => void;
+	/** Key rows to surface — only shown while the corresponding key is missing. */
+	keyPrompts: KeyPrompt[];
+	/** Fired after an API key is saved/removed so the parent can re-check status. */
+	onApiKeyChanged?: () => void;
+}
 
 function ApiKeyRow({
 	keyId,
 	name,
 	optional,
-	hasKey,
 	onSaved,
 }: {
 	keyId: AiKeyId;
 	name: string;
 	optional: boolean;
-	hasKey: boolean;
 	onSaved: () => void;
 }) {
 	const t = useScopedT("aiChat");
 	const [draft, setDraft] = useState("");
 	const [error, setError] = useState(false);
 
-	const saveKey = async (value: string | null) => {
+	const saveKey = async (value: string) => {
 		setError(false);
 		const result = await window.electronAPI.aiSaveSettings({ apiKeys: { [keyId]: value } });
 		if (result.success) {
@@ -68,23 +55,6 @@ function ApiKeyRow({
 			setError(true);
 		}
 	};
-
-	if (hasKey) {
-		return (
-			<div className="mt-2 flex items-center gap-1.5 text-[11px] text-white/50">
-				<Check className="h-3 w-3 text-emerald-400/80 shrink-0" />
-				<span className="flex-1 truncate">{t("apiKeySaved", { name })}</span>
-				<Button
-					size="sm"
-					variant="ghost"
-					className="h-6 px-1.5 text-[11px] text-white/40 hover:text-white/80"
-					onClick={() => void saveKey(null)}
-				>
-					<X className="h-3 w-3" />
-				</Button>
-			</div>
-		);
-	}
 
 	return (
 		<div className="mt-2 flex items-center gap-1.5">
@@ -115,14 +85,15 @@ function ApiKeyRow({
 /**
  * Bottom-bar model selector, grouped by provider like the reference UI.
  * Picking a model from another provider switches the provider too (handled in
- * useAiChat). Below the picker, API key rows collect keys for key-based
- * providers.
+ * useAiChat). Key inputs are surfaced just-in-time: a row appears only for a
+ * provider/service the user is actually trying to use whose key is missing —
+ * never the whole set at once.
  */
 export function ModelPicker({
 	providers,
-	provider,
 	model,
 	onModelChange,
+	keyPrompts,
 	onApiKeyChanged,
 }: ModelPickerProps) {
 	const t = useScopedT("aiChat");
@@ -135,6 +106,11 @@ export function ModelPicker({
 	};
 
 	useEffect(refreshKeys, []);
+
+	// Only render a prompt whose key is still missing — once saved the row
+	// disappears (and onApiKeyChanged re-checks provider status upstream).
+	const visiblePrompts =
+		hasApiKey === null ? [] : keyPrompts.filter((prompt) => !hasApiKey[prompt.keyId]);
 
 	return (
 		<div className="px-3 pb-3">
@@ -163,24 +139,18 @@ export function ModelPicker({
 					))}
 				</SelectContent>
 			</Select>
-			{hasApiKey !== null &&
-				KEY_ROWS.filter(
-					// Keep the rail compact: rows gated to a provider only show while
-					// that provider is active; the rest always show.
-					({ whenProviderActive }) => !whenProviderActive || whenProviderActive === provider,
-				).map(({ keyId, name, optional }) => (
-					<ApiKeyRow
-						key={keyId}
-						keyId={keyId}
-						name={name}
-						optional={optional}
-						hasKey={Boolean(hasApiKey[keyId])}
-						onSaved={() => {
-							refreshKeys();
-							onApiKeyChanged?.();
-						}}
-					/>
-				))}
+			{visiblePrompts.map((prompt) => (
+				<ApiKeyRow
+					key={prompt.keyId}
+					keyId={prompt.keyId}
+					name={prompt.name}
+					optional={prompt.optional}
+					onSaved={() => {
+						refreshKeys();
+						onApiKeyChanged?.();
+					}}
+				/>
+			))}
 		</div>
 	);
 }

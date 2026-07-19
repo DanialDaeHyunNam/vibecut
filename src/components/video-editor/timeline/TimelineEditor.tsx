@@ -4,7 +4,10 @@ import {
 	Captions,
 	Check,
 	ChevronDown,
+	ChevronLeft,
+	ChevronRight,
 	Gauge,
+	Lightbulb,
 	MessageSquare,
 	Plus,
 	ScanEye,
@@ -1627,29 +1630,34 @@ export default function TimelineEditor({
 					</DropdownMenu>
 				</div>
 				<div className="flex-1" />
-				{/* Rotating tips: ‹ › flips through interaction hints. */}
-				<div className="hidden md:flex items-center gap-1 text-[10px] text-slate-500 font-medium">
-					<button
-						type="button"
-						aria-label="Previous tip"
-						onClick={() => setTipIndex((index) => (index + tips.length - 1) % tips.length)}
-						className="px-1 text-slate-600 hover:text-slate-300 transition-colors"
-					>
-						‹
-					</button>
-					<span className="flex items-center gap-1.5 min-w-[190px] justify-center">
+				{/* Rotating tips: 💡 on the left, clear chevron buttons, and a
+				    position counter so the carousel reads as navigable. */}
+				<div className="hidden md:flex items-center gap-1.5 text-[10px] text-slate-400 font-medium rounded-lg border border-white/10 bg-white/[0.03] pl-2 pr-1 py-1">
+					<Lightbulb className="h-3.5 w-3.5 text-[#7C5CFF]/80 shrink-0" />
+					<span className="flex items-center gap-1.5">
 						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#7C5CFF] font-sans whitespace-nowrap">
 							{tips[tipIndex].key}
 						</kbd>
 						<span className="whitespace-nowrap">{tips[tipIndex].label}</span>
 					</span>
+					<span className="tabular-nums text-slate-500 text-[9.5px] text-center shrink-0">
+						{tipIndex + 1}/{tips.length}
+					</span>
+					<button
+						type="button"
+						aria-label="Previous tip"
+						onClick={() => setTipIndex((index) => (index + tips.length - 1) % tips.length)}
+						className="flex h-5 w-5 items-center justify-center rounded text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
+					>
+						<ChevronLeft className="h-3.5 w-3.5" />
+					</button>
 					<button
 						type="button"
 						aria-label="Next tip"
 						onClick={() => setTipIndex((index) => (index + 1) % tips.length)}
-						className="px-1 text-slate-600 hover:text-slate-300 transition-colors"
+						className="flex h-5 w-5 items-center justify-center rounded text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
 					>
-						›
+						<ChevronRight className="h-3.5 w-3.5" />
 					</button>
 				</div>
 			</div>

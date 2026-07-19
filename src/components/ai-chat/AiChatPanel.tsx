@@ -5,7 +5,7 @@ import { useI18n, useScopedT } from "@/contexts/I18nContext";
 import { type AiChatSnapshotSource, useAiChat } from "@/hooks/useAiChat";
 import { ChatComposer } from "./ChatComposer";
 import { ChatMessageList } from "./ChatMessageList";
-import { ModelPicker } from "./ModelPicker";
+import { type KeyPrompt, ModelPicker } from "./ModelPicker";
 
 interface AiChatPanelProps {
 	getSnapshot: AiChatSnapshotSource;
@@ -193,12 +193,27 @@ export function AiChatPanel({ getSnapshot, storageKey }: AiChatPanelProps) {
 		</>
 	);
 
+	// Just-in-time key prompts: only ask for a key the user is actually blocked
+	// on. The active chat provider gets a row when its status needs one; Decart
+	// gets one only after the agent tries the webcam-restyle tool.
+	const keyPrompts: KeyPrompt[] = [];
+	if (chat.status && !chat.status.available) {
+		if (chat.status.reason === "no-api-key" && chat.provider === "gemini") {
+			keyPrompts.push({ keyId: "gemini", name: "Gemini", optional: false });
+		} else if (chat.status.reason === "not-authenticated" && chat.provider === "claude-code") {
+			keyPrompts.push({ keyId: "claude-code", name: "Anthropic", optional: true });
+		}
+	}
+	if (chat.restyleRequested) {
+		keyPrompts.push({ keyId: "decart", name: "Decart", optional: false });
+	}
+
 	const picker = (
 		<ModelPicker
 			providers={chat.providers}
-			provider={chat.provider}
 			model={chat.model}
 			onModelChange={chat.setModel}
+			keyPrompts={keyPrompts}
 			onApiKeyChanged={() => void chat.refreshStatus()}
 		/>
 	);

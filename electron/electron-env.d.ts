@@ -405,6 +405,7 @@ interface AiProviderListing {
 
 interface AiSettingsPublic {
 	provider: AiProviderId;
+	providerExplicit: boolean;
 	modelByProvider: Partial<Record<AiProviderId, string>>;
 	hasApiKey: Partial<Record<AiKeyId, boolean>>;
 }

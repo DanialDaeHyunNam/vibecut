@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-19T04:21:37.228Z
+updated: 2026-07-19T14:20:56.388Z
 
 files:
   "src/components/launch/CountdownOverlay.tsx":
@@ -1212,10 +1212,22 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-19T04:21:37.228Z
-    change_count: 177
+    last_modified: 2026-07-19T14:20:56.388Z
+    change_count: 181
     purpose: "Video editor — VideoEditor.tsx."
     change_log:
+      - date: 2026-07-19T14:20:56.388Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:20:54.331Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:15:51.910Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:15:41.517Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:21:37.228Z
         action: edit
         source: "claude:Dan"
@@ -1867,10 +1879,19 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T10:05:11.375Z
-    change_count: 51
+    last_modified: 2026-07-19T14:15:29.632Z
+    change_count: 54
     purpose: "Video editor — TimelineEditor.tsx."
     change_log:
+      - date: 2026-07-19T14:15:29.632Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:11:33.202Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:11:21.770Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T10:05:11.375Z
         action: edit
         source: "claude:Dan"
@@ -2471,10 +2492,19 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T04:20:20.963Z
-    change_count: 8
+    last_modified: 2026-07-19T14:20:09.164Z
+    change_count: 11
     purpose: "프로바이더 그룹별 모델 선택 드롭다운 (비활성 coming-soon 행 포함)"
     change_log:
+      - date: 2026-07-19T14:20:09.164Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:20:06.547Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:10:50.312Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-19T04:20:20.963Z
         action: edit
         source: "claude:Dan"
@@ -2503,10 +2533,19 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T13:33:32.416Z
-    change_count: 10
+    last_modified: 2026-07-19T14:20:11.619Z
+    change_count: 13
     purpose: "AI 탭 루트 — 미설치/미로그인 게이트 + 대화 UI 조립"
     change_log:
+      - date: 2026-07-19T14:20:11.619Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:11:07.981Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:11:01.995Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:33:32.416Z
         action: edit
         source: "claude:Dan"

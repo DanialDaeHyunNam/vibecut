@@ -18,6 +18,12 @@ export type AiKeyId = AiProviderId | "decart";
 export interface AiSettings {
 	version: 1;
 	provider: AiProviderId;
+	/**
+	 * True once the user has actively chosen a provider/model. While false the
+	 * renderer auto-selects the first *usable* provider (has a key or a login)
+	 * on each launch; once the user picks one we honor that choice instead.
+	 */
+	providerExplicit: boolean;
 	modelByProvider: Partial<Record<AiProviderId, string>>;
 	/** safeStorage-encrypted, base64-encoded API keys keyed by key id. */
 	apiKeys: Partial<Record<AiKeyId, string>>;
@@ -26,6 +32,7 @@ export interface AiSettings {
 /** Settings shape exposed to the renderer — never includes key material. */
 export interface AiSettingsPublic {
 	provider: AiProviderId;
+	providerExplicit: boolean;
 	modelByProvider: Partial<Record<AiProviderId, string>>;
 	hasApiKey: Partial<Record<AiKeyId, boolean>>;
 }
@@ -33,6 +40,7 @@ export interface AiSettingsPublic {
 const DEFAULT_SETTINGS: AiSettings = {
 	version: 1,
 	provider: "claude-code",
+	providerExplicit: false,
 	modelByProvider: {},
 	apiKeys: {},
 };
@@ -53,6 +61,7 @@ export async function loadAiSettings(): Promise<AiSettings> {
 			provider: VALID_PROVIDERS.includes(parsed.provider as AiProviderId)
 				? (parsed.provider as AiProviderId)
 				: DEFAULT_SETTINGS.provider,
+			providerExplicit: parsed.providerExplicit === true,
 			modelByProvider:
 				parsed.modelByProvider && typeof parsed.modelByProvider === "object"
 					? parsed.modelByProvider
@@ -73,7 +82,12 @@ export function toPublicSettings(settings: AiSettings): AiSettingsPublic {
 	for (const keyId of VALID_KEY_IDS) {
 		hasApiKey[keyId] = Boolean(settings.apiKeys[keyId]);
 	}
-	return { provider: settings.provider, modelByProvider: settings.modelByProvider, hasApiKey };
+	return {
+		provider: settings.provider,
+		providerExplicit: settings.providerExplicit,
+		modelByProvider: settings.modelByProvider,
+		hasApiKey,
+	};
 }
 
 export async function saveAiSettings(update: {
@@ -86,6 +100,9 @@ export async function saveAiSettings(update: {
 
 	if (update.provider && VALID_PROVIDERS.includes(update.provider)) {
 		current.provider = update.provider;
+		// Any provider write comes from a user model change — from now on we
+		// honor their choice instead of auto-selecting by availability.
+		current.providerExplicit = true;
 	}
 	if (update.modelByProvider) {
 		current.modelByProvider = { ...current.modelByProvider, ...update.modelByProvider };

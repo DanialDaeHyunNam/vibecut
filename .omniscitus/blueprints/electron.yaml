@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-19T04:20:00.645Z
+updated: 2026-07-19T14:09:11.823Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -30,10 +30,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-19T04:20:00.645Z
-    change_count: 66
+    last_modified: 2026-07-19T14:09:11.823Z
+    change_count: 67
     purpose: "Electron main process — electron-env.d.ts."
     change_log:
+      - date: 2026-07-19T14:09:11.823Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:20:00.645Z
         action: edit
         source: "claude:Dan"
@@ -1256,10 +1259,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T04:17:34.363Z
-    change_count: 6
+    last_modified: 2026-07-19T14:09:06.312Z
+    change_count: 10
     purpose: "ai-settings.json 로드/저장 — 모델 선택 유지, API key는 safeStorage 암호화"
     change_log:
+      - date: 2026-07-19T14:09:06.312Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:09:03.836Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:09:02.637Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T14:08:56.287Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:17:34.363Z
         action: edit
         source: "claude:Dan"
