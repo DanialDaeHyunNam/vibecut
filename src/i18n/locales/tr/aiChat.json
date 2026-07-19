@@ -31,7 +31,8 @@
 		"set_style": "Stili değiştir",
 		"get_transcript": "Anlatım dinleniyor",
 		"ask_user": "Size soruluyor",
-		"export_captions_srt": "SRT dışa aktarılıyor"
+		"export_captions_srt": "SRT dışa aktarılıyor",
+		"restyle_webcam": "Web kamerası dönüştürülüyor"
 	},
 	"autoEditButton": "Bu videoyu otomatik düzenle",
 	"autoEditPrompt": "Bu videoyu otomatik düzenle. Herhangi bir şeye dokunmadan ÖNCE, ask_user ile (tek çağrı) benden üç şeyi onayla: (1) yakınlaştırma stili — sade / dinamik / iddialı, (2) hedef süre — olduğu gibi bırak veya kesme ve hızlandırmayla sıkıştır (video süresine göre somut seçenekler sun), (3) altyazı dili — Korece / İngilizce / orijinal dil / yok. Sonra videoyu izle (kareler + transkript) ve seçimlerime göre düzenle: hikâyeyi izleyen değişken derinlikte yakınlaştırmalar, ölü anları kes, uygun yerlerde hızlandır, seçilen dilde altyazılar. Sonunda değişiklikleri kısaca özetle.",

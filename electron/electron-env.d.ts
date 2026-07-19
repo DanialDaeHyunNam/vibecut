@@ -324,8 +324,12 @@ interface Window {
 		aiSaveSettings: (update: {
 			provider?: AiProviderId;
 			modelByProvider?: Partial<Record<AiProviderId, string>>;
-			apiKeys?: Partial<Record<AiProviderId, string | null>>;
+			apiKeys?: Partial<Record<AiKeyId, string | null>>;
 		}) => Promise<{ success: boolean; settings?: AiSettingsPublic; error?: string }>;
+		aiRestyleWebcam: (payload: {
+			sourcePath: string;
+			prompt: string;
+		}) => Promise<{ success: boolean; path?: string; error?: string }>;
 		aiChatSend: (payload: {
 			provider: AiProviderId;
 			model: string;
@@ -361,6 +365,9 @@ interface Window {
 }
 
 type AiProviderId = "claude-code" | "openai" | "gemini" | "grok";
+
+/** Chat providers plus effect services (Decart = webcam restyle) that can own a stored API key. */
+type AiKeyId = AiProviderId | "decart";
 
 type AiProviderStatus =
 	| { available: true; detail?: string }
@@ -399,7 +406,7 @@ interface AiProviderListing {
 interface AiSettingsPublic {
 	provider: AiProviderId;
 	modelByProvider: Partial<Record<AiProviderId, string>>;
-	hasApiKey: Partial<Record<AiProviderId, boolean>>;
+	hasApiKey: Partial<Record<AiKeyId, boolean>>;
 }
 
 interface AiProjectSnapshot {

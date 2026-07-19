@@ -20,6 +20,8 @@ const TOOL_TIMEOUT_OVERRIDES_MS: Record<string, number> = {
 	ask_user: 600_000,
 	// Waits on a native save dialog.
 	export_captions_srt: 600_000,
+	// Cloud video transform: processing time scales with clip length.
+	restyle_webcam: 900_000,
 };
 
 /**

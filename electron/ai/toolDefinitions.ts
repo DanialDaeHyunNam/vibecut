@@ -234,6 +234,19 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 		emitChips: true,
 	},
 	{
+		name: "restyle_webcam",
+		description:
+			"Transform the webcam overlay video with generative AI (Decart Lucy): restyle the person or scene from a text prompt, e.g. 'make me a marble statue', 'anime style', 'wearing a spacesuit'. Requires a webcam recording and a saved Decart API key. Processing takes roughly as long as the clip and costs the user per second — confirm with ask_user before running on long clips. The transformed video replaces the webcam overlay (one undo step); the original file is kept on disk.",
+		shape: {
+			prompt: z
+				.string()
+				.min(4)
+				.max(500)
+				.describe("What to transform the webcam video into, in English."),
+		},
+		emitChips: true,
+	},
+	{
 		name: "ask_user",
 		description:
 			"Ask the user one or more multiple-choice questions and wait for their answer (renders as selectable option cards in the chat). Use whenever the user's intent is ambiguous, before large destructive edits, or to confirm editing preferences. Keep options concrete and mutually exclusive; the user can always type a custom answer.",

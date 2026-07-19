@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T13:33:32.416Z
+updated: 2026-07-19T04:21:37.228Z
 
 files:
   "src/components/launch/CountdownOverlay.tsx":
@@ -1212,10 +1212,46 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T10:04:12.728Z
-    change_count: 165
+    last_modified: 2026-07-19T04:21:37.228Z
+    change_count: 177
     purpose: "Video editor — VideoEditor.tsx."
     change_log:
+      - date: 2026-07-19T04:21:37.228Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:21:35.529Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:20.621Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:16.155Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:13.274Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:10.941Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:09.039Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:18:52.923Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:18:44.776Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:18:42.599Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:18:40.229Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:18:37.892Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T10:04:12.728Z
         action: edit
         source: "claude:Dan"
@@ -1536,10 +1572,16 @@ files:
     status: active
     source: "user:Yusuf Mohsinally"
     created: 2026-02-28
-    last_modified: 2026-06-05
-    change_count: 43
+    last_modified: 2026-07-19T04:18:12.182Z
+    change_count: 45
     purpose: "Video editor — projectPersistence.ts."
     change_log:
+      - date: 2026-07-19T04:18:12.182Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:18:00.598Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-05"
         action: edit
         source: "user"
@@ -2429,10 +2471,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T13:24:47.152Z
-    change_count: 4
+    last_modified: 2026-07-19T04:20:20.963Z
+    change_count: 8
     purpose: "프로바이더 그룹별 모델 선택 드롭다운 (비활성 coming-soon 행 포함)"
     change_log:
+      - date: 2026-07-19T04:20:20.963Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:20:16.174Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:20:14.306Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:20:10.085Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:24:47.152Z
         action: edit
         source: "claude:Dan"

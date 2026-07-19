@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T13:34:59.040Z
+updated: 2026-07-19T04:17:09.829Z
 
 files:
   ".editorconfig":
@@ -644,10 +644,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T06:33:35.816Z
-    change_count: 11
+    last_modified: 2026-07-19T04:17:09.829Z
+    change_count: 12
     purpose: "Vite + vite-plugin-electron config — dev server drives the Electron shell."
     change_log:
+      - date: 2026-07-19T04:17:09.829Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T06:33:35.816Z
         action: edit
         source: "claude:Dan"

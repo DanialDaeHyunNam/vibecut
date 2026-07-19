@@ -32,6 +32,8 @@ interface AiToolHostParams {
 	pushState: (update: Partial<EditorState>) => void;
 	/** Object URL / file URL of the loaded recording (null before load). */
 	getVideoUrl: () => string | null;
+	/** Raw path of the current webcam source (override wins; null = no webcam). */
+	getWebcamSourcePath: () => string | null;
 }
 
 const MAX_FRAMES_PER_CALL = 8;
@@ -48,15 +50,17 @@ export function useAiToolHost({
 	getContext,
 	pushState,
 	getVideoUrl,
+	getWebcamSourcePath,
 }: AiToolHostParams): void {
-	const paramsRef = useRef({ getState, getContext, pushState, getVideoUrl });
-	paramsRef.current = { getState, getContext, pushState, getVideoUrl };
+	const paramsRef = useRef({ getState, getContext, pushState, getVideoUrl, getWebcamSourcePath });
+	paramsRef.current = { getState, getContext, pushState, getVideoUrl, getWebcamSourcePath };
 
 	useEffect(() => {
 		const unsubscribe = window.electronAPI.onAiToolCall(async (call) => {
 			// ask_user renders as an interactive card; useAiChat owns its reply.
 			if (call.name === "ask_user") return;
-			const { getState, getContext, pushState, getVideoUrl } = paramsRef.current;
+			const { getState, getContext, pushState, getVideoUrl, getWebcamSourcePath } =
+				paramsRef.current;
 			try {
 				if (call.name === "get_video_frames") {
 					const videoUrl = getVideoUrl();
@@ -116,6 +120,52 @@ export function useAiToolHost({
 							note: segments.length === 0 ? "No speech detected." : undefined,
 						}),
 						summary: `${segments.length}`,
+					});
+					return;
+				}
+
+				if (call.name === "restyle_webcam") {
+					const sourcePath = getWebcamSourcePath();
+					if (!sourcePath) {
+						window.electronAPI.aiToolResult({
+							callId: call.callId,
+							ok: false,
+							content: JSON.stringify({ error: "this project has no webcam recording" }),
+						});
+						return;
+					}
+					const input = (call.input ?? {}) as { prompt?: unknown };
+					if (typeof input.prompt !== "string" || input.prompt.trim().length < 4) {
+						window.electronAPI.aiToolResult({
+							callId: call.callId,
+							ok: false,
+							content: JSON.stringify({
+								error: "prompt must be a string of at least 4 characters",
+							}),
+						});
+						return;
+					}
+					const restyled = await window.electronAPI.aiRestyleWebcam({
+						sourcePath,
+						prompt: input.prompt.trim(),
+					});
+					if (restyled.success && restyled.path) {
+						// One undo step: the override swaps the webcam source in
+						// preview and export; undo restores the previous source.
+						pushState({ webcamSourceOverridePath: restyled.path });
+					}
+					window.electronAPI.aiToolResult({
+						callId: call.callId,
+						ok: restyled.success,
+						content: JSON.stringify(
+							restyled.success
+								? {
+										path: restyled.path,
+										note: "Webcam overlay now plays the restyled video. Undo restores the original.",
+									}
+								: { error: restyled.error },
+						),
+						summary: restyled.success ? "restyled" : undefined,
 					});
 					return;
 				}

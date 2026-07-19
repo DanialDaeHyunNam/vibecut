@@ -235,6 +235,7 @@ export default function VideoEditor() {
 		webcamReactiveZoom,
 		webcamSizePreset,
 		webcamPosition,
+		webcamSourceOverridePath,
 	} = editorState;
 
 	// Non-undoable state
@@ -358,6 +359,16 @@ export default function VideoEditor() {
 	cursorTelemetryRef.current = cursorTelemetry;
 	const videoPathRef = useRef(videoPath);
 	videoPathRef.current = videoPath;
+	// AI-restyled webcam (undoable override) wins over the recorded file for
+	// preview and export; the raw path feeds the restyle tool as its source.
+	const effectiveWebcamVideoUrl = webcamSourceOverridePath
+		? toFileUrl(webcamSourceOverridePath)
+		: webcamVideoPath;
+	const webcamRestyleSourceRef = useRef<string | null>(null);
+	webcamRestyleSourceRef.current =
+		webcamSourceOverridePath ??
+		webcamVideoSourcePath ??
+		(webcamVideoPath ? fromFileUrl(webcamVideoPath) : null);
 	const [railTab, setRailTab] = useState<"settings" | "ai">("ai");
 	const railPanelRef = useRef<ImperativePanelHandle>(null);
 	// Lane targeted by Alt+←/→ block navigation. Follows region selection and
@@ -379,6 +390,7 @@ export default function VideoEditor() {
 		}),
 		pushState,
 		getVideoUrl: () => videoPathRef.current,
+		getWebcamSourcePath: () => webcamRestyleSourceRef.current,
 	});
 	const getAiSnapshot = useCallback(
 		() => ({
@@ -494,6 +506,7 @@ export default function VideoEditor() {
 				webcamReactiveZoom: normalizedEditor.webcamReactiveZoom,
 				webcamSizePreset: normalizedEditor.webcamSizePreset,
 				webcamPosition: normalizedEditor.webcamPosition,
+				webcamSourceOverridePath: normalizedEditor.webcamSourceOverridePath,
 			});
 			setExportQuality(normalizedEditor.exportQuality);
 			setExportFormat(normalizedEditor.exportFormat);
@@ -571,6 +584,7 @@ export default function VideoEditor() {
 			webcamReactiveZoom,
 			webcamSizePreset,
 			webcamPosition,
+			webcamSourceOverridePath,
 			exportQuality,
 			exportFormat,
 			gifFrameRate,
@@ -602,6 +616,7 @@ export default function VideoEditor() {
 		webcamReactiveZoom,
 		webcamSizePreset,
 		webcamPosition,
+		webcamSourceOverridePath,
 		exportQuality,
 		exportFormat,
 		gifFrameRate,
@@ -730,6 +745,7 @@ export default function VideoEditor() {
 				webcamReactiveZoom,
 				webcamSizePreset,
 				webcamPosition,
+				webcamSourceOverridePath,
 				exportQuality,
 				exportFormat,
 				gifFrameRate,
@@ -795,6 +811,7 @@ export default function VideoEditor() {
 			webcamReactiveZoom,
 			webcamSizePreset,
 			webcamPosition,
+			webcamSourceOverridePath,
 			exportQuality,
 			exportFormat,
 			gifFrameRate,
@@ -2260,7 +2277,7 @@ export default function VideoEditor() {
 					// GIF Export
 					const gifExporter = new GifExporter({
 						videoUrl: videoPath,
-						webcamVideoUrl: webcamVideoPath || undefined,
+						webcamVideoUrl: effectiveWebcamVideoUrl || undefined,
 						width: settings.gifConfig.width,
 						height: settings.gifConfig.height,
 						frameRate: settings.gifConfig.frameRate,
@@ -2355,7 +2372,7 @@ export default function VideoEditor() {
 
 					const exporter = new VideoExporter({
 						videoUrl: videoPath,
-						webcamVideoUrl: webcamVideoPath || undefined,
+						webcamVideoUrl: effectiveWebcamVideoUrl || undefined,
 						width: exportWidth,
 						height: exportHeight,
 						frameRate: 60,
@@ -2468,7 +2485,7 @@ export default function VideoEditor() {
 		[
 			videoPath,
 			videoSourcePath,
-			webcamVideoPath,
+			effectiveWebcamVideoUrl,
 			wallpaper,
 			zoomRegions,
 			trimRegions,
@@ -2968,11 +2985,11 @@ export default function VideoEditor() {
 													}}
 												>
 													<VideoPlayback
-														key={`${videoPath || "no-video"}:${webcamVideoPath || "no-webcam"}`}
+														key={`${videoPath || "no-video"}:${effectiveWebcamVideoUrl || "no-webcam"}`}
 														aspectRatio={aspectRatio}
 														ref={videoPlaybackRef}
 														videoPath={videoPath || ""}
-														webcamVideoPath={webcamVideoPath || undefined}
+														webcamVideoPath={effectiveWebcamVideoUrl || undefined}
 														webcamLayoutPreset={webcamLayoutPreset}
 														webcamMaskShape={webcamMaskShape}
 														webcamMirrored={webcamMirrored}

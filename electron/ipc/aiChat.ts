@@ -1,4 +1,5 @@
 import type { BrowserWindow, IpcMain } from "electron";
+import { restyleWebcam } from "../ai/effects/restyleWebcam";
 import { getProviderPolicy } from "../ai/providerPolicy";
 import { getAiProvider, listAiProviders } from "../ai/providers";
 import type { AiChatEvent, AiChatSession, AiProviderId } from "../ai/providers/types";
@@ -10,6 +11,7 @@ import {
 } from "../ai/settings";
 import { buildSystemPrompt, formatSnapshot, type ProjectSnapshot } from "../ai/systemPrompt";
 import { RendererToolBridge } from "../ai/toolBridge";
+import { approveFilePath } from "./handlers";
 
 interface AiChatSendPayload {
 	provider: AiProviderId;
@@ -61,6 +63,25 @@ export function registerAiChatHandlers(
 	ipcMain.handle("ai-provider-policy", async () => {
 		return getProviderPolicy();
 	});
+
+	ipcMain.handle(
+		"ai-restyle-webcam",
+		async (_event, payload: { sourcePath?: unknown; prompt?: unknown }) => {
+			if (typeof payload?.sourcePath !== "string" || typeof payload?.prompt !== "string") {
+				return { success: false, error: "sourcePath and prompt are required" };
+			}
+			const result = await restyleWebcam({
+				sourcePath: payload.sourcePath,
+				prompt: payload.prompt,
+			});
+			if (result.success && result.path) {
+				// The output sits next to the source webcam file; approve it so the
+				// renderer can load it as a file:// URL.
+				approveFilePath(result.path);
+			}
+			return result;
+		},
+	);
 
 	ipcMain.handle("ai-list-providers", async () => {
 		return listAiProviders().map((provider) => ({

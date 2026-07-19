@@ -320,6 +320,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
 	aiChatCancel: () => {
 		return ipcRenderer.invoke("ai-chat-cancel");
 	},
+	aiRestyleWebcam: (payload: { sourcePath: string; prompt: string }) => {
+		return ipcRenderer.invoke("ai-restyle-webcam", payload);
+	},
 	aiChatReset: () => {
 		return ipcRenderer.invoke("ai-chat-reset");
 	},

@@ -22,26 +22,33 @@ interface ModelPickerProps {
 }
 
 /**
- * Providers that take an API key in the picker. Gemini requires one (Google's
+ * Services that take an API key in the picker. Gemini requires one (Google's
  * terms prohibit third-party software from using Gemini CLI OAuth, so Vibecut
  * uses AI Studio keys instead of the user's Google login). The Anthropic key
- * is an optional alternative to subscription login. Grok's key is collected
- * ahead of its provider implementation.
+ * is an optional alternative to subscription login and only shows while that
+ * provider is active. Decart powers the webcam restyle tool. Grok's key is
+ * collected ahead of its provider implementation.
  */
-const KEY_ROWS: Array<{ provider: AiProviderId; name: string; optional: boolean }> = [
-	{ provider: "gemini", name: "Gemini", optional: false },
-	{ provider: "claude-code", name: "Anthropic", optional: true },
-	{ provider: "grok", name: "Grok", optional: false },
+const KEY_ROWS: Array<{
+	keyId: AiKeyId;
+	name: string;
+	optional: boolean;
+	whenProviderActive?: AiProviderId;
+}> = [
+	{ keyId: "gemini", name: "Gemini", optional: false },
+	{ keyId: "claude-code", name: "Anthropic", optional: true, whenProviderActive: "claude-code" },
+	{ keyId: "decart", name: "Decart", optional: false },
+	{ keyId: "grok", name: "Grok", optional: false },
 ];
 
 function ApiKeyRow({
-	provider,
+	keyId,
 	name,
 	optional,
 	hasKey,
 	onSaved,
 }: {
-	provider: AiProviderId;
+	keyId: AiKeyId;
 	name: string;
 	optional: boolean;
 	hasKey: boolean;
@@ -53,7 +60,7 @@ function ApiKeyRow({
 
 	const saveKey = async (value: string | null) => {
 		setError(false);
-		const result = await window.electronAPI.aiSaveSettings({ apiKeys: { [provider]: value } });
+		const result = await window.electronAPI.aiSaveSettings({ apiKeys: { [keyId]: value } });
 		if (result.success) {
 			setDraft("");
 			onSaved();
@@ -119,7 +126,7 @@ export function ModelPicker({
 	onApiKeyChanged,
 }: ModelPickerProps) {
 	const t = useScopedT("aiChat");
-	const [hasApiKey, setHasApiKey] = useState<Partial<Record<AiProviderId, boolean>> | null>(null);
+	const [hasApiKey, setHasApiKey] = useState<Partial<Record<AiKeyId, boolean>> | null>(null);
 
 	const refreshKeys = () => {
 		void window.electronAPI.aiGetSettings().then((settings) => {
@@ -157,17 +164,17 @@ export function ModelPicker({
 				</SelectContent>
 			</Select>
 			{hasApiKey !== null &&
-				KEY_ROWS.filter(({ provider: rowProvider, optional }) =>
-					// Keep the rail compact: required keys always show; the optional
-					// Anthropic key only shows while its provider is active.
-					optional ? rowProvider === provider : true,
-				).map(({ provider: rowProvider, name, optional }) => (
+				KEY_ROWS.filter(
+					// Keep the rail compact: rows gated to a provider only show while
+					// that provider is active; the rest always show.
+					({ whenProviderActive }) => !whenProviderActive || whenProviderActive === provider,
+				).map(({ keyId, name, optional }) => (
 					<ApiKeyRow
-						key={rowProvider}
-						provider={rowProvider}
+						key={keyId}
+						keyId={keyId}
 						name={name}
 						optional={optional}
-						hasKey={Boolean(hasApiKey[rowProvider])}
+						hasKey={Boolean(hasApiKey[keyId])}
 						onSaved={() => {
 							refreshKeys();
 							onApiKeyChanged?.();

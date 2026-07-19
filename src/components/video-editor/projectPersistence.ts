@@ -86,6 +86,7 @@ export interface ProjectEditorState {
 	webcamReactiveZoom: boolean;
 	webcamSizePreset: WebcamSizePreset;
 	webcamPosition: WebcamPosition | null;
+	webcamSourceOverridePath: string | null;
 	exportQuality: ExportQuality;
 	exportFormat: ExportFormat;
 	gifFrameRate: GifFrameRate;
@@ -511,6 +512,10 @@ export function normalizeProjectEditor(editor: Partial<ProjectEditorState>): Pro
 				? Math.max(10, Math.min(50, editor.webcamSizePreset))
 				: DEFAULT_WEBCAM_SETTINGS.sizePreset,
 		webcamPosition: normalizedWebcamPosition,
+		webcamSourceOverridePath:
+			typeof editor.webcamSourceOverridePath === "string" && editor.webcamSourceOverridePath
+				? editor.webcamSourceOverridePath
+				: null,
 		exportQuality:
 			editor.exportQuality === "medium" || editor.exportQuality === "source"
 				? editor.exportQuality

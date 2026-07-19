@@ -49,6 +49,12 @@ export interface EditorState {
 	webcamReactiveZoom: boolean;
 	webcamSizePreset: WebcamSizePreset;
 	webcamPosition: WebcamPosition | null;
+	/**
+	 * AI-restyled replacement for the webcam video (absolute path), or null to
+	 * play the original recording. Lives in undo state so a restyle_webcam
+	 * tool call is one revertable step; the original file is never touched.
+	 */
+	webcamSourceOverridePath: string | null;
 }
 
 export const INITIAL_EDITOR_STATE: EditorState = {
@@ -73,6 +79,7 @@ export const INITIAL_EDITOR_STATE: EditorState = {
 	webcamReactiveZoom: DEFAULT_WEBCAM_REACTIVE_ZOOM,
 	webcamSizePreset: DEFAULT_WEBCAM_SETTINGS.sizePreset,
 	webcamPosition: DEFAULT_WEBCAM_SETTINGS.position,
+	webcamSourceOverridePath: null,
 };
 
 type StateUpdate = Partial<EditorState> | ((prev: EditorState) => Partial<EditorState>);

@@ -84,7 +84,7 @@ summaries:
     description: "타임라인 비디오 에디터 — 리사이즈 가능한 [AI|설정] 레일, 레인 포커스 내비, 내보내기"
     generated_at: 2026-07-17
     generated_by: wrap-up
-    stale: false
+    stale: true
     file_count: 59
   "src/hooks":
     description: "React hooks — editor history, recorder, cursor telemetry, AI chat/tool host"

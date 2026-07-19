@@ -31,7 +31,8 @@
 		"set_style": "Mudar estilo",
 		"get_transcript": "Ouvindo narração",
 		"ask_user": "Perguntando a você",
-		"export_captions_srt": "Exportando SRT"
+		"export_captions_srt": "Exportando SRT",
+		"restyle_webcam": "Transformando a webcam"
 	},
 	"autoEditButton": "Editar este vídeo automaticamente",
 	"autoEditPrompt": "Edite este vídeo automaticamente. ANTES de mexer em qualquer coisa, use ask_user (uma única chamada) para confirmar comigo três coisas: (1) estilo de zoom — sutil / dinâmico / ousado, (2) duração alvo — manter como está ou compactar com cortes e acelerações (ofereça opções concretas conforme a duração), (3) idioma das legendas — coreano / inglês / idioma original / nenhum. Depois assista ao vídeo (quadros + transcrição) e edite conforme minhas escolhas: zooms de profundidade variada seguindo a história, corte os tempos mortos, acelere onde couber, legendas no idioma escolhido. Finalize com um resumo curto das mudanças.",

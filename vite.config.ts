@@ -24,7 +24,13 @@ export default defineConfig({
 						rollupOptions: {
 							// The Agent SDK must load from node_modules at runtime so it can
 							// find its vendored native `claude` binary (platform package).
-							external: ["@anthropic-ai/claude-agent-sdk", /^@anthropic-ai\/claude-agent-sdk-/],
+							external: [
+								"@anthropic-ai/claude-agent-sdk",
+								/^@anthropic-ai\/claude-agent-sdk-/,
+								// Lazily imported in main for webcam restyle; its realtime half
+								// pulls browser-only WebRTC deps that must not be bundled.
+								"@decartai/sdk",
+							],
 						},
 					},
 				},

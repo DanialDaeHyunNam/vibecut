@@ -31,7 +31,8 @@
 		"set_style": "Cambia stile",
 		"get_transcript": "Ascolto narrazione",
 		"ask_user": "Domanda per te",
-		"export_captions_srt": "Esportazione SRT"
+		"export_captions_srt": "Esportazione SRT",
+		"restyle_webcam": "Trasformazione della webcam"
 	},
 	"autoEditButton": "Monta questo video automaticamente",
 	"autoEditPrompt": "Monta questo video automaticamente. PRIMA di toccare qualsiasi cosa, usa ask_user (una sola chiamata) per confermare con me tre cose: (1) stile di zoom — discreto / dinamico / deciso, (2) durata obiettivo — mantenere o compattare con tagli e accelerazioni (proponi opzioni concrete in base alla durata), (3) lingua dei sottotitoli — coreano / inglese / lingua originale / nessuna. Poi guarda il video (fotogrammi + trascrizione) e monta secondo le mie scelte: zoom di profondità variabile che seguono la storia, taglia i tempi morti, accelera dove serve, sottotitoli nella lingua scelta. Concludi con un breve riepilogo delle modifiche.",

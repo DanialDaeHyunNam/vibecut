@@ -68,7 +68,7 @@ const nativeMacCaptureEvents = new EventEmitter();
 // Paths the user approved via file picker or project load (i.e. outside the default dirs).
 const approvedPaths = new Set<string>();
 
-function approveFilePath(filePath: string): void {
+export function approveFilePath(filePath: string): void {
 	approvedPaths.add(path.resolve(filePath));
 }
 
@@ -333,6 +333,14 @@ async function getApprovedProjectSession(
 		: undefined;
 	if (media.webcamVideoPath && !webcamVideoPath) {
 		throw new Error("Project references an invalid or unsupported webcam video path");
+	}
+
+	// AI-restyled webcam override lives in the editor state, not media —
+	// best-effort approve it under the same trusted-dirs rule so the preview
+	// can load it after a project reload (a bad path just fails to render).
+	const editorCandidate = (project as { editor?: { webcamSourceOverridePath?: unknown } }).editor;
+	if (typeof editorCandidate?.webcamSourceOverridePath === "string") {
+		await approveReadableVideoPath(editorCandidate.webcamSourceOverridePath, trustedDirs);
 	}
 
 	return webcamVideoPath

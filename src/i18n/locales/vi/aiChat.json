@@ -31,7 +31,8 @@
 		"set_style": "Đổi kiểu dáng",
 		"get_transcript": "Đang nghe lời thoại",
 		"ask_user": "Đang hỏi bạn",
-		"export_captions_srt": "Đang xuất SRT"
+		"export_captions_srt": "Đang xuất SRT",
+		"restyle_webcam": "Đang biến đổi webcam"
 	},
 	"autoEditButton": "Tự động chỉnh sửa video này",
 	"autoEditPrompt": "Tự động chỉnh sửa video này. TRƯỚC KHI chỉnh bất cứ gì, hãy dùng ask_user (một lần gọi) để xác nhận với tôi ba điều: (1) phong cách zoom — nhẹ nhàng / năng động / mạnh mẽ, (2) thời lượng mục tiêu — giữ nguyên hoặc rút gọn bằng cắt và tua nhanh (đưa ra lựa chọn cụ thể theo thời lượng video), (3) ngôn ngữ phụ đề — tiếng Hàn / tiếng Anh / ngôn ngữ gốc / không. Sau đó xem video (khung hình + bản chép lời) và chỉnh theo lựa chọn của tôi: zoom độ sâu đa dạng theo mạch chuyện, cắt khoảng lặng, tua nhanh chỗ phù hợp, phụ đề theo ngôn ngữ đã chọn. Kết thúc bằng tóm tắt ngắn các thay đổi.",

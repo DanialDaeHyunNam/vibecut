@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T13:34:38.537Z
+updated: 2026-07-19T04:20:00.645Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -30,10 +30,19 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-17T13:31:50.907Z
-    change_count: 63
+    last_modified: 2026-07-19T04:20:00.645Z
+    change_count: 66
     purpose: "Electron main process — electron-env.d.ts."
     change_log:
+      - date: 2026-07-19T04:20:00.645Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:58.719Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:56.826Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:31:50.907Z
         action: edit
         source: "claude:Dan"
@@ -138,10 +147,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T09:04:03.778Z
-    change_count: 92
+    last_modified: 2026-07-19T04:16:55.186Z
+    change_count: 94
     purpose: "Main-process IPC — handlers.ts."
     change_log:
+      - date: 2026-07-19T04:16:55.186Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:16:50.734Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:04:03.778Z
         action: edit
         source: "claude:Dan"
@@ -1068,10 +1083,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-17T13:31:36.734Z
-    change_count: 61
+    last_modified: 2026-07-19T04:19:46.337Z
+    change_count: 62
     purpose: "Preload bridge — exposes native APIs to the renderer."
     change_log:
+      - date: 2026-07-19T04:19:46.337Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:31:36.734Z
         action: edit
         source: "claude:Dan"
@@ -1238,10 +1256,25 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T06:28:08.697Z
-    change_count: 1
+    last_modified: 2026-07-19T04:17:34.363Z
+    change_count: 6
     purpose: "ai-settings.json 로드/저장 — 모델 선택 유지, API key는 safeStorage 암호화"
     change_log:
+      - date: 2026-07-19T04:17:34.363Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:17:32.028Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:17:24.977Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:17:22.039Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:17:16.788Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T06:28:08.697Z
         action: write
         source: "claude:Dan"
@@ -1249,10 +1282,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T09:05:00.374Z
-    change_count: 7
+    last_modified: 2026-07-19T04:17:46.581Z
+    change_count: 8
     purpose: "main→renderer AI 툴콜 RPC — correlation id, 툴별 타임아웃, pending 정리"
     change_log:
+      - date: 2026-07-19T04:17:46.581Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:05:00.374Z
         action: edit
         source: "claude:Dan"
@@ -1278,10 +1314,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T07:24:35.086Z
-    change_count: 13
+    last_modified: 2026-07-19T04:17:44.385Z
+    change_count: 14
     purpose: "cinerec MCP 툴 정의(zod) — 줌/트림/배속/자막/스타일/프레임/트랜스크립트/ask_user"
     change_log:
+      - date: 2026-07-19T04:17:44.385Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T07:24:35.086Z
         action: write
         source: "claude:Dan"
@@ -1325,10 +1364,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T09:09:15.956Z
-    change_count: 6
+    last_modified: 2026-07-19T04:17:49.915Z
+    change_count: 7
     purpose: "편집 에이전트 시스템 프롬프트 + 턴별 프로젝트 스냅샷 프리픽스"
     change_log:
+      - date: 2026-07-19T04:17:49.915Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:09:15.956Z
         action: edit
         source: "claude:Dan"
@@ -1397,10 +1439,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T13:31:35.113Z
-    change_count: 7
+    last_modified: 2026-07-19T04:17:04.031Z
+    change_count: 9
     purpose: "AI 채팅 IPC — 프로바이더 상태/설정, 세션 생성·재개·중단, 이벤트 릴레이"
     change_log:
+      - date: 2026-07-19T04:17:04.031Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:17:00.138Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:31:35.113Z
         action: edit
         source: "claude:Dan"
@@ -1562,5 +1610,16 @@ files:
     purpose: ""
     change_log:
       - date: 2026-07-17T13:34:38.537Z
+        action: write
+        source: "claude:Dan"
+  "electron/ai/effects/restyleWebcam.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-19
+    last_modified: 2026-07-19T04:16:43.202Z
+    change_count: 1
+    purpose: ""
+    change_log:
+      - date: 2026-07-19T04:16:43.202Z
         action: write
         source: "claude:Dan"

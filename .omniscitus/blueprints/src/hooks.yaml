@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-17T13:32:15.772Z
+updated: 2026-07-19T04:19:38.367Z
 
 files:
   "src/hooks/audioPeaksWorker.ts":
@@ -194,10 +194,16 @@ files:
     status: active
     source: "user:FabLrc"
     created: 2026-02-27
-    last_modified: 2026-06-05
-    change_count: 18
+    last_modified: 2026-07-19T04:17:58.626Z
+    change_count: 20
     purpose: "React hook — useEditorHistory.ts."
     change_log:
+      - date: 2026-07-19T04:17:58.626Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:17:56.186Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-05"
         action: edit
         source: "user"
@@ -321,10 +327,19 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T09:05:06.497Z
-    change_count: 7
+    last_modified: 2026-07-19T04:19:38.367Z
+    change_count: 10
     purpose: "렌더러 툴 호스트 — ai:tool-call 수신, executor/프레임/트랜스크립트 실행 후 회신"
     change_log:
+      - date: 2026-07-19T04:19:38.367Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:32.587Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-19T04:19:24.325Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:05:06.497Z
         action: edit
         source: "claude:Dan"

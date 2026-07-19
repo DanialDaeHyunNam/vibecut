@@ -31,7 +31,8 @@
 		"set_style": "Change style",
 		"get_transcript": "Listening to narration",
 		"ask_user": "Asking you",
-		"export_captions_srt": "Exporting SRT"
+		"export_captions_srt": "Exporting SRT",
+		"restyle_webcam": "Restyling webcam"
 	},
 	"autoEditButton": "Auto-edit this video",
 	"autoEditPrompt": "Auto-edit this video. BEFORE touching anything, use ask_user (one call) to confirm three things with me: (1) zoom style — subtle / dynamic / aggressive, (2) target length — keep as is, or tighten it with cuts and speed-ups (offer concrete options based on the video duration), (3) caption language — Korean / English / original language / none. Then watch the video (frames + transcript), and edit to my picks: varied-depth zooms following the story, cut dead air, speed-ups where appropriate, captions in the chosen language. Finish with a short summary of changes.",
