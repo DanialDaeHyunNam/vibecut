@@ -34,8 +34,8 @@
 		"blurItem": "模糊 {{index}}",
 		"addToChat": "加入對話",
 		"range": "區間",
-		"rangeSelectHint": "Shift+拖曳選擇要傳給 AI 的區間",
-		"effect": "效果"
+		"effect": "效果",
+		"addRangeSelect": "選擇要傳送給 AI 的範圍"
 	},
 	"emptyState": {
 		"noVideo": "未載入影片",
@@ -67,7 +67,10 @@
 		"laneClickKey": "點擊軌道",
 		"laneClick": "設為 Alt 導覽目標",
 		"dividerKey": "拖曳分隔線",
-		"divider": "調整面板寬度 · 連點兩下恢復預設"
+		"divider": "調整面板寬度 · 連點兩下恢復預設",
+		"laneSwitch": "上下移動聚焦軌道",
+		"rangeSelect": "選好範圍後用 @ 傳送給 AI",
+		"blockAt": "懸停區塊即可傳送給 AI"
 	},
 	"effects": {
 		"fadeIn": "淡入",

@@ -33,7 +33,11 @@
 		"deleteRegion": "Supprimer la région de vitesse",
 		"customPlaybackSpeed": "Vitesse de lecture personnalisée",
 		"maxSpeedError": "La vitesse ne peut pas dépasser {{max}}×",
-		"previewFrameSteppingHint": "Au-delà de {{native}}×, l'aperçu avance image par image et sans son. L'export n'est pas affecté."
+		"previewFrameSteppingHint": "Au-delà de {{native}}×, l'aperçu avance image par image et sans son. L'export n'est pas affecté.",
+		"rampIn": "Rampe d'entrée",
+		"rampOut": "Rampe de sortie",
+		"rampOff": "Désactivée",
+		"rampHint": "Accélère et décélère en douceur vers la vitesse de cette région."
 	},
 	"trim": {
 		"deleteRegion": "Supprimer la région de coupe"
@@ -170,7 +174,11 @@
 		"tipShiftTabCycle": "Utilisez Shift+Tab pour cycler en sens inverse.",
 		"invalidImageType": "Type de fichier invalide",
 		"imageFormatsOnly": "Veuillez téléverser un fichier image JPG, PNG, GIF ou WebP.",
-		"imageUploadSuccess": "Image téléversée avec succès !"
+		"imageUploadSuccess": "Image téléversée avec succès !",
+		"fontWeight": "Graisse",
+		"boxPaddingX": "Marge horizontale de la boîte",
+		"boxPaddingY": "Marge verticale de la boîte",
+		"boxRadius": "Arrondi de la boîte"
 	},
 	"fontStyles": {
 		"classic": "Classique",
@@ -229,5 +237,12 @@
 	"timeline": {
 		"title": "Montage",
 		"waveform": "Afficher la forme d'onde sur la piste de découpe"
+	},
+	"videoEffect": {
+		"title": "Effet vidéo",
+		"blurIntensity": "Intensité du flou",
+		"dimIntensity": "Intensité d'assombrissement",
+		"noIntensity": "Cet effet n'a pas d'intensité réglable.",
+		"deleteRegion": "Supprimer l'effet"
 	}
 }

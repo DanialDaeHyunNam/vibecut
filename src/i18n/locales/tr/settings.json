@@ -33,7 +33,11 @@
 		"deleteRegion": "Hız Bölgesini Sil",
 		"customPlaybackSpeed": "Özel Oynatma Hızı",
 		"maxSpeedError": "Hız {{max}}× değerinden yüksek olamaz",
-		"previewFrameSteppingHint": "{{native}}× üzerinde önizleme kare kare ilerler ve sessizdir. Dışa aktarma etkilenmez."
+		"previewFrameSteppingHint": "{{native}}× üzerinde önizleme kare kare ilerler ve sessizdir. Dışa aktarma etkilenmez.",
+		"rampIn": "Giriş rampası",
+		"rampOut": "Çıkış rampası",
+		"rampOff": "Kapalı",
+		"rampHint": "Bu bölgenin hızına yumuşakça hızlanır ve yavaşlar."
 	},
 	"trim": {
 		"deleteRegion": "Kırpma Bölgesini Sil"
@@ -170,7 +174,11 @@
 		"blurType": "Bulanıklık Türü",
 		"blurTypeBlur": "Bulanık",
 		"blurTypeMosaic": "Mozaik Bulanıklık",
-		"mosaicBlockSize": "Mozaik Blok Boyutu"
+		"mosaicBlockSize": "Mozaik Blok Boyutu",
+		"fontWeight": "Kalınlık",
+		"boxPaddingX": "Kutu yatay dolgu",
+		"boxPaddingY": "Kutu dikey dolgu",
+		"boxRadius": "Kutu köşe yuvarlaklığı"
 	},
 	"fontStyles": {
 		"classic": "Klasik",
@@ -229,5 +237,12 @@
 		"rise": "Yükselme",
 		"slideLeft": "Sola kaydır",
 		"typewriter": "Daktilo"
+	},
+	"videoEffect": {
+		"title": "Video Efekti",
+		"blurIntensity": "Bulanıklık şiddeti",
+		"dimIntensity": "Karartma şiddeti",
+		"noIntensity": "Bu efektin ayarlanabilir bir şiddeti yok.",
+		"deleteRegion": "Efekti Sil"
 	}
 }

@@ -277,11 +277,27 @@ export interface AnnotationTextStyle {
 	backgroundColor: string;
 	fontSize: number; // pixels
 	fontFamily: string;
-	fontWeight: "normal" | "bold";
+	/** Numeric weights (100–900) pick the nearest face the family provides. */
+	fontWeight: "normal" | "bold" | number;
 	fontStyle: "normal" | "italic";
 	textDecoration: "none" | "underline";
 	textAlign: "left" | "center" | "right";
 	textAnimation?: AnnotationTextAnimation;
+	/** Text box padding in em, so it scales with font size. Defaults: x 0.2, y 0.1. */
+	boxPaddingX?: number;
+	boxPaddingY?: number;
+	/** Text box corner radius in px. Default 4. */
+	boxRadius?: number;
+}
+
+export const DEFAULT_CAPTION_BOX_PADDING_X_EM = 0.2;
+export const DEFAULT_CAPTION_BOX_PADDING_Y_EM = 0.1;
+export const DEFAULT_CAPTION_BOX_RADIUS_PX = 4;
+export const MAX_CAPTION_BOX_PADDING_EM = 2;
+export const MAX_CAPTION_BOX_RADIUS_PX = 48;
+
+export function resolveFontWeight(weight: AnnotationTextStyle["fontWeight"]): number {
+	return typeof weight === "number" ? weight : weight === "bold" ? 700 : 400;
 }
 
 /**

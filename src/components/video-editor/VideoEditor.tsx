@@ -127,6 +127,7 @@ import {
 	DEFAULT_ZOOM_DEPTH,
 	type EffectRegion,
 	type FigureData,
+	MAX_SPEED_RAMP_MS,
 	type PlaybackSpeed,
 	type Rotation3DPreset,
 	type SpeedRegion,
@@ -1531,6 +1532,34 @@ export default function VideoEditor() {
 		[selectedSpeedId, pushState],
 	);
 
+	// Transient during slider drag; SettingsPanel commits via onSpeedRampCommit.
+	const handleSpeedRampChange = useCallback(
+		(field: "rampInMs" | "rampOutMs", ms: number) => {
+			if (!selectedSpeedId) return;
+			const rounded = Math.max(0, Math.min(MAX_SPEED_RAMP_MS, Math.round(ms)));
+			updateState((prev) => ({
+				speedRegions: prev.speedRegions.map((region) =>
+					region.id === selectedSpeedId
+						? { ...region, [field]: rounded > 0 ? rounded : undefined }
+						: region,
+				),
+			}));
+		},
+		[selectedSpeedId, updateState],
+	);
+
+	const handleEffectIntensityChange = useCallback(
+		(intensity: number) => {
+			if (!selectedEffectId) return;
+			updateState((prev) => ({
+				effectRegions: prev.effectRegions.map((region) =>
+					region.id === selectedEffectId ? { ...region, intensity } : region,
+				),
+			}));
+		},
+		[selectedEffectId, updateState],
+	);
+
 	const handleAnnotationAdded = useCallback(
 		(span: Span) => {
 			const id = `annotation-${nextAnnotationIdRef.current++}`;
@@ -2108,6 +2137,24 @@ export default function VideoEditor() {
 				if (playback?.video) {
 					playback.video.paused ? playback.play().catch(console.error) : playback.pause();
 				}
+			}
+
+			// Shift+↑/↓: move the lane focus (used by Alt+←/→ jumps) through the
+			// lanes in visual order, wrapping at the ends.
+			if (e.shiftKey && (e.key === "ArrowUp" || e.key === "ArrowDown") && !isInput) {
+				const target = e.target;
+				if (
+					target instanceof HTMLElement &&
+					(target.isContentEditable || target.closest('[role="slider"], [role="spinbutton"]'))
+				) {
+					return;
+				}
+				e.preventDefault();
+				const laneOrder = ["zoom", "trim", "annotation", "speed"] as const;
+				const currentIndex = laneOrder.indexOf(activeLaneRef.current);
+				const step = e.key === "ArrowDown" ? 1 : laneOrder.length - 1;
+				setActiveLane(laneOrder[(currentIndex + step) % laneOrder.length]);
+				return;
 			}
 
 			// Alt+←/→: word-jump-style navigation along the active lane (set by
@@ -3181,7 +3228,6 @@ export default function VideoEditor() {
 														onToggleFullscreen={toggleFullscreen}
 														onTogglePlayPause={togglePlayPause}
 														onSeek={handleSeek}
-														onAddRangeContext={insertChatContext}
 													/>
 												</div>
 											</div>
@@ -3464,6 +3510,7 @@ export default function VideoEditor() {
 												setSelectedZoomId(null);
 												setSelectedTrimId(null);
 												setSelectedSpeedId(null);
+												setSelectedEffectId(null);
 											}}
 											selectedAnnotationId={selectedAnnotationId}
 											annotationRegions={annotationOnlyRegions}
@@ -3486,6 +3533,33 @@ export default function VideoEditor() {
 											}
 											onSpeedChange={handleSpeedChange}
 											onSpeedDelete={handleSpeedDelete}
+											selectedSpeedRampInMs={
+												selectedSpeedId
+													? (speedRegions.find((r) => r.id === selectedSpeedId)?.rampInMs ?? 0)
+													: null
+											}
+											selectedSpeedRampOutMs={
+												selectedSpeedId
+													? (speedRegions.find((r) => r.id === selectedSpeedId)?.rampOutMs ?? 0)
+													: null
+											}
+											onSpeedRampChange={handleSpeedRampChange}
+											onSpeedRampCommit={commitState}
+											selectedEffectId={selectedEffectId}
+											selectedEffectType={
+												selectedEffectId
+													? (effectRegions.find((r) => r.id === selectedEffectId)?.type ?? null)
+													: null
+											}
+											selectedEffectIntensity={
+												selectedEffectId
+													? (effectRegions.find((r) => r.id === selectedEffectId)?.intensity ??
+														null)
+													: null
+											}
+											onEffectIntensityChange={handleEffectIntensityChange}
+											onEffectIntensityCommit={commitState}
+											onEffectDelete={handleEffectDelete}
 											unsavedExport={unsavedExport}
 											onSaveUnsavedExport={handleSaveUnsavedExport}
 											onSaveDiagnostic={handleSaveDiagnostic}

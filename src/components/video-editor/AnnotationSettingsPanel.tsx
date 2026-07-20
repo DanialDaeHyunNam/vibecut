@@ -38,8 +38,26 @@ import {
 	type AnnotationRegion,
 	type AnnotationType,
 	type ArrowDirection,
+	DEFAULT_CAPTION_BOX_PADDING_X_EM,
+	DEFAULT_CAPTION_BOX_PADDING_Y_EM,
+	DEFAULT_CAPTION_BOX_RADIUS_PX,
 	type FigureData,
+	MAX_CAPTION_BOX_PADDING_EM,
+	MAX_CAPTION_BOX_RADIUS_PX,
+	resolveFontWeight,
 } from "./types";
+
+/** CSS picks the nearest face the family actually ships. Labels stay untranslated
+    (weight names are industry terms, like the font names above). */
+const FONT_WEIGHT_OPTIONS = [
+	{ value: 300, label: "300 · Light" },
+	{ value: 400, label: "400 · Regular" },
+	{ value: 500, label: "500 · Medium" },
+	{ value: 600, label: "600 · SemiBold" },
+	{ value: 700, label: "700 · Bold" },
+	{ value: 800, label: "800 · ExtraBold" },
+	{ value: 900, label: "900 · Black" },
+];
 
 interface AnnotationSettingsPanelProps {
 	annotation: AnnotationRegion;
@@ -306,6 +324,29 @@ export function AnnotationSettingsPanel({
 							</div>
 
 							<div>
+								<label className="text-xs font-medium text-slate-200 mb-2 block">
+									{t("annotation.fontWeight")}
+								</label>
+								<Select
+									value={String(resolveFontWeight(annotation.style.fontWeight))}
+									onValueChange={(value) =>
+										onStyleChange({ fontWeight: Number.parseInt(value, 10) })
+									}
+								>
+									<SelectTrigger className="w-full bg-white/5 border-white/10 text-slate-200 h-9 text-xs">
+										<SelectValue placeholder={t("annotation.fontWeight")} />
+									</SelectTrigger>
+									<SelectContent className="bg-[#1a1a1c] border-white/10 text-slate-200 max-h-[240px]">
+										{FONT_WEIGHT_OPTIONS.map((option) => (
+											<SelectItem key={option.value} value={String(option.value)}>
+												<span style={{ fontWeight: option.value }}>{option.label}</span>
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+							</div>
+
+							<div>
 								<label className="mb-2 block text-xs font-medium text-slate-200">
 									{t("annotation.textAnimation")}
 								</label>
@@ -337,10 +378,13 @@ export function AnnotationSettingsPanel({
 									<ToggleGroupItem
 										value="bold"
 										aria-label="Toggle bold"
-										data-state={annotation.style.fontWeight === "bold" ? "on" : "off"}
+										data-state={
+											resolveFontWeight(annotation.style.fontWeight) >= 600 ? "on" : "off"
+										}
 										onClick={() =>
 											onStyleChange({
-												fontWeight: annotation.style.fontWeight === "bold" ? "normal" : "bold",
+												fontWeight:
+													resolveFontWeight(annotation.style.fontWeight) >= 600 ? "normal" : "bold",
 											})
 										}
 										className="h-8 w-8 data-[state=on]:bg-[#7C5CFF] data-[state=on]:text-white text-slate-400 hover:bg-white/5 hover:text-slate-200"
@@ -493,6 +537,59 @@ export function AnnotationSettingsPanel({
 										</PopoverContent>
 									</Popover>
 								</div>
+							</div>
+
+							{/* Text box shape: em-based padding (scales with font size) + corner radius */}
+							<div className="space-y-3">
+								{[
+									{
+										key: "boxPaddingX" as const,
+										label: t("annotation.boxPaddingX"),
+										value: annotation.style.boxPaddingX ?? DEFAULT_CAPTION_BOX_PADDING_X_EM,
+										min: 0,
+										max: MAX_CAPTION_BOX_PADDING_EM,
+										step: 0.05,
+										format: (v: number) => `${v.toFixed(2)}em`,
+									},
+									{
+										key: "boxPaddingY" as const,
+										label: t("annotation.boxPaddingY"),
+										value: annotation.style.boxPaddingY ?? DEFAULT_CAPTION_BOX_PADDING_Y_EM,
+										min: 0,
+										max: MAX_CAPTION_BOX_PADDING_EM,
+										step: 0.05,
+										format: (v: number) => `${v.toFixed(2)}em`,
+									},
+									{
+										key: "boxRadius" as const,
+										label: t("annotation.boxRadius"),
+										value: annotation.style.boxRadius ?? DEFAULT_CAPTION_BOX_RADIUS_PX,
+										min: 0,
+										max: MAX_CAPTION_BOX_RADIUS_PX,
+										step: 1,
+										format: (v: number) => `${Math.round(v)}px`,
+									},
+								].map((control) => (
+									<div
+										key={control.key}
+										className="p-2 rounded-lg bg-white/5 border border-white/5"
+									>
+										<div className="flex items-center justify-between mb-1">
+											<div className="text-[10px] font-medium text-slate-300">{control.label}</div>
+											<span className="text-[10px] text-slate-500 font-mono tabular-nums">
+												{control.format(control.value)}
+											</span>
+										</div>
+										<Slider
+											value={[control.value]}
+											onValueChange={(values) => onStyleChange({ [control.key]: values[0] })}
+											min={control.min}
+											max={control.max}
+											step={control.step}
+											className="w-full [&_[role=slider]]:bg-[#7C5CFF] [&_[role=slider]]:border-[#7C5CFF] [&_[role=slider]]:h-3 [&_[role=slider]]:w-3"
+										/>
+									</div>
+								))}
 							</div>
 						</div>
 					</TabsContent>

@@ -37,6 +37,7 @@
 		"zoomTimeline": "Zoom de la timeline",
 		"frameBack": "Image précédente",
 		"frameForward": "Image suivante",
-		"laneJump": "Sauter entre les blocs de la piste"
+		"laneJump": "Sauter entre les blocs de la piste",
+		"laneSwitch": "Changer de piste active"
 	}
 }

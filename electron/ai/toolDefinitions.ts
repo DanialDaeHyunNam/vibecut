@@ -65,8 +65,38 @@ const captionStyleFields = {
 			"Box color behind each line: e.g. 'rgba(0,0,0,0.6)' (the default dim box), '#7C5CFF', or 'transparent' for bare text.",
 		),
 	fontSize: z.number().min(12).max(96).optional().describe("Font size in px (default 24)."),
-	fontWeight: z.enum(["normal", "bold"]).optional(),
+	fontWeight: z
+		.union([z.enum(["normal", "bold"]), z.number().min(100).max(900)])
+		.optional()
+		.describe(
+			"'normal', 'bold', or a numeric weight 100-900 (e.g. 800 for extra-bold, 900 for black). The nearest face the font family provides is used.",
+		),
+	fontFamily: z
+		.string()
+		.max(60)
+		.optional()
+		.describe(
+			"Font family name, e.g. 'Inter' (default), 'Arial Black', 'Impact', 'Georgia, serif'. Must be installed on the user's system.",
+		),
 	fontStyle: z.enum(["normal", "italic"]).optional(),
+	boxPaddingX: z
+		.number()
+		.min(0)
+		.max(2)
+		.optional()
+		.describe("Caption box horizontal padding in em (default 0.2 — e.g. 0.4 doubles it)."),
+	boxPaddingY: z
+		.number()
+		.min(0)
+		.max(2)
+		.optional()
+		.describe("Caption box vertical padding in em (default 0.1)."),
+	boxRadius: z
+		.number()
+		.min(0)
+		.max(48)
+		.optional()
+		.describe("Caption box corner radius in px (default 4)."),
 	textAlign: z.enum(["left", "center", "right"]).optional(),
 	textAnimation: z
 		.enum(["none", "fade", "rise", "pop", "slide-left", "typewriter", "pulse"])
@@ -82,10 +112,18 @@ const captionStyleObject = z.object(captionStyleFields);
 
 const captionMotionField = z
 	.object({
+		toAnchor: z
+			.enum(["top", "middle", "bottom"])
+			.optional()
+			.describe(
+				"Semantic destination: travel to the top band, vertical center, or bottom caption line. Prefer this over toPosition whenever the user says 'to the center/top/bottom' — no coordinate math needed. Overrides toPosition if both are given.",
+			),
 		toPosition: z
 			.object({ x: z.number().min(0).max(100), y: z.number().min(0).max(100) })
 			.optional()
-			.describe("Destination top-left as % of frame (x right, y down). The caption travels here."),
+			.describe(
+				"Destination top-left corner as % of the frame, in SCREEN coordinates: y=0 is the TOP edge, y=100 the BOTTOM — a larger y moves the caption DOWN (not up). Rough anchors: y≈5 top band, y≈40 vertical center, y≈80 bottom caption line. x grows rightward.",
+			),
 		toFontSize: z.number().min(12).max(96).optional().describe("Destination font size in px."),
 		toSize: z
 			.object({ width: z.number().min(1).max(100), height: z.number().min(1).max(100) })
@@ -315,7 +353,7 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 	{
 		name: "set_caption_style",
 		description:
-			"Restyle existing captions without changing their text or timing: text/box colors (dim box via backgroundColor rgba), font size/weight, alignment, entrance animation, and vertical position. Omit ids to restyle every caption at once. One call is one undo step.",
+			"Restyle existing captions without changing their text or timing: text/box colors (dim box via backgroundColor rgba), font size/family/weight (numeric weights supported), alignment, entrance animation, vertical position, and box shape (padding in em, corner radius in px). Omit ids to restyle every caption at once. One call is one undo step.",
 		shape: {
 			ids: z
 				.array(z.string())

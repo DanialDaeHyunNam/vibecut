@@ -37,6 +37,7 @@
 		"zoomTimeline": "Zaman Çizelgesini Yakınlaştır",
 		"frameBack": "Önceki Kare",
 		"frameForward": "Sonraki Kare",
-		"laneJump": "Şerit blokları arasında atla"
+		"laneJump": "Şerit blokları arasında atla",
+		"laneSwitch": "Odaklanan şeridi değiştir"
 	}
 }

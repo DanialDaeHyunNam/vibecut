@@ -9,7 +9,7 @@ summaries:
     stale: false
     file_count: 9
   electron:
-    description: "Electron main — 윈도우, IPC, 녹화, 네이티브 브리지, AI 에이전트 레이어(electron/ai: 프로바이더·MCP 브리지·툴호스트·정책 킬스위치·restyle 이펙트, 멀티모달 이미지 입력·자막 스타일 툴)"
+    description: "Electron main — 윈도우, IPC, 녹화, 네이티브 브리지, AI 에이전트 레이어(electron/ai: 프로바이더·MCP 브리지·툴호스트·정책 킬스위치, 자막 toAnchor 시맨틱 앵커·SCREEN 좌표 규약·박스 스타일 툴 스키마)"
     generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false
@@ -51,11 +51,11 @@ summaries:
     stale: true
     file_count: 14
   src:
-    description: "렌더러 소스 — React UI, 2열 에디터, 이펙트/내보내기 라이브러리, i18n"
+    description: "렌더러 소스 — React UI, 2열 에디터, 이펙트/내보내기 라이브러리, i18n(13로케일)"
     generated_at: 2026-07-20
     generated_by: wrap-up
-    stale: true
-    file_count: 347
+    stale: false
+    file_count: 354
   "src/assets":
     description: "Bundled cursor images and static assets"
     generated_at: 2026-07-14
@@ -63,11 +63,11 @@ summaries:
     stale: false
     file_count: 27
   "src/components":
-    description: "React 컴포넌트 — 런치 HUD, 비디오 에디터, AI 채팅 패널(컨텍스트 키·정책 배너·멀티모달 첨부·키프레임 추출), 공유 UI"
+    description: "React 컴포넌트 — 런치 HUD, 비디오 에디터(구간 선택 두-핸들, 램프/강도 인스펙터), AI 채팅 패널(멀티모달 첨부·키프레임 추출), 공유 UI"
     generated_at: 2026-07-20
     generated_by: wrap-up
-    stale: true
-    file_count: 105
+    stale: false
+    file_count: 106
   "src/components/launch":
     description: "Recording launch UI — HUD, source selector, countdown, notes, webcam self-view"
     generated_at: 2026-07-17
@@ -81,10 +81,10 @@ summaries:
     stale: false
     file_count: 20
   "src/components/video-editor":
-    description: "타임라인 비디오 에디터 — 2열 레이아웃, 레인 색상 선택 핸들, 상단 바 Export/New Project·프로젝트명, Effects 레인(fade/blur/dim), 자막 motion 렌더, speed 램프 프리뷰"
+    description: "타임라인 비디오 에디터 — 두-핸들 구간 선택(스냅·@ 주입), speed 램프/effect 강도 슬라이더 인스펙터, Shift+↑/↓ 레인 전환, 팁 캐러셀 자동 순환, 자막 박스 스타일(굵기·패딩·라운드) 패널"
     generated_at: 2026-07-20
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 59
   "src/hooks":
     description: "React hooks — editor history(effectRegions/motion), recorder, cursor telemetry, AI 채팅(녹화-키 저장·legacy 마이그레이션·백업 복원)/tool host(키프레임 스토리보드)"
@@ -99,11 +99,11 @@ summaries:
     stale: false
     file_count: 94
   "src/lib":
-    description: "공유 라이브러리 — exporter, captioning, cursor, wallpaper, shortcuts, speedRamp/videoEffects/captionMotion(프리뷰·export 공유 순수 헬퍼)"
+    description: "공유 라이브러리 — exporter, captioning, cursor, shortcuts(laneSwitch), speedRamp/videoEffects/captionMotion(프리뷰·export 공유 순수 헬퍼)"
     generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false
-    file_count: 78
+    file_count: 84
   "src/lib/captioning":
     description: "로컬 Whisper 자막 파이프라인 + SRT 직렬화 (AI 캡션 상수 공유 — dim 박스 기본 스타일)"
     generated_at: 2026-07-20
@@ -117,7 +117,7 @@ summaries:
     stale: false
     file_count: 5
   "src/lib/exporter":
-    description: "Export 파이프라인 — 프레임 렌더링(speed 램프·비디오 효과·자막 motion 반영), 인코딩, MP4/GIF muxing"
+    description: "Export 파이프라인 — 프레임 렌더링(speed 램프·비디오 효과·자막 motion·박스 패딩/라운드/숫자 굵기 반영), 인코딩, MP4/GIF muxing"
     generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false

@@ -34,8 +34,8 @@
 		"emptyText": "Empty text",
 		"addToChat": "Add to chat",
 		"range": "Range",
-		"rangeSelectHint": "Shift-drag to select a range for the AI",
-		"effect": "Effect"
+		"effect": "Effect",
+		"addRangeSelect": "Select a range for the AI"
 	},
 	"emptyState": {
 		"noVideo": "No Video Loaded",
@@ -67,7 +67,10 @@
 		"laneClickKey": "Click a lane",
 		"laneClick": "Focus it for Alt navigation",
 		"dividerKey": "Drag divider",
-		"divider": "Resize the AI panel · double-click resets"
+		"divider": "Resize the AI panel · double-click resets",
+		"laneSwitch": "Move the focused lane up / down",
+		"rangeSelect": "Pick a range, then @ sends it to the AI",
+		"blockAt": "Hover a block to send it to the AI"
 	},
 	"effects": {
 		"fadeIn": "Fade in",

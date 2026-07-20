@@ -34,8 +34,8 @@
 		"blurItem": "Flou {{index}}",
 		"addToChat": "Ajouter au chat",
 		"range": "Plage",
-		"rangeSelectHint": "Maj+glisser pour sélectionner une plage pour l’IA",
-		"effect": "Effet"
+		"effect": "Effet",
+		"addRangeSelect": "Sélectionner une plage pour l'IA"
 	},
 	"emptyState": {
 		"noVideo": "Aucune vidéo chargée",
@@ -67,7 +67,10 @@
 		"laneClickKey": "Cliquer une piste",
 		"laneClick": "La cibler pour la navigation Alt",
 		"dividerKey": "Glisser le séparateur",
-		"divider": "Redimensionner le panneau · double-clic réinitialise"
+		"divider": "Redimensionner le panneau · double-clic réinitialise",
+		"laneSwitch": "Déplacer la piste active vers le haut / bas",
+		"rangeSelect": "Choisissez une plage, puis @ l'envoie à l'IA",
+		"blockAt": "Survolez un bloc pour l'envoyer à l'IA"
 	},
 	"effects": {
 		"fadeIn": "Fondu d’entrée",

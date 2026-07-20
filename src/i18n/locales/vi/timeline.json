@@ -34,8 +34,8 @@
 		"emptyText": "Văn bản trống",
 		"addToChat": "Thêm vào trò chuyện",
 		"range": "Đoạn",
-		"rangeSelectHint": "Shift+kéo để chọn đoạn gửi cho AI",
-		"effect": "Hiệu ứng"
+		"effect": "Hiệu ứng",
+		"addRangeSelect": "Chọn một đoạn cho AI"
 	},
 	"emptyState": {
 		"noVideo": "Chưa tải video",
@@ -67,7 +67,10 @@
 		"laneClickKey": "Nhấp vào làn",
 		"laneClick": "Đặt làm mục tiêu điều hướng Alt",
 		"dividerKey": "Kéo thanh chia",
-		"divider": "Đổi cỡ bảng điều khiển · nhấp đúp để đặt lại"
+		"divider": "Đổi cỡ bảng điều khiển · nhấp đúp để đặt lại",
+		"laneSwitch": "Di chuyển làn đang chọn lên / xuống",
+		"rangeSelect": "Chọn một đoạn rồi @ gửi cho AI",
+		"blockAt": "Di chuột lên khối để gửi cho AI"
 	},
 	"effects": {
 		"fadeIn": "Mờ dần vào",

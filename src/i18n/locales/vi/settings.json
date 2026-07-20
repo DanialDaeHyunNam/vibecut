@@ -33,7 +33,11 @@
 		"deleteRegion": "Xóa vùng tốc độ",
 		"customPlaybackSpeed": "Tốc độ phát tùy chỉnh",
 		"maxSpeedError": "Tốc độ không thể cao hơn {{max}}×",
-		"previewFrameSteppingHint": "Trên {{native}}×, bản xem trước tua từng khung hình và tắt tiếng. Xuất video không bị ảnh hưởng."
+		"previewFrameSteppingHint": "Trên {{native}}×, bản xem trước tua từng khung hình và tắt tiếng. Xuất video không bị ảnh hưởng.",
+		"rampIn": "Tăng tốc vào",
+		"rampOut": "Giảm tốc ra",
+		"rampOff": "Tắt",
+		"rampHint": "Tăng và giảm tốc mượt mà đến tốc độ của vùng này."
 	},
 	"trim": {
 		"deleteRegion": "Xóa vùng cắt"
@@ -170,7 +174,11 @@
 		"imageFormatsOnly": "Vui lòng tải lên tệp hình ảnh JPG, PNG, GIF hoặc WebP.",
 		"imageUploadSuccess": "Tải lên hình ảnh thành công!",
 		"colorPalette": "Bảng màu",
-		"colorWheel": "Vòng màu"
+		"colorWheel": "Vòng màu",
+		"fontWeight": "Độ đậm",
+		"boxPaddingX": "Đệm ngang của hộp",
+		"boxPaddingY": "Đệm dọc của hộp",
+		"boxRadius": "Bo góc hộp"
 	},
 	"fontStyles": {
 		"classic": "Cổ điển",
@@ -229,5 +237,12 @@
 		"rise": "Trồi lên",
 		"slideLeft": "Trượt sang trái",
 		"typewriter": "Máy đánh chữ"
+	},
+	"videoEffect": {
+		"title": "Hiệu ứng video",
+		"blurIntensity": "Độ mờ",
+		"dimIntensity": "Độ tối",
+		"noIntensity": "Hiệu ứng này không có cường độ điều chỉnh được.",
+		"deleteRegion": "Xóa hiệu ứng"
 	}
 }

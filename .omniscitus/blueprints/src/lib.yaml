@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T12:05:47.909Z
+updated: 2026-07-20T13:23:35.314Z
 
 files:
   "src/lib/__tests__/frameStepNavigation.test.ts":
@@ -603,10 +603,19 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-12-01
-    last_modified: 2026-07-20T12:05:47.909Z
-    change_count: 16
+    last_modified: 2026-07-20T13:23:35.314Z
+    change_count: 19
     purpose: "Export/encoding pipeline — annotationRenderer.ts."
     change_log:
+      - date: 2026-07-20T13:23:35.314Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:23:32.292Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:23:29.967Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:05:47.909Z
         action: edit
         source: "claude:Dan"
@@ -1545,10 +1554,13 @@ files:
     status: active
     source: "user:FabLrc"
     created: 2026-02-26
-    last_modified: 2026-07-16T09:43:11.877Z
-    change_count: 14
+    last_modified: 2026-07-20T13:08:16.157Z
+    change_count: 15
     purpose: "Renderer library module — shortcuts.ts."
     change_log:
+      - date: 2026-07-20T13:08:16.157Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:43:11.877Z
         action: edit
         source: "claude:Dan"

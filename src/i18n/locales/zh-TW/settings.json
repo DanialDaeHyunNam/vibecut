@@ -34,7 +34,11 @@
 		"deleteRegion": "刪除速度區域",
 		"customPlaybackSpeed": "自訂播放速度",
 		"maxSpeedError": "速度不能超過 {{max}}×",
-		"previewFrameSteppingHint": "超過 {{native}}× 時，預覽為逐幀跳轉且靜音，匯出不受影響。"
+		"previewFrameSteppingHint": "超過 {{native}}× 時，預覽為逐幀跳轉且靜音，匯出不受影響。",
+		"rampIn": "漸入",
+		"rampOut": "漸出",
+		"rampOff": "關",
+		"rampHint": "平滑地加速/減速到該區間的速度。"
 	},
 	"trim": {
 		"deleteRegion": "刪除剪輯區域"
@@ -171,7 +175,11 @@
 		"blurType": "模糊類型",
 		"blurTypeBlur": "模糊",
 		"blurTypeMosaic": "馬賽克模糊",
-		"mosaicBlockSize": "馬賽克區塊大小"
+		"mosaicBlockSize": "馬賽克區塊大小",
+		"fontWeight": "字重",
+		"boxPaddingX": "文字框水平內邊距",
+		"boxPaddingY": "文字框垂直內邊距",
+		"boxRadius": "文字框圓角"
 	},
 	"fontStyles": {
 		"classic": "經典",
@@ -230,5 +238,12 @@
 		"rise": "上升",
 		"slideLeft": "左滑",
 		"typewriter": "打字機"
+	},
+	"videoEffect": {
+		"title": "視訊效果",
+		"blurIntensity": "模糊強度",
+		"dimIntensity": "變暗強度",
+		"noIntensity": "此效果沒有可調整的強度。",
+		"deleteRegion": "刪除效果"
 	}
 }

@@ -309,6 +309,73 @@ describe("aiCommandExecutor", () => {
 		expect(JSON.parse(added.content).skipped.join(" ")).toContain("color");
 	});
 
+	it("applies box shape, numeric weight, and font family; rejects unsafe families", () => {
+		const added = executeAiCommand(
+			"add_captions",
+			{
+				captions: [{ startMs: 1000, endMs: 3000, text: "두꺼운 박스" }],
+				style: {
+					fontWeight: 800,
+					fontFamily: "Arial Black",
+					boxPaddingX: 0.4,
+					boxPaddingY: 5, // clamped to 2em
+					boxRadius: 8.6, // rounded
+				},
+			},
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(added.ok).toBe(true);
+		expect(added.partial?.annotationRegions?.[0].style).toMatchObject({
+			fontWeight: 800,
+			fontFamily: "Arial Black",
+			boxPaddingX: 0.4,
+			boxPaddingY: 2,
+			boxRadius: 9,
+		});
+
+		const rejected = executeAiCommand(
+			"add_captions",
+			{
+				captions: [{ startMs: 1000, endMs: 3000, text: "주입 시도" }],
+				style: { fontFamily: "Inter; background:url(evil)" },
+			},
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(rejected.partial?.annotationRegions?.[0].style.fontFamily).not.toContain("evil");
+		expect(JSON.parse(rejected.content).skipped.join(" ")).toContain("fontFamily");
+	});
+
+	it("resolves motion.toAnchor to the same slot as the position preset", () => {
+		// "rise from the bottom, stop at center": start = style.position,
+		// destination = motion.toAnchor — no raw coordinates involved.
+		const added = executeAiCommand(
+			"add_captions",
+			{
+				captions: [
+					{
+						startMs: 1000,
+						endMs: 3000,
+						text: "아래에서 중앙까지",
+						motion: { toAnchor: "middle", toPosition: { x: 0, y: 0 } },
+					},
+				],
+				style: { position: "bottom" },
+			},
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(added.ok).toBe(true);
+		const region = added.partial?.annotationRegions?.[0];
+		expect(region).toBeDefined();
+		if (!region) throw new Error("caption missing");
+		// Anchor overrides the raw toPosition and lands above the bottom start.
+		expect(region.motion?.toPosition).toBeDefined();
+		expect(region.motion?.toPosition?.y).toBeCloseTo((100 - region.size.height) / 2);
+		expect(region.motion?.toPosition?.y ?? 0).toBeLessThan(region.position.y);
+	});
+
 	it("defaults new captions to the dim-box look", () => {
 		const added = executeAiCommand(
 			"add_captions",

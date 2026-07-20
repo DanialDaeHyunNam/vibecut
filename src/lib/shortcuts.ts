@@ -83,6 +83,15 @@ export const FIXED_SHORTCUTS: FixedShortcut[] = [
 			{ key: "arrowright", alt: true },
 		],
 	},
+	{
+		i18nKey: "laneSwitch",
+		label: "Switch Focused Lane",
+		display: "Shift + ↑ / ↓",
+		bindings: [
+			{ key: "arrowup", shift: true },
+			{ key: "arrowdown", shift: true },
+		],
+	},
 ];
 
 export type ShortcutConflict =

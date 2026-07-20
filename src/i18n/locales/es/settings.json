@@ -33,7 +33,11 @@
 		"deleteRegion": "Eliminar región de velocidad",
 		"customPlaybackSpeed": "Velocidad personalizada",
 		"maxSpeedError": "La velocidad no puede superar {{max}}×",
-		"previewFrameSteppingHint": "Por encima de {{native}}×, la vista previa avanza fotograma a fotograma y sin sonido. La exportación no se ve afectada."
+		"previewFrameSteppingHint": "Por encima de {{native}}×, la vista previa avanza fotograma a fotograma y sin sonido. La exportación no se ve afectada.",
+		"rampIn": "Rampa de entrada",
+		"rampOut": "Rampa de salida",
+		"rampOff": "Desactivada",
+		"rampHint": "Acelera y desacelera suavemente hacia la velocidad de esta región."
 	},
 	"trim": {
 		"deleteRegion": "Eliminar región de recorte"
@@ -170,7 +174,11 @@
 		"tipShiftTabCycle": "Usa Shift+Tab para recorrer hacia atrás.",
 		"invalidImageType": "Tipo de archivo no válido",
 		"imageFormatsOnly": "Por favor sube un archivo de imagen JPG, PNG, GIF o WebP.",
-		"imageUploadSuccess": "¡Imagen subida exitosamente!"
+		"imageUploadSuccess": "¡Imagen subida exitosamente!",
+		"fontWeight": "Grosor",
+		"boxPaddingX": "Relleno horizontal de caja",
+		"boxPaddingY": "Relleno vertical de caja",
+		"boxRadius": "Radio de esquinas de caja"
 	},
 	"fontStyles": {
 		"classic": "Clásico",
@@ -229,5 +237,12 @@
 	"timeline": {
 		"title": "Línea de tiempo",
 		"waveform": "Mostrar forma de onda en pista de recorte"
+	},
+	"videoEffect": {
+		"title": "Efecto de vídeo",
+		"blurIntensity": "Intensidad de desenfoque",
+		"dimIntensity": "Intensidad de oscurecido",
+		"noIntensity": "Este efecto no tiene intensidad ajustable.",
+		"deleteRegion": "Eliminar efecto"
 	}
 }

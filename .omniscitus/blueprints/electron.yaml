@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T12:10:33.663Z
+updated: 2026-07-20T13:25:40.374Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -1347,10 +1347,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T12:07:52.138Z
-    change_count: 21
+    last_modified: 2026-07-20T13:25:40.374Z
+    change_count: 25
     purpose: "cinerec MCP 툴 정의(zod) — 줌/트림/배속/자막/스타일/프레임/트랜스크립트/ask_user"
     change_log:
+      - date: 2026-07-20T13:25:40.374Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:24:57.603Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:16:27.283Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:15:43.652Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:07:52.138Z
         action: edit
         source: "claude:Dan"
@@ -1418,10 +1430,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T12:10:33.663Z
-    change_count: 15
+    last_modified: 2026-07-20T13:25:37.877Z
+    change_count: 19
     purpose: "편집 에이전트 시스템 프롬프트 + 턴별 프로젝트 스냅샷 프리픽스"
     change_log:
+      - date: 2026-07-20T13:25:37.877Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:17:05.138Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:16:41.703Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:15:51.859Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:10:33.663Z
         action: edit
         source: "claude:Dan"

@@ -15,6 +15,9 @@ import {
 	DEFAULT_BLUR_BLOCK_SIZE,
 	DEFAULT_BLUR_DATA,
 	DEFAULT_BLUR_INTENSITY,
+	DEFAULT_CAPTION_BOX_PADDING_X_EM,
+	DEFAULT_CAPTION_BOX_PADDING_Y_EM,
+	DEFAULT_CAPTION_BOX_RADIUS_PX,
 } from "./types";
 
 const FREEHAND_POINT_THRESHOLD = 1;
@@ -334,8 +337,8 @@ export function AnnotationOverlay({
 								whiteSpace: "pre-wrap",
 								boxDecorationBreak: "clone",
 								WebkitBoxDecorationBreak: "clone",
-								padding: "0.1em 0.2em",
-								borderRadius: "4px",
+								padding: `${annotation.style.boxPaddingY ?? DEFAULT_CAPTION_BOX_PADDING_Y_EM}em ${annotation.style.boxPaddingX ?? DEFAULT_CAPTION_BOX_PADDING_X_EM}em`,
+								borderRadius: `${annotation.style.boxRadius ?? DEFAULT_CAPTION_BOX_RADIUS_PX}px`,
 								lineHeight: "1.4",
 							}}
 						>

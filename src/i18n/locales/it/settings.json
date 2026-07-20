@@ -33,7 +33,11 @@
 		"deleteRegion": "Elimina regione velocità",
 		"customPlaybackSpeed": "Velocità di riproduzione personalizzata",
 		"maxSpeedError": "La velocità non può superare {{max}}×",
-		"previewFrameSteppingHint": "Oltre {{native}}×, l'anteprima procede fotogramma per fotogramma e senza audio. L'esportazione non è influenzata."
+		"previewFrameSteppingHint": "Oltre {{native}}×, l'anteprima procede fotogramma per fotogramma e senza audio. L'esportazione non è influenzata.",
+		"rampIn": "Rampa in entrata",
+		"rampOut": "Rampa in uscita",
+		"rampOff": "Disattivata",
+		"rampHint": "Accelera e decelera dolcemente verso la velocità di questa regione."
 	},
 	"trim": {
 		"deleteRegion": "Elimina regione taglio"
@@ -170,7 +174,11 @@
 		"tipShiftTabCycle": "Usa Maiusc+Tab per scorrere all'indietro.",
 		"invalidImageType": "Tipo di file non valido",
 		"imageFormatsOnly": "Carica un file immagine JPG, PNG, GIF o WebP.",
-		"imageUploadSuccess": "Immagine caricata con successo!"
+		"imageUploadSuccess": "Immagine caricata con successo!",
+		"fontWeight": "Peso",
+		"boxPaddingX": "Padding orizzontale del box",
+		"boxPaddingY": "Padding verticale del box",
+		"boxRadius": "Raggio angoli del box"
 	},
 	"fontStyles": {
 		"classic": "Classico",
@@ -229,5 +237,12 @@
 	"timeline": {
 		"title": "Timeline",
 		"waveform": "Mostra la forma d'onda sulla traccia di ritaglio"
+	},
+	"videoEffect": {
+		"title": "Effetto video",
+		"blurIntensity": "Intensità sfocatura",
+		"dimIntensity": "Intensità oscuramento",
+		"noIntensity": "Questo effetto non ha un'intensità regolabile.",
+		"deleteRegion": "Elimina effetto"
 	}
 }

@@ -34,8 +34,8 @@
 		"blurItem": "Bulanık {{index}}",
 		"addToChat": "Sohbete ekle",
 		"range": "Aralık",
-		"rangeSelectHint": "Yapay zekâ için aralık seçmek üzere Shift+sürükle",
-		"effect": "Efekt"
+		"effect": "Efekt",
+		"addRangeSelect": "Yapay zekâ için bir aralık seç"
 	},
 	"emptyState": {
 		"noVideo": "Video Yüklenmedi",
@@ -67,7 +67,10 @@
 		"laneClickKey": "Şeride tıkla",
 		"laneClick": "Alt gezinmesi için hedefle",
 		"dividerKey": "Ayracı sürükle",
-		"divider": "Panel boyutunu ayarla · çift tıklama sıfırlar"
+		"divider": "Panel boyutunu ayarla · çift tıklama sıfırlar",
+		"laneSwitch": "Odaklanan şeridi yukarı / aşağı taşı",
+		"rangeSelect": "Bir aralık seç, @ ile yapay zekâya gönder",
+		"blockAt": "Bir bloğun üzerine gel ve yapay zekâya gönder"
 	},
 	"effects": {
 		"fadeIn": "Açılma",

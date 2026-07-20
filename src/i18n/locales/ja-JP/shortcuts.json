@@ -37,6 +37,7 @@
 		"zoomTimeline": "タイムラインをズーム",
 		"frameBack": "フレームを戻す",
 		"frameForward": "フレームを進める",
-		"laneJump": "レーンのブロック間を移動"
+		"laneJump": "レーンのブロック間を移動",
+		"laneSwitch": "フォーカスレーンを切り替え"
 	}
 }
