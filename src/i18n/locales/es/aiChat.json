@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "El inicio de sesión por suscripción de {{name}} está en pausa",
 	"policyDisabledBody": "La política del proveedor cambió, así que este método se ha desactivado para proteger tu cuenta. Usa una clave API (campo bajo el selector de modelos) o vuelve más tarde.",
 	"policyLearnMore": "Más información",
-	"dismiss": "Cerrar"
+	"dismiss": "Cerrar",
+	"attach": "Adjuntar imagen o vídeo",
+	"attachFailed": "Error: {name}",
+	"attachRemove": "Quitar adjunto"
 }

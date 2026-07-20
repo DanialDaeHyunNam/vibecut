@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "O login por assinatura do {{name}} está pausado",
 	"policyDisabledBody": "A política do provedor mudou; este método foi desativado para proteger sua conta. Use uma chave de API (campo abaixo do seletor de modelos) ou volte mais tarde.",
 	"policyLearnMore": "Saiba mais",
-	"dismiss": "Fechar"
+	"dismiss": "Fechar",
+	"attach": "Anexar imagem ou vídeo",
+	"attachFailed": "Falha: {name}",
+	"attachRemove": "Remover anexo"
 }

@@ -9,14 +9,16 @@
 		"autoZoomOn": "Suggestions de zoom auto activées — cliquez pour retirer les zooms suggérés",
 		"autoZoomOff": "Suggestions de zoom auto désactivées — cliquez pour suggérer des zooms d'après le curseur",
 		"autoFocusAllOn": "Mise au point auto activée pour tous les zooms — cliquez pour tout passer en manuel",
-		"autoFocusAllOff": "Mise au point auto pour tous les zooms (la caméra suit le curseur)"
+		"autoFocusAllOff": "Mise au point auto pour tous les zooms (la caméra suit le curseur)",
+		"addEffect": "Ajouter un effet vidéo"
 	},
 	"hints": {
 		"pressZoom": "Appuyez sur Z pour ajouter un zoom",
 		"pressTrim": "Appuyez sur T pour ajouter une coupe",
 		"pressAnnotation": "Appuyez sur A pour ajouter une annotation",
 		"pressSpeed": "Appuyez sur S pour ajouter une vitesse",
-		"pressBlur": "Appuyez sur B pour ajouter une zone de flou"
+		"pressBlur": "Appuyez sur B pour ajouter une zone de flou",
+		"pressEffect": "Ajouter un effet"
 	},
 	"labels": {
 		"pan": "Panoramique",
@@ -29,7 +31,11 @@
 		"annotationItem": "Annotation",
 		"imageItem": "Image",
 		"emptyText": "Texte vide",
-		"blurItem": "Flou {{index}}"
+		"blurItem": "Flou {{index}}",
+		"addToChat": "Ajouter au chat",
+		"range": "Plage",
+		"rangeSelectHint": "Maj+glisser pour sélectionner une plage pour l’IA",
+		"effect": "Effet"
 	},
 	"emptyState": {
 		"noVideo": "Aucune vidéo chargée",
@@ -62,5 +68,11 @@
 		"laneClick": "La cibler pour la navigation Alt",
 		"dividerKey": "Glisser le séparateur",
 		"divider": "Redimensionner le panneau · double-clic réinitialise"
+	},
+	"effects": {
+		"fadeIn": "Fondu d’entrée",
+		"fadeOut": "Fondu de sortie",
+		"blur": "Flou",
+		"dim": "Assombrir"
 	}
 }

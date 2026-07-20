@@ -9,14 +9,16 @@
 		"autoZoomOn": "자동 줌 제안 켜짐 — 클릭하면 제안된 줌을 제거해요",
 		"autoZoomOff": "자동 줌 제안 꺼짐 — 클릭하면 커서 움직임으로 줌을 제안해요",
 		"autoFocusAllOn": "모든 줌에 자동 초점 켜짐 — 클릭하면 전부 수동으로 전환해요",
-		"autoFocusAllOff": "모든 줌 자동 초점 (카메라가 커서를 따라가요)"
+		"autoFocusAllOff": "모든 줌 자동 초점 (카메라가 커서를 따라가요)",
+		"addEffect": "비디오 효과 추가"
 	},
 	"hints": {
 		"pressZoom": "Z를 눌러 줌 추가",
 		"pressTrim": "T를 눌러 트림 추가",
 		"pressAnnotation": "A를 눌러 주석 추가",
 		"pressSpeed": "S를 눌러 속도 추가",
-		"pressBlur": "B 키를 눌러 블러 영역을 추가하세요"
+		"pressBlur": "B 키를 눌러 블러 영역을 추가하세요",
+		"pressEffect": "효과 추가"
 	},
 	"labels": {
 		"pan": "이동",
@@ -29,7 +31,11 @@
 		"annotationItem": "주석",
 		"imageItem": "이미지",
 		"emptyText": "빈 텍스트",
-		"blurItem": "블러 {{index}}"
+		"blurItem": "블러 {{index}}",
+		"addToChat": "채팅에 추가",
+		"range": "구간",
+		"rangeSelectHint": "Shift+드래그로 AI에 보낼 구간 선택",
+		"effect": "효과"
 	},
 	"emptyState": {
 		"noVideo": "불러온 비디오 없음",
@@ -62,5 +68,11 @@
 		"laneClick": "Alt 이동 대상 레인으로 지정",
 		"dividerKey": "구분선 드래그",
 		"divider": "AI 패널 크기 조절 · 더블클릭 시 기본값"
+	},
+	"effects": {
+		"fadeIn": "페이드 인",
+		"fadeOut": "페이드 아웃",
+		"blur": "블러",
+		"dim": "어둡게"
 	}
 }

@@ -7,6 +7,7 @@ import {
 	getNormalizedMosaicBlockSize,
 	normalizeBlurType,
 } from "@/lib/blurEffects";
+import { getCaptionRenderState } from "@/lib/captionMotion";
 
 let blurScratchCanvas: HTMLCanvasElement | null = null;
 let blurScratchCtx: CanvasRenderingContext2D | null = null;
@@ -259,6 +260,7 @@ function renderText(
 	height: number,
 	scaleFactor: number,
 	currentTimeMs: number,
+	fontSize: number,
 ) {
 	const style = annotation.style;
 	const animationState = getTextAnimationState(annotation, currentTimeMs);
@@ -280,7 +282,7 @@ function renderText(
 
 	const fontWeight = style.fontWeight === "bold" ? "bold" : "normal";
 	const fontStyle = style.fontStyle === "italic" ? "italic" : "normal";
-	const scaledFontSize = style.fontSize * scaleFactor;
+	const scaledFontSize = fontSize * scaleFactor;
 	ctx.font = `${fontStyle} ${fontWeight} ${scaledFontSize}px ${style.fontFamily}`;
 	ctx.textBaseline = "middle";
 
@@ -453,14 +455,33 @@ export async function renderAnnotations(
 	const sortedAnnotations = [...activeAnnotations].sort((a, b) => a.zIndex - b.zIndex);
 
 	for (const annotation of sortedAnnotations) {
-		const x = (annotation.position.x / 100) * canvasWidth;
-		const y = (annotation.position.y / 100) * canvasHeight;
-		const width = (annotation.size.width / 100) * canvasWidth;
-		const height = (annotation.size.height / 100) * canvasHeight;
+		// Text captions can travel/resize over their span; every other type is static.
+		const layout =
+			annotation.type === "text"
+				? getCaptionRenderState(annotation, currentTimeMs)
+				: {
+						position: annotation.position,
+						size: annotation.size,
+						fontSize: annotation.style.fontSize,
+					};
+		const x = (layout.position.x / 100) * canvasWidth;
+		const y = (layout.position.y / 100) * canvasHeight;
+		const width = (layout.size.width / 100) * canvasWidth;
+		const height = (layout.size.height / 100) * canvasHeight;
 
 		switch (annotation.type) {
 			case "text":
-				renderText(ctx, annotation, x, y, width, height, scaleFactor, currentTimeMs);
+				renderText(
+					ctx,
+					annotation,
+					x,
+					y,
+					width,
+					height,
+					scaleFactor,
+					currentTimeMs,
+					layout.fontSize,
+				);
 				break;
 
 			case "image":

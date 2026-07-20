@@ -17,6 +17,7 @@ import type {
 	AiModelInfo,
 	AiProvider,
 	AiProviderStatus,
+	AiToolImage,
 } from "./types";
 
 const MAX_TURNS = 12;
@@ -212,10 +213,25 @@ class ClaudeCodeSession implements AiChatSession {
 		}
 	}
 
-	send(text: string): void {
+	send(text: string, images: AiToolImage[] = []): void {
 		this.queue.push({
 			type: "user",
-			message: { role: "user", content: [{ type: "text", text }] },
+			message: {
+				role: "user",
+				content: [
+					// Images first — the model reads them before the instructions
+					// that reference them.
+					...images.map((image) => ({
+						type: "image" as const,
+						source: {
+							type: "base64" as const,
+							media_type: image.mimeType as "image/jpeg" | "image/png" | "image/gif" | "image/webp",
+							data: image.data,
+						},
+					})),
+					{ type: "text", text },
+				],
+			},
 			parent_tool_use_id: null,
 		});
 	}

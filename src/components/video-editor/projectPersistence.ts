@@ -15,6 +15,7 @@ import {
 } from "./editorDefaults";
 import {
 	type AnnotationRegion,
+	type CaptionMotion,
 	type CropRegion,
 	clampPlaybackSpeed,
 	DEFAULT_ANNOTATION_POSITION,
@@ -30,14 +31,17 @@ import {
 	DEFAULT_WEBCAM_REACTIVE_ZOOM,
 	DEFAULT_ZOOM_DEPTH,
 	DEFAULT_ZOOM_MOTION_BLUR,
+	type EffectRegion,
 	MAX_BLUR_BLOCK_SIZE,
 	MAX_BLUR_INTENSITY,
 	MAX_PLAYBACK_SPEED,
+	MAX_SPEED_RAMP_MS,
 	MIN_BLUR_BLOCK_SIZE,
 	MIN_BLUR_INTENSITY,
 	MIN_PLAYBACK_SPEED,
 	type SpeedRegion,
 	type TrimRegion,
+	type VideoEffectType,
 	type WebcamLayoutPreset,
 	type WebcamMaskShape,
 	type WebcamPosition,
@@ -79,6 +83,7 @@ export interface ProjectEditorState {
 	trimRegions: TrimRegion[];
 	speedRegions: SpeedRegion[];
 	annotationRegions: AnnotationRegion[];
+	effectRegions: EffectRegion[];
 	aspectRatio: AspectRatio;
 	webcamLayoutPreset: WebcamLayoutPreset;
 	webcamMaskShape: WebcamMaskShape;
@@ -129,6 +134,25 @@ function computeNormalizedWebcamLayoutPreset(
 
 function clamp(value: number, min: number, max: number) {
 	return Math.min(max, Math.max(min, value));
+}
+
+/** Keep only well-formed caption motion targets; drop the field when empty. */
+function normalizeCaptionMotion(raw: unknown): CaptionMotion | undefined {
+	if (!raw || typeof raw !== "object") return undefined;
+	const input = raw as Record<string, unknown>;
+	const motion: CaptionMotion = {};
+	const pos = input.toPosition as { x?: unknown; y?: unknown } | undefined;
+	if (pos && isFiniteNumber(pos.x) && isFiniteNumber(pos.y)) {
+		motion.toPosition = { x: clamp(pos.x, 0, 100), y: clamp(pos.y, 0, 100) };
+	}
+	const size = input.toSize as { width?: unknown; height?: unknown } | undefined;
+	if (size && isFiniteNumber(size.width) && isFiniteNumber(size.height)) {
+		motion.toSize = { width: clamp(size.width, 1, 200), height: clamp(size.height, 1, 200) };
+	}
+	if (isFiniteNumber(input.toFontSize)) motion.toFontSize = clamp(input.toFontSize, 1, 400);
+	if (isFiniteNumber(input.startMs)) motion.startMs = Math.max(0, Math.round(input.startMs));
+	if (isFiniteNumber(input.endMs)) motion.endMs = Math.max(0, Math.round(input.endMs));
+	return motion.toPosition || motion.toSize || motion.toFontSize !== undefined ? motion : undefined;
 }
 
 function encodePathSegments(pathname: string, keepWindowsDrive = false): string {
@@ -304,11 +328,49 @@ export function normalizeProjectEditor(editor: Partial<ProjectEditorState>): Pro
 							? clampPlaybackSpeed(region.speed)
 							: DEFAULT_PLAYBACK_SPEED;
 
+					const len = endMs - startMs;
+					const clampRamp = (value: unknown) =>
+						isFiniteNumber(value) && value > 0
+							? Math.min(Math.round(value), MAX_SPEED_RAMP_MS, len)
+							: undefined;
+					const rampInMs = clampRamp(region.rampInMs);
+					const rampOutMs = clampRamp(region.rampOutMs);
+
 					return {
 						id: region.id,
 						startMs,
 						endMs,
 						speed,
+						...(rampInMs ? { rampInMs } : {}),
+						...(rampOutMs ? { rampOutMs } : {}),
+					};
+				})
+		: [];
+
+	const EFFECT_TYPES = new Set<VideoEffectType>(["fadeIn", "fadeOut", "blur", "dim"]);
+	const normalizedEffectRegions: EffectRegion[] = Array.isArray(editor.effectRegions)
+		? editor.effectRegions
+				.filter((region): region is EffectRegion =>
+					Boolean(
+						region &&
+							typeof region.id === "string" &&
+							EFFECT_TYPES.has(region.type as VideoEffectType),
+					),
+				)
+				.map((region) => {
+					const rawStart = isFiniteNumber(region.startMs) ? Math.round(region.startMs) : 0;
+					const rawEnd = isFiniteNumber(region.endMs) ? Math.round(region.endMs) : rawStart + 500;
+					const startMs = Math.max(0, Math.min(rawStart, rawEnd));
+					const endMs = Math.max(startMs + 1, rawEnd);
+					const intensity = isFiniteNumber(region.intensity)
+						? Math.max(0, region.intensity)
+						: undefined;
+					return {
+						id: region.id,
+						startMs,
+						endMs,
+						type: region.type,
+						...(intensity !== undefined ? { intensity } : {}),
 					};
 				})
 		: [];
@@ -424,6 +486,10 @@ export function normalizeProjectEditor(editor: Partial<ProjectEditorState>): Pro
 											: DEFAULT_BLUR_FREEHAND_POINTS,
 									}
 								: undefined,
+						motion: normalizeCaptionMotion(region.motion),
+						exitAnimation: region.exitAnimation
+							? normalizeTextAnimation(region.exitAnimation)
+							: undefined,
 					};
 				})
 		: [];
@@ -492,6 +558,7 @@ export function normalizeProjectEditor(editor: Partial<ProjectEditorState>): Pro
 		trimRegions: normalizedTrimRegions,
 		speedRegions: normalizedSpeedRegions,
 		annotationRegions: normalizedAnnotationRegions,
+		effectRegions: normalizedEffectRegions,
 		aspectRatio: normalizedAspectRatio,
 		webcamLayoutPreset: normalizedWebcamLayoutPreset,
 		webcamMaskShape:

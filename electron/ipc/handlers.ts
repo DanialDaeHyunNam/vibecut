@@ -316,20 +316,26 @@ async function getApprovedProjectSession(
 		return null;
 	}
 
-	// Only auto-approve media within the project's dir or RECORDINGS_DIR, so a crafted
-	// project file can't approve reads to arbitrary locations.
+	// The user opened THIS project themselves (native dialog or drag-drop), so
+	// approving the video it points to is consent-backed — a project imported
+	// from an out-of-tree source (e.g. a .mov on the Desktop) must still reopen
+	// after a restart, when the one-time import approval is gone. We keep the
+	// hard guards that matter (must be a real file with a video extension; see
+	// approveReadableVideoPath) but no longer require the media to sit inside
+	// RECORDINGS_DIR or the project folder. The AI-restyled webcam override
+	// below stays dir-restricted since nothing user-chosen points at it.
 	const trustedDirs = [RECORDINGS_DIR];
 	if (projectFilePath) {
 		trustedDirs.push(path.dirname(path.resolve(projectFilePath)));
 	}
 
-	const screenVideoPath = await approveReadableVideoPath(media.screenVideoPath, trustedDirs);
+	const screenVideoPath = await approveReadableVideoPath(media.screenVideoPath);
 	if (!screenVideoPath) {
 		throw new Error("Project references an invalid or unsupported screen video path");
 	}
 
 	const webcamVideoPath = media.webcamVideoPath
-		? await approveReadableVideoPath(media.webcamVideoPath, trustedDirs)
+		? await approveReadableVideoPath(media.webcamVideoPath)
 		: undefined;
 	if (media.webcamVideoPath && !webcamVideoPath) {
 		throw new Error("Project references an invalid or unsupported webcam video path");

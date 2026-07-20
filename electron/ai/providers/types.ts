@@ -65,7 +65,7 @@ export interface AiChatSessionOptions {
 
 export interface AiChatSession {
 	/** Queue a user message; streaming responses arrive via onEvent. */
-	send(text: string): void;
+	send(text: string, images?: AiToolImage[]): void;
 	/** Interrupt the in-flight turn. The session stays usable. */
 	cancel(): Promise<void>;
 	/** Tear down the underlying process/stream. The session is unusable after. */

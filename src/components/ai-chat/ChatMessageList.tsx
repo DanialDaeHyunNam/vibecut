@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useScopedT } from "@/contexts/I18nContext";
 import type { AiChatItem } from "@/hooks/useAiChat";
 import { AskUserQuestionCard } from "./AskUserQuestionCard";
+import { formatElapsed } from "./elapsed";
 import { ToolCallChip } from "./ToolCallChip";
 
 /**
@@ -63,6 +64,21 @@ function AssistantMarkdown({ text }: { text: string }) {
 	);
 }
 
+/**
+ * A once-per-second clock that only ticks while `active` — so an in-flight AI
+ * turn shows a live elapsed counter without re-rendering the panel when idle.
+ */
+function useTick(active: boolean): number {
+	const [now, setNow] = useState(() => Date.now());
+	useEffect(() => {
+		if (!active) return;
+		setNow(Date.now());
+		const timer = setInterval(() => setNow(Date.now()), 1000);
+		return () => clearInterval(timer);
+	}, [active]);
+	return now;
+}
+
 interface ChatMessageListProps {
 	items: AiChatItem[];
 	busy: boolean;
@@ -87,6 +103,13 @@ export function ChatMessageList({
 	const t = useScopedT("aiChat");
 	const containerRef = useRef<HTMLDivElement>(null);
 	const stickToBottomRef = useRef(true);
+
+	// Live elapsed for the in-flight turn: start when busy flips on, tick while busy.
+	const now = useTick(busy);
+	const turnStartRef = useRef<number | null>(null);
+	if (busy && turnStartRef.current === null) turnStartRef.current = Date.now();
+	if (!busy && turnStartRef.current !== null) turnStartRef.current = null;
+	const turnElapsedMs = busy && turnStartRef.current !== null ? now - turnStartRef.current : 0;
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: items is the scroll trigger, not a read dependency
 	useEffect(() => {
@@ -140,6 +163,23 @@ export function ChatMessageList({
 						return (
 							<div key={item.id} className="flex justify-end">
 								<div className="max-w-[85%] rounded-2xl rounded-br-sm bg-[#7C5CFF]/15 px-3 py-2 text-sm text-white whitespace-pre-wrap break-words">
+									{item.attachments && item.attachments.length > 0 && (
+										<div className={`flex flex-wrap gap-1.5 ${item.text ? "mb-1.5" : ""}`}>
+											{item.attachments.map((attachment, index) => (
+												<span
+													key={`${item.id}-att-${index}`}
+													className="flex items-center gap-1.5 rounded-lg bg-black/25 px-1.5 py-1 text-[11px] text-white/70"
+												>
+													<img
+														src={attachment.thumb}
+														alt=""
+														className="h-6 w-6 rounded object-cover"
+													/>
+													<span className="max-w-[110px] truncate">{attachment.name}</span>
+												</span>
+											))}
+										</div>
+									)}
 									{item.text}
 								</div>
 							</div>
@@ -155,7 +195,16 @@ export function ChatMessageList({
 					case "tool":
 						return (
 							<div key={item.id} className="flex justify-start">
-								<ToolCallChip name={item.name} status={item.status} summary={item.summary} />
+								<ToolCallChip
+									name={item.name}
+									status={item.status}
+									summary={item.summary}
+									elapsedMs={
+										item.status === "running" && item.startedAt !== undefined
+											? now - item.startedAt
+											: undefined
+									}
+								/>
 							</div>
 						);
 					case "question":
@@ -180,10 +229,15 @@ export function ChatMessageList({
 			})}
 			{busy && (
 				<div className="flex justify-start py-3">
-					<div className="flex items-center gap-1 rounded-2xl rounded-bl-sm bg-white/[0.06] px-3.5 py-2.5">
-						<span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse" />
-						<span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse [animation-delay:150ms]" />
-						<span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse [animation-delay:300ms]" />
+					<div className="flex items-center gap-2 rounded-2xl rounded-bl-sm bg-white/[0.06] px-3.5 py-2.5">
+						<span className="flex items-center gap-1">
+							<span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse" />
+							<span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse [animation-delay:150ms]" />
+							<span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse [animation-delay:300ms]" />
+						</span>
+						<span className="text-[11px] tabular-nums text-white/35">
+							{formatElapsed(turnElapsedMs)}
+						</span>
 					</div>
 				</div>
 			)}

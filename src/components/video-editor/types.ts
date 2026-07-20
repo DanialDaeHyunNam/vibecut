@@ -284,6 +284,20 @@ export interface AnnotationTextStyle {
 	textAnimation?: AnnotationTextAnimation;
 }
 
+/**
+ * Optional keyframed motion for a caption: over [startMs, endMs] (defaults to
+ * the region's own span) the caption eases from its base position/size/fontSize
+ * to the given targets, so it can travel and resize across its lifetime.
+ */
+export interface CaptionMotion {
+	toPosition?: AnnotationPosition;
+	toSize?: AnnotationSize;
+	toFontSize?: number;
+	/** Absolute ms the move starts/ends; defaults to the region's own span. */
+	startMs?: number;
+	endMs?: number;
+}
+
 export interface AnnotationRegion {
 	id: string;
 	startMs: number;
@@ -300,6 +314,10 @@ export interface AnnotationRegion {
 	annotationSource?: "auto-caption";
 	figureData?: FigureData;
 	blurData?: BlurData;
+	/** A→B travel/resize across the span (captions). */
+	motion?: CaptionMotion;
+	/** Exit animation played in the tail, mirroring style.textAnimation on entry. */
+	exitAnimation?: AnnotationTextAnimation;
 }
 
 export const DEFAULT_ANNOTATION_POSITION: AnnotationPosition = {
@@ -383,7 +401,33 @@ export interface SpeedRegion {
 	startMs: number;
 	endMs: number;
 	speed: PlaybackSpeed;
+	/**
+	 * Ease from the previous touching region's speed (or 1×) up to this region's
+	 * speed over this many ms at the start. 0/undefined = hard cut (default).
+	 */
+	rampInMs?: number;
+	/** Ease down to the next touching region's speed (or 1×) over this many ms at the end. */
+	rampOutMs?: number;
 }
+
+/** Upper bound on a single speed ramp (accelerate/decelerate) duration. */
+export const MAX_SPEED_RAMP_MS = 5000;
+
+/** Full-frame video effects applied over a time span (source timeline). */
+export type VideoEffectType = "fadeIn" | "fadeOut" | "blur" | "dim";
+
+export interface EffectRegion {
+	id: string;
+	startMs: number;
+	endMs: number;
+	type: VideoEffectType;
+	/** blur = radius px; dim = black opacity 0-1. Ignored by fadeIn/fadeOut. */
+	intensity?: number;
+}
+
+export const DEFAULT_EFFECT_BLUR_PX = 8;
+export const MAX_EFFECT_BLUR_PX = 40;
+export const DEFAULT_EFFECT_DIM_ALPHA = 0.45;
 
 export const SPEED_OPTIONS: Array<{ speed: PlaybackSpeed; label: string }> = [
 	{ speed: 0.25, label: "0.25×" },

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { OutgoingAttachment } from "@/components/ai-chat/attachments";
 
 export interface AskUserOption {
 	label: string;
@@ -12,8 +13,15 @@ export interface AskUserQuestionSpec {
 	options: AskUserOption[];
 }
 
+export interface UserAttachmentMeta {
+	kind: "image" | "video";
+	name: string;
+	/** Tiny data-URL thumbnail (safe to persist in localStorage). */
+	thumb: string;
+}
+
 export type AiChatItem =
-	| { kind: "user"; id: number; text: string }
+	| { kind: "user"; id: number; text: string; attachments?: UserAttachmentMeta[] }
 	| { kind: "assistant"; id: number; text: string }
 	| {
 			kind: "tool";
@@ -22,6 +30,8 @@ export type AiChatItem =
 			name: string;
 			status: "running" | "ok" | "error";
 			summary?: string;
+			/** Epoch ms when the tool started — drives the live elapsed counter. */
+			startedAt?: number;
 	  }
 	| {
 			kind: "question";
@@ -70,8 +80,22 @@ function loadPersistedChat(storage: string | null): PersistedChat {
  * underlying CLI session id is stored with it, so after an app restart the
  * next message resumes the same agent conversation.
  */
-export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string | null) {
+export function useAiChat(
+	getSnapshot: AiChatSnapshotSource,
+	storageKey: string | null,
+	/**
+	 * Old storage key to recover from. Before the fix that keyed the chat to the
+	 * recording, chats were keyed by the project path — so a project saved back
+	 * then has its transcript under this legacy key. When the primary key is
+	 * empty, we adopt and migrate it once.
+	 */
+	legacyStorageKey?: string | null,
+) {
 	const storage = storageKey ? `cinerec-ai-chat:${storageKey}` : null;
+	const legacyStorage =
+		legacyStorageKey && legacyStorageKey !== storageKey
+			? `cinerec-ai-chat:${legacyStorageKey}`
+			: null;
 	const [providers, setProviders] = useState<AiProviderListing[]>([]);
 	const [provider, setProviderState] = useState<AiProviderId>("claude-code");
 	const [model, setModelState] = useState<string>("claude-opus-4-8");
@@ -92,13 +116,51 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 	// Load the project's saved transcript on project switch; drop any live
 	// main-process session so the next send resumes this project's session.
 	useEffect(() => {
-		const saved = loadPersistedChat(storage);
+		let saved = loadPersistedChat(storage);
+		// Recover a chat stranded under the legacy (project-path) key: adopt it and
+		// re-save under the current key so this migration only ever runs once.
+		if (saved.items.length === 0 && legacyStorage) {
+			const legacy = loadPersistedChat(legacyStorage);
+			if (legacy.items.length > 0) {
+				saved = legacy;
+				if (storage) {
+					try {
+						localStorage.setItem(
+							storage,
+							JSON.stringify({
+								items: legacy.items.slice(-MAX_PERSISTED_ITEMS),
+								sessionId: legacy.sessionId,
+							}),
+						);
+					} catch {
+						// Migration is best-effort; the legacy copy stays intact regardless.
+					}
+				}
+			}
+		}
 		setItems(saved.items);
 		setSessionId(saved.sessionId);
 		nextIdRef.current = saved.items.reduce((max, item) => Math.max(max, item.id), 0) + 1;
 		setBusy(false);
 		void window.electronAPI.aiChatReset();
-	}, [storage]);
+
+		// Last-resort recovery: a `<video>.chat.json` sidecar (rebuilt from a Claude
+		// Code session log) is imported only when nothing else had a transcript, so
+		// the panel shows the recovered chat and the next message resumes its session.
+		if (saved.items.length === 0 && storageKey) {
+			let cancelled = false;
+			void window.electronAPI.aiChatReadBackup(storageKey).then((backup) => {
+				if (cancelled || !backup || backup.items.length === 0) return;
+				const items = backup.items as AiChatItem[];
+				setItems(items);
+				setSessionId(backup.sessionId);
+				nextIdRef.current = items.reduce((max, item) => Math.max(max, item.id), 0) + 1;
+			});
+			return () => {
+				cancelled = true;
+			};
+		}
+	}, [storage, legacyStorage, storageKey]);
 
 	// Persist transcript + session id (skips while nothing is loaded).
 	useEffect(() => {
@@ -262,6 +324,7 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 							toolCallId: event.toolCallId,
 							name: event.name,
 							status: "running",
+							startedAt: Date.now(),
 						},
 					]);
 					break;
@@ -295,15 +358,31 @@ export function useAiChat(getSnapshot: AiChatSnapshotSource, storageKey: string 
 	}, []);
 
 	const send = useCallback(
-		async (text: string) => {
+		async (text: string, attachments: OutgoingAttachment[] = []) => {
 			const trimmed = text.trim();
-			if (!trimmed || busy) return;
+			if ((!trimmed && attachments.length === 0) || busy) return;
 			setBusy(true);
-			setItems((prev) => [...prev, { kind: "user", id: allocId(), text: trimmed }]);
+			setItems((prev) => [
+				...prev,
+				{
+					kind: "user",
+					id: allocId(),
+					text: trimmed,
+					attachments:
+						attachments.length > 0
+							? attachments.map(({ kind, name, thumb }) => ({ kind, name, thumb }))
+							: undefined,
+				},
+			]);
+			// The model needs to know WHAT was attached (an attached video's
+			// timestamps are its own, not the project timeline's) — the notes
+			// ride along as text while the UI shows only the chips.
+			const notes = attachments.map((attachment) => attachment.note).join("\n");
 			const result = await window.electronAPI.aiChatSend({
 				provider,
 				model,
-				text: trimmed,
+				text: notes ? (trimmed ? `${trimmed}\n\n${notes}` : notes) : trimmed,
+				attachments: attachments.flatMap((attachment) => attachment.images),
 				snapshot: getSnapshot(),
 				resumeSessionId: sessionIdRef.current ?? undefined,
 			});

@@ -7,6 +7,7 @@ function makeContext(overrides: Partial<AiCommandContext> = {}): AiCommandContex
 	let zoomId = 1;
 	let trimId = 1;
 	let speedId = 1;
+	let effectId = 1;
 	let annotationId = 1;
 	let zIndex = 1;
 	return {
@@ -16,6 +17,7 @@ function makeContext(overrides: Partial<AiCommandContext> = {}): AiCommandContex
 		allocZoomId: () => `zoom-${zoomId++}`,
 		allocTrimId: () => `trim-${trimId++}`,
 		allocSpeedId: () => `speed-${speedId++}`,
+		allocEffectId: () => `effect-${effectId++}`,
 		allocAnnotationId: () => `annotation-${annotationId++}`,
 		allocAnnotationZIndex: () => zIndex++,
 		...overrides,
@@ -211,6 +213,39 @@ describe("aiCommandExecutor", () => {
 		expect(speeds.partial?.speedRegions?.[0].speed).toBe(100);
 	});
 
+	it("adds a speed region with ramps and clamps them to the region length", () => {
+		const result = executeAiCommand(
+			"add_speed_regions",
+			{ regions: [{ startMs: 1000, endMs: 3000, speed: 4, rampInMs: 400, rampOutMs: 9000 }] },
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		const region = result.partial?.speedRegions?.[0];
+		expect(region?.rampInMs).toBe(400);
+		// rampOut 9000 clamped to the 2000ms region length.
+		expect(region?.rampOutMs).toBe(2000);
+	});
+
+	it("clears a ramp on update when set to 0 and keeps it when omitted", () => {
+		const added = executeAiCommand(
+			"add_speed_regions",
+			{ regions: [{ startMs: 1000, endMs: 5000, speed: 3, rampInMs: 500, rampOutMs: 500 }] },
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		const state = { ...INITIAL_EDITOR_STATE, speedRegions: added.partial?.speedRegions ?? [] };
+		const id = state.speedRegions[0].id;
+		const updated = executeAiCommand(
+			"update_speed_region",
+			{ id, rampInMs: 0 },
+			state,
+			makeContext(),
+		);
+		const region = updated.partial?.speedRegions?.[0];
+		expect(region?.rampInMs).toBeUndefined(); // cleared
+		expect(region?.rampOutMs).toBe(500); // omitted → kept
+	});
+
 	it("adds captions styled as auto-captions and deletes them by id", () => {
 		const added = executeAiCommand(
 			"add_captions",
@@ -243,6 +278,136 @@ describe("aiCommandExecutor", () => {
 		);
 		expect(deleted.ok).toBe(true);
 		expect(deleted.partial?.annotationRegions).toHaveLength(0);
+	});
+
+	it("applies caption style overrides and position presets on add_captions", () => {
+		const added = executeAiCommand(
+			"add_captions",
+			{
+				captions: [{ startMs: 1000, endMs: 3000, text: "임팩트 있게 🚀" }],
+				style: {
+					backgroundColor: "rgba(0,0,0,0.75)",
+					fontSize: 200,
+					textAnimation: "pop",
+					position: "top",
+					color: "url(javascript:alert(1))",
+				},
+			},
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(added.ok).toBe(true);
+		const region = added.partial?.annotationRegions?.[0];
+		expect(region?.style).toMatchObject({
+			backgroundColor: "rgba(0,0,0,0.75)",
+			fontSize: 96, // clamped
+			textAnimation: "pop",
+			// Unsafe color rejected — default (white) kept.
+			color: "#ffffff",
+		});
+		expect(region?.position.y).toBe(4);
+		expect(JSON.parse(added.content).skipped.join(" ")).toContain("color");
+	});
+
+	it("defaults new captions to the dim-box look", () => {
+		const added = executeAiCommand(
+			"add_captions",
+			{ captions: [{ startMs: 1000, endMs: 3000, text: "기본 스타일" }] },
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(added.partial?.annotationRegions?.[0].style).toMatchObject({
+			backgroundColor: "rgba(0, 0, 0, 0.7)",
+			fontWeight: "bold",
+			color: "#ffffff",
+		});
+	});
+
+	it("restyles all captions at once via set_caption_style", () => {
+		const added = executeAiCommand(
+			"add_captions",
+			{
+				captions: [
+					{ startMs: 1000, endMs: 3000, text: "one" },
+					{ startMs: 4000, endMs: 6000, text: "two" },
+				],
+			},
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		const state = {
+			...INITIAL_EDITOR_STATE,
+			annotationRegions: added.partial?.annotationRegions ?? [],
+		};
+		const restyled = executeAiCommand(
+			"set_caption_style",
+			{ style: { backgroundColor: "transparent", position: "middle", fontWeight: "normal" } },
+			state,
+			makeContext(),
+		);
+		expect(restyled.ok).toBe(true);
+		const regions = restyled.partial?.annotationRegions ?? [];
+		expect(regions).toHaveLength(2);
+		for (const region of regions) {
+			expect(region.style.backgroundColor).toBe("transparent");
+			expect(region.style.fontWeight).toBe("normal");
+			// Text/timing untouched.
+			expect(["one", "two"]).toContain(region.content);
+		}
+		expect(JSON.parse(restyled.content).restyled).toBe(2);
+
+		const targeted = executeAiCommand(
+			"set_caption_style",
+			{ ids: [regions[0].id], style: { color: "#FFD84D" } },
+			{ ...INITIAL_EDITOR_STATE, annotationRegions: regions },
+			makeContext(),
+		);
+		const after = targeted.partial?.annotationRegions ?? [];
+		expect(after[0].style.color).toBe("#FFD84D");
+		expect(after[1].style.color).not.toBe("#FFD84D");
+	});
+
+	it("rejects set_caption_style with no valid fields or no captions", () => {
+		const noFields = executeAiCommand(
+			"set_caption_style",
+			{ style: { position: "diagonal" } },
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(noFields.ok).toBe(false);
+
+		const noCaptions = executeAiCommand(
+			"set_caption_style",
+			{ style: { color: "#fff" } },
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(noCaptions.ok).toBe(false);
+	});
+
+	it("merges style fields into an existing caption via update_caption", () => {
+		const added = executeAiCommand(
+			"add_captions",
+			{ captions: [{ startMs: 1000, endMs: 3000, text: "hello" }] },
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		const state = {
+			...INITIAL_EDITOR_STATE,
+			annotationRegions: added.partial?.annotationRegions ?? [],
+		};
+		const updated = executeAiCommand(
+			"update_caption",
+			{ id: state.annotationRegions[0].id, style: { textAnimation: "rise" } },
+			state,
+			makeContext(),
+		);
+		expect(updated.ok).toBe(true);
+		const region = updated.partial?.annotationRegions?.[0];
+		expect(region?.style.textAnimation).toBe("rise");
+		// Untouched fields survive the merge.
+		expect(region?.style.fontWeight).toBe("bold");
+		expect(region?.content).toBe("hello");
 	});
 
 	it("lists captions in project context", () => {
@@ -299,6 +464,37 @@ describe("aiCommandExecutor", () => {
 			makeContext(),
 		);
 		expect(bad.ok).toBe(false);
+	});
+
+	it("adds video effects, clamps intensity by type, and deletes them", () => {
+		const added = executeAiCommand(
+			"add_effects",
+			{
+				effects: [
+					{ startMs: 0, endMs: 500, type: "fadeIn", intensity: 30 }, // intensity ignored
+					{ startMs: 9000, endMs: 10000, type: "fadeOut" },
+					{ startMs: 2000, endMs: 4000, type: "blur", intensity: 999 }, // clamps to 40
+					{ startMs: 0, endMs: 50, type: "bogus" as never }, // invalid type → skipped
+				],
+			},
+			INITIAL_EDITOR_STATE,
+			makeContext(),
+		);
+		expect(added.ok).toBe(true);
+		const effects = added.partial?.effectRegions ?? [];
+		expect(effects).toHaveLength(3);
+		expect(effects.find((e) => e.type === "fadeIn")?.intensity).toBeUndefined();
+		expect(effects.find((e) => e.type === "blur")?.intensity).toBe(40);
+		expect(JSON.parse(added.content).skipped).toHaveLength(1);
+
+		const state = { ...INITIAL_EDITOR_STATE, effectRegions: effects };
+		const deleted = executeAiCommand(
+			"delete_effects",
+			{ ids: [effects[0].id, effects[1].id] },
+			state,
+			makeContext(),
+		);
+		expect(deleted.partial?.effectRegions).toHaveLength(1);
 	});
 
 	it("rejects unknown commands", () => {

@@ -9,14 +9,16 @@
 		"autoZoomOn": "自動ズーム提案オン — クリックで提案されたズームを削除",
 		"autoZoomOff": "自動ズーム提案オフ — クリックでカーソルからズームを提案",
 		"autoFocusAllOn": "全ズームでオートフォーカスオン — クリックで全て手動に切り替え",
-		"autoFocusAllOff": "全ズームをオートフォーカス（カメラがカーソルを追従）"
+		"autoFocusAllOff": "全ズームをオートフォーカス（カメラがカーソルを追従）",
+		"addEffect": "ビデオエフェクトを追加"
 	},
 	"hints": {
 		"pressZoom": "Zキーを押してズームを追加",
 		"pressTrim": "Tキーを押してトリムを追加",
 		"pressAnnotation": "Aキーを押して注釈を追加",
 		"pressBlur": "Bキーを押してぼかしを追加",
-		"pressSpeed": "Sキーを押して再生速度を追加"
+		"pressSpeed": "Sキーを押して再生速度を追加",
+		"pressEffect": "エフェクト追加"
 	},
 	"labels": {
 		"pan": "移動",
@@ -29,7 +31,11 @@
 		"annotationItem": "注釈",
 		"blurItem": "ぼかし {{index}}",
 		"imageItem": "画像",
-		"emptyText": "空のテキスト"
+		"emptyText": "空のテキスト",
+		"addToChat": "チャットに追加",
+		"range": "区間",
+		"rangeSelectHint": "Shift+ドラッグでAIに送る区間を選択",
+		"effect": "エフェクト"
 	},
 	"emptyState": {
 		"noVideo": "ビデオが読み込まれていません",
@@ -62,5 +68,11 @@
 		"laneClick": "Alt移動の対象にする",
 		"dividerKey": "仕切りをドラッグ",
 		"divider": "パネルの幅を調整 · ダブルクリックで初期値"
+	},
+	"effects": {
+		"fadeIn": "フェードイン",
+		"fadeOut": "フェードアウト",
+		"blur": "ぼかし",
+		"dim": "暗く"
 	}
 }

@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "{{name}} subscription sign-in is paused",
 	"policyDisabledBody": "The provider's policy changed, so this sign-in method is disabled to protect your account. Use an API key instead (field under the model picker), or check back later.",
 	"policyLearnMore": "Learn more",
-	"dismiss": "Dismiss"
+	"dismiss": "Dismiss",
+	"attach": "Attach image or video",
+	"attachFailed": "Failed: {name}",
+	"attachRemove": "Remove attachment"
 }

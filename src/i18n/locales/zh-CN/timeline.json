@@ -9,14 +9,16 @@
 		"autoZoomOn": "自动缩放建议已开启——点击以移除建议的缩放",
 		"autoZoomOff": "自动缩放建议已关闭——点击以根据光标生成缩放建议",
 		"autoFocusAllOn": "所有缩放的自动聚焦已开启——点击将全部切换为手动",
-		"autoFocusAllOff": "所有缩放自动聚焦（镜头跟随光标）"
+		"autoFocusAllOff": "所有缩放自动聚焦（镜头跟随光标）",
+		"addEffect": "添加视频效果"
 	},
 	"hints": {
 		"pressZoom": "按 Z 添加缩放",
 		"pressTrim": "按 T 添加剪辑",
 		"pressAnnotation": "按 A 添加标注",
 		"pressSpeed": "按 S 添加速度",
-		"pressBlur": "按 B 添加模糊区域"
+		"pressBlur": "按 B 添加模糊区域",
+		"pressEffect": "添加效果"
 	},
 	"labels": {
 		"pan": "平移",
@@ -29,7 +31,11 @@
 		"annotationItem": "标注",
 		"imageItem": "图片",
 		"emptyText": "空文本",
-		"blurItem": "模糊 {{index}}"
+		"blurItem": "模糊 {{index}}",
+		"addToChat": "添加到对话",
+		"range": "区间",
+		"rangeSelectHint": "Shift+拖动选择要发送给 AI 的区间",
+		"effect": "效果"
 	},
 	"emptyState": {
 		"noVideo": "未加载视频",
@@ -62,5 +68,11 @@
 		"laneClick": "设为 Alt 导航目标",
 		"dividerKey": "拖动分隔条",
 		"divider": "调整面板宽度 · 双击恢复默认"
+	},
+	"effects": {
+		"fadeIn": "淡入",
+		"fadeOut": "淡出",
+		"blur": "模糊",
+		"dim": "变暗"
 	}
 }

@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "{{name}} abonelik girişi duraklatıldı",
 	"policyDisabledBody": "Sağlayıcının politikası değişti; hesabınızı korumak için bu giriş yöntemi devre dışı bırakıldı. API anahtarı kullanın (model seçicinin altındaki alan) veya daha sonra tekrar deneyin.",
 	"policyLearnMore": "Daha fazla bilgi",
-	"dismiss": "Kapat"
+	"dismiss": "Kapat",
+	"attach": "Görsel veya video ekle",
+	"attachFailed": "Başarısız: {name}",
+	"attachRemove": "Eki kaldır"
 }

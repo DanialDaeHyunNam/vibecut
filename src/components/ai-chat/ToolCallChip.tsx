@@ -1,15 +1,18 @@
 import { AlertCircle, Check, Loader2, Wrench } from "lucide-react";
 import { useScopedT } from "@/contexts/I18nContext";
 import { cn } from "@/lib/utils";
+import { formatElapsed } from "./elapsed";
 
 interface ToolCallChipProps {
 	name: string;
 	status: "running" | "ok" | "error";
 	summary?: string;
+	/** Live elapsed for a running tool — surfaces slow steps (video scan, transcribe). */
+	elapsedMs?: number;
 }
 
 /** Inline chip showing one editor tool call: spinner → result summary. */
-export function ToolCallChip({ name, status, summary }: ToolCallChipProps) {
+export function ToolCallChip({ name, status, summary, elapsedMs }: ToolCallChipProps) {
 	const t = useScopedT("aiChat");
 	const base = t(`tool.${name}`);
 	const label = summary ? `${base} · ${summary}` : base;
@@ -28,6 +31,9 @@ export function ToolCallChip({ name, status, summary }: ToolCallChipProps) {
 			{status === "error" && <AlertCircle className="h-3 w-3 flex-shrink-0" />}
 			{status === "running" && <Wrench className="h-3 w-3 flex-shrink-0 opacity-60" />}
 			<span className="truncate">{status === "running" ? base : label}</span>
+			{status === "running" && elapsedMs !== undefined && elapsedMs >= 2000 && (
+				<span className="flex-shrink-0 tabular-nums text-white/40">{formatElapsed(elapsedMs)}</span>
+			)}
 		</div>
 	);
 }

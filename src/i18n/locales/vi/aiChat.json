@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "Đăng nhập bằng gói {{name}} đang tạm dừng",
 	"policyDisabledBody": "Chính sách của nhà cung cấp đã thay đổi; phương thức này bị tắt để bảo vệ tài khoản của bạn. Hãy dùng khóa API (ô bên dưới phần chọn mô hình) hoặc quay lại sau.",
 	"policyLearnMore": "Tìm hiểu thêm",
-	"dismiss": "Đóng"
+	"dismiss": "Đóng",
+	"attach": "Đính kèm ảnh hoặc video",
+	"attachFailed": "Thất bại: {name}",
+	"attachRemove": "Gỡ tệp đính kèm"
 }

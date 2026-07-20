@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-16T09:43:11.877Z
+updated: 2026-07-20T12:05:47.909Z
 
 files:
   "src/lib/__tests__/frameStepNavigation.test.ts":
@@ -38,10 +38,16 @@ files:
     status: active
     source: "user:Justice Entsie"
     created: 2026-05-28
-    last_modified: 2026-05-30
-    change_count: 2
+    last_modified: 2026-07-20T12:04:53.123Z
+    change_count: 4
     purpose: "Renderer library module — annotationTextAnimation.ts."
     change_log:
+      - date: 2026-07-20T12:04:53.123Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:04:29.099Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-05-30"
         action: edit
         source: "user"
@@ -150,10 +156,19 @@ files:
     status: active
     source: "user:parse-nip"
     created: 2026-05-13
-    last_modified: 2026-07-16T07:48:23.463Z
-    change_count: 7
+    last_modified: 2026-07-20T06:27:43.815Z
+    change_count: 10
     purpose: "AI captions (local Whisper STT) — annotationsFromCaptions.ts."
     change_log:
+      - date: 2026-07-20T06:27:43.815Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:27:40.030Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:22:19.004Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T07:48:23.463Z
         action: edit
         source: "claude:Dan"
@@ -588,10 +603,22 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-12-01
-    last_modified: 2026-06-05
-    change_count: 12
+    last_modified: 2026-07-20T12:05:47.909Z
+    change_count: 16
     purpose: "Export/encoding pipeline — annotationRenderer.ts."
     change_log:
+      - date: 2026-07-20T12:05:47.909Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:05:27.957Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:05:21.207Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:05:07.866Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-05"
         action: edit
         source: "user"
@@ -720,10 +747,22 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-07
-    change_count: 64
+    last_modified: 2026-07-20T11:25:59.224Z
+    change_count: 68
     purpose: "Export/encoding pipeline — frameRenderer.ts."
     change_log:
+      - date: 2026-07-20T11:25:59.224Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:25:40.474Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:25:28.396Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:25:20.748Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-07"
         action: edit
         source: "user"
@@ -1140,10 +1179,16 @@ files:
     status: active
     source: "user:my_mac"
     created: 2026-07-07
-    last_modified: 2026-07-08
-    change_count: 2
+    last_modified: 2026-07-20T11:03:21.506Z
+    change_count: 4
     purpose: "Export/encoding pipeline — timelineSegments.ts."
     change_log:
+      - date: 2026-07-20T11:03:21.506Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:03:17.299Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-08"
         action: edit
         source: "user"
@@ -1731,5 +1776,71 @@ files:
     purpose: "SRT 직렬화 테스트 (정렬/타임코드/비캡션 제외)"
     change_log:
       - date: 2026-07-16T09:03:45.585Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/speedRamp.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T11:02:26.593Z
+    change_count: 1
+    purpose: "speed 구간 rampIn/rampOut을 ease-in-out 미세 스텝으로 확장(expandSpeedRamps) — 상수-속도 엔진으로 부드러운 가감속. export·프리뷰 공유"
+    change_log:
+      - date: 2026-07-20T11:02:26.593Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/speedRamp.test.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T11:02:56.121Z
+    change_count: 1
+    purpose: "expandSpeedRamps 단위 테스트(연속성·이웃 연결·경계 램프 1개·짧은 구간 스케일)"
+    change_log:
+      - date: 2026-07-20T11:02:56.121Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/videoEffects.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T11:22:49.514Z
+    change_count: 1
+    purpose: "전체 프레임 효과(fadeIn/fadeOut/blur/dim)를 시각별 렌더 상태로 계산(computeVideoEffectState) — 프리뷰·export 공유"
+    change_log:
+      - date: 2026-07-20T11:22:49.514Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/videoEffects.test.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T11:23:04.046Z
+    change_count: 1
+    purpose: "computeVideoEffectState 단위 테스트(페이드/블러/dim/겹침 합성)"
+    change_log:
+      - date: 2026-07-20T11:23:04.046Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/captionMotion.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T12:04:02.743Z
+    change_count: 1
+    purpose: "자막 A→B 위치·크기·폰트 이동을 시각별로 보간(getCaptionRenderState) — 프리뷰·export 공유"
+    change_log:
+      - date: 2026-07-20T12:04:02.743Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/captionMotion.test.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T12:04:17.589Z
+    change_count: 1
+    purpose: "getCaptionRenderState 단위 테스트(보간·서브윈도우·미지정 필드 유지)"
+    change_log:
+      - date: 2026-07-20T12:04:17.589Z
         action: write
         source: "claude:Dan"

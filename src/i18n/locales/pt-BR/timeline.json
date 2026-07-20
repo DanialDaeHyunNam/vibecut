@@ -9,14 +9,16 @@
 		"autoZoomOn": "Sugestões de zoom automático ativadas — clique para remover os zooms sugeridos",
 		"autoZoomOff": "Sugestões de zoom automático desativadas — clique para sugerir zooms a partir do cursor",
 		"autoFocusAllOn": "Foco automático ativado para todos os zooms — clique para mudar todos para manual",
-		"autoFocusAllOff": "Foco automático em todos os zooms (a câmera segue o cursor)"
+		"autoFocusAllOff": "Foco automático em todos os zooms (a câmera segue o cursor)",
+		"addEffect": "Adicionar efeito de vídeo"
 	},
 	"hints": {
 		"pressZoom": "Pressione Z para adicionar zoom",
 		"pressTrim": "Pressione T para adicionar recorte",
 		"pressAnnotation": "Pressione A para adicionar anotação",
 		"pressBlur": "Pressione B para adicionar região de desfoque",
-		"pressSpeed": "Pressione S para adicionar velocidade"
+		"pressSpeed": "Pressione S para adicionar velocidade",
+		"pressEffect": "Adicionar efeito"
 	},
 	"labels": {
 		"pan": "Mover",
@@ -29,7 +31,11 @@
 		"annotationItem": "Anotação",
 		"blurItem": "Desfoque {{index}}",
 		"imageItem": "Imagem",
-		"emptyText": "Texto vazio"
+		"emptyText": "Texto vazio",
+		"addToChat": "Adicionar ao chat",
+		"range": "Intervalo",
+		"rangeSelectHint": "Shift+arrastar para selecionar um intervalo para a IA",
+		"effect": "Efeito"
 	},
 	"emptyState": {
 		"noVideo": "Nenhum Vídeo Carregado",
@@ -62,5 +68,11 @@
 		"laneClick": "Torná-la alvo da navegação Alt",
 		"dividerKey": "Arraste o divisor",
 		"divider": "Redimensiona o painel · duplo clique restaura"
+	},
+	"effects": {
+		"fadeIn": "Fade in",
+		"fadeOut": "Fade out",
+		"blur": "Desfoque",
+		"dim": "Escurecer"
 	}
 }

@@ -11,6 +11,7 @@ import { MotionBlurFilter } from "pixi-filters/motion-blur";
 import type {
 	AnnotationRegion,
 	CropRegion,
+	EffectRegion,
 	Rotation3D,
 	SpeedRegion,
 	WebcamLayoutPreset,
@@ -60,6 +61,7 @@ import {
 	resolveInterpolatedNativeCursorFrame,
 	resolveNativeCursorRenderAsset,
 } from "@/lib/cursor/nativeCursor";
+import { computeVideoEffectState } from "@/lib/videoEffects";
 import { BackgroundLoadError, classifyWallpaper, resolveImageWallpaperUrl } from "@/lib/wallpaper";
 import { drawCanvasClipPath } from "@/lib/webcamMaskShapes";
 import type { CursorRecordingData } from "@/native/contracts";
@@ -103,6 +105,7 @@ interface FrameRenderConfig {
 	webcamPosition?: { cx: number; cy: number } | null;
 	annotationRegions?: AnnotationRegion[];
 	speedRegions?: SpeedRegion[];
+	effectRegions?: EffectRegion[];
 	previewWidth?: number;
 	previewHeight?: number;
 	cursorTelemetry?: import("@/components/video-editor/types").CursorTelemetryPoint[];
@@ -145,6 +148,9 @@ export class FrameRenderer {
 	private shadowCanvas: HTMLCanvasElement | null = null;
 	private shadowCtx: CanvasRenderingContext2D | null = null;
 	private compositeCanvas: HTMLCanvasElement | null = null;
+	/** Scratch canvas for the full-frame blur effect (lazily sized to output). */
+	private effectCanvas: HTMLCanvasElement | null = null;
+	private effectCtx: CanvasRenderingContext2D | null = null;
 	private compositeCtx: CanvasRenderingContext2D | null = null;
 	private foregroundCanvas: HTMLCanvasElement | null = null;
 	private foregroundCtx: CanvasRenderingContext2D | null = null;
@@ -520,6 +526,49 @@ export class FrameRenderer {
 		} else if (this.compositeCtx && this.foregroundCanvas) {
 			// Flat path or 3D-without-shadow: stamp foreground directly
 			this.compositeCtx.drawImage(this.foregroundCanvas, 0, 0);
+		}
+
+		// Full-frame effects (fade/blur/dim) go last so they sit over everything —
+		// wallpaper, video, webcam, cursor, and annotations alike.
+		this.applyVideoEffects(timeMs);
+	}
+
+	/** Blur and/or darken the whole composited frame per the active effect regions. */
+	private applyVideoEffects(timeMs: number): void {
+		const ctx = this.compositeCtx;
+		const canvas = this.compositeCanvas;
+		if (!ctx || !canvas) return;
+		const { blurPx, blackAlpha } = computeVideoEffectState(this.config.effectRegions, timeMs);
+		if (blurPx <= 0 && blackAlpha <= 0) return;
+
+		if (blurPx > 0) {
+			if (!this.effectCanvas) {
+				this.effectCanvas = document.createElement("canvas");
+				this.effectCtx = this.effectCanvas.getContext("2d");
+			}
+			const tmp = this.effectCanvas;
+			const tctx = this.effectCtx;
+			if (tmp && tctx) {
+				if (tmp.width !== canvas.width || tmp.height !== canvas.height) {
+					tmp.width = canvas.width;
+					tmp.height = canvas.height;
+				}
+				tctx.clearRect(0, 0, tmp.width, tmp.height);
+				tctx.drawImage(canvas, 0, 0);
+				ctx.save();
+				ctx.filter = `blur(${blurPx}px)`;
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(tmp, 0, 0);
+				ctx.restore();
+			}
+		}
+
+		if (blackAlpha > 0) {
+			ctx.save();
+			ctx.globalAlpha = blackAlpha;
+			ctx.fillStyle = "#000";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			ctx.restore();
 		}
 	}
 

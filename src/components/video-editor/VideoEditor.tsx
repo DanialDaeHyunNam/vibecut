@@ -1,5 +1,5 @@
 import type { Span } from "dnd-timeline";
-import { FolderOpen, Languages, Save, Video } from "lucide-react";
+import { FilePlus, FolderOpen, Languages, Save, Upload, Video } from "lucide-react";
 import { type CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	type ImperativePanelHandle,
@@ -120,14 +120,18 @@ import {
 	DEFAULT_ANNOTATION_SIZE,
 	DEFAULT_ANNOTATION_STYLE,
 	DEFAULT_BLUR_DATA,
+	DEFAULT_EFFECT_BLUR_PX,
+	DEFAULT_EFFECT_DIM_ALPHA,
 	DEFAULT_FIGURE_DATA,
 	DEFAULT_PLAYBACK_SPEED,
 	DEFAULT_ZOOM_DEPTH,
+	type EffectRegion,
 	type FigureData,
 	type PlaybackSpeed,
 	type Rotation3DPreset,
 	type SpeedRegion,
 	type TrimRegion,
+	type VideoEffectType,
 	ZOOM_DEPTH_SCALES,
 	type ZoomDepth,
 	type ZoomFocus,
@@ -221,6 +225,7 @@ export default function VideoEditor() {
 		trimRegions,
 		speedRegions,
 		annotationRegions,
+		effectRegions,
 		cropRegion,
 		wallpaper,
 		shadowIntensity,
@@ -258,6 +263,7 @@ export default function VideoEditor() {
 	const [isPreviewingZoom, setIsPreviewingZoom] = useState(false);
 	const [selectedTrimId, setSelectedTrimId] = useState<string | null>(null);
 	const [selectedSpeedId, setSelectedSpeedId] = useState<string | null>(null);
+	const [selectedEffectId, setSelectedEffectId] = useState<string | null>(null);
 	const [selectedAnnotationId, setSelectedAnnotationId] = useState<string | null>(null);
 	const [selectedBlurId, setSelectedBlurId] = useState<string | null>(null);
 	const [isExporting, setIsExporting] = useState(false);
@@ -331,6 +337,7 @@ export default function VideoEditor() {
 	const nextZoomIdRef = useRef(1);
 	const nextTrimIdRef = useRef(1);
 	const nextSpeedIdRef = useRef(1);
+	const nextEffectIdRef = useRef(1);
 
 	const { shortcuts, isMac } = useShortcuts();
 	// Windows recordings include captured cursor assets. macOS hides the system
@@ -347,6 +354,8 @@ export default function VideoEditor() {
 	const ts = useScopedT("settings");
 	const tt = useScopedT("timeline");
 	const ta = useScopedT("aiChat");
+	const td = useScopedT("dialogs");
+	const tc = useScopedT("common");
 	const availableLocales = getAvailableLocales();
 
 	const nextAnnotationIdRef = useRef(1);
@@ -372,6 +381,15 @@ export default function VideoEditor() {
 		(webcamVideoPath ? fromFileUrl(webcamVideoPath) : null);
 	const [railTab, setRailTab] = useState<"settings" | "ai">("ai");
 	const railPanelRef = useRef<ImperativePanelHandle>(null);
+
+	// "@" on a timeline block (or a future range selection) pushes its lane +
+	// range into the AI chat input. The nonce lets the composer append even when
+	// the same text is added twice; adding context always brings the AI tab up.
+	const [chatContextInsert, setChatContextInsert] = useState({ text: "", nonce: 0 });
+	const insertChatContext = useCallback((text: string) => {
+		setChatContextInsert((prev) => ({ text, nonce: prev.nonce + 1 }));
+		setRailTab("ai");
+	}, []);
 	// Lane targeted by Alt+←/→ block navigation. Follows region selection and
 	// direct lane clicks on the timeline.
 	const [activeLane, setActiveLane] = useState<"zoom" | "trim" | "annotation" | "speed">("zoom");
@@ -386,6 +404,7 @@ export default function VideoEditor() {
 			allocZoomId: () => `zoom-${nextZoomIdRef.current++}`,
 			allocTrimId: () => `trim-${nextTrimIdRef.current++}`,
 			allocSpeedId: () => `speed-${nextSpeedIdRef.current++}`,
+			allocEffectId: () => `effect-${nextEffectIdRef.current++}`,
 			allocAnnotationId: () => `annotation-${nextAnnotationIdRef.current++}`,
 			allocAnnotationZIndex: () => nextAnnotationZIndexRef.current++,
 		}),
@@ -739,6 +758,7 @@ export default function VideoEditor() {
 				trimRegions,
 				speedRegions,
 				annotationRegions,
+				effectRegions,
 				aspectRatio,
 				webcamLayoutPreset,
 				webcamMaskShape,
@@ -820,6 +840,7 @@ export default function VideoEditor() {
 			gifSizePreset,
 			cursorTheme,
 			videoPath,
+			effectRegions,
 			t,
 		],
 	);
@@ -1436,6 +1457,67 @@ export default function VideoEditor() {
 		},
 		[selectedSpeedId, pushState],
 	);
+
+	const handleEffectAdded = useCallback(
+		(type: VideoEffectType, span: Span) => {
+			const id = `effect-${nextEffectIdRef.current++}`;
+			const intensity =
+				type === "blur"
+					? DEFAULT_EFFECT_BLUR_PX
+					: type === "dim"
+						? DEFAULT_EFFECT_DIM_ALPHA
+						: undefined;
+			const newRegion: EffectRegion = {
+				id,
+				type,
+				startMs: Math.round(span.start),
+				endMs: Math.round(span.end),
+				...(intensity !== undefined ? { intensity } : {}),
+			};
+			pushState((prev) => ({ effectRegions: [...prev.effectRegions, newRegion] }));
+			setSelectedEffectId(id);
+			setSelectedZoomId(null);
+			setSelectedTrimId(null);
+			setSelectedSpeedId(null);
+			setSelectedAnnotationId(null);
+			setSelectedBlurId(null);
+		},
+		[pushState],
+	);
+
+	const handleEffectSpanChange = useCallback(
+		(id: string, span: Span) => {
+			pushState((prev) => ({
+				effectRegions: prev.effectRegions.map((region) =>
+					region.id === id
+						? { ...region, startMs: Math.round(span.start), endMs: Math.round(span.end) }
+						: region,
+				),
+			}));
+		},
+		[pushState],
+	);
+
+	const handleEffectDelete = useCallback(
+		(id: string) => {
+			pushState((prev) => ({
+				effectRegions: prev.effectRegions.filter((region) => region.id !== id),
+			}));
+			if (selectedEffectId === id) setSelectedEffectId(null);
+		},
+		[selectedEffectId, pushState],
+	);
+
+	const handleSelectEffect = useCallback((id: string | null) => {
+		setSelectedEffectId(id);
+		if (id !== null) {
+			setSelectedZoomId(null);
+			setSelectedTrimId(null);
+			setSelectedSpeedId(null);
+			setSelectedAnnotationId(null);
+			setSelectedBlurId(null);
+		}
+	}, []);
 
 	const handleSpeedChange = useCallback(
 		(speed: PlaybackSpeed) => {
@@ -2121,6 +2203,12 @@ export default function VideoEditor() {
 		}
 	}, [selectedSpeedId, speedRegions]);
 
+	useEffect(() => {
+		if (selectedEffectId && !effectRegions.some((region) => region.id === selectedEffectId)) {
+			setSelectedEffectId(null);
+		}
+	}, [selectedEffectId, effectRegions]);
+
 	const handleShowExportedFile = useCallback(async (filePath: string) => {
 		try {
 			const result = await window.electronAPI.revealInFolder(filePath);
@@ -2288,6 +2376,7 @@ export default function VideoEditor() {
 						zoomRegions,
 						trimRegions,
 						speedRegions,
+						effectRegions,
 						showShadow: shadowIntensity > 0,
 						shadowIntensity,
 						showBlur,
@@ -2383,6 +2472,7 @@ export default function VideoEditor() {
 						zoomRegions,
 						trimRegions,
 						speedRegions,
+						effectRegions,
 						showShadow: shadowIntensity > 0,
 						shadowIntensity,
 						showBlur,
@@ -2519,6 +2609,7 @@ export default function VideoEditor() {
 			cursorClickBounce,
 			cursorClipToBounds,
 			cursorTheme,
+			effectRegions,
 			t,
 		],
 	);
@@ -2879,9 +2970,17 @@ export default function VideoEditor() {
 			</Dialog>
 
 			<div
-				className="h-11 flex-shrink-0 bg-[#070809]/85 backdrop-blur-xl border-b border-white/[0.07] flex items-center justify-between px-5 z-50 shadow-[0_1px_0_rgba(255,255,255,0.03)]"
+				className="relative h-11 flex-shrink-0 bg-[#070809]/85 backdrop-blur-xl border-b border-white/[0.07] flex items-center justify-between px-5 z-50 shadow-[0_1px_0_rgba(255,255,255,0.03)]"
 				style={{ WebkitAppRegion: "drag" } as CSSProperties}
 			>
+				{/* Current project name, centered. "Untitled" until the first save. */}
+				{videoPath && (
+					<div className="pointer-events-none absolute left-1/2 -translate-x-1/2 max-w-[36%] truncate text-[11px] font-medium text-white/45">
+						{currentProjectPath
+							? (currentProjectPath.split("/").pop() ?? "").replace(/\.(vibecut|openscreen)$/, "")
+							: tc("untitledProject")}
+					</div>
+				)}
 				<div
 					className="flex-1 flex items-center gap-1"
 					style={{ WebkitAppRegion: "no-drag" } as CSSProperties}
@@ -2913,6 +3012,14 @@ export default function VideoEditor() {
 					</button>
 					<button
 						type="button"
+						onClick={handleNewProject}
+						className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-white/50 hover:text-white/90 hover:bg-white/[0.08] transition-all duration-150 text-[11px] font-medium"
+					>
+						<FilePlus size={14} />
+						{td("unsavedChanges.newProject")}
+					</button>
+					<button
+						type="button"
 						onClick={handleLoadProject}
 						className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-white/50 hover:text-white/90 hover:bg-white/[0.08] transition-all duration-150 text-[11px] font-medium"
 					>
@@ -2928,6 +3035,24 @@ export default function VideoEditor() {
 						{ts("project.save")}
 					</button>
 				</div>
+				{/* Export is the editor's primary action — pinned to the top-right,
+				    accented, so it's always in view (was buried in Settings → Export). */}
+				{videoPath && (
+					<div
+						className="flex items-center"
+						style={{ WebkitAppRegion: "no-drag" } as CSSProperties}
+					>
+						<button
+							type="button"
+							onClick={handleOpenExportDialog}
+							disabled={isExporting}
+							className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#7C5CFF] hover:bg-[#9B84FF] disabled:opacity-50 disabled:cursor-not-allowed text-white transition-all duration-150 text-[11px] font-semibold shadow-[0_2px_10px_rgba(124,92,255,0.35)]"
+						>
+							<Upload size={14} />
+							{exportFormat === "gif" ? ts("export.gifButton") : ts("export.videoButton")}
+						</button>
+					</div>
+				)}
 			</div>
 
 			{/* Empty state shown when no video is loaded */}
@@ -3019,6 +3144,7 @@ export default function VideoEditor() {
 														cursorRecordingData={cursorRecordingData}
 														trimRegions={trimRegions}
 														speedRegions={speedRegions}
+														effectRegions={effectRegions}
 														annotationRegions={annotationOnlyRegions}
 														selectedAnnotationId={selectedAnnotationId}
 														onSelectAnnotation={handleSelectAnnotation}
@@ -3055,6 +3181,7 @@ export default function VideoEditor() {
 														onToggleFullscreen={toggleFullscreen}
 														onTogglePlayPause={togglePlayPause}
 														onSeek={handleSeek}
+														onAddRangeContext={insertChatContext}
 													/>
 												</div>
 											</div>
@@ -3074,6 +3201,7 @@ export default function VideoEditor() {
 											onSeek={handleSeek}
 											activeLane={activeLane}
 											onLaneClick={setActiveLane}
+											onAddContext={insertChatContext}
 											zoomRegions={zoomRegions}
 											onZoomAdded={handleZoomAdded}
 											autoZoomEnabled={autoZoomEnabled}
@@ -3096,6 +3224,12 @@ export default function VideoEditor() {
 											onSpeedDelete={handleSpeedDelete}
 											selectedSpeedId={selectedSpeedId}
 											onSelectSpeed={handleSelectSpeed}
+											effectRegions={effectRegions}
+											onEffectAdded={handleEffectAdded}
+											onEffectSpanChange={handleEffectSpanChange}
+											onEffectDelete={handleEffectDelete}
+											selectedEffectId={selectedEffectId}
+											onSelectEffect={handleSelectEffect}
 											annotationRegions={annotationOnlyRegions}
 											onAnnotationAdded={handleAnnotationAdded}
 											onAnnotationSpanChange={handleAnnotationSpanChange}
@@ -3383,7 +3517,15 @@ export default function VideoEditor() {
 									>
 										<AiChatPanel
 											getSnapshot={getAiSnapshot}
-											storageKey={currentProjectPath ?? videoSourcePath ?? videoPath}
+											// Key the chat to the recording, NOT the project path: saving a
+											// project sets currentProjectPath for the first time, and keying on
+											// it would swap storage keys mid-session and wipe the visible chat.
+											// videoSourcePath is set on import and restored on project load, so
+											// it stays stable across save/load/reload.
+											storageKey={videoSourcePath ?? videoPath}
+											// Recover chats saved under the old project-path key (pre-fix).
+											legacyStorageKey={currentProjectPath}
+											contextInsert={chatContextInsert}
 										/>
 									</TabsContent>
 								</Tabs>

@@ -6,6 +6,7 @@ import {
 	getMosaicGridOverlayColor,
 	getNormalizedMosaicBlockSize,
 } from "@/lib/blurEffects";
+import { getCaptionRenderState } from "@/lib/captionMotion";
 import { cn } from "@/lib/utils";
 import { getArrowComponent } from "./ArrowSvgs";
 import {
@@ -70,10 +71,19 @@ export function AnnotationOverlay({
 	previewFrameVersion,
 	currentTimeMs,
 }: AnnotationOverlayProps) {
-	const committedX = (annotation.position.x / 100) * containerWidth;
-	const committedY = (annotation.position.y / 100) * containerHeight;
-	const committedWidth = (annotation.size.width / 100) * containerWidth;
-	const committedHeight = (annotation.size.height / 100) * containerHeight;
+	// While a caption isn't being edited, play its keyframed motion (travel /
+	// resize / font size). Editing shows the static base so the handles map to it.
+	const motionState =
+		annotation.type === "text" && !isSelected
+			? getCaptionRenderState(annotation, currentTimeMs)
+			: null;
+	const effectivePosition = motionState?.position ?? annotation.position;
+	const effectiveSize = motionState?.size ?? annotation.size;
+	const effectiveFontSize = motionState?.fontSize ?? annotation.style.fontSize;
+	const committedX = (effectivePosition.x / 100) * containerWidth;
+	const committedY = (effectivePosition.y / 100) * containerHeight;
+	const committedWidth = (effectiveSize.width / 100) * containerWidth;
+	const committedHeight = (effectiveSize.height / 100) * containerHeight;
 	const blurShape = annotation.type === "blur" ? (annotation.blurData?.shape ?? "rectangle") : null;
 	const isSelectedFreehandBlur = isSelected && blurShape === "freehand";
 	const isDraggingRef = useRef(false);
@@ -309,7 +319,7 @@ export function AnnotationOverlay({
 							style={{
 								color: annotation.style.color,
 								backgroundColor: annotation.style.backgroundColor,
-								fontSize: `${annotation.style.fontSize}px`,
+								fontSize: `${effectiveFontSize}px`,
 								fontFamily: annotation.style.fontFamily,
 								fontWeight: annotation.style.fontWeight,
 								fontStyle: annotation.style.fontStyle,

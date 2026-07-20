@@ -5,7 +5,9 @@ import type { CaptionSegment } from "./transcribe";
 /** Wide lower-third bar; `position.x` is top-left as % of container, so center with (100 - width) / 2. */
 const CAPTION_WIDTH = 92;
 const CAPTION_HEIGHT = 12;
-const CAPTION_BOTTOM_MARGIN = 2;
+// Off the absolute bottom edge: social-caption guidance puts captions in the
+// lower-middle third, clear of platform UI strips (2026-07-20 UXW research).
+const CAPTION_BOTTOM_MARGIN = 6;
 
 const CAPTION_POSITION = {
 	x: (100 - CAPTION_WIDTH) / 2,
@@ -19,12 +21,15 @@ const CAPTION_SIZE = { width: CAPTION_WIDTH, height: CAPTION_HEIGHT };
 export const AI_CAPTION_POSITION = CAPTION_POSITION;
 export const AI_CAPTION_SIZE = CAPTION_SIZE;
 
+// Short-form-style default (2026-07-20): bold white on a dim box — the box
+// keeps captions readable over any footage, which bare text couldn't.
+// 70% black ≈ the 70-80% range short-form caption guidance converges on.
 const CAPTION_STYLE: AnnotationTextStyle = {
 	color: "#ffffff",
-	backgroundColor: "rgba(255, 255, 255, 0)",
+	backgroundColor: "rgba(0, 0, 0, 0.7)",
 	fontSize: 24,
 	fontFamily: "Inter",
-	fontWeight: "normal",
+	fontWeight: "bold",
 	fontStyle: "normal",
 	textDecoration: "none",
 	textAlign: "center",

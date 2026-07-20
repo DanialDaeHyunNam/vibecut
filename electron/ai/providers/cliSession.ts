@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import readline from "node:readline";
 import { AiToolHost } from "../toolHost";
-import type { AiChatEvent, AiChatSession, AiChatSessionOptions } from "./types";
+import type { AiChatEvent, AiChatSession, AiChatSessionOptions, AiToolImage } from "./types";
 
 /**
  * Base for chat sessions backed by an external CLI with no long-lived
@@ -19,7 +19,7 @@ export abstract class PerTurnCliSession implements AiChatSession {
 	protected child: ChildProcess | null = null;
 	protected disposed = false;
 	private workspacePromise: Promise<string> | null = null;
-	private readonly queue: string[] = [];
+	private readonly queue: Array<{ text: string; images: AiToolImage[] }> = [];
 	private draining = false;
 
 	constructor(protected readonly options: AiChatSessionOptions) {
@@ -33,7 +33,7 @@ export abstract class PerTurnCliSession implements AiChatSession {
 	protected abstract prepareWorkspace(dir: string): Promise<void>;
 
 	/** Run one conversation turn; resolve when the turn's process has closed. */
-	protected abstract runTurn(text: string, workspace: string): Promise<void>;
+	protected abstract runTurn(text: string, workspace: string, images: AiToolImage[]): Promise<void>;
 
 	protected emit(event: AiChatEvent): void {
 		this.options.onEvent(event);
@@ -53,9 +53,9 @@ export abstract class PerTurnCliSession implements AiChatSession {
 		return this.workspacePromise;
 	}
 
-	send(text: string): void {
+	send(text: string, images: AiToolImage[] = []): void {
 		if (this.disposed) return;
-		this.queue.push(text);
+		this.queue.push({ text, images });
 		void this.drain();
 	}
 
@@ -64,7 +64,7 @@ export abstract class PerTurnCliSession implements AiChatSession {
 		this.draining = true;
 		try {
 			while (this.queue.length > 0 && !this.disposed) {
-				const text = this.queue.shift() as string;
+				const { text, images } = this.queue.shift() as { text: string; images: AiToolImage[] };
 				let workspace: string;
 				try {
 					workspace = await this.ensureWorkspace();
@@ -73,7 +73,7 @@ export abstract class PerTurnCliSession implements AiChatSession {
 					continue;
 				}
 				if (this.disposed) break;
-				await this.runTurn(text, workspace);
+				await this.runTurn(text, workspace, images);
 			}
 		} finally {
 			this.draining = false;

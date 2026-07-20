@@ -9,13 +9,13 @@ summaries:
     stale: false
     file_count: 9
   electron:
-    description: "Electron main — 윈도우, IPC, 녹화, 네이티브 브리지, AI 에이전트 레이어(electron/ai: 프로바이더·MCP 브리지·툴호스트·정책 킬스위치·restyle 이펙트)"
+    description: "Electron main — 윈도우, IPC, 녹화, 네이티브 브리지, AI 에이전트 레이어(electron/ai: 프로바이더·MCP 브리지·툴호스트·정책 킬스위치·restyle 이펙트, 멀티모달 이미지 입력·자막 스타일 툴)"
     generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false
     file_count: 69
   "electron/ipc":
-    description: "IPC 핸들러 — 녹화, 프로젝트 파일, AI 채팅(restyle_webcam·정책 포함), 웹캠 셀프뷰, SRT 저장"
+    description: "IPC 핸들러 — 녹화, 프로젝트 파일(외부 폴더 미디어 승인 완화), AI 채팅(restyle·정책·이미지 첨부·채팅 백업 사이드카 임포트), 웹캠 셀프뷰, SRT"
     generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false
@@ -54,8 +54,8 @@ summaries:
     description: "렌더러 소스 — React UI, 2열 에디터, 이펙트/내보내기 라이브러리, i18n"
     generated_at: 2026-07-20
     generated_by: wrap-up
-    stale: false
-    file_count: 344
+    stale: true
+    file_count: 347
   "src/assets":
     description: "Bundled cursor images and static assets"
     generated_at: 2026-07-14
@@ -63,11 +63,11 @@ summaries:
     stale: false
     file_count: 27
   "src/components":
-    description: "React 컴포넌트 — 런치 HUD, 비디오 에디터, AI 채팅 패널(컨텍스트 키·정책 배너), 공유 UI"
+    description: "React 컴포넌트 — 런치 HUD, 비디오 에디터, AI 채팅 패널(컨텍스트 키·정책 배너·멀티모달 첨부·키프레임 추출), 공유 UI"
     generated_at: 2026-07-20
     generated_by: wrap-up
-    stale: false
-    file_count: 102
+    stale: true
+    file_count: 105
   "src/components/launch":
     description: "Recording launch UI — HUD, source selector, countdown, notes, webcam self-view"
     generated_at: 2026-07-17
@@ -81,13 +81,13 @@ summaries:
     stale: false
     file_count: 20
   "src/components/video-editor":
-    description: "타임라인 비디오 에디터 — 2열 레이아웃(영상+타임라인|AI/설정 레일), 탭 슬라이딩, 팁 캐러셀, 레인 내비, 내보내기"
+    description: "타임라인 비디오 에디터 — 2열 레이아웃, 레인 색상 선택 핸들, 상단 바 Export/New Project·프로젝트명, Effects 레인(fade/blur/dim), 자막 motion 렌더, speed 램프 프리뷰"
     generated_at: 2026-07-20
     generated_by: wrap-up
-    stale: false
+    stale: true
     file_count: 59
   "src/hooks":
-    description: "React hooks — editor history(webcamSourceOverride), recorder, cursor telemetry, AI 채팅(가용성 기반 기본선택)/tool host(restyle)"
+    description: "React hooks — editor history(effectRegions/motion), recorder, cursor telemetry, AI 채팅(녹화-키 저장·legacy 마이그레이션·백업 복원)/tool host(키프레임 스토리보드)"
     generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false
@@ -99,17 +99,17 @@ summaries:
     stale: false
     file_count: 94
   "src/lib":
-    description: "공유 라이브러리 — exporter, captioning(+SRT), cursor, wallpaper, shortcuts"
-    generated_at: 2026-07-17
+    description: "공유 라이브러리 — exporter, captioning, cursor, wallpaper, shortcuts, speedRamp/videoEffects/captionMotion(프리뷰·export 공유 순수 헬퍼)"
+    generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false
-    file_count: 76
+    file_count: 78
   "src/lib/captioning":
-    description: "로컬 Whisper 자막 파이프라인 + SRT 직렬화 (AI 캡션 상수 공유)"
-    generated_at: 2026-07-17
+    description: "로컬 Whisper 자막 파이프라인 + SRT 직렬화 (AI 캡션 상수 공유 — dim 박스 기본 스타일)"
+    generated_at: 2026-07-20
     generated_by: wrap-up
     stale: false
-    file_count: 10
+    file_count: 12
   "src/lib/cursor":
     description: "Cursor telemetry playback & effect rendering"
     generated_at: 2026-07-14
@@ -117,9 +117,9 @@ summaries:
     stale: false
     file_count: 5
   "src/lib/exporter":
-    description: "Export pipeline — frame rendering, encoding, MP4/GIF muxing"
-    generated_at: 2026-07-14
-    generated_by: migrate
+    description: "Export 파이프라인 — 프레임 렌더링(speed 램프·비디오 효과·자막 motion 반영), 인코딩, MP4/GIF muxing"
+    generated_at: 2026-07-20
+    generated_by: wrap-up
     stale: false
     file_count: 35
   "src/native":
