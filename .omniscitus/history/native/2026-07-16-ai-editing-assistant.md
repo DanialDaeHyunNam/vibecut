@@ -4,14 +4,16 @@
 
 ## Summary
 에디터 우측 레일의 [AI|설정] 탭에서 로컬 Claude Code 구독으로 영상을 자연어 편집하는
-에이전트 패널. 멀티모달 툴 15종(줌/트림/배속/자막/스타일 + 프레임/트랜스크립트/클릭 +
-ask_user)과 프로젝트별 대화 저장·세션 이어가기까지 하루에 구축.
+에이전트 패널. 멀티모달 툴(줌/트림/배속/자막·자막디자인/스타일 + 프레임/트랜스크립트/클릭 +
+ask_user)과 프로젝트별 대화 저장·세션 이어가기. 입력도 멀티모달(이미지·영상 첨부),
+영상 분석은 scene-detect+dedup 키프레임(crv 이식), 자막은 AI가 디자인까지.
 
 ## Context
 - **Background**: 로드맵 1번(원클릭 UX)의 구현체 — Donkey Cut의 우측 AI 패널을 레퍼런스로, 손 편집 대신 자연어 지시로 편집하는 흐름을 원함
 - **Requirements**: 로컬 Claude 구독 연동(API key 불필요), 4개 프로바이더(Claude/OpenAI/Gemini/Grok) 대응 구조, 모델 피커, 변이 툴콜 1회=undo 1스텝
 - **Decisions**: ① Agent SDK를 main 프로세스에서 구동(네이티브 claude 바이너리 vendored — launchd PATH 문제 원천 차단) ② 편집 상태 변이는 렌더러 aiCommandExecutor(순수 함수)→pushState 단일 경로 ③ `tools: []`+MCP allowlist로 에이전트 파일/셸 접근 차단 ④ `settingSources: []`로 사용자 글로벌 설정(output style) 격리 ⑤ 자막은 auto-caption과 동일한 AnnotationRegion 재사용 ⑥ ask_user는 툴콜 RPC 경로를 그대로 쓰되 응답자만 사람(채팅 캐러셀 카드)
-- **Constraints**: Agent SDK는 MIT 아님(Anthropic 약관) — 소스 공개는 무관, 패키징 배포 시 동봉 약관 확인 필요; vitest는 Node 22 필요(로컬 20.12에서 전체 실패, `ASDF_NODEJS_VERSION=22.12.0`로 실행); 툴 타임아웃 기본 15s(트랜스크립트 300s, ask_user 600s)
+- **Constraints**: Agent SDK는 MIT 아님(Anthropic 약관) — 소스 공개는 무관, 패키징 배포 시 동봉 약관 확인 필요; vitest는 Node 22 필요(로컬 20.12에서 전체 실패, `ASDF_NODEJS_VERSION=22.12.0`로 실행); 툴 타임아웃 기본 15s(트랜스크립트 300s, ask_user 600s, get_video_frames 스토리보드 180s)
+- **Decisions(2026-07-20 추가)**: ⑦ 영상 프레임화는 단일 파이프라인(`keyframeExtraction.ts`)으로 통일 — get_video_frames 스토리보드·비디오 첨부가 공유(claude-real-video MIT 이식, ffmpeg 대신 캔버스) ⑧ 프로바이더별 이미지 입력 능력차는 숨기지 않고 정직 안내(Gemini headless 미지원) ⑨ 자막 기본 스타일을 dim 박스로 변경(가독성이 기본값) — 자동 자막·AI 자막 공통, set_caption_style로 사후 디자인
 
 ## Timeline
 
@@ -51,10 +53,32 @@ ask_user)과 프로젝트별 대화 저장·세션 이어가기까지 하루에 
 
 **Learned**: Decart SDK에 비실시간 큐 클라이언트가 있어 WebRTC 없이 후처리 가능 — 조사가 구현 난이도를 크게 낮췄다. 구독 인증은 프로바이더 약관이 유동적(2026 3회 변동)이라 코드보다 "재배포 없이 끌 수 있는 스위치"가 핵심 안전장치. 브랜딩 가이드(제품 내 "Claude Code" 금지)는 라이선스와 별개의 준수 항목.
 
+### 2026-07-20
+**Focus**: 멀티모달 입력 + crv 방식 영상 분석 + AI 자막 디자인 (요청 3건 + UXW 리서치)
+- **멀티모달 입력**: 컴포저에 📎 버튼·클립보드 붙여넣기·드래그&드롭(`attachments.ts`). 이미지는 Claude 네이티브 image 블록/Codex `-i` 파일 경로로 전달, Gemini는 headless 이미지 채널 부재라 "못 봄" 정직 안내. 비디오 첨부는 keyframe 파이프라인으로 프레임화→콘택트 시트. `AiChatSession.send(text, images)` 시그니처 확장, cliSession 큐가 이미지 동반. 첨부 썸네일은 유저 트랜스크립트 아이템에 저장(localStorage 안전한 소형 data-URL)
+- **영상 분석 개선(claude-real-video 이식)**: `get_video_frames`를 타임스탬프 없이 부르면 스토리보드 모드 — scene-change 검출 + 슬라이딩 윈도우 dedup(16×16 RGB 시그니처) + 스크린레코딩용 settled-local 간이 채널(96×96, 쿨다운) + density floor → 타임스탬프 라벨(`#n m:ss.s`) 박힌 3×3 콘택트 시트. `keyframeExtraction.ts`(+테스트 15개). ffmpeg 대신 캔버스, Whisper 경로·yt-dlp·±1px shift는 미이식. 타임아웃 60→180s
+- **AI 자막 디자인**: 기본 스타일을 dim 박스(볼드 흰 글씨·rgba(0,0,0,0.7)·하단 여백 6%)로 변경. 신규 `set_caption_style` 툴 + add_captions/update_caption에 style 파라미터(색·박스·크기·정렬·애니메이션 pop 등·위치 상/중/하). aiCommandExecutor에 sanitizeCaptionStyle(안전 CSS 색·클램프)·get_project_context에 현재 captionStyle 노출(+테스트 6개)
+- **UXW 리서치**: 서브에이전트로 숏폼 자막 톤앤매너/디자인 웹 리서치 → 시스템 프롬프트에 압축(들리는 문장·큐당 1–6s·초당 17자 이하·이모지 라인끝 0–1개·word-pop vs fade·안전영역). 자동편집 첫 질문을 "자막 언어"→"영상 목적/타겟"으로 확장
+
+**Learned**: 영상을 프레임화하는 파이프라인 하나(keyframeExtraction)가 세 곳에 재사용됨 — get_video_frames 스토리보드, 비디오 첨부, (기존) videoFrameCapture 클로즈업. crv의 핵심 통찰은 "고정 샘플링 대신 실제 변화만" — 스크린레코딩에선 전역 diff ~0%인 작은 UI 변화(타이핑)를 잡는 로컬 채널이 관건. 자막 dim 박스 기본화는 라이브러리(첨부 이미지)처럼 "가독성이 기본값"이어야 한다는 UX 판단.
+
+### 2026-07-20 (저녁 연속 세션)
+**Focus**: 실사용 편집 중 부딪힌 갭 대량 구현 — 진행 표시·채팅 유실 복구·speed 램프·비디오 효과·자막 이동
+- **AI 패널 경과시간**: 툴 실행 중 무음이던 로딩을 총 경과시간(1s→1m 12s) + 실행 중 툴별 경과시간으로. 언어중립 `elapsed.ts`, `useTick`은 busy일 때만 틱. 프레임 스캔·Whisper가 오래 걸릴 때 "죽었나?" 해소
+- **채팅 저장 버그 수정 + 복원**: Save Project 시 storageKey가 `currentProjectPath`로 갈아타 채팅이 빈 것으로 로드되던 버그 → 키를 **녹화 경로(videoSourcePath)** 기준으로 안정화 + legacy(프로젝트경로) 키 자동 마이그레이션. localStorage가 이미 비워진 케이스는 **Claude Code 세션 JSONL**(`~/.claude/projects/-/`)에서 복구 → `<video>.chat.json` 사이드카 자동 임포트(+세션 resume). 사용자 실데이터 2세션 복구해 Desktop md로 제공
+- **speed 램프(A→B 가감속)**: `SpeedRegion.rampInMs/rampOutMs` — 순수 `expandSpeedRamps`가 램프 구간을 ease-in-out 미세 스텝으로 자동 확장(기존 상수-속도 엔진 재활용). 경계마다 램프 1개(prev.rampOut 우선)로 항상 연속, 이웃 speed로 연결. export(splitBySpeed)·프리뷰(expand 후 조회) 양쪽. AI 툴 add/update_speed_region에 노출(+테스트 8개). "43개 스텝 흉내" 제품화
+- **비디오 효과 v1(fadeIn/fadeOut/blur/dim)**: `EffectRegion` + 소스타임 구간. 순수 `computeVideoEffectState`로 프리뷰(스테이지 오버레이 div: backdrop-filter blur + 검정 알파)·export(frameRenderer 최종 compositeCtx 필터/오버레이) 동일. AI 툴 add/update/delete_effects. **타임라인 Effects 레인**(툴바 Aperture 드롭다운→퓨시아 레인, add/select/드래그리사이즈/Delete) 추가로 AI 없이 수동 사용 가능(+테스트 6개)
+- **자막 이동/변형 + exit**: `AnnotationRegion.motion`(toPosition/toSize/toFontSize + startMs/endMs 서브윈도우) + `exitAnimation`. 순수 `getCaptionRenderState` ease-in-out 보간을 프리뷰·export 공유. getTextAnimationState를 진입+exit 합성으로 확장(진입곡선 역재생). AI 툴(add/update_caption)·저장 반영(+테스트 4개)
+
+**Learned**: "순수 헬퍼 1개 + 프리뷰/export 2곳 + AI 툴"이 이번 세션의 반복 패턴 — expandSpeedRamps·computeVideoEffectState·getCaptionRenderState 모두 동일 골격이라 테스트가 쉽고 프리뷰/export 불일치가 원천 차단됨. localStorage는 유실 가능하지만 in-app 에이전트가 Claude Code 세션이라 JSONL이 최후 백업. systemPrompt는 템플릿 리터럴이라 백틱 삽입 금지(빌드 깨짐).
+
 ## Pending
+- [ ] **speed 램프/효과 강도 수동 슬라이더** (Setting 패널에만 — 다음 세션): 선택된 speed 구간에 rampInMs/rampOutMs 슬라이더(0=끄기, 0~5000ms) + 선택된 effect 구간에 intensity 슬라이더(blur px/dim opacity). 지금은 AI로만 조절. VideoEditor의 SettingsPanel 우측 레일에 selectedSpeedId/selectedEffectId 기반 인스펙터
+- [ ] 재시작 후 실검증(main 변경 다수): 채팅 패널 복원·speed 램프 프리뷰 부드러움·비디오 효과 fade/blur/dim 프리뷰·export·Effects 레인 조작·자막 motion 이동
+- [ ] 실기기 검증: 멀티모달(이미지/영상 첨부→Claude 전송), get_video_frames 스토리보드 생성 시간(긴 영상), 자막 dim 박스가 프리뷰·내보내기 동일한지
 - [ ] 실사용 검증 계속: ask_user 재질문 응답 후 맞춤 자동편집 완주 확인
 - [ ] 패키징 스모크 (`npm run build:mac`) — SDK external/asarUnpack + 240MB 바이너리 동작 확인
-- [ ] 기능 단위 커밋 정리 (40+ 파일 미커밋)
+- [x] 기능 단위 커밋 정리 (2026-07-19까지 기능 단위로 커밋 완료 — restyle_webcam/provider-policy/subscription-policy 등 개별 feat 커밋, 워킹 트리 클린)
 - [x] OpenAI/Gemini/Grok 프로바이더 (2026-07-17: OpenAI는 Codex CLI 구독 연동·Gemini는 Gemini CLI 구독 연동으로 구현 — 공용 stdio MCP 브리지(mcpBridge.cjs)+툴 호스트(유닉스 소켓) 경유로 툴 18종 공유. Grok은 API key 입력 UI만, 프로바이더는 coming-soon 유지)
 - [ ] Codex/Gemini 실기기 검증 — 두 CLI 모두 로컬 미설치라 spawn 경로(코덱스 exec resume, gemini 설정 주입)는 실제 CLI로 미확인. `npm i -g @openai/codex` 후 `codex login`, `npm i -g @google/gemini-cli` 후 로그인하고 실채팅 확인 필요
 - [ ] 내보내기(export) 트리거 툴 검토

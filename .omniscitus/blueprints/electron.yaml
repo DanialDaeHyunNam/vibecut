@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-19T14:09:11.823Z
+updated: 2026-07-20T12:10:33.663Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -30,10 +30,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-19T14:09:11.823Z
-    change_count: 67
+    last_modified: 2026-07-20T11:11:24.488Z
+    change_count: 69
     purpose: "Electron main process — electron-env.d.ts."
     change_log:
+      - date: 2026-07-20T11:11:24.488Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:19:48.882Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T14:09:11.823Z
         action: edit
         source: "claude:Dan"
@@ -150,10 +156,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-19T04:16:55.186Z
-    change_count: 94
+    last_modified: 2026-07-20T10:32:36.579Z
+    change_count: 95
     purpose: "Main-process IPC — handlers.ts."
     change_log:
+      - date: 2026-07-20T10:32:36.579Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:16:55.186Z
         action: edit
         source: "claude:Dan"
@@ -1086,10 +1095,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-19T04:19:46.337Z
-    change_count: 62
+    last_modified: 2026-07-20T11:11:21.921Z
+    change_count: 63
     purpose: "Preload bridge — exposes native APIs to the renderer."
     change_log:
+      - date: 2026-07-20T11:11:21.921Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:19:46.337Z
         action: edit
         source: "claude:Dan"
@@ -1233,10 +1245,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T13:19:14.945Z
-    change_count: 6
+    last_modified: 2026-07-20T06:19:50.733Z
+    change_count: 7
     purpose: "AI 프로바이더 추상화 — AiProvider/AiChatEvent/세션 인터페이스 (4개 프로바이더 대응)"
     change_log:
+      - date: 2026-07-20T06:19:50.733Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:19:14.945Z
         action: edit
         source: "claude:Dan"
@@ -1297,10 +1312,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T04:17:46.581Z
-    change_count: 8
+    last_modified: 2026-07-20T06:16:44.719Z
+    change_count: 9
     purpose: "main→renderer AI 툴콜 RPC — correlation id, 툴별 타임아웃, pending 정리"
     change_log:
+      - date: 2026-07-20T06:16:44.719Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:17:46.581Z
         action: edit
         source: "claude:Dan"
@@ -1329,10 +1347,31 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T04:17:44.385Z
-    change_count: 14
+    last_modified: 2026-07-20T12:07:52.138Z
+    change_count: 21
     purpose: "cinerec MCP 툴 정의(zod) — 줌/트림/배속/자막/스타일/프레임/트랜스크립트/ask_user"
     change_log:
+      - date: 2026-07-20T12:07:52.138Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:07:40.938Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:32:38.094Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:05:59.846Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:22:47.296Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:22:38.093Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:16:42.876Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:17:44.385Z
         action: edit
         source: "claude:Dan"
@@ -1379,10 +1418,34 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T04:17:49.915Z
-    change_count: 7
+    last_modified: 2026-07-20T12:10:33.663Z
+    change_count: 15
     purpose: "편집 에이전트 시스템 프롬프트 + 턴별 프로젝트 스냅샷 프리픽스"
     change_log:
+      - date: 2026-07-20T12:10:33.663Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:10:18.063Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:34:18.415Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:07:06.529Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:28:01.451Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:26:08.666Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:26:00.194Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:17:47.792Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:17:49.915Z
         action: edit
         source: "claude:Dan"
@@ -1408,10 +1471,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-17T13:19:40.192Z
-    change_count: 8
+    last_modified: 2026-07-20T06:20:07.933Z
+    change_count: 10
     purpose: "Claude Code 프로바이더 — Agent SDK query() 세션, 스트리밍, 세션 resume, 인증 감지"
     change_log:
+      - date: 2026-07-20T06:20:07.933Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:05.995Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:19:40.192Z
         action: edit
         source: "claude:Dan"
@@ -1454,10 +1523,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T04:17:04.031Z
-    change_count: 9
+    last_modified: 2026-07-20T11:11:14.968Z
+    change_count: 13
     purpose: "AI 채팅 IPC — 프로바이더 상태/설정, 세션 생성·재개·중단, 이벤트 릴레이"
     change_log:
+      - date: 2026-07-20T11:11:14.968Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:11:03.765Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:19:59.404Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:19:57.223Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:17:04.031Z
         action: edit
         source: "claude:Dan"
@@ -1544,10 +1625,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T12:46:18.610Z
-    change_count: 2
+    last_modified: 2026-07-20T06:20:41.413Z
+    change_count: 4
     purpose: "Codex CLI 프로바이더(ChatGPT 구독) — 턴당 exec resume, read-only 샌드박스"
     change_log:
+      - date: 2026-07-20T06:20:41.413Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:35.960Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T12:46:18.610Z
         action: write
         source: "claude:Dan"
@@ -1558,10 +1645,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T13:20:13.020Z
-    change_count: 6
+    last_modified: 2026-07-20T06:21:04.027Z
+    change_count: 10
     purpose: "Gemini CLI 프로바이더(AI Studio API key) — 트랜스크립트 자가 재생, 내장툴 잠금"
     change_log:
+      - date: 2026-07-20T06:21:04.027Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:54.794Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:51.172Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:44.920Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T13:20:13.020Z
         action: edit
         source: "claude:Dan"
@@ -1598,10 +1697,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-17T10:48:04.120Z
-    change_count: 1
+    last_modified: 2026-07-20T06:20:22.502Z
+    change_count: 5
     purpose: "PerTurnCliSession 베이스 — 큐/드레인/임시 워크스페이스/툴호스트 수명/취소 공용화"
     change_log:
+      - date: 2026-07-20T06:20:22.502Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:17.484Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:15.151Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:20:12.806Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-17T10:48:04.120Z
         action: write
         source: "claude:Dan"

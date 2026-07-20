@@ -41,10 +41,29 @@
 
 **Learned**: 깊게 중첩된 대형 JSX 구조 이동은 손 인용보다 라인 마커 기반 Node splice + biome --write 재포맷이 안전(들여쓰기 자동 정리). 세그먼티드 컨트롤의 슬라이딩은 컨테이너 패딩을 역산해 `left`를 트랜지션하면 measure 없이 픽셀 정확.
 
+### 2026-07-20
+**Focus**: 레인 선택 어포던스 + 상단 바 Export/New Project 버튼 (발견성 개선 3건)
+- **레인 선택 핸들**: 기존 2px 바이올렛 인셋 엣지 → 10px 클릭 핸들로 확대 + 레인 고유색 반영(줌=바이올렛/트림=레드/주석·자막=시안/배속=앰버). 3단계 어포던스: 평소 18%·호버 45%+포인터 커서·선택 100%+글로우. 최초엔 레인 안 오버레이로 넣었다가 0:00 눈금·첫 블록과 겹치는 피드백 → **dnd-timeline 내장 row sidebar API**(`setSidebarRef`)로 재구현: 핸들 폭이 `sidebarWidth`에 반영돼 눈금자·플레이헤드·키프레임·시크·스냅이 전부 자동으로 10px 밀림(수동 보정 0줄)
+- **Export Video 버튼**: 상단 바 우측 끝(비어있던 justify-between 공간)에 바이올렛 주 액션 버튼 + 글로우. 지금까지 Settings→Export 탭에 묻혀 찾기 어렵던 진입점을 노출. 기존 `handleOpenExportDialog` 그대로 호출, 라벨은 `settings:export.videoButton`(GIF 모드시 자동 전환) 재사용, 내보내는 중 비활성
+- **New Project 버튼**: "Return to Recorder" 다음에 FilePlus 버튼 추가(Return|New|Load|Save 순). Electron 메뉴에만 있던 `handleNewProject` 노출, 라벨 `dialogs:unsavedChanges.newProject`(전 13로케일 존재) 재사용
+
+**Learned**: dnd-timeline은 row sidebar 폭을 측정해 컨텍스트의 sidebarWidth로 흘려보내는데, 이 코드베이스의 시간축·플레이헤드·시크가 이미 전부 sidebarWidth를 계산에 넣고 있었음(지금까진 0) — 오버레이 대신 정식 사이드바로 넣으면 겹침이 구조적으로 사라지고 좌표 보정이 공짜. 기존 라벨(settings/dialogs 네임스페이스)을 재사용하면 13로케일 번역 추가 없이 버튼 발견성만 개선.
+
+### 2026-07-20 (저녁 연속 세션)
+**Focus**: 컴포저/타임라인 인터랙션 개선 + 효과 레인 + 프로젝트 로드 수정
+- **컴포저 재구성**: ⋮ 빠른액션(Understand/Auto-edit)을 입력창 위 줄로 — 세션에서 안 눌린 것만 노출, 둘 다 쓰면 우측 ⋮로 접힘. 첨부 칩은 버튼 아래 줄. 우측 3버튼(⋮/📎/전송) gap 균등화. 상단 바 중앙에 **프로젝트명**(저장 전 "제목 없음", 저장 후 파일명)
+- **타임라인 "@" 컨텍스트 주입**: 블록 호버 시 우상단 "@" 배지 → lane명+구간을 채팅 입력에 주입(+AI 탭 전환·포커스). 재생바 shift+드래그 구간선택도 임시 추가(두-핸들 방식으로 교체 예정)
+- **비디오 효과 Effects 레인**: 툴바 Aperture 드롭다운(fadeIn/fadeOut/blur/dim) → 재생헤드에 블록 생성 → 새 퓨시아 레인. Item variant "effect"·glassFuchsia, add/select/드래그리사이즈/Delete를 speed 레인 패턴 그대로 복제. 14로케일. (효과 렌더 자체는 AI 유닛)
+- **프로젝트 로드 수정**: Desktop 등 앱 폴더 밖 영상을 참조하는 프로젝트가 재시작 후 "Failed to load video"로 안 열리던 문제 — `getApprovedProjectSession`이 RECORDINGS_DIR/프로젝트폴더 안만 승인하던 것을, **사용자가 직접 연 프로젝트의 미디어는 실존·확장자 검증만으로 승인**하도록 완화
+
+**Learned**: 새 타임라인 레인은 상수(ROW_ID)·TimelineRenderItem variant·outer/inner props·item mapping·Row·span-change 라우팅·delete-key·selection cleanup·Item variant·CSS glass·i18n까지 ~20개 지점을 speed 레인과 1:1로 복제하면 안전. 파일 접근 승인의 "crafted project 방어"는 사용자가 직접 연 자기 프로젝트엔 과했음(재시작 후 재임포트 불가) — 명시적 오픈은 동의로 간주.
+
 ## Pending
+- [ ] **구간 선택 두-핸들 UX** (다음 세션): 재생바 shift+드래그를 제거하고, 눈금자/플레이헤드 쪽 "+" → 두 번째 핸들 생성 → 두 핸들 드래그로 range → "@"로 채팅 컨텍스트. 주입 채널(insertChatContext)은 이미 존재
+- [ ] 효과 강도/램프 수동 슬라이더는 AI 유닛 Pending 참조(Setting 패널 인스펙터)
 - [ ] 라이트 모드/추가 테마 변형 검토 ("테마들 여러가지 섞어줘"의 확장 — 테마 프리셋 시스템)
-- [ ] 트레이 아이콘(openscreen.png) 교체 — 브랜드명 확정 후
-- [ ] 레인 점프 기능의 UI 아이콘/단축키 표기 (KeyboardShortcutsHelp에 추가)
+- [x] 트레이 아이콘(openscreen.png) 교체 (2026-07-17 리브랜딩 때 완료 — main.ts getTrayIcon("vibecut.png"))
+- [x] 레인 점프 기능의 UI 아이콘/단축키 표기 (완료 — lib/shortcuts.ts FIXED_SHORTCUTS에 laneJump → KeyboardShortcutsHelp 렌더링 + shortcuts.json 14로케일 + 타임라인 팁 캐러셀)
 
 ## Notes
 관련: [[2026-07-16-open-source-release-plan]] (브랜드 확정과 연동), [[2026-07-16-ai-editing-assistant]].

@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-19T14:10:24.223Z
+updated: 2026-07-20T11:23:31.511Z
 
 files:
   "src/hooks/audioPeaksWorker.ts":
@@ -194,10 +194,19 @@ files:
     status: active
     source: "user:FabLrc"
     created: 2026-02-27
-    last_modified: 2026-07-19T04:17:58.626Z
-    change_count: 20
+    last_modified: 2026-07-20T11:23:31.511Z
+    change_count: 23
     purpose: "React hook — useEditorHistory.ts."
     change_log:
+      - date: 2026-07-20T11:23:31.511Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:23:21.199Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T11:23:19.275Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:17:58.626Z
         action: edit
         source: "claude:Dan"
@@ -280,10 +289,34 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T14:10:24.223Z
-    change_count: 17
+    last_modified: 2026-07-20T11:11:34.192Z
+    change_count: 25
     purpose: "채팅 상태 훅 — 이벤트 구독, 프로젝트별 localStorage 저장, 세션 resume, ask_user 응답"
     change_log:
+      - date: 2026-07-20T11:11:34.192Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T10:10:03.112Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T10:09:51.404Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T08:02:48.356Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T08:02:45.943Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:19:28.931Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:19:22.797Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:19:19.930Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T14:10:24.223Z
         action: edit
         source: "claude:Dan"
@@ -339,10 +372,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-19T04:19:38.367Z
-    change_count: 10
+    last_modified: 2026-07-20T06:17:03.036Z
+    change_count: 12
     purpose: "렌더러 툴 호스트 — ai:tool-call 수신, executor/프레임/트랜스크립트 실행 후 회신"
     change_log:
+      - date: 2026-07-20T06:17:03.036Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T06:16:50.800Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-19T04:19:38.367Z
         action: edit
         source: "claude:Dan"
