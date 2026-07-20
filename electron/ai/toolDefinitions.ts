@@ -51,6 +51,59 @@ const spanFields = {
 	endMs: z.number().describe("Span end in milliseconds."),
 };
 
+const captionStyleFields = {
+	color: z
+		.string()
+		.max(50)
+		.optional()
+		.describe("Text color: #hex, rgb()/rgba(), hsl()/hsla(), or 'transparent'."),
+	backgroundColor: z
+		.string()
+		.max(50)
+		.optional()
+		.describe(
+			"Box color behind each line: e.g. 'rgba(0,0,0,0.6)' (the default dim box), '#7C5CFF', or 'transparent' for bare text.",
+		),
+	fontSize: z.number().min(12).max(96).optional().describe("Font size in px (default 24)."),
+	fontWeight: z.enum(["normal", "bold"]).optional(),
+	fontStyle: z.enum(["normal", "italic"]).optional(),
+	textAlign: z.enum(["left", "center", "right"]).optional(),
+	textAnimation: z
+		.enum(["none", "fade", "rise", "pop", "slide-left", "typewriter", "pulse"])
+		.optional()
+		.describe("Entrance animation. 'pop' with short 1-3 word lines gives a word-pop feel."),
+	position: z
+		.enum(["bottom", "middle", "top"])
+		.optional()
+		.describe("Vertical placement preset (default bottom)."),
+};
+
+const captionStyleObject = z.object(captionStyleFields);
+
+const captionMotionField = z
+	.object({
+		toPosition: z
+			.object({ x: z.number().min(0).max(100), y: z.number().min(0).max(100) })
+			.optional()
+			.describe("Destination top-left as % of frame (x right, y down). The caption travels here."),
+		toFontSize: z.number().min(12).max(96).optional().describe("Destination font size in px."),
+		toSize: z
+			.object({ width: z.number().min(1).max(100), height: z.number().min(1).max(100) })
+			.optional()
+			.describe("Destination box size as % of frame."),
+		startMs: z.number().optional().describe("When the move starts (default: caption start)."),
+		endMs: z.number().optional().describe("When the move ends (default: caption end)."),
+	})
+	.optional()
+	.describe(
+		"Animate the caption from its base position/size/fontSize to these targets over the span — e.g. center at 1s drifting to the lower third by 3s.",
+	);
+
+const exitAnimationField = z
+	.enum(["none", "fade", "rise", "pop", "slide-left", "typewriter", "pulse"])
+	.optional()
+	.describe("Exit animation played in the caption's tail (the entrance curve in reverse).");
+
 export const cinerecToolSpecs: CinerecToolSpec[] = [
 	{
 		name: "get_project_context",
@@ -72,13 +125,23 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 	{
 		name: "get_video_frames",
 		description:
-			"Capture frames from the recording at the given timestamps and SEE them as images. Use this to understand what is actually on screen (which app, which button, what text) before making content-based editing decisions. Max 8 timestamps per call.",
+			"SEE the recording as images. Without timestamps: scans the video with scene-change detection, dedups near-identical frames, and returns keyframes packed into labelled contact sheets (each cell shows '#n m:ss.s' — its exact source timestamp). This storyboard mode is the best first look at any video. With timestamps: captures full-resolution stills at those exact moments (max 8 per call) — use for close-ups after the storyboard.",
 		shape: {
 			timestamps: z
 				.array(z.number())
 				.min(1)
 				.max(8)
-				.describe("Timeline positions in milliseconds to capture."),
+				.optional()
+				.describe("Timeline positions in ms for full-res stills. Omit for auto keyframes."),
+			startMs: z.number().optional().describe("Auto mode: only scan from this time."),
+			endMs: z.number().optional().describe("Auto mode: only scan up to this time."),
+			maxFrames: z
+				.number()
+				.int()
+				.min(4)
+				.max(45)
+				.optional()
+				.describe("Auto mode: cap on kept keyframes (default 27 = 3 sheets)."),
 		},
 		emitChips: true,
 	},
@@ -127,13 +190,26 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 	},
 	{
 		name: "add_speed_regions",
-		description: "Add playback-speed regions (e.g. 2 = double speed, 0.5 = half speed).",
+		description:
+			"Add playback-speed regions (e.g. 2 = double speed, 0.5 = half speed). Optional rampInMs/rampOutMs give a smooth accelerate-in / decelerate-out instead of a hard cut — the ramp eases from the touching neighbor region's speed (or 1x) into this region's speed and back out, so speeds flow into each other. Prefer one region with ramps over many stepped regions.",
 		shape: {
 			regions: z
 				.array(
 					z.object({
 						...spanFields,
 						speed: z.number().min(0.25).max(100).describe("Playback speed multiplier."),
+						rampInMs: z
+							.number()
+							.min(0)
+							.max(5000)
+							.optional()
+							.describe("Ease-in duration (ms) accelerating from the previous speed to this one."),
+						rampOutMs: z
+							.number()
+							.min(0)
+							.max(5000)
+							.optional()
+							.describe("Ease-out duration (ms) decelerating from this speed to the next one."),
 					}),
 				)
 				.min(1),
@@ -142,12 +218,15 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 	},
 	{
 		name: "update_speed_region",
-		description: "Update an existing speed region by id. Only the provided fields change.",
+		description:
+			"Update an existing speed region by id. Only the provided fields change. Set rampInMs/rampOutMs for a smooth accelerate/decelerate; 0 removes a ramp.",
 		shape: {
 			id: z.string(),
 			startMs: z.number().optional(),
 			endMs: z.number().optional(),
 			speed: z.number().min(0.25).max(100).optional(),
+			rampInMs: z.number().min(0).max(5000).optional(),
+			rampOutMs: z.number().min(0).max(5000).optional(),
 		},
 		emitChips: true,
 	},
@@ -158,15 +237,21 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 		emitChips: true,
 	},
 	{
-		name: "add_captions",
+		name: "add_effects",
 		description:
-			"Add subtitle/caption text overlays to the video (bottom-center, styled like auto-captions). Each entry is one caption line shown for its span. Batch a full subtitle track into one call — one call is one undo step.",
+			"Add full-frame video effects over a time span: fadeIn (black→video), fadeOut (video→black), blur (whole frame), dim (darken). A fadeIn at the very start and a fadeOut at the very end are the usual intro/outro. intensity = blur radius px (default 8) or dim opacity 0-1 (default 0.45); ignored by fades. Batch related effects into one call.",
 		shape: {
-			captions: z
+			effects: z
 				.array(
 					z.object({
 						...spanFields,
-						text: z.string().min(1).max(200).describe("Caption line text."),
+						type: z.enum(["fadeIn", "fadeOut", "blur", "dim"]),
+						intensity: z
+							.number()
+							.min(0)
+							.max(40)
+							.optional()
+							.describe("blur radius in px, or dim opacity 0-1. Ignored by fades."),
 					}),
 				)
 				.min(1),
@@ -174,13 +259,70 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 		emitChips: true,
 	},
 	{
+		name: "update_effect",
+		description: "Update a video effect by id. Only the provided fields change.",
+		shape: {
+			id: z.string(),
+			startMs: z.number().optional(),
+			endMs: z.number().optional(),
+			type: z.enum(["fadeIn", "fadeOut", "blur", "dim"]).optional(),
+			intensity: z.number().min(0).max(40).optional(),
+		},
+		emitChips: true,
+	},
+	{
+		name: "delete_effects",
+		description: "Delete video effects by id. Batch deletions into a single call.",
+		shape: { ids: z.array(z.string()).min(1) },
+		emitChips: true,
+	},
+	{
+		name: "add_captions",
+		description:
+			"Add subtitle/caption text overlays to the video. Default look: bold white text on a dim rounded box, bottom-center (same as auto-captions). Each entry is one caption line shown for its span; emoji in the text render fine. Pass style to override the design for every line in the call. Batch a full subtitle track into one call — one call is one undo step.",
+		shape: {
+			captions: z
+				.array(
+					z.object({
+						...spanFields,
+						text: z.string().min(1).max(200).describe("Caption line text."),
+						motion: captionMotionField,
+						exitAnimation: exitAnimationField,
+					}),
+				)
+				.min(1),
+			style: captionStyleObject
+				.optional()
+				.describe("Design override applied to every caption in this call."),
+		},
+		emitChips: true,
+	},
+	{
 		name: "update_caption",
-		description: "Update a caption/text annotation by id. Only the provided fields change.",
+		description:
+			"Update a caption/text annotation by id. Only the provided fields change; style fields merge into the existing design. Use motion to make it travel/resize across its span and exitAnimation for how it leaves.",
 		shape: {
 			id: z.string(),
 			startMs: z.number().optional(),
 			endMs: z.number().optional(),
 			text: z.string().min(1).max(200).optional(),
+			style: captionStyleObject.optional(),
+			motion: captionMotionField,
+			exitAnimation: exitAnimationField,
+		},
+		emitChips: true,
+	},
+	{
+		name: "set_caption_style",
+		description:
+			"Restyle existing captions without changing their text or timing: text/box colors (dim box via backgroundColor rgba), font size/weight, alignment, entrance animation, and vertical position. Omit ids to restyle every caption at once. One call is one undo step.",
+		shape: {
+			ids: z
+				.array(z.string())
+				.min(1)
+				.optional()
+				.describe("Target caption ids from get_project_context; omit for all captions."),
+			style: captionStyleObject.describe("Design fields to apply."),
 		},
 		emitChips: true,
 	},

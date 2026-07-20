@@ -11,6 +11,7 @@ import type {
 	AiModelInfo,
 	AiProvider,
 	AiProviderStatus,
+	AiToolImage,
 } from "./types";
 
 const MODELS: AiModelInfo[] = [
@@ -70,11 +71,22 @@ class CodexCliSession extends PerTurnCliSession {
 		await fs.writeFile(path.join(dir, "AGENTS.md"), this.options.systemPrompt, "utf-8");
 	}
 
-	protected runTurn(text: string, workspace: string): Promise<void> {
+	protected async runTurn(text: string, workspace: string, images: AiToolImage[]): Promise<void> {
+		// Codex takes images as file paths (`-i`), so attachments land in the
+		// workspace temp dir first. Filenames are turn-unique; the whole dir is
+		// removed on dispose.
+		const imageArgs: string[] = [];
+		for (const [index, image] of images.entries()) {
+			const ext = image.mimeType === "image/png" ? "png" : "jpg";
+			const file = path.join(workspace, `attachment-${Date.now()}-${index}.${ext}`);
+			await fs.writeFile(file, Buffer.from(image.data, "base64"));
+			imageArgs.push("-i", file);
+		}
 		const bridge = mcpBridgeLaunch(this.host);
 		const args = [
 			"exec",
 			...(this.sessionId ? ["resume", this.sessionId] : []),
+			...imageArgs,
 			"--json",
 			// The agent must only edit through our MCP tools; read-only keeps
 			// Codex's built-in shell from touching anything.

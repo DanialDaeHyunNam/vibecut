@@ -1,6 +1,7 @@
 import type { Range, Span } from "dnd-timeline";
 import { useTimelineContext } from "dnd-timeline";
 import {
+	Aperture,
 	Captions,
 	Check,
 	ChevronDown,
@@ -34,7 +35,14 @@ import { ASPECT_RATIOS, type AspectRatio, getAspectRatioLabel } from "@/utils/as
 import { formatShortcut } from "@/utils/platformUtils";
 import { BLUR_REGIONS_ENABLED } from "../featureFlags";
 import { findFreeGapAt } from "../regionPlacement";
-import type { AnnotationRegion, SpeedRegion, TrimRegion, ZoomRegion } from "../types";
+import type {
+	AnnotationRegion,
+	EffectRegion,
+	SpeedRegion,
+	TrimRegion,
+	VideoEffectType,
+	ZoomRegion,
+} from "../types";
 import BackgroundWaveform from "./BackgroundWaveform";
 import Item from "./Item";
 import KeyframeMarkers from "./KeyframeMarkers";
@@ -46,7 +54,16 @@ const TRIM_ROW_ID = "row-trim";
 const ANNOTATION_ROW_ID = "row-annotation";
 const BLUR_ROW_ID = "row-blur";
 const SPEED_ROW_ID = "row-speed";
+const EFFECT_ROW_ID = "row-effect";
 const FALLBACK_RANGE_MS = 1000;
+
+/** Short human labels for the four full-frame effect types (shown on blocks). */
+const EFFECT_LABELS: Record<VideoEffectType, string> = {
+	fadeIn: "Fade in",
+	fadeOut: "Fade out",
+	blur: "Blur",
+	dim: "Dim",
+};
 const TARGET_MARKER_COUNT = 12;
 
 interface TimelineEditorProps {
@@ -90,6 +107,12 @@ interface TimelineEditorProps {
 	onSpeedDelete?: (id: string) => void;
 	selectedSpeedId?: string | null;
 	onSelectSpeed?: (id: string | null) => void;
+	effectRegions?: EffectRegion[];
+	onEffectAdded?: (type: VideoEffectType, span: Span) => void;
+	onEffectSpanChange?: (id: string, span: Span) => void;
+	onEffectDelete?: (id: string) => void;
+	selectedEffectId?: string | null;
+	onSelectEffect?: (id: string | null) => void;
 	aspectRatio: AspectRatio;
 	onAspectRatioChange: (aspectRatio: AspectRatio) => void;
 	videoUrl?: string;
@@ -97,6 +120,8 @@ interface TimelineEditorProps {
 	/** Lane focused for Alt+←/→ block navigation. */
 	activeLane?: "zoom" | "trim" | "annotation" | "speed";
 	onLaneClick?: (lane: "zoom" | "trim" | "annotation" | "speed") => void;
+	/** Send a block's lane + range to the AI chat input as context (the "@" badge). */
+	onAddContext?: (text: string) => void;
 	/** Opens the auto-captions flow. When omitted, the captions button is hidden. */
 	onGenerateCaptions?: () => void;
 	isGeneratingCaptions?: boolean;
@@ -119,7 +144,8 @@ interface TimelineRenderItem {
 	zoomCustomScale?: number;
 	speedValue?: number;
 	isAutoFocus?: boolean;
-	variant: "zoom" | "trim" | "annotation" | "speed" | "blur";
+	effectType?: VideoEffectType;
+	variant: "zoom" | "trim" | "annotation" | "speed" | "blur" | "effect";
 }
 
 const SCALE_CANDIDATES = [
@@ -570,16 +596,19 @@ function Timeline({
 	onSelectAnnotation,
 	onSelectBlur,
 	onSelectSpeed,
+	onSelectEffect,
 	selectedZoomId,
 	selectedTrimId,
 	selectedAnnotationId,
 	selectedBlurId,
 	selectedSpeedId,
+	selectedEffectId,
 	keyframes = [],
 	videoUrl,
 	showTrimWaveform = false,
 	activeLane,
 	onLaneClick,
+	onAddContext,
 }: {
 	items: TimelineRenderItem[];
 	videoDurationMs: number;
@@ -591,16 +620,19 @@ function Timeline({
 	onSelectAnnotation?: (id: string | null) => void;
 	onSelectBlur?: (id: string | null) => void;
 	onSelectSpeed?: (id: string | null) => void;
+	onSelectEffect?: (id: string | null) => void;
 	selectedZoomId: string | null;
 	selectedTrimId?: string | null;
 	selectedAnnotationId?: string | null;
 	selectedBlurId?: string | null;
 	selectedSpeedId?: string | null;
+	selectedEffectId?: string | null;
 	keyframes?: { id: string; time: number }[];
 	videoUrl?: string;
 	showTrimWaveform?: boolean;
 	activeLane?: "zoom" | "trim" | "annotation" | "speed";
 	onLaneClick?: (lane: "zoom" | "trim" | "annotation" | "speed") => void;
+	onAddContext?: (text: string) => void;
 }) {
 	const t = useScopedT("timeline");
 	const { setTimelineRef, style, sidebarWidth, range, pixelsToValue } = useTimelineContext();
@@ -760,6 +792,7 @@ function Timeline({
 	const annotationItems = items.filter((item) => item.rowId === ANNOTATION_ROW_ID);
 	const blurItems = items.filter((item) => item.rowId === BLUR_ROW_ID);
 	const speedItems = items.filter((item) => item.rowId === SPEED_ROW_ID);
+	const effectItems = items.filter((item) => item.rowId === EFFECT_ROW_ID);
 
 	return (
 		<div
@@ -788,6 +821,7 @@ function Timeline({
 
 			<Row
 				id={ZOOM_ROW_ID}
+				laneColor="#7C5CFF"
 				isEmpty={zoomItems.length === 0}
 				hint={t("hints.pressZoom")}
 				isActiveLane={activeLane === "zoom"}
@@ -798,6 +832,7 @@ function Timeline({
 						id={item.id}
 						key={item.id}
 						rowId={item.rowId}
+						onAddContext={onAddContext}
 						span={item.span}
 						isSelected={item.id === selectedZoomId}
 						onSelect={() => onSelectZoom?.(item.id)}
@@ -813,6 +848,7 @@ function Timeline({
 
 			<Row
 				id={TRIM_ROW_ID}
+				laneColor="#ef4444"
 				isEmpty={trimItems.length === 0}
 				hint={t("hints.pressTrim")}
 				isActiveLane={activeLane === "trim"}
@@ -833,6 +869,7 @@ function Timeline({
 						id={item.id}
 						key={item.id}
 						rowId={item.rowId}
+						onAddContext={onAddContext}
 						span={item.span}
 						isSelected={item.id === selectedTrimId}
 						onSelect={() => onSelectTrim?.(item.id)}
@@ -845,6 +882,7 @@ function Timeline({
 
 			<Row
 				id={ANNOTATION_ROW_ID}
+				laneColor="#22d3ee"
 				isEmpty={annotationItems.length === 0}
 				hint={t("hints.pressAnnotation")}
 				isActiveLane={activeLane === "annotation"}
@@ -855,6 +893,7 @@ function Timeline({
 						id={item.id}
 						key={item.id}
 						rowId={item.rowId}
+						onAddContext={onAddContext}
 						span={item.span}
 						isSelected={item.id === selectedAnnotationId}
 						onSelect={() => onSelectAnnotation?.(item.id)}
@@ -868,6 +907,7 @@ function Timeline({
 			{BLUR_REGIONS_ENABLED && (
 				<Row
 					id={BLUR_ROW_ID}
+					laneColor="#22d3ee"
 					isEmpty={blurItems.length === 0}
 					hint={t("hints.pressBlur")}
 					isActiveLane={activeLane === "annotation"}
@@ -878,6 +918,7 @@ function Timeline({
 							id={item.id}
 							key={item.id}
 							rowId={item.rowId}
+							onAddContext={onAddContext}
 							span={item.span}
 							isSelected={item.id === selectedBlurId}
 							onSelect={() => onSelectBlur?.(item.id)}
@@ -891,6 +932,7 @@ function Timeline({
 
 			<Row
 				id={SPEED_ROW_ID}
+				laneColor="#f59e0b"
 				isEmpty={speedItems.length === 0}
 				hint={t("hints.pressSpeed")}
 				isActiveLane={activeLane === "speed"}
@@ -901,11 +943,35 @@ function Timeline({
 						id={item.id}
 						key={item.id}
 						rowId={item.rowId}
+						onAddContext={onAddContext}
 						span={item.span}
 						isSelected={item.id === selectedSpeedId}
 						onSelect={() => onSelectSpeed?.(item.id)}
 						variant="speed"
 						speedValue={item.speedValue}
+					>
+						{item.label}
+					</Item>
+				))}
+			</Row>
+
+			<Row
+				id={EFFECT_ROW_ID}
+				laneColor="#e879f9"
+				isEmpty={effectItems.length === 0}
+				hint={t("hints.pressEffect")}
+			>
+				{effectItems.map((item) => (
+					<Item
+						id={item.id}
+						key={item.id}
+						rowId={item.rowId}
+						onAddContext={onAddContext}
+						span={item.span}
+						isSelected={item.id === selectedEffectId}
+						onSelect={() => onSelectEffect?.(item.id)}
+						variant="effect"
+						effectType={item.effectType}
 					>
 						{item.label}
 					</Item>
@@ -954,12 +1020,19 @@ export default function TimelineEditor({
 	onSpeedDelete,
 	selectedSpeedId,
 	onSelectSpeed,
+	effectRegions = [],
+	onEffectAdded,
+	onEffectSpanChange,
+	onEffectDelete,
+	selectedEffectId,
+	onSelectEffect,
 	aspectRatio,
 	onAspectRatioChange,
 	videoUrl,
 	showTrimWaveform = false,
 	activeLane,
 	onLaneClick,
+	onAddContext,
 	onGenerateCaptions,
 	isGeneratingCaptions = false,
 	captionsLabel,
@@ -1058,6 +1131,12 @@ export default function TimelineEditor({
 		onSpeedDelete(selectedSpeedId);
 		onSelectSpeed(null);
 	}, [selectedSpeedId, onSpeedDelete, onSelectSpeed]);
+
+	const deleteSelectedEffect = useCallback(() => {
+		if (!selectedEffectId || !onEffectDelete || !onSelectEffect) return;
+		onEffectDelete(selectedEffectId);
+		onSelectEffect(null);
+	}, [selectedEffectId, onEffectDelete, onSelectEffect]);
 
 	useEffect(() => {
 		setRange(createInitialRange(totalMs));
@@ -1234,6 +1313,21 @@ export default function TimelineEditor({
 		t,
 	]);
 
+	const handleAddEffect = useCallback(
+		(type: VideoEffectType) => {
+			if (!videoDuration || videoDuration === 0 || totalMs === 0 || !onEffectAdded) return;
+			const defaultDuration = Math.min(defaultRegionDurationMs, totalMs);
+			if (defaultDuration <= 0) return;
+			// Effects may overlap freely (a dim under a fade is valid), so no gap check.
+			// A fadeIn defaults to the very start; fadeOut to the very end.
+			let startPos = Math.max(0, Math.min(currentTimeMs, totalMs - defaultDuration));
+			if (type === "fadeIn") startPos = 0;
+			else if (type === "fadeOut") startPos = Math.max(0, totalMs - defaultDuration);
+			onEffectAdded(type, { start: startPos, end: startPos + defaultDuration });
+		},
+		[videoDuration, totalMs, currentTimeMs, onEffectAdded, defaultRegionDurationMs],
+	);
+
 	const handleAddAnnotation = useCallback(() => {
 		if (!videoDuration || videoDuration === 0 || totalMs === 0 || !onAnnotationAdded) {
 			return;
@@ -1330,6 +1424,8 @@ export default function TimelineEditor({
 					deleteSelectedBlur();
 				} else if (selectedSpeedId) {
 					deleteSelectedSpeed();
+				} else if (selectedEffectId) {
+					deleteSelectedEffect();
 				}
 			}
 		};
@@ -1348,12 +1444,14 @@ export default function TimelineEditor({
 		deleteSelectedAnnotation,
 		deleteSelectedBlur,
 		deleteSelectedSpeed,
+		deleteSelectedEffect,
 		selectedKeyframeId,
 		selectedZoomId,
 		selectedTrimId,
 		selectedAnnotationId,
 		selectedBlurId,
 		selectedSpeedId,
+		selectedEffectId,
 		annotationRegions,
 		currentTime,
 		onSelectAnnotation,
@@ -1430,8 +1528,17 @@ export default function TimelineEditor({
 			variant: "speed",
 		}));
 
-		return [...zooms, ...trims, ...annotations, ...blurs, ...speeds];
-	}, [zoomRegions, trimRegions, annotationRegions, blurRegions, speedRegions, t]);
+		const effects: TimelineRenderItem[] = effectRegions.map((region) => ({
+			id: region.id,
+			rowId: EFFECT_ROW_ID,
+			span: { start: region.startMs, end: region.endMs },
+			label: EFFECT_LABELS[region.type],
+			effectType: region.type,
+			variant: "effect",
+		}));
+
+		return [...zooms, ...trims, ...annotations, ...blurs, ...speeds, ...effects];
+	}, [zoomRegions, trimRegions, annotationRegions, blurRegions, speedRegions, effectRegions, t]);
 
 	// Spans that participate in overlap resolution (clampToNeighbours). Annotation
 	// and blur are excluded since they may overlap and shouldn't constrain a drag.
@@ -1467,6 +1574,8 @@ export default function TimelineEditor({
 				onAnnotationSpanChange?.(id, span);
 			} else if (blurRegions.some((r) => r.id === id)) {
 				onBlurSpanChange?.(id, span);
+			} else if (effectRegions.some((r) => r.id === id)) {
+				onEffectSpanChange?.(id, span);
 			}
 		},
 		[
@@ -1475,11 +1584,13 @@ export default function TimelineEditor({
 			speedRegions,
 			annotationRegions,
 			blurRegions,
+			effectRegions,
 			onZoomSpanChange,
 			onTrimSpanChange,
 			onSpeedSpanChange,
 			onAnnotationSpanChange,
 			onBlurSpanChange,
+			onEffectSpanChange,
 		],
 	);
 
@@ -1590,6 +1701,32 @@ export default function TimelineEditor({
 					>
 						<Gauge className="w-4 h-4" />
 					</Button>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button
+								variant="ghost"
+								size="icon"
+								className="h-7 w-7 rounded-lg text-slate-400 hover:text-[#e879f9] hover:bg-[#e879f9]/10 transition-all"
+								title={t("buttons.addEffect")}
+							>
+								<Aperture className="w-4 h-4" />
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="start">
+							<DropdownMenuItem onSelect={() => handleAddEffect("fadeIn")}>
+								{t("effects.fadeIn")}
+							</DropdownMenuItem>
+							<DropdownMenuItem onSelect={() => handleAddEffect("fadeOut")}>
+								{t("effects.fadeOut")}
+							</DropdownMenuItem>
+							<DropdownMenuItem onSelect={() => handleAddEffect("blur")}>
+								{t("effects.blur")}
+							</DropdownMenuItem>
+							<DropdownMenuItem onSelect={() => handleAddEffect("dim")}>
+								{t("effects.dim")}
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 					{onGenerateCaptions && (
 						<Button
 							onClick={onGenerateCaptions}
@@ -1698,16 +1835,19 @@ export default function TimelineEditor({
 						onSelectAnnotation={onSelectAnnotation}
 						onSelectBlur={onSelectBlur}
 						onSelectSpeed={onSelectSpeed}
+						onSelectEffect={onSelectEffect}
 						selectedZoomId={selectedZoomId}
 						selectedTrimId={selectedTrimId}
 						selectedAnnotationId={selectedAnnotationId}
 						selectedBlurId={selectedBlurId}
 						selectedSpeedId={selectedSpeedId}
+						selectedEffectId={selectedEffectId}
 						keyframes={keyframes}
 						videoUrl={videoUrl}
 						showTrimWaveform={showTrimWaveform}
 						activeLane={activeLane}
 						onLaneClick={onLaneClick}
+						onAddContext={onAddContext}
 					/>
 				</TimelineWrapper>
 			</div>

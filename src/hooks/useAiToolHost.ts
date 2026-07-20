@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { type AiCommandContext, executeAiCommand } from "@/components/ai-chat/aiCommandExecutor";
+import { extractKeyframes, makeContactSheets } from "@/components/ai-chat/keyframeExtraction";
 import { captureVideoFrames } from "@/components/ai-chat/videoFrameCapture";
 import type { EditorState } from "@/hooks/useEditorHistory";
 import { extractMono16kFromVideoUrl, transcribeMono16kToSegments } from "@/lib/captioning";
@@ -72,15 +73,44 @@ export function useAiToolHost({
 						});
 						return;
 					}
-					const input = (call.input ?? {}) as { timestamps?: unknown };
+					const input = (call.input ?? {}) as {
+						timestamps?: unknown;
+						startMs?: unknown;
+						endMs?: unknown;
+						maxFrames?: unknown;
+					};
 					const timestamps = (Array.isArray(input.timestamps) ? input.timestamps : [])
 						.filter((value): value is number => typeof value === "number" && Number.isFinite(value))
 						.slice(0, MAX_FRAMES_PER_CALL);
 					if (timestamps.length === 0) {
+						// Storyboard mode: scene-detected keyframes packed into
+						// labelled contact sheets (crv-style scan + dedup).
+						const asNumber = (value: unknown) =>
+							typeof value === "number" && Number.isFinite(value) ? value : undefined;
+						const { frames, scannedCount, startMs, endMs } = await extractKeyframes(videoUrl, {
+							startMs: asNumber(input.startMs),
+							endMs: asNumber(input.endMs),
+							maxFrames: asNumber(input.maxFrames),
+						});
+						const sheets = makeContactSheets(frames);
 						window.electronAPI.aiToolResult({
 							callId: call.callId,
-							ok: false,
-							content: JSON.stringify({ error: "timestamps must be a non-empty number array" }),
+							ok: true,
+							content: JSON.stringify({
+								mode: "storyboard",
+								scannedRange: { startMs: Math.round(startMs), endMs: Math.round(endMs) },
+								candidatesScanned: scannedCount,
+								keyframes: sheets.flatMap((sheet, sheetIndex) =>
+									sheet.cells.map((cell) => ({
+										label: cell.label,
+										timeMs: cell.timeMs,
+										sheetIndex,
+									})),
+								),
+								note: "Keyframes were picked by scene-change detection + dedup (near-identical frames dropped) and tiled chronologically into the attached contact sheets. Each cell's in-image label '#n m:ss.s' is its exact source timestamp — cite moments by it. Call again with explicit timestamps for a full-resolution close-up.",
+							}),
+							summary: `${frames.length} keyframes`,
+							images: sheets.map((sheet) => ({ data: sheet.data, mimeType: sheet.mimeType })),
 						});
 						return;
 					}

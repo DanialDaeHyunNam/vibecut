@@ -9,14 +9,16 @@
 		"autoZoomOn": "Đề xuất thu phóng tự động đang bật — nhấp để xóa các vùng thu phóng được đề xuất",
 		"autoZoomOff": "Đề xuất thu phóng tự động đang tắt — nhấp để đề xuất thu phóng từ con trỏ",
 		"autoFocusAllOn": "Tự động lấy nét đang bật cho mọi vùng thu phóng — nhấp để chuyển tất cả sang thủ công",
-		"autoFocusAllOff": "Tự động lấy nét mọi vùng thu phóng (máy quay đi theo con trỏ)"
+		"autoFocusAllOff": "Tự động lấy nét mọi vùng thu phóng (máy quay đi theo con trỏ)",
+		"addEffect": "Thêm hiệu ứng video"
 	},
 	"hints": {
 		"pressZoom": "Nhấn Z để thêm thu phóng",
 		"pressTrim": "Nhấn T để thêm cắt",
 		"pressAnnotation": "Nhấn A để thêm chú thích",
 		"pressBlur": "Nhấn B để thêm vùng làm mờ",
-		"pressSpeed": "Nhấn S để thêm tốc độ"
+		"pressSpeed": "Nhấn S để thêm tốc độ",
+		"pressEffect": "Thêm hiệu ứng"
 	},
 	"labels": {
 		"pan": "Xoay",
@@ -29,7 +31,11 @@
 		"annotationItem": "Chú thích",
 		"blurItem": "Làm mờ {{index}}",
 		"imageItem": "Hình ảnh",
-		"emptyText": "Văn bản trống"
+		"emptyText": "Văn bản trống",
+		"addToChat": "Thêm vào trò chuyện",
+		"range": "Đoạn",
+		"rangeSelectHint": "Shift+kéo để chọn đoạn gửi cho AI",
+		"effect": "Hiệu ứng"
 	},
 	"emptyState": {
 		"noVideo": "Chưa tải video",
@@ -62,5 +68,11 @@
 		"laneClick": "Đặt làm mục tiêu điều hướng Alt",
 		"dividerKey": "Kéo thanh chia",
 		"divider": "Đổi cỡ bảng điều khiển · nhấp đúp để đặt lại"
+	},
+	"effects": {
+		"fadeIn": "Mờ dần vào",
+		"fadeOut": "Mờ dần ra",
+		"blur": "Làm mờ",
+		"dim": "Làm tối"
 	}
 }

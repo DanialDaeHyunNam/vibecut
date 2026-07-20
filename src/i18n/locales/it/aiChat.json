@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "L'accesso con abbonamento {{name}} è in pausa",
 	"policyDisabledBody": "La policy del provider è cambiata: questo metodo è disattivato per proteggere il tuo account. Usa una chiave API (campo sotto il selettore dei modelli) o riprova più tardi.",
 	"policyLearnMore": "Scopri di più",
-	"dismiss": "Chiudi"
+	"dismiss": "Chiudi",
+	"attach": "Allega immagine o video",
+	"attachFailed": "Errore: {name}",
+	"attachRemove": "Rimuovi allegato"
 }

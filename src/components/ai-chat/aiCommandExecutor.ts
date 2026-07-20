@@ -6,14 +6,21 @@ import {
 } from "@/lib/captioning/annotationsFromCaptions";
 import {
 	type AnnotationRegion,
+	type AnnotationTextAnimation,
+	type AnnotationTextStyle,
+	type CaptionMotion,
 	type CursorTelemetryPoint,
 	clampFocusToDepth,
 	clampPlaybackSpeed,
 	DEFAULT_ZOOM_DEPTH,
+	type EffectRegion,
+	MAX_EFFECT_BLUR_PX,
+	MAX_SPEED_RAMP_MS,
 	MAX_ZOOM_SCALE,
 	MIN_ZOOM_SCALE,
 	type SpeedRegion,
 	type TrimRegion,
+	type VideoEffectType,
 	ZOOM_DEPTH_SCALES,
 	type ZoomDepth,
 	type ZoomRegion,
@@ -35,6 +42,7 @@ export interface AiCommandContext {
 	allocZoomId: () => string;
 	allocTrimId: () => string;
 	allocSpeedId: () => string;
+	allocEffectId: () => string;
 	allocAnnotationId: () => string;
 	allocAnnotationZIndex: () => number;
 }
@@ -94,6 +102,164 @@ function clampCoord(value: unknown): number | undefined {
 	return Math.max(0, Math.min(1, value));
 }
 
+/** A speed ramp duration (ms): positive, capped, and never longer than its region. */
+function clampRamp(value: unknown, spanMs: number): number | undefined {
+	if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) return undefined;
+	return Math.min(Math.round(value), MAX_SPEED_RAMP_MS, spanMs);
+}
+
+const EFFECT_TYPES = new Set<VideoEffectType>(["fadeIn", "fadeOut", "blur", "dim"]);
+function isEffectType(value: unknown): value is VideoEffectType {
+	return typeof value === "string" && EFFECT_TYPES.has(value as VideoEffectType);
+}
+
+/** blur intensity is px (0..MAX); dim is opacity (0..1); fades carry no intensity. */
+function clampEffectIntensity(type: VideoEffectType, value: unknown): number | undefined {
+	if (typeof value !== "number" || !Number.isFinite(value)) return undefined;
+	if (type === "blur") return Math.max(0, Math.min(MAX_EFFECT_BLUR_PX, value));
+	if (type === "dim") return Math.max(0, Math.min(1, value));
+	return undefined; // fadeIn/fadeOut ignore intensity
+}
+
+/** Vertical placement presets for captions; x stays centered at the caption width. */
+const CAPTION_POSITION_PRESETS: Record<string, { x: number; y: number }> = {
+	bottom: { ...AI_CAPTION_POSITION },
+	middle: { x: AI_CAPTION_POSITION.x, y: (100 - AI_CAPTION_SIZE.height) / 2 },
+	top: { x: AI_CAPTION_POSITION.x, y: 4 },
+};
+
+const TEXT_ANIMATIONS = new Set<AnnotationTextAnimation>([
+	"none",
+	"fade",
+	"rise",
+	"pop",
+	"slide-left",
+	"typewriter",
+	"pulse",
+]);
+
+function sanitizeExitAnimation(value: unknown): AnnotationTextAnimation | undefined {
+	return TEXT_ANIMATIONS.has(value as AnnotationTextAnimation)
+		? (value as AnnotationTextAnimation)
+		: undefined;
+}
+
+/** Validate agent-provided caption motion (A→B travel/resize), clamped to the frame + timeline. */
+function sanitizeMotion(raw: unknown, durationMs: number): CaptionMotion | undefined {
+	if (!raw || typeof raw !== "object") return undefined;
+	const input = raw as Record<string, unknown>;
+	const motion: CaptionMotion = {};
+
+	const pos = input.toPosition as { x?: unknown; y?: unknown } | undefined;
+	if (pos && typeof pos.x === "number" && typeof pos.y === "number") {
+		motion.toPosition = {
+			x: Math.max(0, Math.min(100, pos.x)),
+			y: Math.max(0, Math.min(100, pos.y)),
+		};
+	}
+	const size = input.toSize as { width?: unknown; height?: unknown } | undefined;
+	if (size && typeof size.width === "number" && typeof size.height === "number") {
+		motion.toSize = {
+			width: Math.max(1, Math.min(100, size.width)),
+			height: Math.max(1, Math.min(100, size.height)),
+		};
+	}
+	if (typeof input.toFontSize === "number" && Number.isFinite(input.toFontSize)) {
+		motion.toFontSize = Math.max(12, Math.min(96, Math.round(input.toFontSize)));
+	}
+	if (typeof input.startMs === "number" && Number.isFinite(input.startMs)) {
+		motion.startMs = Math.max(0, Math.min(Math.round(input.startMs), durationMs));
+	}
+	if (typeof input.endMs === "number" && Number.isFinite(input.endMs)) {
+		motion.endMs = Math.max(0, Math.min(Math.round(input.endMs), durationMs));
+	}
+	return motion.toPosition || motion.toSize || motion.toFontSize !== undefined ? motion : undefined;
+}
+
+function isSafeCssColor(value: string): boolean {
+	return (
+		value === "transparent" ||
+		/^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(value) ||
+		/^(rgb|rgba|hsl|hsla|oklch|oklab)\([^)]{1,40}\)$/i.test(value)
+	);
+}
+
+interface CaptionStyleInput {
+	color?: unknown;
+	backgroundColor?: unknown;
+	fontSize?: unknown;
+	fontWeight?: unknown;
+	fontStyle?: unknown;
+	textAlign?: unknown;
+	textAnimation?: unknown;
+	position?: unknown;
+}
+
+interface SanitizedCaptionStyle {
+	style: Partial<AnnotationTextStyle>;
+	position?: { x: number; y: number };
+	applied: string[];
+	rejected: string[];
+}
+
+/** Validate/clamp agent-provided caption design fields (untrusted model output). */
+function sanitizeCaptionStyle(raw: unknown): SanitizedCaptionStyle {
+	const input = (raw ?? {}) as CaptionStyleInput;
+	const style: Partial<AnnotationTextStyle> = {};
+	const applied: string[] = [];
+	const rejected: string[] = [];
+
+	const color = (key: "color" | "backgroundColor") => {
+		const value = input[key];
+		if (value === undefined) return;
+		if (typeof value === "string" && isSafeCssColor(value.trim())) {
+			style[key] = value.trim();
+			applied.push(key);
+		} else rejected.push(`${key} must be #hex, rgb()/rgba(), hsl()/hsla(), or 'transparent'`);
+	};
+	color("color");
+	color("backgroundColor");
+
+	if (input.fontSize !== undefined) {
+		if (typeof input.fontSize === "number" && Number.isFinite(input.fontSize)) {
+			style.fontSize = Math.max(12, Math.min(96, Math.round(input.fontSize)));
+			applied.push("fontSize");
+		} else rejected.push("fontSize must be a number 12-96");
+	}
+	const oneOf = <K extends "fontWeight" | "fontStyle" | "textAlign">(
+		key: K,
+		allowed: ReadonlyArray<AnnotationTextStyle[K]>,
+	) => {
+		const value = input[key];
+		if (value === undefined) return;
+		if (allowed.includes(value as AnnotationTextStyle[K])) {
+			style[key] = value as AnnotationTextStyle[K];
+			applied.push(key);
+		} else rejected.push(`${key} must be one of ${allowed.join(" | ")}`);
+	};
+	oneOf("fontWeight", ["normal", "bold"]);
+	oneOf("fontStyle", ["normal", "italic"]);
+	oneOf("textAlign", ["left", "center", "right"]);
+
+	if (input.textAnimation !== undefined) {
+		if (TEXT_ANIMATIONS.has(input.textAnimation as AnnotationTextAnimation)) {
+			style.textAnimation = input.textAnimation as AnnotationTextAnimation;
+			applied.push("textAnimation");
+		} else rejected.push(`textAnimation must be one of ${[...TEXT_ANIMATIONS].join(" | ")}`);
+	}
+
+	let position: { x: number; y: number } | undefined;
+	if (input.position !== undefined) {
+		const preset = CAPTION_POSITION_PRESETS[input.position as string];
+		if (preset) {
+			position = { ...preset };
+			applied.push("position");
+		} else rejected.push("position must be bottom | middle | top");
+	}
+
+	return { style, position, applied, rejected };
+}
+
 interface ZoomInput {
 	startMs?: unknown;
 	endMs?: unknown;
@@ -140,6 +306,9 @@ export function executeAiCommand(
 
 	switch (name) {
 		case "get_project_context": {
+			// Current caption design (captions are styled uniformly in practice) —
+			// lets the agent restyle relative to what's on screen instead of blind.
+			const styleSample = state.annotationRegions.find((region) => region.type === "text");
 			return {
 				partial: null,
 				ok: true,
@@ -160,6 +329,7 @@ export function executeAiCommand(
 					})),
 					trimRegions: state.trimRegions,
 					speedRegions: state.speedRegions,
+					effectRegions: state.effectRegions,
 					captions: state.annotationRegions
 						.filter((region) => region.type === "text")
 						.map((region) => ({
@@ -169,6 +339,16 @@ export function executeAiCommand(
 							text: (region.content ?? "").slice(0, 80),
 							isCaption: region.annotationSource === "auto-caption",
 						})),
+					captionStyle: styleSample
+						? {
+								color: styleSample.style.color,
+								backgroundColor: styleSample.style.backgroundColor,
+								fontSize: styleSample.style.fontSize,
+								fontWeight: styleSample.style.fontWeight,
+								textAnimation: styleSample.style.textAnimation ?? "none",
+								positionY: styleSample.position.y,
+							}
+						: undefined,
 				}),
 			};
 		}
@@ -350,6 +530,8 @@ export function executeAiCommand(
 				startMs?: unknown;
 				endMs?: unknown;
 				speed?: unknown;
+				rampInMs?: unknown;
+				rampOutMs?: unknown;
 			}>) {
 				const span = clampSpan(entry.startMs, entry.endMs, ctx.durationMs);
 				if (!span || typeof entry.speed !== "number" || !Number.isFinite(entry.speed)) {
@@ -363,7 +545,16 @@ export function executeAiCommand(
 					skipped.push(`span ${span.startMs}-${span.endMs}ms overlaps speed region ${conflict.id}`);
 					continue;
 				}
-				created.push({ id: ctx.allocSpeedId(), ...span, speed: clampPlaybackSpeed(entry.speed) });
+				const spanMs = span.endMs - span.startMs;
+				const rampInMs = clampRamp(entry.rampInMs, spanMs);
+				const rampOutMs = clampRamp(entry.rampOutMs, spanMs);
+				created.push({
+					id: ctx.allocSpeedId(),
+					...span,
+					speed: clampPlaybackSpeed(entry.speed),
+					...(rampInMs ? { rampInMs } : {}),
+					...(rampOutMs ? { rampOutMs } : {}),
+				});
 			}
 			if (created.length === 0) return fail(`no speed regions created: ${skipped.join("; ")}`);
 			return {
@@ -402,7 +593,19 @@ export function executeAiCommand(
 				typeof input.speed === "number" && Number.isFinite(input.speed)
 					? clampPlaybackSpeed(input.speed)
 					: existing.speed;
-			const updated: SpeedRegion = { ...existing, ...span, speed };
+			const spanMs = span.endMs - span.startMs;
+			// Ramp fields merge: omit to keep, 0 to clear, positive to set.
+			const rampInMs =
+				input.rampInMs === undefined ? existing.rampInMs : clampRamp(input.rampInMs, spanMs);
+			const rampOutMs =
+				input.rampOutMs === undefined ? existing.rampOutMs : clampRamp(input.rampOutMs, spanMs);
+			const updated: SpeedRegion = {
+				id: existing.id,
+				...span,
+				speed,
+				...(rampInMs ? { rampInMs } : {}),
+				...(rampOutMs ? { rampOutMs } : {}),
+			};
 			return {
 				partial: { speedRegions: state.speedRegions.map((r) => (r.id === id ? updated : r)) },
 				ok: true,
@@ -421,6 +624,95 @@ export function executeAiCommand(
 				partial: { speedRegions: state.speedRegions.filter((r) => !idSet.has(r.id)) },
 				ok: true,
 				content: JSON.stringify({ deleted: removed.map((r) => r.id) }),
+				summary: `${removed.length}`,
+			};
+		}
+
+		case "add_effects": {
+			if (!Array.isArray(input.effects) || input.effects.length === 0) {
+				return fail("effects must be a non-empty array");
+			}
+			const created: EffectRegion[] = [];
+			const skipped: string[] = [];
+			for (const entry of input.effects as Array<{
+				startMs?: unknown;
+				endMs?: unknown;
+				type?: unknown;
+				intensity?: unknown;
+			}>) {
+				const span = clampSpan(entry.startMs, entry.endMs, ctx.durationMs);
+				if (!span || !isEffectType(entry.type)) {
+					skipped.push(`invalid effect ${JSON.stringify(entry)}`);
+					continue;
+				}
+				const intensity = clampEffectIntensity(entry.type, entry.intensity);
+				created.push({
+					id: ctx.allocEffectId(),
+					...span,
+					type: entry.type,
+					...(intensity !== undefined ? { intensity } : {}),
+				});
+			}
+			if (created.length === 0) return fail(`no effects created: ${skipped.join("; ")}`);
+			return {
+				partial: { effectRegions: [...state.effectRegions, ...created] },
+				ok: true,
+				content: JSON.stringify({
+					created: created.map((e) => ({
+						id: e.id,
+						type: e.type,
+						startMs: e.startMs,
+						endMs: e.endMs,
+						intensity: e.intensity,
+					})),
+					skipped,
+				}),
+				summary: created.length === 1 ? created[0].type : `${created.length}×`,
+			};
+		}
+
+		case "update_effect": {
+			const id = input.id;
+			if (typeof id !== "string") return fail("id is required");
+			const existing = state.effectRegions.find((e) => e.id === id);
+			if (!existing) return fail(`effect ${id} not found`);
+			const span = clampSpan(
+				input.startMs ?? existing.startMs,
+				input.endMs ?? existing.endMs,
+				ctx.durationMs,
+			);
+			if (!span) return fail("resulting span is invalid");
+			const type = isEffectType(input.type) ? input.type : existing.type;
+			const intensity =
+				input.intensity === undefined
+					? existing.intensity
+					: clampEffectIntensity(type, input.intensity);
+			const updated: EffectRegion = {
+				id: existing.id,
+				...span,
+				type,
+				...(intensity !== undefined ? { intensity } : {}),
+			};
+			return {
+				partial: {
+					effectRegions: state.effectRegions.map((e) => (e.id === id ? updated : e)),
+				},
+				ok: true,
+				content: JSON.stringify({ updated }),
+				summary: `${updated.type} ${formatMs(updated.startMs)}–${formatMs(updated.endMs)}`,
+			};
+		}
+
+		case "delete_effects": {
+			const ids = Array.isArray(input.ids) ? input.ids.filter((v) => typeof v === "string") : [];
+			if (ids.length === 0) return fail("ids must be a non-empty string array");
+			const idSet = new Set(ids as string[]);
+			const removed = state.effectRegions.filter((e) => idSet.has(e.id));
+			if (removed.length === 0) return fail(`no matching effects among ${ids.join(", ")}`);
+			return {
+				partial: { effectRegions: state.effectRegions.filter((e) => !idSet.has(e.id)) },
+				ok: true,
+				content: JSON.stringify({ deleted: removed.map((e) => e.id) }),
 				summary: `${removed.length}`,
 			};
 		}
@@ -526,12 +818,15 @@ export function executeAiCommand(
 			if (!Array.isArray(input.captions) || input.captions.length === 0) {
 				return fail("captions must be a non-empty array");
 			}
+			const styling = sanitizeCaptionStyle(input.style);
 			const created: AnnotationRegion[] = [];
-			const skipped: string[] = [];
+			const skipped: string[] = [...styling.rejected];
 			for (const entry of input.captions as Array<{
 				startMs?: unknown;
 				endMs?: unknown;
 				text?: unknown;
+				motion?: unknown;
+				exitAnimation?: unknown;
 			}>) {
 				const span = clampSpan(entry.startMs, entry.endMs, ctx.durationMs);
 				const text = typeof entry.text === "string" ? entry.text.trim().slice(0, 200) : "";
@@ -539,6 +834,8 @@ export function executeAiCommand(
 					skipped.push(`invalid caption ${JSON.stringify(entry)}`);
 					continue;
 				}
+				const motion = sanitizeMotion(entry.motion, ctx.durationMs);
+				const exitAnimation = sanitizeExitAnimation(entry.exitAnimation);
 				created.push({
 					id: ctx.allocAnnotationId(),
 					...span,
@@ -547,10 +844,12 @@ export function executeAiCommand(
 					// Tagged like auto-captions so styling edits sibling-sync and
 					// the timeline renders them in the caption lane.
 					annotationSource: "auto-caption",
-					position: { ...AI_CAPTION_POSITION },
+					position: styling.position ?? { ...AI_CAPTION_POSITION },
 					size: { ...AI_CAPTION_SIZE },
-					style: { ...AI_CAPTION_STYLE },
+					style: { ...AI_CAPTION_STYLE, ...styling.style },
 					zIndex: ctx.allocAnnotationZIndex(),
+					...(motion ? { motion } : {}),
+					...(exitAnimation ? { exitAnimation } : {}),
 				});
 			}
 			if (created.length === 0) return fail(`no captions created: ${skipped.join("; ")}`);
@@ -564,6 +863,7 @@ export function executeAiCommand(
 						endMs: region.endMs,
 						text: region.content,
 					})),
+					styleApplied: styling.applied,
 					skipped,
 				}),
 				summary: `${created.length}×`,
@@ -587,7 +887,23 @@ export function executeAiCommand(
 				typeof input.text === "string" && input.text.trim()
 					? input.text.trim().slice(0, 200)
 					: existing.content;
-			const updated: AnnotationRegion = { ...existing, ...span, content: text };
+			const styling = sanitizeCaptionStyle(input.style);
+			// Motion: omit to keep, provide to replace. exitAnimation "none" clears it.
+			const motion =
+				input.motion === undefined ? existing.motion : sanitizeMotion(input.motion, ctx.durationMs);
+			const exitAnimation =
+				input.exitAnimation === undefined
+					? existing.exitAnimation
+					: sanitizeExitAnimation(input.exitAnimation);
+			const updated: AnnotationRegion = {
+				...existing,
+				...span,
+				content: text,
+				position: styling.position ?? existing.position,
+				style: { ...existing.style, ...styling.style },
+				motion,
+				exitAnimation,
+			};
 			return {
 				partial: {
 					annotationRegions: state.annotationRegions.map((region) =>
@@ -597,8 +913,51 @@ export function executeAiCommand(
 				ok: true,
 				content: JSON.stringify({
 					updated: { id, startMs: updated.startMs, endMs: updated.endMs, text: updated.content },
+					styleApplied: styling.applied,
+					styleRejected: styling.rejected,
 				}),
 				summary: `${formatMs(updated.startMs)}–${formatMs(updated.endMs)}`,
+			};
+		}
+
+		case "set_caption_style": {
+			const styling = sanitizeCaptionStyle(input.style);
+			if (styling.applied.length === 0) {
+				return fail(
+					`no valid style fields: ${styling.rejected.join("; ") || "style object is required"}`,
+				);
+			}
+			const ids = Array.isArray(input.ids)
+				? new Set((input.ids as unknown[]).filter((v): v is string => typeof v === "string"))
+				: null;
+			const isCaption = (region: AnnotationRegion) =>
+				region.type === "text" && (ids ? ids.has(region.id) : true);
+			const targets = state.annotationRegions.filter(isCaption);
+			if (targets.length === 0) {
+				return fail(
+					ids ? `no matching captions among ${[...ids].join(", ")}` : "no captions exist",
+				);
+			}
+			const targetIds = new Set(targets.map((region) => region.id));
+			return {
+				partial: {
+					annotationRegions: state.annotationRegions.map((region) =>
+						targetIds.has(region.id)
+							? {
+									...region,
+									position: styling.position ?? region.position,
+									style: { ...region.style, ...styling.style },
+								}
+							: region,
+					),
+				},
+				ok: true,
+				content: JSON.stringify({
+					restyled: targets.length,
+					styleApplied: styling.applied,
+					styleRejected: styling.rejected,
+				}),
+				summary: `${targets.length}× ${styling.applied.join(", ")}`,
 			};
 		}
 

@@ -1,6 +1,14 @@
 import type { Span } from "dnd-timeline";
 import { useItem } from "dnd-timeline";
-import { Gauge, MessageSquare, MousePointer2, Scissors, ZoomIn } from "lucide-react";
+import {
+	Aperture,
+	AtSign,
+	Gauge,
+	MessageSquare,
+	MousePointer2,
+	Scissors,
+	ZoomIn,
+} from "lucide-react";
 import { useMemo } from "react";
 import { useScopedT } from "@/contexts/I18nContext";
 import { cn } from "@/lib/utils";
@@ -17,7 +25,10 @@ interface ItemProps {
 	zoomCustomScale?: number;
 	speedValue?: number;
 	isAutoFocus?: boolean;
-	variant?: "zoom" | "trim" | "annotation" | "speed" | "blur";
+	effectType?: "fadeIn" | "fadeOut" | "blur" | "dim";
+	variant?: "zoom" | "trim" | "annotation" | "speed" | "blur" | "effect";
+	/** Send this block's lane + range to the AI chat input as context. */
+	onAddContext?: (contextText: string) => void;
 }
 
 // Map zoom depth to multiplier labels
@@ -52,6 +63,7 @@ export default function Item({
 	isAutoFocus = false,
 	variant = "zoom",
 	children,
+	onAddContext,
 }: ItemProps) {
 	const t = useScopedT("timeline");
 	const { setNodeRef, attributes, listeners, itemStyle, itemContentStyle } = useItem({
@@ -63,6 +75,7 @@ export default function Item({
 	const isZoom = variant === "zoom";
 	const isTrim = variant === "trim";
 	const isSpeed = variant === "speed";
+	const isEffect = variant === "effect";
 
 	const glassClass = isZoom
 		? glassStyles.glassGreen
@@ -70,16 +83,37 @@ export default function Item({
 			? glassStyles.glassRed
 			: isSpeed
 				? glassStyles.glassAmber
-				: glassStyles.glassYellow;
+				: isEffect
+					? glassStyles.glassFuchsia
+					: glassStyles.glassYellow;
 
 	// Resize handles sit a shade deeper than each lane's block so they read
-	// as grabbable edges: zoom=deep violet, trim=red, speed=amber, text=cyan.
-	const endCapColor = isZoom ? "#4C2FE0" : isTrim ? "#ef4444" : isSpeed ? "#d97706" : "#0E7490";
+	// as grabbable edges: zoom=deep violet, trim=red, speed=amber, effect=fuchsia, text=cyan.
+	const endCapColor = isZoom
+		? "#4C2FE0"
+		: isTrim
+			? "#ef4444"
+			: isSpeed
+				? "#d97706"
+				: isEffect
+					? "#c026d3"
+					: "#0E7490";
 
 	const timeLabel = useMemo(
 		() => `${formatMs(span.start)} – ${formatMs(span.end)}`,
 		[span.start, span.end],
 	);
+
+	// Lane name for the chat-context tag: "줌 0:05.5 – 0:47.0".
+	const laneLabel = isZoom
+		? t("labels.zoom")
+		: isTrim
+			? t("labels.trim")
+			: isSpeed
+				? t("labels.speed")
+				: isEffect
+					? t("labels.effect")
+					: t("labels.annotationItem");
 
 	// Minimum clickable width on the outer wrapper. Kept small so items keep their real
 	// positions; zoom in to interact with sub-second items precisely.
@@ -130,6 +164,24 @@ export default function Item({
 						}}
 						title="Resize right"
 					/>
+					{/* "@" — pull this block's lane + range into the AI chat input.
+					    Hover-revealed to avoid clutter on small blocks; stops
+					    propagation so it neither drags nor selects the block. */}
+					{onAddContext && (
+						<button
+							type="button"
+							title={t("labels.addToChat")}
+							aria-label={t("labels.addToChat")}
+							className="absolute top-0.5 right-2.5 z-20 hidden group-hover:flex items-center justify-center h-[15px] w-[15px] rounded-[4px] bg-black/45 text-white/80 hover:bg-black/70 hover:text-white"
+							onPointerDown={(event) => event.stopPropagation()}
+							onClick={(event) => {
+								event.stopPropagation();
+								onAddContext(`${laneLabel} ${timeLabel}`);
+							}}
+						>
+							<AtSign className="h-[11px] w-[11px]" />
+						</button>
+					)}
 					{/* Content */}
 					<div className="relative z-10 flex min-w-0 flex-col items-center justify-center text-white/90 opacity-85 group-hover:opacity-100 transition-opacity select-none overflow-hidden px-3">
 						<div className="flex items-center gap-1.5">
@@ -160,6 +212,13 @@ export default function Item({
 									<Gauge className="w-3.5 h-3.5 shrink-0" />
 									<span className="text-[11px] font-semibold whitespace-nowrap">
 										{speedValue !== undefined ? `${speedValue}×` : t("labels.speed")}
+									</span>
+								</>
+							) : isEffect ? (
+								<>
+									<Aperture className="w-3.5 h-3.5 shrink-0" />
+									<span className="text-[11px] font-semibold truncate whitespace-nowrap">
+										{children}
 									</span>
 								</>
 							) : (

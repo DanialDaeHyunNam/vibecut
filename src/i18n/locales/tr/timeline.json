@@ -9,14 +9,16 @@
 		"autoZoomOn": "Otomatik yakınlaştırma önerileri açık — önerilen yakınlaştırmaları kaldırmak için tıklayın",
 		"autoZoomOff": "Otomatik yakınlaştırma önerileri kapalı — imleçten yakınlaştırma önermek için tıklayın",
 		"autoFocusAllOn": "Tüm yakınlaştırmalar için Otomatik Odak açık — tümünü manuele geçirmek için tıklayın",
-		"autoFocusAllOff": "Tüm yakınlaştırmalarda Otomatik Odak (kamera imleci izler)"
+		"autoFocusAllOff": "Tüm yakınlaştırmalarda Otomatik Odak (kamera imleci izler)",
+		"addEffect": "Video efekti ekle"
 	},
 	"hints": {
 		"pressZoom": "Yakınlaştırma eklemek için Z tuşuna basın",
 		"pressTrim": "Kırpma eklemek için T tuşuna basın",
 		"pressAnnotation": "Açıklama eklemek için A tuşuna basın",
 		"pressSpeed": "Hız eklemek için S tuşuna basın",
-		"pressBlur": "Bulanık bölge eklemek için B tuşuna basın"
+		"pressBlur": "Bulanık bölge eklemek için B tuşuna basın",
+		"pressEffect": "Efekt ekle"
 	},
 	"labels": {
 		"pan": "Kaydır",
@@ -29,7 +31,11 @@
 		"annotationItem": "Açıklama",
 		"imageItem": "Görüntü",
 		"emptyText": "Boş metin",
-		"blurItem": "Bulanık {{index}}"
+		"blurItem": "Bulanık {{index}}",
+		"addToChat": "Sohbete ekle",
+		"range": "Aralık",
+		"rangeSelectHint": "Yapay zekâ için aralık seçmek üzere Shift+sürükle",
+		"effect": "Efekt"
 	},
 	"emptyState": {
 		"noVideo": "Video Yüklenmedi",
@@ -62,5 +68,11 @@
 		"laneClick": "Alt gezinmesi için hedefle",
 		"dividerKey": "Ayracı sürükle",
 		"divider": "Panel boyutunu ayarla · çift tıklama sıfırlar"
+	},
+	"effects": {
+		"fadeIn": "Açılma",
+		"fadeOut": "Kararma",
+		"blur": "Bulanıklık",
+		"dim": "Karart"
 	}
 }

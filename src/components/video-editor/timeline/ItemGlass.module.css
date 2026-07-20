@@ -82,6 +82,34 @@
 	z-index: 10;
 }
 
+.glassFuchsia {
+	position: relative;
+	border-radius: 10px;
+	-corner-smoothing: antialiased;
+	background: rgba(232, 121, 249, 0.15);
+	border: 1px solid rgba(232, 121, 249, 0.3);
+	box-shadow: 0 2px 12px 0 rgba(232, 121, 249, 0.1) inset;
+	margin: 3px 0;
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassFuchsia:hover {
+	background: rgba(232, 121, 249, 0.25);
+	border-color: rgba(232, 121, 249, 0.5);
+	box-shadow: 0 4px 20px 0 rgba(232, 121, 249, 0.2) inset;
+}
+
+.glassFuchsia.selected {
+	background: rgba(232, 121, 249, 0.35);
+	border-color: #e879f9;
+	box-shadow:
+		0 0 0 1px #e879f9,
+		0 4px 20px 0 rgba(232, 121, 249, 0.3) inset;
+	z-index: 10;
+}
+
 .glassAmber {
 	position: relative;
 	border-radius: 10px;

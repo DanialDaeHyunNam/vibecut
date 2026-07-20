@@ -1,4 +1,5 @@
 import type { SpeedRegion, TrimRegion } from "@/components/video-editor/types";
+import { expandSpeedRamps } from "@/lib/speedRamp";
 
 export interface TimelineSegment {
 	startSec: number;
@@ -65,9 +66,13 @@ export function splitBySpeed(
 		return segments.map((s) => ({ ...s, speed: 1 }));
 	}
 
+	// Expand ramp regions into constant-speed micro-steps this splitter can
+	// consume (a no-op for regions without ramps).
+	const expanded = expandSpeedRamps(speedRegions);
+
 	const result: SpeedTimelineSegment[] = [];
 	for (const segment of segments) {
-		const overlapping = speedRegions
+		const overlapping = expanded
 			.filter((sr) => sr.startMs / 1000 < segment.endSec && sr.endMs / 1000 > segment.startSec)
 			.sort((a, b) => a.startMs - b.startMs);
 

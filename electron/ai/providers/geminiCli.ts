@@ -9,6 +9,7 @@ import type {
 	AiModelInfo,
 	AiProvider,
 	AiProviderStatus,
+	AiToolImage,
 } from "./types";
 
 const MODELS: AiModelInfo[] = [
@@ -114,7 +115,14 @@ class GeminiCliSession extends PerTurnCliSession {
 		return `Conversation so far (for context — do not repeat it):\n\n${transcript}\n\nUser: ${text}`;
 	}
 
-	protected runTurn(text: string, workspace: string): Promise<void> {
+	protected runTurn(text: string, workspace: string, images: AiToolImage[]): Promise<void> {
+		// Headless `gemini -p` has no image-attachment channel, and the `@file`
+		// syntax rides on read tools this session deliberately excludes — so be
+		// honest with the model instead of silently dropping the attachment.
+		const turnText =
+			images.length > 0
+				? `${text}\n\n[The user attached ${images.length} image(s), but image input is not supported for the Gemini provider inside Vibecut. Briefly say you cannot see them and suggest switching to the Claude or Codex model if the user needs them viewed.]`
+				: text;
 		return this.runChild({
 			command: this.binaryPath,
 			args: [
@@ -123,7 +131,7 @@ class GeminiCliSession extends PerTurnCliSession {
 				"--output-format",
 				"json",
 				"--prompt",
-				this.buildPrompt(text),
+				this.buildPrompt(turnText),
 			],
 			cwd: workspace,
 			env: {

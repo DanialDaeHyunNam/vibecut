@@ -45,30 +45,25 @@ export function normalizeTextAnimation(value: unknown): AnnotationTextAnimation 
 		: "none";
 }
 
-export function getTextAnimationState(
-	annotation: {
-		startMs: number;
-		style: {
-			textAnimation?: AnnotationTextAnimation;
-		};
-	},
-	currentTimeMs: number,
+const NEUTRAL_STATE: TextAnimationState = {
+	opacity: 1,
+	scale: 1,
+	translateX: 0,
+	translateY: 0,
+	revealProgress: 1,
+};
+
+/**
+ * The animation state for one animation at `progress` (0 = fully out, 1 = fully
+ * in). Entrance runs progress 0→1 after startMs; exit runs it 1→0 before endMs,
+ * so the same curve plays in reverse on the way out.
+ */
+function animationStateAt(
+	animation: AnnotationTextAnimation,
+	progress: number,
 ): TextAnimationState {
-	const animation = normalizeTextAnimation(annotation.style.textAnimation);
-	if (animation === "none") {
-		return {
-			opacity: 1,
-			scale: 1,
-			translateX: 0,
-			translateY: 0,
-			revealProgress: 1,
-		};
-	}
-
-	const elapsedMs = Math.max(0, currentTimeMs - annotation.startMs);
-	const progress = clamp(elapsedMs / TEXT_ANIMATION_DURATION_MS);
+	if (animation === "none") return NEUTRAL_STATE;
 	const eased = easeOutCubic(progress);
-
 	switch (animation) {
 		case "fade":
 			return {
@@ -119,12 +114,47 @@ export function getTextAnimationState(
 				revealProgress: 1,
 			};
 		default:
-			return {
-				opacity: 1,
-				scale: 1,
-				translateX: 0,
-				translateY: 0,
-				revealProgress: 1,
-			};
+			return NEUTRAL_STATE;
 	}
+}
+
+/**
+ * Combined entrance + exit animation state at the current time. The entrance
+ * (style.textAnimation) plays over the first TEXT_ANIMATION_DURATION_MS after
+ * startMs; the exit (exitAnimation) plays over the last TEXT_ANIMATION_DURATION_MS
+ * before endMs, running the same curve in reverse. The two are merged so a
+ * caption can, e.g., pop in and fade out.
+ */
+export function getTextAnimationState(
+	annotation: {
+		startMs: number;
+		endMs?: number;
+		style: { textAnimation?: AnnotationTextAnimation };
+		exitAnimation?: AnnotationTextAnimation;
+	},
+	currentTimeMs: number,
+): TextAnimationState {
+	const entranceAnim = normalizeTextAnimation(annotation.style.textAnimation);
+	const entranceProgress = clamp(
+		Math.max(0, currentTimeMs - annotation.startMs) / TEXT_ANIMATION_DURATION_MS,
+	);
+	const entrance = animationStateAt(entranceAnim, entranceProgress);
+
+	const exitAnim = normalizeTextAnimation(annotation.exitAnimation);
+	if (exitAnim === "none" || annotation.endMs === undefined) {
+		return entrance;
+	}
+	// progress 1 at the tail's start, 0 exactly at endMs → the entrance curve
+	// reversed, so the caption animates back out.
+	const exitProgress = clamp((annotation.endMs - currentTimeMs) / TEXT_ANIMATION_DURATION_MS);
+	const exit = animationStateAt(exitAnim, exitProgress);
+
+	return {
+		opacity: entrance.opacity * exit.opacity,
+		scale: entrance.scale * exit.scale,
+		translateX: entrance.translateX + exit.translateX,
+		translateY: entrance.translateY + exit.translateY,
+		// Reveal (typewriter) is an entrance-only concern.
+		revealProgress: entrance.revealProgress,
+	};
 }

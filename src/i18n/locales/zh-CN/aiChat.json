@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "{{name}} 订阅登录已暂停",
 	"policyDisabledBody": "提供方政策已变更，为保护你的账号，此登录方式已停用。请改用 API 密钥（模型选择器下方的输入框），或稍后再试。",
 	"policyLearnMore": "了解更多",
-	"dismiss": "关闭"
+	"dismiss": "关闭",
+	"attach": "附加图片或视频",
+	"attachFailed": "失败：{name}",
+	"attachRemove": "移除附件"
 }

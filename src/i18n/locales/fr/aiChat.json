@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "La connexion par abonnement {{name}} est suspendue",
 	"policyDisabledBody": "La politique du fournisseur a changé ; cette méthode est désactivée pour protéger votre compte. Utilisez une clé API (champ sous le sélecteur de modèles) ou revenez plus tard.",
 	"policyLearnMore": "En savoir plus",
-	"dismiss": "Fermer"
+	"dismiss": "Fermer",
+	"attach": "Joindre une image ou une vidéo",
+	"attachFailed": "Échec : {name}",
+	"attachRemove": "Retirer la pièce jointe"
 }

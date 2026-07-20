@@ -61,5 +61,8 @@
 	"policyDisabledTitle": "{{name}} のサブスクリプションログインは一時停止中です",
 	"policyDisabledBody": "提供元のポリシー変更により、アカウント保護のためこのログイン方法を無効にしました。モデル選択の下の欄で API キーに切り替えるか、後ほどご確認ください。",
 	"policyLearnMore": "詳細",
-	"dismiss": "閉じる"
+	"dismiss": "閉じる",
+	"attach": "画像・動画を添付",
+	"attachFailed": "失敗: {name}",
+	"attachRemove": "添付を削除"
 }

@@ -1,3 +1,4 @@
+import fs from "node:fs/promises";
 import type { BrowserWindow, IpcMain } from "electron";
 import { restyleWebcam } from "../ai/effects/restyleWebcam";
 import { getProviderPolicy } from "../ai/providerPolicy";
@@ -17,10 +18,14 @@ interface AiChatSendPayload {
 	provider: AiProviderId;
 	model: string;
 	text: string;
+	/** User-attached images (base64) — videos arrive pre-converted to contact sheets. */
+	attachments?: Array<{ data: string; mimeType: string }>;
 	snapshot?: ProjectSnapshot;
 	/** Prior CLI session to resume (per-project conversation memory). */
 	resumeSessionId?: string;
 }
+
+const MAX_ATTACHMENTS_PER_MESSAGE = 12;
 
 /**
  * IPC surface for the AI chat panel. One live session at a time, keyed by
@@ -62,6 +67,24 @@ export function registerAiChatHandlers(
 
 	ipcMain.handle("ai-provider-policy", async () => {
 		return getProviderPolicy();
+	});
+
+	// One-time transcript recovery: if a `<video>.chat.json` sidecar sits next to
+	// the recording (written from a Claude Code session log), the renderer imports
+	// it when this project's chat is otherwise empty. Returns null when absent.
+	ipcMain.handle("ai-chat-read-backup", async (_event, videoPath: unknown) => {
+		if (typeof videoPath !== "string" || !videoPath) return null;
+		try {
+			const raw = await fs.readFile(`${videoPath}.chat.json`, "utf-8");
+			const parsed = JSON.parse(raw) as { items?: unknown; sessionId?: unknown };
+			if (!Array.isArray(parsed.items)) return null;
+			return {
+				items: parsed.items,
+				sessionId: typeof parsed.sessionId === "string" ? parsed.sessionId : null,
+			};
+		} catch {
+			return null; // no sidecar, unreadable, or malformed — nothing to recover
+		}
 	});
 
 	ipcMain.handle(
@@ -144,7 +167,13 @@ export function registerAiChatHandlers(
 			}
 		}
 
-		session.send(formatSnapshot(payload.snapshot) + payload.text);
+		const attachments = (Array.isArray(payload.attachments) ? payload.attachments : [])
+			.filter(
+				(image): image is { data: string; mimeType: string } =>
+					typeof image?.data === "string" && typeof image?.mimeType === "string",
+			)
+			.slice(0, MAX_ATTACHMENTS_PER_MESSAGE);
+		session.send(formatSnapshot(payload.snapshot) + payload.text, attachments);
 		return { success: true };
 	});
 

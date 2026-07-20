@@ -9,14 +9,16 @@
 		"autoZoomOn": "Suggerimenti di zoom automatico attivi — fai clic per rimuovere gli zoom suggeriti",
 		"autoZoomOff": "Suggerimenti di zoom automatico disattivati — fai clic per suggerire zoom dal cursore",
 		"autoFocusAllOn": "Auto-Focus attivo per tutti gli zoom — fai clic per passare tutti a manuale",
-		"autoFocusAllOff": "Auto-Focus per tutti gli zoom (la camera segue il cursore)"
+		"autoFocusAllOff": "Auto-Focus per tutti gli zoom (la camera segue il cursore)",
+		"addEffect": "Aggiungi effetto video"
 	},
 	"hints": {
 		"pressZoom": "Premi Z per aggiungere zoom",
 		"pressTrim": "Premi T per aggiungere taglio",
 		"pressAnnotation": "Premi A per aggiungere annotazione",
 		"pressBlur": "Premi B per aggiungere regione sfocatura",
-		"pressSpeed": "Premi S per aggiungere velocità"
+		"pressSpeed": "Premi S per aggiungere velocità",
+		"pressEffect": "Aggiungi effetto"
 	},
 	"labels": {
 		"pan": "Panoramica",
@@ -29,7 +31,11 @@
 		"annotationItem": "Annotazione",
 		"blurItem": "Sfocatura {{index}}",
 		"imageItem": "Immagine",
-		"emptyText": "Testo vuoto"
+		"emptyText": "Testo vuoto",
+		"addToChat": "Aggiungi alla chat",
+		"range": "Intervallo",
+		"rangeSelectHint": "Maiusc+trascina per selezionare un intervallo per l’IA",
+		"effect": "Effetto"
 	},
 	"emptyState": {
 		"noVideo": "Nessun video caricato",
@@ -62,5 +68,11 @@
 		"laneClick": "Rendila destinazione della navigazione Alt",
 		"dividerKey": "Trascina il divisore",
 		"divider": "Ridimensiona il pannello · doppio clic ripristina"
+	},
+	"effects": {
+		"fadeIn": "Dissolvenza in ingresso",
+		"fadeOut": "Dissolvenza in uscita",
+		"blur": "Sfocatura",
+		"dim": "Scurisci"
 	}
 }

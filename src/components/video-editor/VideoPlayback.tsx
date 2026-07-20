@@ -39,6 +39,8 @@ import {
 	resolveInterpolatedNativeCursorFrame,
 	resolveNativeCursorRenderAsset,
 } from "@/lib/cursor/nativeCursor";
+import { expandSpeedRamps } from "@/lib/speedRamp";
+import { computeVideoEffectState } from "@/lib/videoEffects";
 import { classifyWallpaper, DEFAULT_WALLPAPER, resolveImageWallpaperUrl } from "@/lib/wallpaper";
 import { getCssClipPath } from "@/lib/webcamMaskShapes";
 import type { CursorRecordingData } from "@/native/contracts";
@@ -124,6 +126,7 @@ interface VideoPlaybackProps {
 	cropRegion?: import("./types").CropRegion;
 	trimRegions?: TrimRegion[];
 	speedRegions?: SpeedRegion[];
+	effectRegions?: import("./types").EffectRegion[];
 	aspectRatio: AspectRatio;
 	cursorRecordingData?: CursorRecordingData | null;
 	annotationRegions?: AnnotationRegion[];
@@ -251,6 +254,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 			cropRegion,
 			trimRegions = [],
 			speedRegions = [],
+			effectRegions = [],
 			aspectRatio,
 			cursorRecordingData,
 			annotationRegions = [],
@@ -803,9 +807,13 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 			trimRegionsRef.current = trimRegions;
 		}, [trimRegions]);
 
+		// Ramp regions become constant-speed micro-steps so preview steps its
+		// playbackRate through the accelerate/hold/decelerate curve, matching export.
+		const effectiveSpeedRegions = useMemo(() => expandSpeedRamps(speedRegions), [speedRegions]);
+
 		useEffect(() => {
-			speedRegionsRef.current = speedRegions;
-		}, [speedRegions]);
+			speedRegionsRef.current = effectiveSpeedRegions;
+		}, [effectiveSpeedRegions]);
 
 		useEffect(() => {
 			motionBlurAmountRef.current = motionBlurAmount;
@@ -1142,7 +1150,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 			}
 
 			const activeSpeedRegion =
-				speedRegions.find(
+				effectiveSpeedRegions.find(
 					(region) => currentTime * 1000 >= region.startMs && currentTime * 1000 < region.endMs,
 				) ?? null;
 			const activeSpeed = activeSpeedRegion ? activeSpeedRegion.speed : 1;
@@ -1171,7 +1179,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 			supplementalAudio.play().catch(() => {
 				// Keep video playback running even if supplemental preview audio is unavailable.
 			});
-		}, [currentTime, isPlaying, speedRegions, supplementalAudioPath]);
+		}, [currentTime, isPlaying, effectiveSpeedRegions, supplementalAudioPath]);
 
 		useEffect(() => {
 			if (!pixiReady || !videoReady) return;
@@ -1846,7 +1854,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 			}
 
 			const activeSpeedRegion =
-				speedRegions.find(
+				effectiveSpeedRegions.find(
 					(region) => currentTime * 1000 >= region.startMs && currentTime * 1000 < region.endMs,
 				) ?? null;
 			// Cap the (silent) webcam element at the native rate so playbackRate never throws.
@@ -1875,7 +1883,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 			webcamVideo.play().catch(() => {
 				// Ignore webcam autoplay restoration failures.
 			});
-		}, [currentTime, isPlaying, speedRegions, webcamVideoPath]);
+		}, [currentTime, isPlaying, effectiveSpeedRegions, webcamVideoPath]);
 
 		useEffect(() => {
 			const webcamVideo = webcamVideoRef.current;
@@ -2159,6 +2167,27 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 						}}
 					/>
 				</div>
+				{/* Full-frame video effects (fade/blur/dim) over the whole preview stage,
+				    matching the export's final composite pass. */}
+				{(() => {
+					const { blurPx, blackAlpha } = computeVideoEffectState(effectRegions, currentTime * 1000);
+					if (blurPx <= 0 && blackAlpha <= 0) return null;
+					return (
+						<div
+							className="absolute inset-0 pointer-events-none"
+							style={{
+								zIndex: 40,
+								...(blurPx > 0
+									? {
+											backdropFilter: `blur(${blurPx}px)`,
+											WebkitBackdropFilter: `blur(${blurPx}px)`,
+										}
+									: {}),
+								...(blackAlpha > 0 ? { backgroundColor: `rgba(0,0,0,${blackAlpha})` } : {}),
+							}}
+						/>
+					);
+				})()}
 				<video
 					ref={videoRef}
 					src={videoPath}

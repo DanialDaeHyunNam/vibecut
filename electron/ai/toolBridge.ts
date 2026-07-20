@@ -15,7 +15,9 @@ const TOOL_CALL_TIMEOUT_MS = 15_000;
 // recording can take minutes; frame capture seeks through the video file.
 const TOOL_TIMEOUT_OVERRIDES_MS: Record<string, number> = {
 	get_transcript: 300_000,
-	get_video_frames: 60_000,
+	// Storyboard mode seeks through the whole recording (up to ~500 candidate
+	// frames on long videos), so it needs far more than a per-seek budget.
+	get_video_frames: 180_000,
 	// Waits for a human to pick options in the chat UI.
 	ask_user: 600_000,
 	// Waits on a native save dialog.

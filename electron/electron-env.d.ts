@@ -334,11 +334,17 @@ interface Window {
 			provider: AiProviderId;
 			model: string;
 			text: string;
+			/** Base64 images attached by the user (videos arrive pre-converted to contact sheets). */
+			attachments?: Array<{ data: string; mimeType: string }>;
 			snapshot?: AiProjectSnapshot;
 			resumeSessionId?: string;
 		}) => Promise<{ success: boolean; error?: string }>;
 		aiChatCancel: () => Promise<{ success: boolean }>;
 		aiChatReset: () => Promise<{ success: boolean }>;
+		/** Read a `<video>.chat.json` transcript-recovery sidecar, or null if absent. */
+		aiChatReadBackup: (
+			videoPath: string,
+		) => Promise<{ items: unknown[]; sessionId: string | null } | null>;
 		onAiChatEvent: (callback: (event: AiChatEvent) => void) => () => void;
 		onAiToolCall: (
 			callback: (call: { callId: string; name: string; input: unknown }) => void,
