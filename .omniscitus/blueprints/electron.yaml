@@ -1502,7 +1502,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T07:25:02.097Z
     change_count: 1
-    purpose: ""
+    purpose: "세션별 로컬 소켓 서버 — 외부 CLI 브리지가 editor 툴을 main에서 실행(토큰 인증)"
     change_log:
       - date: 2026-07-17T07:25:02.097Z
         action: write
@@ -1513,7 +1513,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T07:25:26.942Z
     change_count: 1
-    purpose: ""
+    purpose: "의존성 제로 stdio MCP 프록시 — Codex/Gemini가 spawn해 툴 호스트로 프록시(ELECTRON_RUN_AS_NODE)"
     change_log:
       - date: 2026-07-17T07:25:26.942Z
         action: write
@@ -1524,7 +1524,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T07:25:47.997Z
     change_count: 1
-    purpose: ""
+    purpose: "외부 CLI(codex/gemini) 실행파일 탐색 + stdio 브리지 spawn 설정(launchd PATH 대응)"
     change_log:
       - date: 2026-07-17T07:25:47.997Z
         action: write
@@ -1535,7 +1535,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T07:26:45.790Z
     change_count: 1
-    purpose: ""
+    purpose: "Codex exec --json 출력 파서(신/구 JSONL) — Electron-free, 유닛 테스트 대상"
     change_log:
       - date: 2026-07-17T07:26:45.790Z
         action: write
@@ -1546,7 +1546,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T12:46:18.610Z
     change_count: 2
-    purpose: ""
+    purpose: "Codex CLI 프로바이더(ChatGPT 구독) — 턴당 exec resume, read-only 샌드박스"
     change_log:
       - date: 2026-07-17T12:46:18.610Z
         action: write
@@ -1560,7 +1560,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T13:20:13.020Z
     change_count: 6
-    purpose: ""
+    purpose: "Gemini CLI 프로바이더(AI Studio API key) — 트랜스크립트 자가 재생, 내장툴 잠금"
     change_log:
       - date: 2026-07-17T13:20:13.020Z
         action: edit
@@ -1586,7 +1586,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T07:32:32.970Z
     change_count: 2
-    purpose: ""
+    purpose: "툴 호스트↔stdio 브리지 왕복 + Codex 파서/JSON스키마 통합 테스트"
     change_log:
       - date: 2026-07-17T07:32:32.970Z
         action: edit
@@ -1600,7 +1600,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T10:48:04.120Z
     change_count: 1
-    purpose: ""
+    purpose: "PerTurnCliSession 베이스 — 큐/드레인/임시 워크스페이스/툴호스트 수명/취소 공용화"
     change_log:
       - date: 2026-07-17T10:48:04.120Z
         action: write
@@ -1611,7 +1611,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T13:31:26.200Z
     change_count: 1
-    purpose: ""
+    purpose: "원격 정책 매니페스트 fetch/캐시(fail-open) — 프로바이더 킬스위치"
     change_log:
       - date: 2026-07-17T13:31:26.200Z
         action: write
@@ -1622,7 +1622,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T13:34:38.537Z
     change_count: 1
-    purpose: ""
+    purpose: "정책 매니페스트 파서 방어 테스트(오류 입력→all-ok 강등)"
     change_log:
       - date: 2026-07-17T13:34:38.537Z
         action: write
@@ -1633,7 +1633,7 @@ files:
     created: 2026-07-19
     last_modified: 2026-07-19T04:16:43.202Z
     change_count: 1
-    purpose: ""
+    purpose: "웹캠 생성형 변신(Decart Lucy 큐 API) — main 전용, 키 렌더러 미노출"
     change_log:
       - date: 2026-07-19T04:16:43.202Z
         action: write

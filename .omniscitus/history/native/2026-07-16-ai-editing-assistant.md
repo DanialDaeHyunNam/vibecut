@@ -40,6 +40,17 @@ ask_user)과 프로젝트별 대화 저장·세션 이어가기까지 하루에 
 
 **Learned**: autoEditPrompt/understandPrompt 같은 "에이전트에게 보내는 프롬프트"도 채팅에 사용자 메시지로 노출되므로 로케일 번역 대상에 포함해야 자연스럽다.
 
+### 2026-07-19
+**Focus**: 멀티 프로바이더(A1) + 구독 약관 대응 + 웹캠 AI 변신 + 패널 UX
+- **A1 Codex/Gemini 프로바이더**: 공용 stdio MCP 브리지(`mcpBridge.cjs`, ELECTRON_RUN_AS_NODE)+툴 호스트(유닉스 소켓, 토큰 인증)로 툴 18종을 외부 CLI에 노출. Codex=`exec resume` 메모리·read-only 샌드박스, Gemini=헤드리스 resume 없어 트랜스크립트 자가 재생. 반복 배선을 `PerTurnCliSession` 베이스로 추출. Grok은 coming-soon+키 입력만
+- **구독 약관 조사→구현**: Claude 라벨 "Claude Code"→"Claude"(브랜딩 가이드), Anthropic API key 대안(SDK env 주입); Gemini는 Google이 서드파티 OAuth 금지·계정 정지 → AI Studio API key(GEMINI_API_KEY)로 전면 전환, oauth 감지 제거; Codex 무변경
+- **원격 정책 킬스위치**: `providerPolicy.ts`가 `site/provider-policy.json`을 하루 1회 fetch(fail-open, userData 캐시) → notice 배너/disabled 게이트를 재배포 없이 전 앱에 24h 내 전파. 구독 프로바이더 1회 고지 카드. 프라이버시=정적 GET 1회, 무전송
+- **restyle_webcam 툴(A4)**: 웹캠 오버레이를 생성형 AI로 변신(Decart Lucy 큐 API). main에서만 실행(키 렌더러 미노출), `EditorState.webcamSourceOverridePath` 1 undo, 원본 미변경. Decart 키는 AiKeyId에 추가·safeStorage. **비용: Lucy Pro만 API 제공 ~$0.15/s → 명시 필수(미구현)**
+- **패널 UX 4건**: ① 선택 모델의 키 없을 때만 컨텍스트 키 행 노출 ② `providerExplicit` 플래그—첫 실행은 가용 프로바이더 자동선택(claude>openai>gemini>grok), 이후 마지막 선택 기억 ③ AI/설정 탭 슬라이딩 하이라이트 ④ (레이아웃은 brand 유닛)
+- **문서**: `docs/ai-providers.md` — 프로바이더별 논의→결정→구현 기록(OSS 기여자용), ARCHITECTURE.md 링크
+
+**Learned**: Decart SDK에 비실시간 큐 클라이언트가 있어 WebRTC 없이 후처리 가능 — 조사가 구현 난이도를 크게 낮췄다. 구독 인증은 프로바이더 약관이 유동적(2026 3회 변동)이라 코드보다 "재배포 없이 끌 수 있는 스위치"가 핵심 안전장치. 브랜딩 가이드(제품 내 "Claude Code" 금지)는 라이선스와 별개의 준수 항목.
+
 ## Pending
 - [ ] 실사용 검증 계속: ask_user 재질문 응답 후 맞춤 자동편집 완주 확인
 - [ ] 패키징 스모크 (`npm run build:mac`) — SDK external/asarUnpack + 240MB 바이너리 동작 확인

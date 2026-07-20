@@ -8,7 +8,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T13:34:49.641Z
     change_count: 28
-    purpose: ""
+    purpose: "Vibecut 랜딩페이지(단일 HTML, 무빌드) — 히어로·CSS 에디터 목업·구독 3종·기능 그리드·쇼케이스·미서명 경고 안내·다운로드 모달, 한/영 i18n 토글. Vercel 배포"
     change_log:
       - date: 2026-07-17T13:34:49.641Z
         action: edit
@@ -100,7 +100,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-17T13:31:26.973Z
     change_count: 1
-    purpose: ""
+    purpose: "원격 프로바이더 정책 매니페스트(킬스위치) — 앱이 하루 1회 fetch, 약관 변경 시 notice/disabled로 재배포 없이 전 앱 대응"
     change_log:
       - date: 2026-07-17T13:31:26.973Z
         action: write

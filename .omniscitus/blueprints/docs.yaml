@@ -188,7 +188,7 @@ files:
     created: 2026-07-19
     last_modified: 2026-07-19T14:48:48.657Z
     change_count: 1
-    purpose: ""
+    purpose: "AI 프로바이더별(Claude/Codex/Gemini/Grok/Decart) 논의→결정→구현 기록 — OSS 기여자용 결정 문서"
     change_log:
       - date: 2026-07-19T14:48:48.657Z
         action: write

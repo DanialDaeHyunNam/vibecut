@@ -30,6 +30,16 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 
 **Learned**: package name 변경은 Electron userData 경로를 옮긴다(설정 초기화) — 리브랜딩 커밋 메시지에 데이터 영향 명시가 필수. i18n 브랜드 치환은 JSON "값만" 워커로 돌려야 키 참조가 안 깨진다.
 
+### 2026-07-19
+**Focus**: 공개 repo·랜딩페이지·다운로드/약관·라이선스 스윕
+- **B1 공개 repo**: github.com/DanialDaeHyunNam/vibecut (public) 생성·main 푸시. shallow clone이라 `git fetch --unshallow upstream` 후 성공, upstream 태그 미푸시·remote 유지
+- **랜딩페이지**(https://vibecut-orcin.vercel.app, `site/` 단일 HTML): daydreamvideo.com 참고 — 히어로+CSS 에디터 목업+구독 3종+기능 그리드+Made with Vibecut 쇼케이스(SHOWCASE 배열)+미서명 경고 신뢰 섹션. **한/영 i18n 토글**(영어=마크업, 한국어=사전, localStorage). 다운로드 버튼→GitHub releases/latest, 클릭 시 **OS 경고 재현 모달**(Gatekeeper/SmartScreen)로 사전 안내
+- **라이선스 스윕(B3)**: `npx license-checker` — GPL/AGPL 없음, MIT 470 등 전부 무해. mediabunny(MPL-2.0 파일단위)·gsap(무료화) 판정, 루트 package.json UNLICENSED→"license":"MIT". Agent SDK(Anthropic 약관)만 B4로 이월
+- **정책 킬스위치 운영법 확립**: `site/provider-policy.json` 편집+`vercel deploy`로 약관 변경 시 전 앱 대응(운영 런북 기록)
+- **B6 데모 촬영 방식 결정**: HUD↔에디터 단일 윈도우 스왑이라 동시 불가 → macOS Cmd+Shift+5 영역 녹화→Import Video 우회(단, 임포트본은 클릭 텔레메트리 없어 자동 줌 미동작). 동시 사용 아키텍처 변경은 릴리스 후 보류
+
+**Learned**: 정적 파일(랜딩) 배포 인프라를 정책 매니페스트 호스팅에 재활용하면 데스크톱 앱에 재배포 없는 킬스위치를 공짜로 얻는다. 라이선스 리스크는 포크 코드가 아니라 나중에 얹은 의존성에서 오므로 공개 전 스윕이 필수(예상대로 GPL 계열 0). 스크린 레코더의 자기 UI 녹화는 구조적 제약(단일 윈도우) — 데모는 OS 네이티브 캡처 우회가 표준.
+
 ## Pending
 - [x] 브랜드명 확정: **Vibecut** (2026-07-16 — "바이브 편집", 말로 시키는 AI 편집이라는 차별점을 이름에 담음. CapCut 연상/상표 충돌은 공개 전 확인)
 - [x] Vibecut 리브랜딩 적용 (2026-07-17): productName/appId(app.vibecut)/package명/창 타이틀/메뉴/트레이·로고 에셋/전 로케일 103곳 + LICENSE 저작권 줄 + README 재작성(AI 중심, OpenScreen 크레딧)

@@ -742,7 +742,7 @@ files:
     created: 2026-07-17
     last_modified: 2026-07-19T14:50:07.466Z
     change_count: 4
-    purpose: ""
+    purpose: "시스템 아키텍처 지도 — 프로세스/디렉토리/데이터 흐름/AI 레이어 설계, 기여자용"
     change_log:
       - date: 2026-07-19T14:50:07.466Z
         action: edit
