@@ -14,6 +14,8 @@ import {
 	clampPlaybackSpeed,
 	DEFAULT_ZOOM_DEPTH,
 	type EffectRegion,
+	MAX_CAPTION_BOX_PADDING_EM,
+	MAX_CAPTION_BOX_RADIUS_PX,
 	MAX_EFFECT_BLUR_PX,
 	MAX_SPEED_RAMP_MS,
 	MAX_ZOOM_SCALE,
@@ -150,8 +152,12 @@ function sanitizeMotion(raw: unknown, durationMs: number): CaptionMotion | undef
 	const input = raw as Record<string, unknown>;
 	const motion: CaptionMotion = {};
 
+	// Semantic anchor beats raw coordinates — no y-axis guessing for the agent.
+	const anchor = CAPTION_POSITION_PRESETS[input.toAnchor as string];
 	const pos = input.toPosition as { x?: unknown; y?: unknown } | undefined;
-	if (pos && typeof pos.x === "number" && typeof pos.y === "number") {
+	if (anchor) {
+		motion.toPosition = { ...anchor };
+	} else if (pos && typeof pos.x === "number" && typeof pos.y === "number") {
 		motion.toPosition = {
 			x: Math.max(0, Math.min(100, pos.x)),
 			y: Math.max(0, Math.min(100, pos.y)),
@@ -189,10 +195,20 @@ interface CaptionStyleInput {
 	backgroundColor?: unknown;
 	fontSize?: unknown;
 	fontWeight?: unknown;
+	fontFamily?: unknown;
 	fontStyle?: unknown;
 	textAlign?: unknown;
 	textAnimation?: unknown;
 	position?: unknown;
+	boxPaddingX?: unknown;
+	boxPaddingY?: unknown;
+	boxRadius?: unknown;
+}
+
+/** Letters/digits (any script), spaces, hyphens, commas — enough for real font
+    stacks ("Arial Black", "Georgia, serif") while blocking CSS injection. */
+function isSafeFontFamily(value: string): boolean {
+	return /^[\p{L}\p{N} ,_-]{1,60}$/u.test(value);
 }
 
 interface SanitizedCaptionStyle {
@@ -237,9 +253,41 @@ function sanitizeCaptionStyle(raw: unknown): SanitizedCaptionStyle {
 			applied.push(key);
 		} else rejected.push(`${key} must be one of ${allowed.join(" | ")}`);
 	};
-	oneOf("fontWeight", ["normal", "bold"]);
+	if (input.fontWeight !== undefined) {
+		if (input.fontWeight === "normal" || input.fontWeight === "bold") {
+			style.fontWeight = input.fontWeight;
+			applied.push("fontWeight");
+		} else if (typeof input.fontWeight === "number" && Number.isFinite(input.fontWeight)) {
+			style.fontWeight = Math.max(100, Math.min(900, Math.round(input.fontWeight)));
+			applied.push("fontWeight");
+		} else rejected.push("fontWeight must be normal | bold | number 100-900");
+	}
+	if (input.fontFamily !== undefined) {
+		if (typeof input.fontFamily === "string" && isSafeFontFamily(input.fontFamily.trim())) {
+			style.fontFamily = input.fontFamily.trim();
+			applied.push("fontFamily");
+		} else rejected.push("fontFamily must be a plain font name (letters/digits/spaces/commas)");
+	}
 	oneOf("fontStyle", ["normal", "italic"]);
 	oneOf("textAlign", ["left", "center", "right"]);
+
+	const boxNumber = (
+		key: "boxPaddingX" | "boxPaddingY" | "boxRadius",
+		min: number,
+		max: number,
+		round: boolean,
+	) => {
+		const value = input[key];
+		if (value === undefined) return;
+		if (typeof value === "number" && Number.isFinite(value)) {
+			const clamped = Math.max(min, Math.min(max, value));
+			style[key] = round ? Math.round(clamped) : clamped;
+			applied.push(key);
+		} else rejected.push(`${key} must be a number ${min}-${max}`);
+	};
+	boxNumber("boxPaddingX", 0, MAX_CAPTION_BOX_PADDING_EM, false);
+	boxNumber("boxPaddingY", 0, MAX_CAPTION_BOX_PADDING_EM, false);
+	boxNumber("boxRadius", 0, MAX_CAPTION_BOX_RADIUS_PX, true);
 
 	if (input.textAnimation !== undefined) {
 		if (TEXT_ANIMATIONS.has(input.textAnimation as AnnotationTextAnimation)) {

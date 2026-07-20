@@ -1,4 +1,11 @@
-import { type AnnotationRegion, type ArrowDirection } from "@/components/video-editor/types";
+import {
+	type AnnotationRegion,
+	type ArrowDirection,
+	DEFAULT_CAPTION_BOX_PADDING_X_EM,
+	DEFAULT_CAPTION_BOX_PADDING_Y_EM,
+	DEFAULT_CAPTION_BOX_RADIUS_PX,
+	resolveFontWeight,
+} from "@/components/video-editor/types";
 import { getTextAnimationState } from "@/lib/annotationTextAnimation";
 import {
 	applyMosaicToImageData,
@@ -280,7 +287,7 @@ function renderText(
 	ctx.rect(x, y, width, height);
 	ctx.clip();
 
-	const fontWeight = style.fontWeight === "bold" ? "bold" : "normal";
+	const fontWeight = String(resolveFontWeight(style.fontWeight));
 	const fontStyle = style.fontStyle === "italic" ? "italic" : "normal";
 	const scaledFontSize = fontSize * scaleFactor;
 	ctx.font = `${fontStyle} ${fontWeight} ${scaledFontSize}px ${style.fontFamily}`;
@@ -349,9 +356,11 @@ function renderText(
 
 		if (style.backgroundColor && style.backgroundColor !== "transparent") {
 			const metrics = ctx.measureText(visibleLine);
-			const verticalPadding = scaledFontSize * 0.1;
-			const horizontalPadding = scaledFontSize * 0.2;
-			const borderRadius = 4 * scaleFactor;
+			const verticalPadding =
+				scaledFontSize * (style.boxPaddingY ?? DEFAULT_CAPTION_BOX_PADDING_Y_EM);
+			const horizontalPadding =
+				scaledFontSize * (style.boxPaddingX ?? DEFAULT_CAPTION_BOX_PADDING_X_EM);
+			const borderRadius = (style.boxRadius ?? DEFAULT_CAPTION_BOX_RADIUS_PX) * scaleFactor;
 
 			let bgX = startX - horizontalPadding;
 			const bgWidth = metrics.width + horizontalPadding * 2;

@@ -2,6 +2,7 @@ import type { Range, Span } from "dnd-timeline";
 import { useTimelineContext } from "dnd-timeline";
 import {
 	Aperture,
+	AtSign,
 	Captions,
 	Check,
 	ChevronDown,
@@ -14,6 +15,7 @@ import {
 	ScanEye,
 	Scissors,
 	WandSparkles,
+	X,
 	ZoomIn,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -306,6 +308,7 @@ function PlaybackCursor({
 	onRangeChange,
 	timelineRef,
 	keyframes = [],
+	onStartRangeSelect,
 }: {
 	currentTimeMs: number;
 	videoDurationMs: number;
@@ -313,7 +316,10 @@ function PlaybackCursor({
 	onRangeChange?: (updater: (previous: Range) => Range) => void;
 	timelineRef: React.RefObject<HTMLDivElement>;
 	keyframes?: { id: string; time: number }[];
+	/** "+" beside the playhead handle: spawn the two-handle AI range selection. */
+	onStartRangeSelect?: () => void;
 }) {
+	const t = useScopedT("timeline");
 	const { sidebarWidth, direction, range, valueToPixels, pixelsToValue } = useTimelineContext();
 	const sideProperty = direction === "rtl" ? "right" : "left";
 	const [isDragging, setIsDragging] = useState(false);
@@ -456,12 +462,174 @@ function PlaybackCursor({
 				>
 					<div className="w-4 h-4 mx-auto mt-[2px] bg-[#6C55FF] rotate-45 rounded-[5px] shadow-lg shadow-[#6C55FF]/30 border border-white/30" />
 				</div>
+				{/* "+" — spawn a second handle to pick a range for the AI chat. Sits to
+				    the right of the playhead line, vertically centered in the 36px ruler
+				    row, so it clears the diamond handle above it. */}
+				{onStartRangeSelect && (
+					<button
+						type="button"
+						title={t("labels.addRangeSelect")}
+						aria-label={t("labels.addRangeSelect")}
+						className="absolute top-[9px] left-[10px] z-50 flex h-[18px] w-[18px] items-center justify-center rounded-full border border-[#34d399]/60 bg-black/80 text-[#6ee7b7] opacity-80 transition-all hover:opacity-100 hover:bg-[#10b981] hover:text-white cursor-pointer"
+						style={{ pointerEvents: "auto" }}
+						onPointerDown={(e) => e.stopPropagation()}
+						onMouseDown={(e) => e.stopPropagation()}
+						onClick={(e) => {
+							e.stopPropagation();
+							onStartRangeSelect();
+						}}
+					>
+						<Plus className="h-3 w-3" />
+					</button>
+				)}
 				{isDragging && (
 					<div className="absolute -top-6 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded bg-black/80 text-[10px] text-white/90 font-medium tabular-nums whitespace-nowrap border border-white/10 shadow-lg pointer-events-none">
 						{formatPlayheadTime(clampedTime)}
 					</div>
 				)}
 			</div>
+		</div>
+	);
+}
+
+/** Two-handle range selection for the AI chat ("+" on the playhead spawns it).
+    Renders the band + drag handles only; the action pill lives in the strip
+    below the lanes (see Timeline). */
+function RangeSelection({
+	selection,
+	videoDurationMs,
+	onChange,
+	timelineRef,
+	snapTimes = [],
+}: {
+	selection: { startMs: number; endMs: number };
+	videoDurationMs: number;
+	onChange: (
+		updater: (prev: { startMs: number; endMs: number }) => { startMs: number; endMs: number },
+	) => void;
+	timelineRef: React.RefObject<HTMLDivElement>;
+	/** Block starts/ends (+ 0 and duration) the handles snap to while dragging. */
+	snapTimes?: number[];
+}) {
+	const { sidebarWidth, direction, range, valueToPixels, pixelsToValue } = useTimelineContext();
+	const sideProperty = direction === "rtl" ? "right" : "left";
+	const [dragging, setDragging] = useState<"start" | "end" | null>(null);
+
+	// Keep at least this much between the two handles so they stay grabbable.
+	const MIN_RANGE_MS = 100;
+
+	useEffect(() => {
+		if (!dragging) return;
+
+		const handleMouseMove = (e: MouseEvent) => {
+			const rect = timelineRef.current?.getBoundingClientRect();
+			if (!rect) return;
+			const clickX = e.clientX - rect.left - sidebarWidth;
+			let ms = Math.max(0, Math.min(range.start + pixelsToValue(clickX), videoDurationMs));
+
+			// Magnetic snap to block starts/ends. Pixel-based threshold so the pull
+			// feels the same at every zoom level.
+			const snapThresholdMs = Math.abs(pixelsToValue(14));
+			let bestDistance = Number.POSITIVE_INFINITY;
+			for (const snapMs of snapTimes) {
+				const distance = Math.abs(snapMs - ms);
+				if (distance <= snapThresholdMs && distance < bestDistance) {
+					bestDistance = distance;
+					ms = snapMs;
+				}
+			}
+
+			onChange((prev) =>
+				dragging === "start"
+					? { startMs: Math.round(Math.min(ms, prev.endMs - MIN_RANGE_MS)), endMs: prev.endMs }
+					: { startMs: prev.startMs, endMs: Math.round(Math.max(ms, prev.startMs + MIN_RANGE_MS)) },
+			);
+		};
+
+		const handleMouseUp = () => {
+			setDragging(null);
+			document.body.style.cursor = "";
+		};
+
+		window.addEventListener("mousemove", handleMouseMove);
+		window.addEventListener("mouseup", handleMouseUp);
+		document.body.style.cursor = "ew-resize";
+
+		return () => {
+			window.removeEventListener("mousemove", handleMouseMove);
+			window.removeEventListener("mouseup", handleMouseUp);
+			document.body.style.cursor = "";
+		};
+	}, [
+		dragging,
+		onChange,
+		timelineRef,
+		sidebarWidth,
+		range.start,
+		videoDurationMs,
+		pixelsToValue,
+		snapTimes,
+	]);
+
+	if (videoDurationMs <= 0) return null;
+
+	// Clamp the band to the visible window; handles render only when on-screen.
+	const visibleStart = Math.max(selection.startMs, range.start);
+	const visibleEnd = Math.min(selection.endMs, range.end);
+	if (visibleEnd <= visibleStart) return null;
+
+	const startPx = valueToPixels(visibleStart - range.start);
+	const endPx = valueToPixels(visibleEnd - range.start);
+	const startHandleVisible = selection.startMs >= range.start && selection.startMs <= range.end;
+	const endHandleVisible = selection.endMs >= range.start && selection.endMs <= range.end;
+
+	const handleClass =
+		"absolute top-0 bottom-0 w-[2px] bg-[#34d399] cursor-ew-resize shadow-[0_0_12px_rgba(52,211,153,0.55)] hover:shadow-[0_0_18px_rgba(52,211,153,0.8)] transition-shadow";
+	const gripClass =
+		"absolute top-0 left-1/2 -translate-x-1/2 h-4 w-2.5 rounded-b-[4px] bg-[#34d399] border border-white/30 shadow-lg";
+
+	return (
+		<div
+			className="absolute top-0 bottom-0 z-40"
+			style={{
+				[sideProperty === "right" ? "marginRight" : "marginLeft"]: `${sidebarWidth}px`,
+				pointerEvents: "none",
+			}}
+		>
+			{/* Band */}
+			<div
+				className="absolute top-0 bottom-0 bg-[#34d399]/10 pointer-events-none"
+				style={{ [sideProperty]: `${startPx}px`, width: `${Math.max(0, endPx - startPx)}px` }}
+			/>
+			{/* Handles */}
+			{startHandleVisible && (
+				<div
+					className={handleClass}
+					style={{ [sideProperty]: `${startPx - 1}px`, pointerEvents: "auto" }}
+					onPointerDown={(e) => e.stopPropagation()}
+					onMouseDown={(e) => {
+						e.stopPropagation();
+						setDragging("start");
+					}}
+					onClick={(e) => e.stopPropagation()}
+				>
+					<div className={gripClass} />
+				</div>
+			)}
+			{endHandleVisible && (
+				<div
+					className={handleClass}
+					style={{ [sideProperty]: `${endPx - 1}px`, pointerEvents: "auto" }}
+					onPointerDown={(e) => e.stopPropagation()}
+					onMouseDown={(e) => {
+						e.stopPropagation();
+						setDragging("end");
+					}}
+					onClick={(e) => e.stopPropagation()}
+				>
+					<div className={gripClass} />
+				</div>
+			)}
 		</div>
 	);
 }
@@ -635,11 +803,51 @@ function Timeline({
 	onAddContext?: (text: string) => void;
 }) {
 	const t = useScopedT("timeline");
-	const { setTimelineRef, style, sidebarWidth, range, pixelsToValue } = useTimelineContext();
+	const tCommon = useScopedT("common");
+	const { setTimelineRef, style, sidebarWidth, direction, range, pixelsToValue, valueToPixels } =
+		useTimelineContext();
+	const sideProperty = direction === "rtl" ? "right" : "left";
 	const localTimelineRef = useRef<HTMLDivElement | null>(null);
 	const isScrubbingTimelineRef = useRef(false);
 	const scrubPointerIdRef = useRef<number | null>(null);
 	const peaks = useAudioPeaks(showTrimWaveform ? videoUrl : undefined);
+	// Two-handle AI range selection; spawned by "+" on the playhead.
+	const [rangeSelection, setRangeSelection] = useState<{
+		startMs: number;
+		endMs: number;
+	} | null>(null);
+
+	const handleStartRangeSelect = useCallback(() => {
+		if (videoDurationMs <= 0) return;
+		// Second handle lands ~10% of the video ahead (1–10s), clamped to the end.
+		const defaultLengthMs = Math.min(Math.max(videoDurationMs * 0.1, 1000), 10000);
+		let startMs = Math.max(0, Math.min(currentTimeMs, videoDurationMs));
+		let endMs = startMs + defaultLengthMs;
+		if (endMs > videoDurationMs) {
+			endMs = videoDurationMs;
+			startMs = Math.max(0, endMs - defaultLengthMs);
+		}
+		setRangeSelection({ startMs: Math.round(startMs), endMs: Math.round(endMs) });
+	}, [currentTimeMs, videoDurationMs]);
+
+	const handleRangeSelectionChange = useCallback(
+		(updater: (prev: { startMs: number; endMs: number }) => { startMs: number; endMs: number }) => {
+			setRangeSelection((prev) => (prev ? updater(prev) : prev));
+		},
+		[],
+	);
+
+	const clearRangeSelection = useCallback(() => setRangeSelection(null), []);
+
+	// Handles snap to every block's start/end plus the playhead and video bounds.
+	const rangeSnapTimes = useMemo(() => {
+		const times = new Set<number>([0, Math.round(videoDurationMs), Math.round(currentTimeMs)]);
+		for (const item of items) {
+			times.add(Math.round(item.span.start));
+			times.add(Math.round(item.span.end));
+		}
+		return Array.from(times);
+	}, [items, videoDurationMs, currentTimeMs]);
 
 	const setRefs = useCallback(
 		(node: HTMLDivElement | null) => {
@@ -817,7 +1025,21 @@ function Timeline({
 				onRangeChange={onRangeChange}
 				timelineRef={localTimelineRef}
 				keyframes={keyframes}
+				onStartRangeSelect={
+					// Hide "+" while a selection is active — the start handle spawns
+					// right on the playhead and would sit on top of it.
+					onAddContext && !rangeSelection ? handleStartRangeSelect : undefined
+				}
 			/>
+			{rangeSelection && onAddContext && (
+				<RangeSelection
+					selection={rangeSelection}
+					videoDurationMs={videoDurationMs}
+					onChange={handleRangeSelectionChange}
+					timelineRef={localTimelineRef}
+					snapTimes={rangeSnapTimes}
+				/>
+			)}
 
 			<Row
 				id={ZOOM_ROW_ID}
@@ -977,6 +1199,76 @@ function Timeline({
 					</Item>
 				))}
 			</Row>
+
+			{/* Range action strip — normal flow below the last lane, so the pill can
+			    never cover a lane. "@ Add to chat  0:03.2 – 0:07.4 | ×". */}
+			{rangeSelection && onAddContext && (
+				<div
+					className="relative mt-1 h-7"
+					style={{
+						[sideProperty === "right" ? "marginRight" : "marginLeft"]: `${sidebarWidth}px`,
+					}}
+				>
+					{(() => {
+						const visStart = Math.max(
+							Math.min(rangeSelection.startMs, rangeSelection.endMs),
+							range.start,
+						);
+						const visEnd = Math.min(
+							Math.max(rangeSelection.startMs, rangeSelection.endMs),
+							range.end,
+						);
+						const startPx = valueToPixels(Math.min(visStart, visEnd) - range.start);
+						const endPx = valueToPixels(Math.max(visStart, visEnd) - range.start);
+						// Clamp so the pill stays fully on-screen even when the band
+						// center is out of view or near an edge.
+						const contentWidthPx = localTimelineRef.current
+							? Math.max(localTimelineRef.current.clientWidth - sidebarWidth, 0)
+							: Number.POSITIVE_INFINITY;
+						const PILL_HALF_WIDTH_PX = 110;
+						const pillCenterPx = Math.max(
+							PILL_HALF_WIDTH_PX,
+							Math.min((startPx + endPx) / 2, contentWidthPx - PILL_HALF_WIDTH_PX),
+						);
+						return (
+							<div
+								className="absolute top-0 z-50 flex -translate-x-1/2 items-center overflow-hidden whitespace-nowrap rounded-full border border-[#34d399]/50 bg-black/90 shadow-lg"
+								style={{ [sideProperty]: `${pillCenterPx}px` }}
+								onPointerDown={(e) => e.stopPropagation()}
+								onMouseDown={(e) => e.stopPropagation()}
+								onClick={(e) => e.stopPropagation()}
+							>
+								<button
+									type="button"
+									className="flex items-center gap-1.5 whitespace-nowrap py-1 pl-2.5 pr-2 text-[11px] font-medium text-white hover:bg-[#10b981]/30 cursor-pointer transition-colors"
+									onClick={() => {
+										onAddContext(
+											`${t("labels.range")} ${formatPlayheadTime(rangeSelection.startMs)} – ${formatPlayheadTime(rangeSelection.endMs)}`,
+										);
+										clearRangeSelection();
+									}}
+								>
+									<AtSign className="h-3 w-3 shrink-0 text-[#6ee7b7]" />
+									<span>{t("labels.addToChat")}</span>
+									<span className="tabular-nums text-white/55">
+										{formatPlayheadTime(rangeSelection.startMs)} –{" "}
+										{formatPlayheadTime(rangeSelection.endMs)}
+									</span>
+								</button>
+								<div className="h-4 w-px bg-white/15" />
+								<button
+									type="button"
+									aria-label={tCommon("actions.close")}
+									className="py-1 pl-1.5 pr-2 text-white/45 hover:text-white cursor-pointer transition-colors"
+									onClick={clearRangeSelection}
+								>
+									<X className="h-3 w-3" />
+								</button>
+							</div>
+						);
+					})()}
+				</div>
+			)}
 		</div>
 	);
 }
@@ -1067,16 +1359,31 @@ export default function TimelineEditor({
 
 	// Rotating interaction tips shown at the right edge of the toolbar.
 	const [tipIndex, setTipIndex] = useState(0);
+	// Auto-rotate pauses while hovered and stops for the session once the user
+	// navigates manually (they've taken over the pace).
+	const [tipsHovered, setTipsHovered] = useState(false);
+	const [tipsManual, setTipsManual] = useState(false);
 	const tips = useMemo(
 		() => [
 			{ key: scrollLabels.pan, label: t("labels.pan") },
 			{ key: scrollLabels.zoom, label: t("labels.zoom") },
 			{ key: isMac ? "⌥ + ← / →" : "Alt + ← / →", label: t("tips.laneJump") },
+			{ key: isMac ? "⇧ + ↑ / ↓" : "Shift + ↑ / ↓", label: t("tips.laneSwitch") },
 			{ key: t("tips.laneClickKey"), label: t("tips.laneClick") },
+			{ key: "+ → @", label: t("tips.rangeSelect") },
+			{ key: "@", label: t("tips.blockAt") },
 			{ key: t("tips.dividerKey"), label: t("tips.divider") },
 		],
 		[scrollLabels, t, isMac],
 	);
+
+	useEffect(() => {
+		if (tipsHovered || tipsManual) return;
+		const id = setInterval(() => {
+			setTipIndex((index) => (index + 1) % tips.length);
+		}, 9000);
+		return () => clearInterval(id);
+	}, [tipsHovered, tipsManual, tips.length]);
 
 	const addKeyframe = useCallback(() => {
 		if (totalMs === 0) return;
@@ -1769,7 +2076,11 @@ export default function TimelineEditor({
 				<div className="flex-1" />
 				{/* Rotating tips: 💡 on the left, clear chevron buttons, and a
 				    position counter so the carousel reads as navigable. */}
-				<div className="hidden md:flex items-center gap-1.5 text-[10px] text-slate-400 font-medium rounded-lg border border-white/10 bg-white/[0.03] pl-2 pr-1 py-1">
+				<div
+					className="hidden md:flex items-center gap-1.5 text-[10px] text-slate-400 font-medium rounded-lg border border-white/10 bg-white/[0.03] pl-2 pr-1 py-1"
+					onMouseEnter={() => setTipsHovered(true)}
+					onMouseLeave={() => setTipsHovered(false)}
+				>
 					<Lightbulb className="h-3.5 w-3.5 text-[#7C5CFF]/80 shrink-0" />
 					<span className="flex items-center gap-1.5">
 						<kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-[#7C5CFF] font-sans whitespace-nowrap">
@@ -1783,7 +2094,10 @@ export default function TimelineEditor({
 					<button
 						type="button"
 						aria-label="Previous tip"
-						onClick={() => setTipIndex((index) => (index + tips.length - 1) % tips.length)}
+						onClick={() => {
+							setTipsManual(true);
+							setTipIndex((index) => (index + tips.length - 1) % tips.length);
+						}}
 						className="flex h-5 w-5 items-center justify-center rounded text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
 					>
 						<ChevronLeft className="h-3.5 w-3.5" />
@@ -1791,7 +2105,10 @@ export default function TimelineEditor({
 					<button
 						type="button"
 						aria-label="Next tip"
-						onClick={() => setTipIndex((index) => (index + 1) % tips.length)}
+						onClick={() => {
+							setTipsManual(true);
+							setTipIndex((index) => (index + 1) % tips.length);
+						}}
 						className="flex h-5 w-5 items-center justify-center rounded text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
 					>
 						<ChevronRight className="h-3.5 w-3.5" />

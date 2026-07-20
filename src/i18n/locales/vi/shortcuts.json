@@ -37,6 +37,7 @@
 		"zoomTimeline": "Thu phóng Trục thời gian",
 		"frameBack": "Lùi một khung hình",
 		"frameForward": "Tiến một khung hình",
-		"laneJump": "Nhảy giữa các khối làn"
+		"laneJump": "Nhảy giữa các khối làn",
+		"laneSwitch": "Chuyển làn đang chọn"
 	}
 }

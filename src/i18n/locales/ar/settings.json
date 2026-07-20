@@ -33,7 +33,11 @@
 		"deleteRegion": "حذف منطقة السرعة",
 		"customPlaybackSpeed": "سرعة تشغيل مخصصة",
 		"maxSpeedError": "لا يمكن للسرعة أن تتجاوز {{max}}×",
-		"previewFrameSteppingHint": "فوق {{native}}×، تعرض المعاينة إطارًا تلو الآخر وبدون صوت. لا يتأثر التصدير."
+		"previewFrameSteppingHint": "فوق {{native}}×، تعرض المعاينة إطارًا تلو الآخر وبدون صوت. لا يتأثر التصدير.",
+		"rampIn": "تدرّج الدخول",
+		"rampOut": "تدرّج الخروج",
+		"rampOff": "إيقاف",
+		"rampHint": "تسريع وإبطاء سلس نحو سرعة هذا المقطع."
 	},
 	"trim": {
 		"deleteRegion": "حذف منطقة القص"
@@ -170,7 +174,11 @@
 		"tipShiftTabCycle": "استخدم Shift+Tab للتنقل للخلف.",
 		"invalidImageType": "نوع ملف غير صالح",
 		"imageFormatsOnly": "يرجى رفع ملف صورة JPG أو PNG أو GIF أو WebP.",
-		"imageUploadSuccess": "تم رفع الصورة بنجاح!"
+		"imageUploadSuccess": "تم رفع الصورة بنجاح!",
+		"fontWeight": "سماكة الخط",
+		"boxPaddingX": "حشو الصندوق الأفقي",
+		"boxPaddingY": "حشو الصندوق الرأسي",
+		"boxRadius": "استدارة زوايا الصندوق"
 	},
 	"fontStyles": {
 		"classic": "كلاسيكي",
@@ -229,5 +237,12 @@
 		"rise": "صعود",
 		"slideLeft": "انزلاق لليسار",
 		"typewriter": "آلة كاتبة"
+	},
+	"videoEffect": {
+		"title": "تأثير الفيديو",
+		"blurIntensity": "شدة الضبابية",
+		"dimIntensity": "شدة التعتيم",
+		"noIntensity": "لا توجد شدة قابلة للتعديل لهذا التأثير.",
+		"deleteRegion": "حذف التأثير"
 	}
 }

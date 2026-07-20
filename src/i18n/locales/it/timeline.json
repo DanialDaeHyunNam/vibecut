@@ -34,8 +34,8 @@
 		"emptyText": "Testo vuoto",
 		"addToChat": "Aggiungi alla chat",
 		"range": "Intervallo",
-		"rangeSelectHint": "Maiusc+trascina per selezionare un intervallo per l’IA",
-		"effect": "Effetto"
+		"effect": "Effetto",
+		"addRangeSelect": "Seleziona un intervallo per l'IA"
 	},
 	"emptyState": {
 		"noVideo": "Nessun video caricato",
@@ -67,7 +67,10 @@
 		"laneClickKey": "Clic su una corsia",
 		"laneClick": "Rendila destinazione della navigazione Alt",
 		"dividerKey": "Trascina il divisore",
-		"divider": "Ridimensiona il pannello · doppio clic ripristina"
+		"divider": "Ridimensiona il pannello · doppio clic ripristina",
+		"laneSwitch": "Sposta la corsia attiva su / giù",
+		"rangeSelect": "Scegli un intervallo, poi @ lo invia all'IA",
+		"blockAt": "Passa sopra un blocco per inviarlo all'IA"
 	},
 	"effects": {
 		"fadeIn": "Dissolvenza in ingresso",

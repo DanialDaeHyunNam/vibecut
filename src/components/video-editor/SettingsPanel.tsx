@@ -79,6 +79,7 @@ import type {
 	FigureData,
 	PlaybackSpeed,
 	Rotation3DPreset,
+	VideoEffectType,
 	WebcamLayoutPreset,
 	WebcamMaskShape,
 	WebcamSizePreset,
@@ -87,10 +88,14 @@ import type {
 	ZoomFocusMode,
 } from "./types";
 import {
+	DEFAULT_EFFECT_BLUR_PX,
+	DEFAULT_EFFECT_DIM_ALPHA,
 	DEFAULT_WEBCAM_MIRRORED,
 	DEFAULT_WEBCAM_REACTIVE_ZOOM,
+	MAX_EFFECT_BLUR_PX,
 	MAX_NATIVE_PLAYBACK_RATE,
 	MAX_PLAYBACK_SPEED,
+	MAX_SPEED_RAMP_MS,
 	MAX_ZOOM_SCALE,
 	MIN_ZOOM_SCALE,
 	ROTATION_3D_PRESET_ORDER,
@@ -327,6 +332,17 @@ interface SettingsPanelProps {
 	selectedSpeedValue?: PlaybackSpeed | null;
 	onSpeedChange?: (speed: PlaybackSpeed) => void;
 	onSpeedDelete?: (id: string) => void;
+	/** 0 = ramp off. Transient while dragging; commit finalizes one undo step. */
+	selectedSpeedRampInMs?: number | null;
+	selectedSpeedRampOutMs?: number | null;
+	onSpeedRampChange?: (field: "rampInMs" | "rampOutMs", ms: number) => void;
+	onSpeedRampCommit?: () => void;
+	selectedEffectId?: string | null;
+	selectedEffectType?: VideoEffectType | null;
+	selectedEffectIntensity?: number | null;
+	onEffectIntensityChange?: (intensity: number) => void;
+	onEffectIntensityCommit?: () => void;
+	onEffectDelete?: (id: string) => void;
 	hasWebcam?: boolean;
 	webcamLayoutPreset?: WebcamLayoutPreset;
 	onWebcamLayoutPresetChange?: (preset: WebcamLayoutPreset) => void;
@@ -468,6 +484,16 @@ export function SettingsPanel({
 	selectedSpeedValue,
 	onSpeedChange,
 	onSpeedDelete,
+	selectedSpeedRampInMs,
+	selectedSpeedRampOutMs,
+	onSpeedRampChange,
+	onSpeedRampCommit,
+	selectedEffectId,
+	selectedEffectType,
+	selectedEffectIntensity,
+	onEffectIntensityChange,
+	onEffectIntensityCommit,
+	onEffectDelete,
 	hasWebcam = false,
 	webcamLayoutPreset = DEFAULT_WEBCAM_SETTINGS.layoutPreset,
 	onWebcamLayoutPresetChange,
@@ -499,6 +525,8 @@ export function SettingsPanel({
 	showCursorSettings = true,
 }: SettingsPanelProps) {
 	const t = useScopedT("settings");
+	// Effect type names (Fade in / Blur / …) live in the timeline namespace.
+	const tTimeline = useScopedT("timeline");
 	const [activePanelMode, setActivePanelMode] = useState<SettingsPanelMode>("background");
 	const sourceDimensions = formatSourceDimensions(videoElement, cropRegion);
 	// Resolved URLs are for DOM rendering only. We persist the canonical
@@ -652,7 +680,9 @@ export function SettingsPanel({
 
 	const zoomEnabled = Boolean(selectedZoomDepth);
 	const trimEnabled = Boolean(selectedTrimId);
-	const hasTimelineSelection = Boolean(selectedZoomId || selectedTrimId || selectedSpeedId);
+	const hasTimelineSelection = Boolean(
+		selectedZoomId || selectedTrimId || selectedSpeedId || selectedEffectId,
+	);
 	const hasCursorPanel = showCursorSettings && hasCursorData;
 	const panelModes: Array<{
 		id: SettingsPanelMode;
@@ -684,7 +714,9 @@ export function SettingsPanel({
 			? t("zoom.level")
 			: selectedSpeedId
 				? t("speed.playbackSpeed")
-				: t("trim.deleteRegion")
+				: selectedEffectId
+					? t("videoEffect.title")
+					: t("trim.deleteRegion")
 		: activePanelMode === "timeline"
 			? t("timeline.title")
 			: ([...panelModes, exportPanelMode].find((mode) => mode.id === activePanelMode)?.label ??
@@ -1240,6 +1272,34 @@ export function SettingsPanel({
 									</div>
 								)}
 							</div>
+							{(
+								[
+									["rampInMs", t("speed.rampIn"), selectedSpeedRampInMs ?? 0],
+									["rampOutMs", t("speed.rampOut"), selectedSpeedRampOutMs ?? 0],
+								] as const
+							).map(([field, label, valueMs]) => (
+								<div
+									key={field}
+									className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-2 py-1.5"
+								>
+									<div className="flex items-center justify-between mb-1">
+										<span className="text-[11px] text-slate-500">{label}</span>
+										<span className="text-[10px] text-slate-500 font-mono tabular-nums">
+											{valueMs > 0 ? `${(valueMs / 1000).toFixed(1)}s` : t("speed.rampOff")}
+										</span>
+									</div>
+									<Slider
+										value={[valueMs]}
+										onValueChange={(values) => onSpeedRampChange?.(field, values[0])}
+										onValueCommit={() => onSpeedRampCommit?.()}
+										min={0}
+										max={MAX_SPEED_RAMP_MS}
+										step={100}
+										className="w-full [&_[role=slider]]:bg-[#7C5CFF] [&_[role=slider]]:border-[#7C5CFF] [&_[role=slider]]:h-3 [&_[role=slider]]:w-3"
+									/>
+								</div>
+							))}
+							<p className="px-1 text-[10px] leading-snug text-slate-500">{t("speed.rampHint")}</p>
 							{selectedSpeedId &&
 								selectedSpeedValue != null &&
 								selectedSpeedValue > MAX_NATIVE_PLAYBACK_RATE && (
@@ -1258,6 +1318,77 @@ export function SettingsPanel({
 									{t("speed.deleteRegion")}
 								</Button>
 							)}
+						</div>
+					)}
+
+					{selectedEffectId && (
+						<div className="editor-panel-section mb-3 space-y-3 px-1">
+							<div className="flex items-center justify-between">
+								<span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+									{t("videoEffect.title")}
+								</span>
+								{selectedEffectType && (
+									<span className="rounded-full border border-fuchsia-500/25 bg-fuchsia-500/10 px-2 py-0.5 text-[11px] font-semibold text-fuchsia-400">
+										{tTimeline(`effects.${selectedEffectType}`)}
+									</span>
+								)}
+							</div>
+							{selectedEffectType === "blur" && (
+								<div className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-2 py-1.5">
+									<div className="flex items-center justify-between mb-1">
+										<span className="text-[11px] text-slate-500">
+											{t("videoEffect.blurIntensity")}
+										</span>
+										<span className="text-[10px] text-slate-500 font-mono tabular-nums">
+											{Math.round(selectedEffectIntensity ?? DEFAULT_EFFECT_BLUR_PX)}px
+										</span>
+									</div>
+									<Slider
+										value={[selectedEffectIntensity ?? DEFAULT_EFFECT_BLUR_PX]}
+										onValueChange={(values) => onEffectIntensityChange?.(values[0])}
+										onValueCommit={() => onEffectIntensityCommit?.()}
+										min={0}
+										max={MAX_EFFECT_BLUR_PX}
+										step={1}
+										className="w-full [&_[role=slider]]:bg-[#7C5CFF] [&_[role=slider]]:border-[#7C5CFF] [&_[role=slider]]:h-3 [&_[role=slider]]:w-3"
+									/>
+								</div>
+							)}
+							{selectedEffectType === "dim" && (
+								<div className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-2 py-1.5">
+									<div className="flex items-center justify-between mb-1">
+										<span className="text-[11px] text-slate-500">
+											{t("videoEffect.dimIntensity")}
+										</span>
+										<span className="text-[10px] text-slate-500 font-mono tabular-nums">
+											{Math.round((selectedEffectIntensity ?? DEFAULT_EFFECT_DIM_ALPHA) * 100)}%
+										</span>
+									</div>
+									<Slider
+										value={[selectedEffectIntensity ?? DEFAULT_EFFECT_DIM_ALPHA]}
+										onValueChange={(values) => onEffectIntensityChange?.(values[0])}
+										onValueCommit={() => onEffectIntensityCommit?.()}
+										min={0}
+										max={1}
+										step={0.05}
+										className="w-full [&_[role=slider]]:bg-[#7C5CFF] [&_[role=slider]]:border-[#7C5CFF] [&_[role=slider]]:h-3 [&_[role=slider]]:w-3"
+									/>
+								</div>
+							)}
+							{(selectedEffectType === "fadeIn" || selectedEffectType === "fadeOut") && (
+								<p className="px-1 text-[10px] leading-snug text-slate-500">
+									{t("videoEffect.noIntensity")}
+								</p>
+							)}
+							<Button
+								onClick={() => selectedEffectId && onEffectDelete?.(selectedEffectId)}
+								variant="destructive"
+								size="sm"
+								className="w-full gap-2 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30 transition-all h-8 text-xs"
+							>
+								<Trash2 className="w-3 h-3" />
+								{t("videoEffect.deleteRegion")}
+							</Button>
 						</div>
 					)}
 

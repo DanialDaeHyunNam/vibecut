@@ -33,7 +33,11 @@
 		"deleteRegion": "再生速度の範囲を削除",
 		"customPlaybackSpeed": "カスタム再生速度",
 		"maxSpeedError": "速度は{{max}}×を超えることはできません",
-		"previewFrameSteppingHint": "{{native}}×を超えるとプレビューはフレーム送りかつ無音になります。書き出しには影響しません。"
+		"previewFrameSteppingHint": "{{native}}×を超えるとプレビューはフレーム送りかつ無音になります。書き出しには影響しません。",
+		"rampIn": "ランプイン",
+		"rampOut": "ランプアウト",
+		"rampOff": "オフ",
+		"rampHint": "区間の速度へ滑らかに加速・減速します。"
 	},
 	"trim": {
 		"deleteRegion": "トリム範囲を削除"
@@ -170,7 +174,11 @@
 		"tipShiftTabCycle": "Shift+Tabキーを使用して逆順に切り替えます。",
 		"invalidImageType": "無効なファイル形式",
 		"imageFormatsOnly": "JPG、PNG、GIF、またはWebP画像ファイルを選択してください。",
-		"imageUploadSuccess": "画像を読み込みました。"
+		"imageUploadSuccess": "画像を読み込みました。",
+		"fontWeight": "太さ",
+		"boxPaddingX": "ボックス左右パディング",
+		"boxPaddingY": "ボックス上下パディング",
+		"boxRadius": "ボックス角丸"
 	},
 	"fontStyles": {
 		"classic": "クラシック",
@@ -229,5 +237,12 @@
 	"timeline": {
 		"title": "タイムライン",
 		"waveform": "トリムトラックにオーディオ波形を表示"
+	},
+	"videoEffect": {
+		"title": "ビデオエフェクト",
+		"blurIntensity": "ぼかしの強さ",
+		"dimIntensity": "暗さの強さ",
+		"noIntensity": "このエフェクトに調整できる強度はありません。",
+		"deleteRegion": "エフェクトを削除"
 	}
 }

@@ -34,8 +34,8 @@
 		"emptyText": "空のテキスト",
 		"addToChat": "チャットに追加",
 		"range": "区間",
-		"rangeSelectHint": "Shift+ドラッグでAIに送る区間を選択",
-		"effect": "エフェクト"
+		"effect": "エフェクト",
+		"addRangeSelect": "AIに送る範囲を選択"
 	},
 	"emptyState": {
 		"noVideo": "ビデオが読み込まれていません",
@@ -67,7 +67,10 @@
 		"laneClickKey": "レーンをクリック",
 		"laneClick": "Alt移動の対象にする",
 		"dividerKey": "仕切りをドラッグ",
-		"divider": "パネルの幅を調整 · ダブルクリックで初期値"
+		"divider": "パネルの幅を調整 · ダブルクリックで初期値",
+		"laneSwitch": "フォーカスレーンを上下に移動",
+		"rangeSelect": "範囲を選んで @ でAIに送信",
+		"blockAt": "ブロックにホバーしてAIに送信"
 	},
 	"effects": {
 		"fadeIn": "フェードイン",

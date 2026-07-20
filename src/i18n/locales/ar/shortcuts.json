@@ -37,6 +37,7 @@
 		"zoomTimeline": "تكبير المخطط الزمني",
 		"frameBack": "إطار للخلف",
 		"frameForward": "إطار للأمام",
-		"laneJump": "Jump Between Lane Blocks"
+		"laneJump": "Jump Between Lane Blocks",
+		"laneSwitch": "تبديل المسار النشط"
 	}
 }

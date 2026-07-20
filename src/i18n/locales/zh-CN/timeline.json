@@ -34,8 +34,8 @@
 		"blurItem": "模糊 {{index}}",
 		"addToChat": "添加到对话",
 		"range": "区间",
-		"rangeSelectHint": "Shift+拖动选择要发送给 AI 的区间",
-		"effect": "效果"
+		"effect": "效果",
+		"addRangeSelect": "选择要发送给 AI 的范围"
 	},
 	"emptyState": {
 		"noVideo": "未加载视频",
@@ -67,7 +67,10 @@
 		"laneClickKey": "点击轨道",
 		"laneClick": "设为 Alt 导航目标",
 		"dividerKey": "拖动分隔条",
-		"divider": "调整面板宽度 · 双击恢复默认"
+		"divider": "调整面板宽度 · 双击恢复默认",
+		"laneSwitch": "上下移动聚焦轨道",
+		"rangeSelect": "选好范围后用 @ 发送给 AI",
+		"blockAt": "悬停块即可发送给 AI"
 	},
 	"effects": {
 		"fadeIn": "淡入",

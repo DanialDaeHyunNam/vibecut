@@ -37,6 +37,7 @@
 		"zoomTimeline": "缩放时间轴",
 		"frameBack": "上一帧",
 		"frameForward": "下一帧",
-		"laneJump": "在轨道块之间跳转"
+		"laneJump": "在轨道块之间跳转",
+		"laneSwitch": "切换聚焦轨道"
 	}
 }

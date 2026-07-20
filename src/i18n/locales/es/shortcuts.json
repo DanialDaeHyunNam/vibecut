@@ -37,6 +37,7 @@
 		"zoomTimeline": "Zoom en línea de tiempo",
 		"frameBack": "Fotograma anterior",
 		"frameForward": "Fotograma siguiente",
-		"laneJump": "Saltar entre bloques del carril"
+		"laneJump": "Saltar entre bloques del carril",
+		"laneSwitch": "Cambiar carril enfocado"
 	}
 }

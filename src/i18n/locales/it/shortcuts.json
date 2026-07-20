@@ -37,6 +37,7 @@
 		"zoomTimeline": "Zoom timeline",
 		"frameBack": "Fotogramma indietro",
 		"frameForward": "Fotogramma avanti",
-		"laneJump": "Salta tra i blocchi della corsia"
+		"laneJump": "Salta tra i blocchi della corsia",
+		"laneSwitch": "Cambia corsia attiva"
 	}
 }

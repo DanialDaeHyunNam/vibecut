@@ -33,7 +33,11 @@
 		"deleteRegion": "속도 구간 삭제",
 		"customPlaybackSpeed": "재생 속도 직접 입력",
 		"maxSpeedError": "속도는 {{max}}×를 초과할 수 없습니다",
-		"previewFrameSteppingHint": "{{native}}×를 초과하면 미리보기가 프레임 단위로 재생되고 음소거됩니다. 내보내기에는 영향이 없습니다."
+		"previewFrameSteppingHint": "{{native}}×를 초과하면 미리보기가 프레임 단위로 재생되고 음소거됩니다. 내보내기에는 영향이 없습니다.",
+		"rampIn": "램프 인",
+		"rampOut": "램프 아웃",
+		"rampOff": "끔",
+		"rampHint": "구간 속도로 부드럽게 가속·감속합니다."
 	},
 	"trim": {
 		"deleteRegion": "트림 구간 삭제"
@@ -170,7 +174,11 @@
 		"tipShiftTabCycle": "Shift+Tab으로 역방향 순환할 수 있습니다.",
 		"invalidImageType": "지원하지 않는 파일 형식입니다",
 		"imageFormatsOnly": "JPG, PNG, GIF 또는 WebP 이미지 파일을 업로드해 주세요.",
-		"imageUploadSuccess": "이미지가 성공적으로 업로드되었습니다!"
+		"imageUploadSuccess": "이미지가 성공적으로 업로드되었습니다!",
+		"fontWeight": "굵기",
+		"boxPaddingX": "박스 가로 패딩",
+		"boxPaddingY": "박스 세로 패딩",
+		"boxRadius": "박스 모서리 라운드"
 	},
 	"fontStyles": {
 		"classic": "클래식",
@@ -229,5 +237,12 @@
 	"timeline": {
 		"title": "타임라인",
 		"waveform": "트림 트랙에 오디오 파형 표시"
+	},
+	"videoEffect": {
+		"title": "비디오 효과",
+		"blurIntensity": "블러 강도",
+		"dimIntensity": "어둡기 강도",
+		"noIntensity": "이 효과는 조절할 강도가 없습니다.",
+		"deleteRegion": "효과 삭제"
 	}
 }

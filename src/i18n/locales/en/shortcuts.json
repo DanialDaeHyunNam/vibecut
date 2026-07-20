@@ -37,6 +37,7 @@
 		"zoomTimeline": "Zoom Timeline",
 		"frameBack": "Frame Back",
 		"frameForward": "Frame Forward",
-		"laneJump": "Jump Between Lane Blocks"
+		"laneJump": "Jump Between Lane Blocks",
+		"laneSwitch": "Switch Focused Lane"
 	}
 }

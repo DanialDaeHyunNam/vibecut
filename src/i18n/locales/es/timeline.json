@@ -34,8 +34,8 @@
 		"blurItem": "Desenfoque {{index}}",
 		"addToChat": "Añadir al chat",
 		"range": "Rango",
-		"rangeSelectHint": "Mayús+arrastrar para seleccionar un rango para la IA",
-		"effect": "Efecto"
+		"effect": "Efecto",
+		"addRangeSelect": "Seleccionar un rango para la IA"
 	},
 	"emptyState": {
 		"noVideo": "No hay video cargado",
@@ -67,7 +67,10 @@
 		"laneClickKey": "Clic en un carril",
 		"laneClick": "Actívalo para navegar con Alt",
 		"dividerKey": "Arrastra el divisor",
-		"divider": "Cambia el tamaño del panel · doble clic restablece"
+		"divider": "Cambia el tamaño del panel · doble clic restablece",
+		"laneSwitch": "Mover el carril enfocado arriba / abajo",
+		"rangeSelect": "Elige un rango y @ lo envía a la IA",
+		"blockAt": "Pasa el cursor sobre un bloque para enviarlo a la IA"
 	},
 	"effects": {
 		"fadeIn": "Fundido de entrada",

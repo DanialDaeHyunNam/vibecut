@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T12:27:46.620Z
+updated: 2026-07-20T13:26:09.553Z
 
 files:
   "src/components/launch/CountdownOverlay.tsx":
@@ -805,10 +805,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-12-01
-    last_modified: 2026-07-20T12:06:54.447Z
-    change_count: 13
+    last_modified: 2026-07-20T13:23:22.522Z
+    change_count: 15
     purpose: "Video editor — AnnotationOverlay.tsx."
     change_log:
+      - date: 2026-07-20T13:23:22.522Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:23:05.626Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:06:54.447Z
         action: edit
         source: "claude:Dan"
@@ -842,10 +848,22 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-12-01
-    last_modified: 2026-07-04
-    change_count: 21
+    last_modified: 2026-07-20T13:24:40.280Z
+    change_count: 25
     purpose: "Video editor — AnnotationSettingsPanel.tsx."
     change_log:
+      - date: 2026-07-20T13:24:40.280Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:24:27.981Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:24:19.176Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:24:08.921Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-04"
         action: edit
         source: "user"
@@ -1070,10 +1088,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T10:13:02.399Z
-    change_count: 13
+    last_modified: 2026-07-20T12:40:37.206Z
+    change_count: 14
     purpose: "Video editor — PlaybackControls.tsx."
     change_log:
+      - date: 2026-07-20T12:40:37.206Z
+        action: write
+        source: "claude:Dan"
       - date: 2026-07-20T10:13:02.399Z
         action: edit
         source: "claude:Dan"
@@ -1113,10 +1134,37 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T09:05:42.842Z
-    change_count: 105
+    last_modified: 2026-07-20T12:38:43.229Z
+    change_count: 114
     purpose: "Video editor — SettingsPanel.tsx."
     change_log:
+      - date: 2026-07-20T12:38:43.229Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:38:22.402Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:38:11.287Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:38:04.899Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:38:00.330Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:58.347Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:50.458Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:43.553Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:40.457Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:05:42.842Z
         action: edit
         source: "claude:Dan"
@@ -1230,10 +1278,28 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T12:27:46.620Z
-    change_count: 209
+    last_modified: 2026-07-20T13:07:59.085Z
+    change_count: 215
     purpose: "Video editor — VideoEditor.tsx."
     change_log:
+      - date: 2026-07-20T13:07:59.085Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:40:42.551Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:27.785Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:23.425Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:17.367Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:37:10.123Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:27:46.620Z
         action: edit
         source: "claude:Dan"
@@ -2068,10 +2134,127 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T11:50:10.074Z
-    change_count: 78
+    last_modified: 2026-07-20T13:11:26.942Z
+    change_count: 117
     purpose: "Video editor — TimelineEditor.tsx."
     change_log:
+      - date: 2026-07-20T13:11:26.942Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:11:24.599Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:11:22.718Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:11:15.636Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:11:05.160Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:08:13.097Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:05:48.289Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:05:47.088Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:05:44.241Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:05:41.914Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:05:40.001Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:05:35.757Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:03:33.662Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:03:12.462Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:03:05.688Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:02:56.634Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:02:44.850Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:02:27.273Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:02:13.873Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:57:52.750Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:55:10.973Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:55:07.363Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:54:16.411Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:51:58.407Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:51:53.933Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:51:47.071Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:51:38.607Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:51:24.094Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:51:17.110Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:51:10.629Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:42:55.711Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:42:49.084Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:42:31.345Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:42:28.789Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:42:26.343Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:42:11.628Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:41:47.214Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:41:36.054Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T12:41:24.457Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T11:50:10.074Z
         action: edit
         source: "claude:Dan"
@@ -2254,10 +2437,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T12:03:47.197Z
-    change_count: 36
+    last_modified: 2026-07-20T13:22:58.534Z
+    change_count: 37
     purpose: "Video editor — types.ts."
     change_log:
+      - date: 2026-07-20T13:22:58.534Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:03:47.197Z
         action: edit
         source: "claude:Dan"
@@ -2928,10 +3114,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T12:09:10.984Z
-    change_count: 26
+    last_modified: 2026-07-20T13:25:29.350Z
+    change_count: 30
     purpose: "AI 편집 커맨드 순수 실행기 — 검증·클램핑 후 Partial<EditorState> 산출 (undo 1스텝)"
     change_log:
+      - date: 2026-07-20T13:25:29.350Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:25:16.764Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:25:06.233Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:16:31.026Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:09:10.984Z
         action: edit
         source: "claude:Dan"
@@ -3014,10 +3212,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T11:34:55.509Z
-    change_count: 10
+    last_modified: 2026-07-20T13:26:09.553Z
+    change_count: 12
     purpose: "executor 단위 테스트 — 클램핑/배치/겹침/자막/스타일 14케이스"
     change_log:
+      - date: 2026-07-20T13:26:09.553Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T13:17:46.517Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T11:34:55.509Z
         action: edit
         source: "claude:Dan"
