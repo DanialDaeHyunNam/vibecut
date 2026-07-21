@@ -1,8 +1,9 @@
 name: Update Homebrew Cask
 
+# Fork note: these publish to upstream OpenScreen package channels (winget/homebrew
+# identifiers not yet rebranded for Vibecut) — auto-trigger disabled; run manually
+# via workflow_dispatch after rebranding the identifiers.
 on:
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
       tag:

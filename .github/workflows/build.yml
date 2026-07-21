@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: openscreen-windows
-          path: release/**/Openscreen.Setup.*.exe
+          path: release/**/Vibecut.Setup.*.exe
           if-no-files-found: error
           retention-days: 30
 
@@ -167,7 +167,7 @@ jobs:
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           ARCH="${{ matrix.arch }}"
-          DMG_NAME="Openscreen-Mac-${ARCH}-${VERSION}.dmg"
+          DMG_NAME="Vibecut-Mac-${ARCH}-${VERSION}.dmg"
           RELEASE_DIR="release/${VERSION}"
           DMG_OUTPUT="${RELEASE_DIR}/${DMG_NAME}"
           STAGING="${RELEASE_DIR}/dmg-staging"
@@ -180,7 +180,7 @@ jobs:
 
           hdiutil create \
             -srcfolder "$STAGING" \
-            -volname "Openscreen" \
+            -volname "Vibecut" \
             -fs HFS+ \
             -fsargs "-c c=64,a=16,e=16" \
             -format UDBZ \
