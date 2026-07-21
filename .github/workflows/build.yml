@@ -139,15 +139,34 @@ jobs:
         env:
           OPENSCREEN_MAC_HELPER_ARCHS: ${{ matrix.arch }}
 
+      - name: Preflight signing diagnostics
+        if: steps.signing.outputs.enabled == 'true'
+        env:
+          CSC_LINK: ${{ secrets.MAC_CERTIFICATE_P12 }}
+          CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTIFICATE_PASSWORD }}
+        run: |
+          echo "CSC_LINK length: ${#CSC_LINK}"
+          echo "CSC_KEY_PASSWORD length: ${#CSC_KEY_PASSWORD}"
+          echo "CSC_KEYCHAIN: ${CSC_KEYCHAIN:-<unset>}"
+          echo "--- default search list:"
+          security list-keychains -d user
+          echo "--- identities via default search:"
+          security find-identity -v -p codesigning || true
+          echo "--- identities via explicit keychain:"
+          security find-identity -v -p codesigning "$RUNNER_TEMP/build.keychain-db" || true
+
       - name: Package .app bundle
         run: npx electron-builder --mac --${{ matrix.arch }} --dir --publish never
         env:
-          # CSC_LINK/KEY_PASSWORD is electron-builder's canonical CI path: it
-          # imports the p12 into its own temp keychain and signs from there —
-          # runner keychain search-list quirks stop mattering.
+          # Belt and suspenders: CSC_LINK is electron-builder's canonical CI
+          # path (imports the p12 into its own temp keychain); if it resolves
+          # empty for any reason, CSC_KEYCHAIN points identity discovery at the
+          # keychain our import step provably populated.
+          DEBUG: electron-builder
           CSC_LINK: ${{ secrets.MAC_CERTIFICATE_P12 }}
           CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTIFICATE_PASSWORD }}
           CSC_NAME: ${{ secrets.MAC_CSC_NAME }}
+          CSC_KEYCHAIN: ${{ runner.temp }}/build.keychain-db
           CSC_IDENTITY_AUTO_DISCOVERY: ${{ steps.signing.outputs.enabled == 'true' && 'true' || 'false' }}
 
       - name: Get version
