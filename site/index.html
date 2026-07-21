@@ -10,7 +10,12 @@
 <meta property="og:description" content="Record, then just say what you want. Free, open source, local-first. Works with your Claude, ChatGPT, or Gemini subscription — no API key." />
 <meta property="og:image" content="https://vibecut-orcin.vercel.app/og.png" />
 <meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:url" content="https://vibecut-orcin.vercel.app/" />
+<meta property="og:site_name" content="Vibecut" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://vibecut-orcin.vercel.app/og.png" />
+<meta name="theme-color" content="#0b0a10" />
+<link rel="canonical" href="https://vibecut-orcin.vercel.app/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -107,68 +112,197 @@
   .cta-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
   .cta-note a:hover { color: var(--text); }
 
-  /* ---- editor mockup ---- */
-  .mock-wrap { position: relative; margin: 56px auto 0; max-width: 960px; padding: 0 24px; }
+  /* ---- editor mockup — near-replica of the real Vibecut editor, animated
+          by a scripted scene loop (type → tool chips → lanes fill → playback
+          with auto-zoom). Reduced motion gets the finished still. ---- */
+  .mock-wrap { position: relative; margin: 56px auto 0; max-width: 1120px; padding: 0 20px; }
   .mock {
     border: 1px solid rgba(255, 255, 255, 0.10); border-radius: 16px; overflow: hidden;
-    background: #141119;
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(139, 124, 255, 0.06), 0 -20px 120px -60px var(--glow);
-    text-align: left; font-size: 12px;
+    background: #09090b; text-align: left; font-size: 12px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(124, 92, 255, 0.06), 0 -20px 120px -60px var(--glow);
   }
   .mock-titlebar {
-    display: flex; align-items: center; gap: 6px; padding: 10px 14px;
-    background: #191521; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 6px; padding: 8px 12px;
+    background: #0d0d11; border-bottom: 1px solid var(--line);
   }
-  .dot { width: 11px; height: 11px; border-radius: 50%; }
-  .mock-title { margin: 0 auto; font-size: 11.5px; color: var(--faint); letter-spacing: 0.02em; }
-  .mock-body { display: grid; grid-template-columns: 1fr 292px; min-height: 340px; }
-  .mock-stage { position: relative; display: flex; align-items: center; justify-content: center; padding: 26px; background: radial-gradient(120% 140% at 20% 0%, #2a2140 0%, #1a1526 55%, #141119 100%); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .tb-group { display: flex; gap: 5px; margin-left: 10px; }
+  .tb-btn {
+    display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03);
+    color: #8f8d9c; font-size: 9.5px;
+  }
+  .mock-title { margin: 0 auto; font-size: 11px; color: var(--faint); letter-spacing: 0.02em; }
+  .mock-export {
+    display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 8px;
+    background: #7C5CFF; color: #fff; font-size: 10.5px; font-weight: 700;
+    box-shadow: 0 2px 10px rgba(124, 92, 255, 0.35);
+  }
+  .mock-body { display: grid; grid-template-columns: 1fr 296px; }
+  .mock-left { display: flex; flex-direction: column; border-right: 1px solid var(--line); min-width: 0; }
+  .mock-stage {
+    position: relative; display: flex; flex-direction: column; align-items: center;
+    padding: 26px 30px 10px; gap: 12px;
+    background: radial-gradient(120% 140% at 20% 0%, #251c3d 0%, #161022 55%, #0b0a10 100%);
+  }
   .mock-video {
-    width: 100%; max-width: 480px; aspect-ratio: 16 / 9; border-radius: 10px; position: relative; overflow: hidden;
+    width: 100%; max-width: 560px; aspect-ratio: 16 / 9; border-radius: 10px; position: relative; overflow: hidden;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
   }
-  .mock-window {
-    position: absolute; inset: 12% 10%; background: #f5f4f8; border-radius: 8px;
-    transform: scale(1.35) translate(-6%, 4%); transform-origin: 30% 60%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  /* zoom rig: the recorded app scales toward the clicked button on zoom */
+  .mock-zoomrig { position: absolute; inset: 5.5% 7%; transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1); transform-origin: 78% 80%; }
+  .mock.zoomed .mock-zoomrig { transform: scale(1.6); }
+  /* the recorded app: tiny SaaS dashboard */
+  .app { position: absolute; inset: 0; border-radius: 7px; overflow: hidden; background: #fbfbfd; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); display: grid; grid-template-rows: 13% 1fr; }
+  .app-nav { display: flex; align-items: center; gap: 7px; padding: 0 4%; background: #fff; border-bottom: 1px solid #ecebf2; }
+  .app-nav .logo { width: 4.5%; aspect-ratio: 1; border-radius: 26%; background: #7C5CFF; flex: none; }
+  .app-nav i { width: 8%; height: 18%; border-radius: 99px; background: #e6e4ee; }
+  .app-nav i:last-child { margin-left: auto; width: 5%; border-radius: 50%; aspect-ratio: 1; height: auto; background: #d9d6e6; }
+  .app-main { display: grid; grid-template-columns: 15% 1fr; min-height: 0; }
+  .app-side { background: #f4f3f8; border-right: 1px solid #e9e8f0; padding: 7% 18%; display: flex; flex-direction: column; gap: 14%; }
+  .app-side i { display: block; height: 5.5%; min-height: 3px; border-radius: 99px; background: #dcdae6; }
+  .app-side i:first-child { background: #b9aefc; }
+  .app-content { position: relative; padding: 4% 4.5%; }
+  .app-h { width: 34%; height: 5.5%; border-radius: 99px; background: #cfcddd; }
+  .app-cards { display: flex; gap: 3%; margin-top: 4%; height: 18%; }
+  .app-card { flex: 1; background: #fff; border: 1px solid #ebe9f2; border-radius: 8%/24%; position: relative; }
+  .app-card::after { content: ""; position: absolute; left: 12%; top: 30%; width: 45%; height: 14%; border-radius: 99px; background: #e4e2ee; }
+  .app-card::before { content: ""; position: absolute; left: 12%; bottom: 22%; width: 26%; height: 18%; border-radius: 99px; background: #b9aefc; }
+  .app-chart { display: flex; align-items: flex-end; gap: 2.2%; height: 30%; margin-top: 5%; }
+  .app-chart i { flex: 1; border-radius: 2px 2px 0 0; background: #e4e1f0; }
+  .app-chart i.hi { background: #8b7cff; }
+  .app-cta {
+    position: absolute; right: 4.5%; bottom: 6%; width: 24%; height: 12%;
+    border-radius: 99px; background: #7C5CFF; box-shadow: 0 3px 10px rgba(124, 92, 255, 0.45);
   }
-  .mock-window::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 14%; background: #e6e4ee; border-radius: 8px 8px 0 0; }
-  .mw-line { position: absolute; left: 8%; height: 6%; border-radius: 4px; background: #d4d1de; }
+  .app-cta::after { content: ""; position: absolute; inset: 32% 22%; border-radius: 99px; background: rgba(255, 255, 255, 0.85); }
   .mock-cursor {
-    position: absolute; left: 46%; top: 58%; width: 34px; height: 34px; border-radius: 50%;
-    border: 2.5px solid var(--violet); background: rgba(139, 124, 255, 0.22);
-    animation: pulse 2.4s ease-in-out infinite;
+    position: absolute; left: 34%; top: 34%; width: 30px; height: 30px; border-radius: 50%; margin: -15px 0 0 -15px;
+    border: 2.5px solid #7C5CFF; background: rgba(124, 92, 255, 0.22); z-index: 3;
+    transition: left 1.2s cubic-bezier(0.22, 1, 0.36, 1), top 1.2s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.25); opacity: 0.5; } }
+  .mock.cursor-at-btn .mock-cursor { left: 78.5%; top: 81%; }
+  .mock-cursor::after {
+    content: ""; position: absolute; inset: -8px; border-radius: 50%;
+    border: 2px solid rgba(124, 92, 255, 0.8); opacity: 0; transform: scale(0.6);
+  }
+  .mock.clicking .mock-cursor::after { animation: clickRipple 0.7s ease-out; }
+  @keyframes clickRipple { 0% { opacity: 0.9; transform: scale(0.55); } 100% { opacity: 0; transform: scale(1.5); } }
   .zoom-badge {
-    position: absolute; left: 14px; bottom: 14px; font-size: 10.5px; font-weight: 600;
-    color: #cfc8ff; background: rgba(20, 16, 31, 0.75); border: 1px solid rgba(139, 124, 255, 0.35);
+    position: absolute; left: 12px; top: 12px; z-index: 4; font-size: 10.5px; font-weight: 600;
+    color: #cfc8ff; background: rgba(15, 13, 22, 0.78); border: 1px solid rgba(124, 92, 255, 0.4);
     padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+    opacity: 0; transform: translateY(-6px); transition: opacity 0.35s ease, transform 0.35s ease;
   }
-  .mock-chat { display: flex; flex-direction: column; border-left: 1px solid var(--line); background: #151220; }
-  .mock-chat-head { display: flex; gap: 14px; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--faint); }
-  .mock-chat-head .on { color: var(--violet); font-weight: 600; }
-  .mock-msgs { display: flex; flex-direction: column; gap: 9px; padding: 13px; flex: 1; }
-  .msg { max-width: 92%; padding: 8px 11px; border-radius: 10px; line-height: 1.5; font-size: 11.5px; }
-  .msg.user { align-self: flex-end; background: #2b2440; color: #e9e5fa; }
-  .msg.ai { align-self: flex-start; background: #1d1929; color: var(--muted); border: 1px solid var(--line); }
-  .chip { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-size: 10.5px; color: #b9aefc; background: rgba(139, 124, 255, 0.10); border: 1px solid rgba(139, 124, 255, 0.22); padding: 4px 9px; border-radius: 999px; }
-  .chip::before { content: "✓"; font-size: 9px; }
-  .chip.spin::before { content: "◐"; animation: spin 1s linear infinite; display: inline-block; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .mock-input { margin: 0 13px 13px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--faint); font-size: 11.5px; background: #131020; }
-  .mock-timeline { grid-column: 1 / -1; border-top: 1px solid var(--line); background: #131020; padding: 12px 16px; }
-  .tl-row { display: flex; align-items: center; gap: 8px; margin-top: 7px; }
-  .tl-label { width: 44px; font-size: 9.5px; color: var(--faint); letter-spacing: 0.06em; }
-  .tl-track { position: relative; flex: 1; height: 16px; background: rgba(255, 255, 255, 0.04); border-radius: 5px; }
-  .tl-seg { position: absolute; top: 2px; bottom: 2px; border-radius: 4px; }
-  .tl-zoom { background: linear-gradient(180deg, #8b7cff, #6a56f2); opacity: 0.85; }
-  .tl-cut { background: #3f3552; }
-  .tl-cap { background: #35563f; }
-  .playhead { position: absolute; top: -34px; bottom: 0; left: 38%; width: 1.5px; background: #ff6b81; }
-  .playhead::before { content: ""; position: absolute; top: 0; left: -4px; border: 5px solid transparent; border-top-color: #ff6b81; }
+  .mock.zoomed .zoom-badge { opacity: 1; transform: none; }
+  .mock-caption {
+    position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%) scale(0.8); z-index: 4;
+    max-width: 92%; white-space: nowrap; padding: 0.3em 0.6em; border-radius: 7px;
+    background: rgba(0, 0, 0, 0.7); color: #fff; font-weight: 800; font-size: 14px;
+    opacity: 0; transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .mock.captioned .mock-caption { opacity: 1; transform: translateX(-50%) scale(1); }
+  .mock-caption em { font-style: normal; color: #FFD700; }
+  /* playback pill, like the app's floating controls */
+  .mock-playbar {
+    display: flex; align-items: center; gap: 8px; width: min(430px, 82%);
+    padding: 4px 6px 4px 4px; border-radius: 999px;
+    background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .pb-btn { width: 20px; height: 20px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; }
+  .pb-play { background: #fff; color: #000; font-size: 9px; width: 24px; height: 24px; box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); }
+  .pb-time { font-size: 8.5px; color: #b9b7c4; }
+  .pb-track { position: relative; flex: 1; height: 3px; border-radius: 99px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
+  .pb-track i { position: absolute; left: 0; top: 0; bottom: 0; width: 4%; background: #7C5CFF; transition: none; }
+  .mock.playing .pb-track i { width: 96%; transition: width 5.6s linear; }
 
+  /* timeline: toolbar + axis + five lanes with colored handles */
+  .mock-timeline { border-top: 1px solid var(--line); background: #0b0c0f; }
+  .tl-toolbar { display: flex; align-items: center; gap: 3px; padding: 6px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+  .ti { width: 22px; height: 22px; border-radius: 7px; display: flex; align-items: center; justify-content: center; color: #8f8d9c; font-size: 11px; }
+  .ti.on { background: rgba(124, 92, 255, 0.16); color: #b9aefc; }
+  .t-aspect { margin-left: 8px; font-size: 9.5px; color: #cbc9d6; padding: 3px 9px; border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 7px; }
+  .t-tip { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 9px; color: #8f8d9c; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 3px 8px; background: rgba(255, 255, 255, 0.02); }
+  .t-tip kbd { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.08); padding: 1px 5px; border-radius: 4px; color: #b9aefc; font-family: inherit; font-size: 8.5px; }
+  .tl-scroll { padding: 4px 12px 12px; }
+  .tl-axis {
+    display: flex; justify-content: space-between; padding: 4px 0 5px 50px; font-size: 8.5px; color: #4d4d58;
+    letter-spacing: 0.04em; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .tl-lanes { position: relative; }
+  .tl-row { display: flex; align-items: center; gap: 0; margin-top: 5px; }
+  .tl-name { width: 34px; font-size: 8px; color: #55535f; letter-spacing: 0.08em; }
+  .tl-handle { width: 10px; align-self: stretch; border-radius: 3px; margin-right: 6px; opacity: 0.25; }
+  .tl-track { position: relative; flex: 1; height: 19px; background: rgba(255, 255, 255, 0.03); border-radius: 6px; }
+  .tl-seg {
+    position: absolute; top: 2px; bottom: 2px; border-radius: 6px;
+    opacity: 0; transform: scaleX(0.4); transform-origin: left center;
+    transition: opacity 0.3s ease, transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .mock .tl-seg.on { opacity: 1; transform: none; }
+  .tl-seg { border-left: 3px solid transparent; border-right: 3px solid transparent; }
+  .tl-zoom { background: linear-gradient(180deg, rgba(124, 92, 255, 0.95), rgba(106, 86, 242, 0.9)); border-color: #4C2FE0; }
+  .tl-cut { background: rgba(239, 68, 68, 0.5); border-color: rgba(239, 68, 68, 0.8); }
+  .tl-cap { background: rgba(34, 211, 238, 0.38); border-color: #0E7490; }
+  .tl-spd { background: rgba(245, 158, 11, 0.42); border-color: rgba(217, 119, 6, 0.9); }
+  .tl-fx { background: rgba(232, 121, 249, 0.4); border-color: rgba(192, 38, 211, 0.85); }
+  .playhead {
+    position: absolute; top: -26px; bottom: 0; left: 4%; width: 2px; z-index: 5; margin-left: 50px;
+    background: #6C55FF; box-shadow: 0 0 14px rgba(108, 85, 255, 0.65); pointer-events: none;
+  }
+  .playhead::before {
+    content: ""; position: absolute; top: -4px; left: 50%; width: 11px; height: 11px;
+    transform: translateX(-50%) rotate(45deg); border-radius: 3px;
+    background: #6C55FF; border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .mock.playing .playhead { transition: left 5.6s linear; }
+
+  /* right rail: AI/Settings tabs + transcript + composer */
+  .mock-chat { display: flex; flex-direction: column; background: #0d0d12; min-height: 0; }
+  .mock-chat-head { padding: 9px 10px 0; }
+  .mock-tabs {
+    position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 3px;
+    background: rgba(255, 255, 255, 0.045); border: 1px solid var(--line); border-radius: 9px;
+    font-size: 10.5px; text-align: center; color: var(--faint);
+  }
+  .mock-tabs .tab { position: relative; z-index: 1; padding: 4px 0; }
+  .mock-tabs .tab.on { color: #fff; font-weight: 700; }
+  .mock-tabs::before {
+    content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px);
+    border-radius: 7px; background: #1c1927; box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  }
+  .mock-msgs { display: flex; flex-direction: column; gap: 8px; padding: 12px 12px 8px; flex: 1; min-height: 0; }
+  .msg, .chip { opacity: 0; transform: translateY(7px); transition: opacity 0.32s ease, transform 0.32s ease; }
+  .mock .msg.on, .mock .chip.on { opacity: 1; transform: none; }
+  .msg { max-width: 94%; padding: 8px 11px; border-radius: 11px; line-height: 1.5; font-size: 11.5px; }
+  .msg.user { align-self: flex-end; background: #2b2350; color: #e9e5fa; border-bottom-right-radius: 4px; }
+  .msg.ai { align-self: flex-start; background: #17151f; color: var(--muted); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-size: 10.5px;
+    color: #b9aefc; background: rgba(124, 92, 255, 0.10); border: 1px solid rgba(124, 92, 255, 0.28);
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .chip::before { content: "\2713"; font-size: 9px; }
+  .chip.on.spin::before { content: "\25D0"; animation: spin 0.9s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .mock-composer {
+    display: flex; align-items: center; gap: 7px; margin: 0 12px 12px; padding: 8px 8px 8px 12px;
+    border: 1px solid var(--line); border-radius: 11px; background: #101016;
+    color: var(--faint); font-size: 11.5px;
+  }
+  .mock-composer .cbtn { color: #6f6d7c; font-size: 12px; flex: none; }
+  .mock-composer .ph { flex: 1; overflow: hidden; white-space: nowrap; }
+  .mock-composer .ph .typed { color: #e9e5fa; }
+  .mock-composer .ph .caret { display: inline-block; width: 1px; height: 12px; background: #b9aefc; vertical-align: -2px; animation: caretBlink 1s steps(1) infinite; }
+  @keyframes caretBlink { 50% { opacity: 0; } }
+  .mock-send {
+    width: 24px; height: 24px; border-radius: 7px; flex: none; display: flex; align-items: center; justify-content: center;
+    background: #7C5CFF; color: #fff; font-size: 11px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mock * { transition: none !important; animation: none !important; }
+  }
   /* ---- sections ---- */
   section { padding: 84px 0; }
   .sec-head { text-align: center; max-width: 620px; margin: 0 auto 48px; }
@@ -287,11 +421,37 @@
   .trust strong { color: var(--text); }
   .trust code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 5px; }
 
-  footer { border-top: 1px solid var(--line); padding: 40px 0 48px; font-size: 13.5px; color: var(--faint); }
-  .foot-inner { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-  .foot-inner .brand { font-size: 14.5px; }
-  .foot-links { display: flex; gap: 18px; margin-left: auto; }
-  .foot-links a:hover { color: var(--text); }
+  footer { padding: 24px 0 40px; font-size: 13.5px; color: var(--faint); }
+  .foot-card {
+    background: #0d0c12; border: 1px solid var(--line); border-radius: 22px;
+    padding: 44px 44px 28px; max-width: 1080px; margin: 0 auto;
+  }
+  .foot-cols { display: grid; grid-template-columns: 1.3fr 1fr 1.2fr; gap: 40px; }
+  .foot-brand .brand { font-size: 17px; color: var(--text); }
+  .foot-brand p { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 340px; }
+  .foot-h { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--faint); margin-bottom: 16px; }
+  .foot-list { display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; color: var(--text); }
+  .foot-list a:hover { color: var(--violet); }
+  .foot-list .dim { color: var(--faint); }
+  .foot-follow { display: flex; flex-direction: column; gap: 12px; }
+  .foot-follow a { display: flex; align-items: center; gap: 11px; font-size: 14.5px; color: var(--text); }
+  .foot-follow a:hover { color: var(--violet); }
+  .soc-ico {
+    width: 30px; height: 30px; border-radius: 50%; flex: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.16); font-size: 13px; font-weight: 700; color: var(--text);
+  }
+  .foot-note { margin-top: 6px; font-size: 12.5px; color: var(--faint); line-height: 1.6; }
+  .foot-bottom {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 13px;
+  }
+  .ver-pill {
+    font-size: 11px; font-weight: 600; color: #6ee7b7; border: 1px solid rgba(110, 231, 183, 0.35);
+    padding: 2px 9px; border-radius: 999px;
+  }
+  .foot-bottom .socs { margin-left: auto; display: flex; gap: 8px; }
+  @media (max-width: 840px) { .foot-cols { grid-template-columns: 1fr; gap: 28px; } .foot-card { padding: 30px 24px 22px; } }
 
   @media (max-width: 840px) {
     .grid { grid-template-columns: 1fr 1fr; }
@@ -346,68 +506,208 @@
   </div>
 
   <div class="mock-wrap">
-    <div class="mock" role="img" aria-label="The Vibecut editor: video preview with an automatic zoom, an AI chat panel applying edits, and a timeline with zoom, cut and caption regions.">
+    <div class="mock" id="heroMock" role="img" aria-label="The Vibecut editor: video preview with an automatic zoom, an AI chat panel applying edits, and a timeline with zoom, cut, caption, speed and effect lanes.">
       <div class="mock-titlebar">
         <span class="dot" style="background:#ff5f57"></span>
         <span class="dot" style="background:#febc2e"></span>
         <span class="dot" style="background:#28c840"></span>
-        <span class="mock-title">Vibecut — product-walkthrough.vibecut</span>
+        <span class="tb-group"><span class="tb-btn">⟵ Recorder</span><span class="tb-btn">✚</span><span class="tb-btn">⌥ Load</span><span class="tb-btn">⤓ Save</span></span>
+        <span class="mock-title">product-walkthrough.vibecut</span>
+        <span class="mock-export">⬆ Export Video</span>
       </div>
       <div class="mock-body">
-        <div class="mock-stage">
-          <div class="mock-video">
-            <div class="mock-window">
-              <span class="mw-line" style="top:24%; width:52%"></span>
-              <span class="mw-line" style="top:36%; width:70%"></span>
-              <span class="mw-line" style="top:48%; width:44%"></span>
-              <span class="mw-line" style="top:64%; width:30%; background:#8b7cff"></span>
+        <div class="mock-left">
+          <div class="mock-stage">
+            <div class="mock-video">
+              <div class="mock-zoomrig">
+                <div class="app">
+                  <div class="app-nav"><span class="logo"></span><i></i><i></i><i></i><i></i></div>
+                  <div class="app-main">
+                    <div class="app-side"><i></i><i></i><i></i><i></i><i></i></div>
+                    <div class="app-content">
+                      <div class="app-h"></div>
+                      <div class="app-cards"><div class="app-card"></div><div class="app-card"></div><div class="app-card"></div></div>
+                      <div class="app-chart"><i style="height:40%"></i><i style="height:62%"></i><i class="hi" style="height:88%"></i><i style="height:54%"></i><i style="height:70%"></i><i class="hi" style="height:100%"></i><i style="height:47%"></i><i style="height:76%"></i></div>
+                      <div class="app-cta"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mock-cursor"></div>
+              </div>
+              <div class="mock-caption">Watch the <em>auto-zoom</em> follow every click</div>
+              <span class="zoom-badge">Auto zoom · 2.4×</span>
             </div>
-            <div class="mock-cursor"></div>
-            <span class="zoom-badge">Auto zoom · 2.4×</span>
+            <div class="mock-playbar">
+              <span class="pb-btn">⏮</span><span class="pb-btn pb-play">▶</span>
+              <span class="pb-time">0:26</span>
+              <span class="pb-track"><i id="mockProgress"></i></span>
+              <span class="pb-time">1:12</span>
+              <span class="pb-btn">⛶</span>
+            </div>
+          </div>
+          <div class="mock-timeline">
+            <div class="tl-toolbar">
+              <span class="ti">⊕</span><span class="ti on">✦</span><span class="ti">◎</span><span class="ti">✂</span><span class="ti">🗨</span><span class="ti">◔</span><span class="ti">✹</span><span class="ti">▤</span>
+              <span class="t-aspect">16:9 ⌄</span>
+              <span class="t-tip">💡 <kbd>⌥ + ← / →</kbd> Jump between blocks · 3/8 ‹ ›</span>
+            </div>
+            <div class="tl-scroll">
+              <div class="tl-axis"><span>0:00</span><span>0:15</span><span>0:30</span><span>0:45</span><span>1:00</span></div>
+              <div class="tl-lanes">
+                <div class="tl-row"><span class="tl-name">ZOOM</span><span class="tl-handle" style="background:#7C5CFF"></span>
+                  <div class="tl-track">
+                    <span class="tl-seg tl-zoom" style="left:4%; width:11%"></span>
+                    <span class="tl-seg tl-zoom" style="left:22%; width:8%"></span>
+                    <span class="tl-seg tl-zoom" style="left:41%; width:13%"></span>
+                    <span class="tl-seg tl-zoom" style="left:63%; width:9%"></span>
+                    <span class="tl-seg tl-zoom" style="left:81%; width:12%"></span>
+                  </div>
+                </div>
+                <div class="tl-row"><span class="tl-name">CUT</span><span class="tl-handle" style="background:#ef4444"></span>
+                  <div class="tl-track">
+                    <span class="tl-seg tl-cut" style="left:16%; width:5%"></span>
+                    <span class="tl-seg tl-cut" style="left:56%; width:6%"></span>
+                  </div>
+                </div>
+                <div class="tl-row"><span class="tl-name">CC</span><span class="tl-handle" style="background:#22d3ee"></span>
+                  <div class="tl-track">
+                    <span class="tl-seg tl-cap" style="left:3%; width:22%"></span>
+                    <span class="tl-seg tl-cap" style="left:28%; width:30%"></span>
+                    <span class="tl-seg tl-cap" style="left:61%; width:33%"></span>
+                  </div>
+                </div>
+                <div class="tl-row"><span class="tl-name">SPD</span><span class="tl-handle" style="background:#f59e0b"></span>
+                  <div class="tl-track">
+                    <span class="tl-seg tl-spd" style="left:10%; width:9%"></span>
+                    <span class="tl-seg tl-spd" style="left:47%; width:12%"></span>
+                  </div>
+                </div>
+                <div class="tl-row"><span class="tl-name">FX</span><span class="tl-handle" style="background:#e879f9"></span>
+                  <div class="tl-track">
+                    <span class="tl-seg tl-fx" style="left:0%; width:6%"></span>
+                    <span class="tl-seg tl-fx" style="left:93%; width:7%"></span>
+                  </div>
+                </div>
+                <span class="playhead" id="mockPlayhead"></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="mock-chat">
-          <div class="mock-chat-head"><span>Settings</span><span class="on">AI</span></div>
+          <div class="mock-chat-head">
+            <div class="mock-tabs"><span class="tab on">AI</span><span class="tab">Settings</span></div>
+          </div>
           <div class="mock-msgs">
             <div class="msg user">Auto-edit this video — keep it tight, Korean subtitles.</div>
-            <div class="chip">Viewing frames</div>
-            <div class="chip">Listening to narration</div>
-            <div class="chip">Add zoom × 6</div>
-            <div class="chip">Add captions × 22</div>
-            <div class="chip spin">Cutting dead air</div>
+            <div class="chip" data-lane="">Viewing frames</div>
+            <div class="chip" data-lane="">Listening to narration</div>
+            <div class="chip" data-lane="tl-zoom">Add zoom × 6</div>
+            <div class="chip" data-lane="tl-cap">Add captions × 22</div>
+            <div class="chip" data-lane="tl-spd">Speed up idle parts</div>
+            <div class="chip" data-lane="tl-cut">Cutting dead air</div>
             <div class="msg ai">Done — 6 zooms following your clicks, 14s of silence removed, subtitles added. 01:42 → 01:12.</div>
           </div>
-          <div class="mock-input">Describe an edit…</div>
-        </div>
-        <div class="mock-timeline">
-          <div class="tl-row"><span class="tl-label">ZOOM</span>
-            <div class="tl-track">
-              <span class="tl-seg tl-zoom" style="left:4%; width:11%"></span>
-              <span class="tl-seg tl-zoom" style="left:22%; width:8%"></span>
-              <span class="tl-seg tl-zoom" style="left:41%; width:13%"></span>
-              <span class="tl-seg tl-zoom" style="left:63%; width:9%"></span>
-              <span class="tl-seg tl-zoom" style="left:81%; width:12%"></span>
-              <span class="playhead"></span>
-            </div>
-          </div>
-          <div class="tl-row"><span class="tl-label">CUT</span>
-            <div class="tl-track">
-              <span class="tl-seg tl-cut" style="left:16%; width:5%"></span>
-              <span class="tl-seg tl-cut" style="left:56%; width:6%"></span>
-            </div>
-          </div>
-          <div class="tl-row"><span class="tl-label">CC</span>
-            <div class="tl-track">
-              <span class="tl-seg tl-cap" style="left:3%; width:22%"></span>
-              <span class="tl-seg tl-cap" style="left:28%; width:30%"></span>
-              <span class="tl-seg tl-cap" style="left:61%; width:33%"></span>
-            </div>
+          <div class="mock-composer">
+            <span class="ph" id="mockTyped"><span class="typed"></span><span class="caret"></span></span>
+            <span class="cbtn">📎</span>
+            <span class="mock-send">▲</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </header>
+
+<script>
+  // Hero mock scene loop — the "living demo": type the request, run tool chips,
+  // pop matching timeline blocks, then play back with an auto-zoom on the click.
+  (() => {
+    const mock = document.getElementById("heroMock");
+    if (!mock) return;
+    const msgs = mock.querySelectorAll(".mock-msgs > *");
+    const userMsg = msgs[0];
+    const chips = [...mock.querySelectorAll(".chip")];
+    const doneMsg = msgs[msgs.length - 1];
+    const typedEl = mock.querySelector("#mockTyped .typed");
+    const playhead = document.getElementById("mockPlayhead");
+    const TYPED = "Auto-edit this video…";
+
+    const showEverything = () => {
+      msgs.forEach((el) => el.classList.add("on"));
+      mock.querySelectorAll(".tl-seg").forEach((el) => el.classList.add("on"));
+      mock.classList.add("captioned", "cursor-at-btn");
+      typedEl.textContent = "";
+    };
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      showEverything();
+      return;
+    }
+
+    const timers = [];
+    const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+    function reset() {
+      timers.forEach(clearTimeout);
+      timers.length = 0;
+      msgs.forEach((el) => el.classList.remove("on"));
+      chips.forEach((el) => el.classList.remove("spin"));
+      mock.querySelectorAll(".tl-seg").forEach((el) => el.classList.remove("on"));
+      mock.classList.remove("zoomed", "clicking", "captioned", "cursor-at-btn", "playing");
+      playhead.style.left = "4%";
+      typedEl.textContent = "";
+    }
+
+    function play() {
+      reset();
+      // 1) the request gets typed into the composer, then lands as a message
+      TYPED.split("").forEach((ch, i) => at(350 + i * 42, () => { typedEl.textContent += ch; }));
+      at(1550, () => { typedEl.textContent = ""; userMsg.classList.add("on"); });
+
+      // 2) tool chips run one by one; matching lane blocks pop in as each lands
+      chips.forEach((chip, i) => {
+        const start = 2050 + i * 900;
+        at(start, () => chip.classList.add("on", "spin"));
+        at(start + 750, () => {
+          chip.classList.remove("spin");
+          const lane = chip.dataset.lane;
+          if (lane) {
+            mock.querySelectorAll(`.tl-seg.${lane}`).forEach((seg, j) => {
+              timers.push(setTimeout(() => seg.classList.add("on"), j * 110));
+            });
+          }
+        });
+      });
+
+      // 3) done message (fx lane pops with it), then playback: playhead sweeps,
+      //    cursor glides to the button, clicks, and the auto-zoom punches in
+      const playbackAt = 2050 + chips.length * 900 + 450;
+      at(playbackAt, () => {
+        doneMsg.classList.add("on");
+        mock.querySelectorAll(".tl-seg.tl-fx").forEach((seg, j) => {
+          timers.push(setTimeout(() => seg.classList.add("on"), j * 110));
+        });
+      });
+      at(playbackAt + 500, () => {
+        mock.classList.add("playing", "captioned", "cursor-at-btn");
+        playhead.style.left = "96%"; // transitions under .playing
+      });
+      at(playbackAt + 1500, () => mock.classList.add("clicking"));
+      at(playbackAt + 1800, () => mock.classList.add("zoomed"));
+      at(playbackAt + 4200, () => mock.classList.remove("zoomed"));
+      at(playbackAt + 7100, () => play()); // loop
+    }
+
+    // Start when the mock scrolls into view.
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        io.disconnect();
+        play();
+      }
+    }, { threshold: 0.35 });
+    io.observe(mock);
+  })();
+</script>
 
 <section>
   <div class="wrap">
@@ -456,9 +756,19 @@
 
 <script>
   // Add a video here and redeploy — that's the whole publishing flow.
-  //   { type: "mp4", src: "videos/launch-demo.mp4", title: "...", desc: "..." }
+  //   { type: "mp4", src: "videos/launch-demo.mp4", poster: "...", title: "...", desc: "..." }
   //   { type: "youtube", id: "dQw4w9WgXcQ", title: "...", desc: "..." }
-  const SHOWCASE = [];
+  // Keep mp4s web-weight: ffmpeg -vf "fps=30,scale=1920:-2" -crf 26 -preset slow
+  // -movflags +faststart (the promo went 37 MB → 4 MB that way).
+  const SHOWCASE = [
+    {
+      type: "mp4",
+      src: "videos/vibecut-promo.mp4",
+      poster: "videos/vibecut-promo-poster.jpg",
+      title: "Vibecut product promo",
+      desc: "Recorded, auto-zoomed, captioned and exported entirely with Vibecut — the AI did the edit.",
+    },
+  ];
 
   const grid = document.getElementById("showcase");
   if (SHOWCASE.length === 0) {
@@ -474,7 +784,7 @@
       card.innerHTML =
         (item.type === "youtube"
           ? `<div class="show-media"><iframe src="https://www.youtube-nocookie.com/embed/${item.id}" title="${item.title}" loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>`
-          : `<div class="show-media"><video src="${item.src}" controls preload="metadata" playsinline></video></div>`) +
+          : `<div class="show-media"><video src="${item.src}"${item.poster ? ` poster="${item.poster}"` : ""} controls preload="none" playsinline></video></div>`) +
         `<figcaption><strong>${item.title}</strong>${item.desc ? `<span>${item.desc}</span>` : ""}</figcaption>`;
       grid.appendChild(card);
     }
@@ -503,13 +813,39 @@
 </section>
 
 <footer>
-  <div class="wrap foot-inner">
-    <span class="brand"><img src="logo.png" alt="" style="width:20px;height:20px;border-radius:5px" />Vibecut</span>
-    <span>© 2026 DaeHyun Nam · MIT · Built on <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/EtienneLescot/openscreen" target="_blank" rel="noopener">OpenScreen</a></span>
-    <div class="foot-links">
-      <a href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/DanialDaeHyunNam/vibecut/issues" target="_blank" rel="noopener">Issues</a>
-      <a href="https://github.com/DanialDaeHyunNam/vibecut/releases" target="_blank" rel="noopener">Releases</a>
+  <div class="wrap">
+    <div class="foot-card">
+      <div class="foot-cols">
+        <div class="foot-brand">
+          <span class="brand"><img src="logo.png" alt="" style="width:24px;height:24px;border-radius:6px" />Vibecut</span>
+          <p data-i18n="footDesc">Open-source screen recorder with an AI editor built in. Runs locally, edits with the AI subscriptions you already have.</p>
+        </div>
+        <div>
+          <div class="foot-h" data-i18n="footProject">PROJECT</div>
+          <div class="foot-list">
+            <a href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener" data-i18n="footStar">⭐ Star on GitHub</a>
+            <a href="https://github.com/DanialDaeHyunNam/vibecut/issues" target="_blank" rel="noopener" data-i18n="footIssues">Report an issue</a>
+            <a href="https://github.com/DanialDaeHyunNam/vibecut/releases" target="_blank" rel="noopener" data-i18n="footReleases">Releases</a>
+            <span class="dim">MIT License · <a href="https://github.com/EtienneLescot/openscreen" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px" data-i18n="footBuiltOn">built on OpenScreen</a></span>
+          </div>
+        </div>
+        <div>
+          <div class="foot-h" data-i18n="footFollow">FOLLOW THE MAKER</div>
+          <div class="foot-follow">
+            <a href="https://www.threads.net/@all.libertas" target="_blank" rel="noopener"><span class="soc-ico">@</span>Threads @all.libertas</a>
+            <a href="https://x.com/danialnamkr" target="_blank" rel="noopener"><span class="soc-ico">𝕏</span>X @danialnamkr</a>
+            <p class="foot-note" data-i18n="footFollowNote">Sharing the build in public — a follow means a lot 🙌</p>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span data-i18n="footRights">© 2026 Vibecut · DaeHyun Nam. All rights reserved.</span>
+        <a class="ver-pill" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest" target="_blank" rel="noopener" data-i18n="footLatest">latest version</a>
+        <div class="socs">
+          <a class="soc-ico" href="https://www.threads.net/@all.libertas" target="_blank" rel="noopener" aria-label="Threads">@</a>
+          <a class="soc-ico" href="https://x.com/danialnamkr" target="_blank" rel="noopener" aria-label="X">𝕏</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
@@ -615,6 +951,16 @@
   // snapshot is taken from the DOM at load so strings are never duplicated.
   (() => {
     const KO = {
+      footDesc: "AI 편집기가 내장된 오픈소스 화면 녹화 앱. 로컬에서 돌아가고, 이미 가진 AI 구독으로 편집합니다.",
+      footProject: "프로젝트",
+      footStar: "⭐ GitHub에서 Star 하기",
+      footIssues: "이슈 제보하기",
+      footReleases: "릴리즈",
+      footBuiltOn: "OpenScreen 기반",
+      footFollow: "만든 사람 팔로우",
+      footFollowNote: "만드는 과정을 공유하고 있어요. 팔로우해 주시면 큰 힘이 됩니다 🙌",
+      footRights: "© 2026 Vibecut · DaeHyun Nam. All rights reserved.",
+      footLatest: "최신 버전",
       navFeatures: "기능",
       navDemo: "데모",
       navSecurity: "보안",

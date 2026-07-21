@@ -173,7 +173,8 @@
 		"fontWeight": "Peso",
 		"boxPaddingX": "Padding horizontal da caixa",
 		"boxPaddingY": "Padding vertical da caixa",
-		"boxRadius": "Raio dos cantos da caixa"
+		"boxRadius": "Raio dos cantos da caixa",
+		"boxShadow": "Sombra da caixa"
 	},
 	"fontStyles": {
 		"classic": "Clássico",

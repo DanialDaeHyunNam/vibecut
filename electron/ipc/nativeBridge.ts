@@ -15,6 +15,7 @@ import { CursorService } from "../native-bridge/services/cursorService";
 import { ProjectService } from "../native-bridge/services/projectService";
 import { SystemService } from "../native-bridge/services/systemService";
 import { NativeBridgeStateStore } from "../native-bridge/store";
+import { listRecentProjects, recordRecentProject } from "../recentProjects";
 
 export interface NativeBridgeContext {
 	getPlatform: () => NodeJS.Platform;
@@ -94,14 +95,23 @@ export function registerNativeBridgeHandlers(context: NativeBridgeContext) {
 
 	const platform = normalizePlatform(context.getPlatform());
 	const store = new NativeBridgeStateStore(platform);
+	// Every successful save/load stamps the recents list (best-effort) so the
+	// empty state can offer one-click reopening.
+	const trackRecent = async (result: ProjectFileResult): Promise<ProjectFileResult> => {
+		if (result.success && result.path) void recordRecentProject(result.path);
+		return result;
+	};
 	const projectService = new ProjectService({
 		store,
 		getCurrentProjectPath: context.getCurrentProjectPath,
 		getCurrentVideoPath: context.getCurrentVideoPath,
-		saveProjectFile: context.saveProjectFile,
-		loadProjectFile: context.loadProjectFile,
-		loadCurrentProjectFile: context.loadCurrentProjectFile,
-		loadProjectFileFromPath: context.loadProjectFileFromPath,
+		saveProjectFile: async (projectData, suggestedName, existingProjectPath) =>
+			trackRecent(await context.saveProjectFile(projectData, suggestedName, existingProjectPath)),
+		loadProjectFile: async (projectFolder) =>
+			trackRecent(await context.loadProjectFile(projectFolder)),
+		loadCurrentProjectFile: async () => trackRecent(await context.loadCurrentProjectFile()),
+		loadProjectFileFromPath: async (path) =>
+			trackRecent(await context.loadProjectFileFromPath(path)),
 		setCurrentVideoPath: context.setCurrentVideoPath,
 		getCurrentVideoPathResult: context.getCurrentVideoPathResult,
 		clearCurrentVideoPath: context.clearCurrentVideoPath,
@@ -178,6 +188,8 @@ export function registerNativeBridgeHandlers(context: NativeBridgeContext) {
 								requestId,
 								await projectService.loadProjectFileFromPath(request.payload.path),
 							);
+						case "listRecentProjects":
+							return createSuccessResponse(requestId, await listRecentProjects());
 						case "setCurrentVideoPath":
 							return createSuccessResponse(
 								requestId,

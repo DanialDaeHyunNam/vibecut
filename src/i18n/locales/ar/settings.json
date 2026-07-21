@@ -178,7 +178,8 @@
 		"fontWeight": "سماكة الخط",
 		"boxPaddingX": "حشو الصندوق الأفقي",
 		"boxPaddingY": "حشو الصندوق الرأسي",
-		"boxRadius": "استدارة زوايا الصندوق"
+		"boxRadius": "استدارة زوايا الصندوق",
+		"boxShadow": "ظل الصندوق"
 	},
 	"fontStyles": {
 		"classic": "كلاسيكي",

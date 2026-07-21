@@ -178,7 +178,8 @@
 		"fontWeight": "굵기",
 		"boxPaddingX": "박스 가로 패딩",
 		"boxPaddingY": "박스 세로 패딩",
-		"boxRadius": "박스 모서리 라운드"
+		"boxRadius": "박스 모서리 라운드",
+		"boxShadow": "박스 그림자"
 	},
 	"fontStyles": {
 		"classic": "클래식",

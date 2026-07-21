@@ -1,4 +1,11 @@
-import { type CSSProperties, type PointerEvent, useEffect, useRef, useState } from "react";
+import {
+	type CSSProperties,
+	Fragment,
+	type PointerEvent,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { Rnd } from "react-rnd";
 import { getTextAnimationState } from "@/lib/annotationTextAnimation";
 import {
@@ -6,12 +13,14 @@ import {
 	getMosaicGridOverlayColor,
 	getNormalizedMosaicBlockSize,
 } from "@/lib/blurEffects";
+import { parseCaptionSegments } from "@/lib/captioning/captionRichText";
 import { getCaptionRenderState } from "@/lib/captionMotion";
 import { cn } from "@/lib/utils";
 import { getArrowComponent } from "./ArrowSvgs";
 import {
 	type AnnotationRegion,
 	type BlurData,
+	CAPTION_FONT_REFERENCE_HEIGHT,
 	DEFAULT_BLUR_BLOCK_SIZE,
 	DEFAULT_BLUR_DATA,
 	DEFAULT_BLUR_INTENSITY,
@@ -82,7 +91,10 @@ export function AnnotationOverlay({
 			: null;
 	const effectivePosition = motionState?.position ?? annotation.position;
 	const effectiveSize = motionState?.size ?? annotation.size;
-	const effectiveFontSize = motionState?.fontSize ?? annotation.style.fontSize;
+	// fontSize is "px @1080p"; scale to this preview surface so the caption keeps
+	// the same proportion of the frame at any panel size (matches the exporter).
+	const captionScale = containerHeight / CAPTION_FONT_REFERENCE_HEIGHT;
+	const effectiveFontSize = (motionState?.fontSize ?? annotation.style.fontSize) * captionScale;
 	const committedX = (effectivePosition.x / 100) * containerWidth;
 	const committedY = (effectivePosition.y / 100) * containerHeight;
 	const committedWidth = (effectiveSize.width / 100) * containerWidth;
@@ -329,7 +341,7 @@ export function AnnotationOverlay({
 								textDecoration: annotation.style.textDecoration,
 								textAlign: annotation.style.textAlign,
 								opacity: animationState.opacity,
-								transform: `translate(${animationState.translateX}px, ${animationState.translateY}px) scale(${animationState.scale})`,
+								transform: `translate(${animationState.translateX * captionScale}px, ${animationState.translateY * captionScale}px) scale(${animationState.scale})`,
 								transformOrigin: "center",
 								clipPath: typewriterClip,
 								WebkitClipPath: typewriterClip,
@@ -338,11 +350,29 @@ export function AnnotationOverlay({
 								boxDecorationBreak: "clone",
 								WebkitBoxDecorationBreak: "clone",
 								padding: `${annotation.style.boxPaddingY ?? DEFAULT_CAPTION_BOX_PADDING_Y_EM}em ${annotation.style.boxPaddingX ?? DEFAULT_CAPTION_BOX_PADDING_X_EM}em`,
-								borderRadius: `${annotation.style.boxRadius ?? DEFAULT_CAPTION_BOX_RADIUS_PX}px`,
+								borderRadius: `${(annotation.style.boxRadius ?? DEFAULT_CAPTION_BOX_RADIUS_PX) * captionScale}px`,
+								boxShadow:
+									(annotation.style.boxShadow ?? 0) > 0 &&
+									annotation.style.backgroundColor !== "transparent"
+										? `0 0.08em 0.4em rgba(0,0,0,${annotation.style.boxShadow})`
+										: undefined,
 								lineHeight: "1.4",
 							}}
 						>
-							{annotation.content}
+							{annotation.content.split("\n").map((line, lineIndex) => (
+								<Fragment key={lineIndex}>
+									{lineIndex > 0 && "\n"}
+									{parseCaptionSegments(line).map((segment, segmentIndex) =>
+										segment.color ? (
+											<span key={segmentIndex} style={{ color: segment.color }}>
+												{segment.text}
+											</span>
+										) : (
+											<Fragment key={segmentIndex}>{segment.text}</Fragment>
+										),
+									)}
+								</Fragment>
+							))}
 						</span>
 					</div>
 				);

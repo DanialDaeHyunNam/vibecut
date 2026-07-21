@@ -171,7 +171,7 @@ function sanitizeMotion(raw: unknown, durationMs: number): CaptionMotion | undef
 		};
 	}
 	if (typeof input.toFontSize === "number" && Number.isFinite(input.toFontSize)) {
-		motion.toFontSize = Math.max(12, Math.min(96, Math.round(input.toFontSize)));
+		motion.toFontSize = Math.max(16, Math.min(192, Math.round(input.toFontSize)));
 	}
 	if (typeof input.startMs === "number" && Number.isFinite(input.startMs)) {
 		motion.startMs = Math.max(0, Math.min(Math.round(input.startMs), durationMs));
@@ -203,6 +203,7 @@ interface CaptionStyleInput {
 	boxPaddingX?: unknown;
 	boxPaddingY?: unknown;
 	boxRadius?: unknown;
+	boxShadow?: unknown;
 }
 
 /** Letters/digits (any script), spaces, hyphens, commas — enough for real font
@@ -238,9 +239,9 @@ function sanitizeCaptionStyle(raw: unknown): SanitizedCaptionStyle {
 
 	if (input.fontSize !== undefined) {
 		if (typeof input.fontSize === "number" && Number.isFinite(input.fontSize)) {
-			style.fontSize = Math.max(12, Math.min(96, Math.round(input.fontSize)));
+			style.fontSize = Math.max(16, Math.min(192, Math.round(input.fontSize)));
 			applied.push("fontSize");
-		} else rejected.push("fontSize must be a number 12-96");
+		} else rejected.push("fontSize must be a number 16-192");
 	}
 	const oneOf = <K extends "fontWeight" | "fontStyle" | "textAlign">(
 		key: K,
@@ -272,7 +273,7 @@ function sanitizeCaptionStyle(raw: unknown): SanitizedCaptionStyle {
 	oneOf("textAlign", ["left", "center", "right"]);
 
 	const boxNumber = (
-		key: "boxPaddingX" | "boxPaddingY" | "boxRadius",
+		key: "boxPaddingX" | "boxPaddingY" | "boxRadius" | "boxShadow",
 		min: number,
 		max: number,
 		round: boolean,
@@ -288,6 +289,7 @@ function sanitizeCaptionStyle(raw: unknown): SanitizedCaptionStyle {
 	boxNumber("boxPaddingX", 0, MAX_CAPTION_BOX_PADDING_EM, false);
 	boxNumber("boxPaddingY", 0, MAX_CAPTION_BOX_PADDING_EM, false);
 	boxNumber("boxRadius", 0, MAX_CAPTION_BOX_RADIUS_PX, true);
+	boxNumber("boxShadow", 0, 1, false);
 
 	if (input.textAnimation !== undefined) {
 		if (TEXT_ANIMATIONS.has(input.textAnimation as AnnotationTextAnimation)) {

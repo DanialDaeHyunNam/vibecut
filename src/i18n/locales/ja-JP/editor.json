@@ -77,7 +77,8 @@
 			"unsupportedFormatMessage": "ここにドロップできるのは .openscreen プロジェクトファイルのみです。動画をインポートするには「動画ファイルをインポート...」ボタンをご使用ください。",
 			"couldNotOpenTitle": "ファイルを開けませんでした",
 			"couldNotOpenMessage": "プロジェクトファイルを開けませんでした。参照している動画が移動または削除された可能性があります。"
-		}
+		},
+		"recentProjects": "最近のプロジェクト"
 	},
 	"regionClipboard": {
 		"copied": "{{region}}の属性をコピーしました",

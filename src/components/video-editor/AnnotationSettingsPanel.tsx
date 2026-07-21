@@ -99,7 +99,8 @@ const FONT_FAMILIES: Array<
 	{ value: '"Permanent Marker", cursive', name: "Permanent Marker" },
 ];
 
-const FONT_SIZES = [12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 128];
+// px @1080p reference frame — renderers scale to the actual surface height.
+const FONT_SIZES = [16, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128, 144, 160, 192];
 
 export function AnnotationSettingsPanel({
 	annotation,
@@ -568,6 +569,15 @@ export function AnnotationSettingsPanel({
 										max: MAX_CAPTION_BOX_RADIUS_PX,
 										step: 1,
 										format: (v: number) => `${Math.round(v)}px`,
+									},
+									{
+										key: "boxShadow" as const,
+										label: t("annotation.boxShadow"),
+										value: annotation.style.boxShadow ?? 0,
+										min: 0,
+										max: 1,
+										step: 0.05,
+										format: (v: number) => (v > 0 ? `${Math.round(v * 100)}%` : "—"),
 									},
 								].map((control) => (
 									<div

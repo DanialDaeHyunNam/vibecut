@@ -64,7 +64,14 @@ const captionStyleFields = {
 		.describe(
 			"Box color behind each line: e.g. 'rgba(0,0,0,0.6)' (the default dim box), '#7C5CFF', or 'transparent' for bare text.",
 		),
-	fontSize: z.number().min(12).max(96).optional().describe("Font size in px (default 24)."),
+	fontSize: z
+		.number()
+		.min(16)
+		.max(192)
+		.optional()
+		.describe(
+			"Font size in px at a 1080p-tall reference frame; every render scales it to the actual frame, so the caption keeps the same proportion at any size. Default 48 (~4.5% of frame height); 64+ reads as a headline.",
+		),
 	fontWeight: z
 		.union([z.enum(["normal", "bold"]), z.number().min(100).max(900)])
 		.optional()
@@ -97,6 +104,14 @@ const captionStyleFields = {
 		.max(48)
 		.optional()
 		.describe("Caption box corner radius in px (default 4)."),
+	boxShadow: z
+		.number()
+		.min(0)
+		.max(1)
+		.optional()
+		.describe(
+			"Drop-shadow strength behind the caption box, 0 (none, default) to 1. Only visible when the box has a background color.",
+		),
 	textAlign: z.enum(["left", "center", "right"]).optional(),
 	textAnimation: z
 		.enum(["none", "fade", "rise", "pop", "slide-left", "typewriter", "pulse"])
@@ -124,7 +139,12 @@ const captionMotionField = z
 			.describe(
 				"Destination top-left corner as % of the frame, in SCREEN coordinates: y=0 is the TOP edge, y=100 the BOTTOM — a larger y moves the caption DOWN (not up). Rough anchors: y≈5 top band, y≈40 vertical center, y≈80 bottom caption line. x grows rightward.",
 			),
-		toFontSize: z.number().min(12).max(96).optional().describe("Destination font size in px."),
+		toFontSize: z
+			.number()
+			.min(16)
+			.max(192)
+			.optional()
+			.describe("Destination font size (px @1080p reference, same unit as style.fontSize)."),
 		toSize: z
 			.object({ width: z.number().min(1).max(100), height: z.number().min(1).max(100) })
 			.optional()
@@ -323,7 +343,13 @@ export const cinerecToolSpecs: CinerecToolSpec[] = [
 				.array(
 					z.object({
 						...spanFields,
-						text: z.string().min(1).max(200).describe("Caption line text."),
+						text: z
+							.string()
+							.min(1)
+							.max(200)
+							.describe(
+								"Caption line text. Color individual words inline with {#hex|words} — e.g. 'Turn {#FFD700|raw} recordings into demos'. Everything else uses style.color.",
+							),
 						motion: captionMotionField,
 						exitAnimation: exitAnimationField,
 					}),

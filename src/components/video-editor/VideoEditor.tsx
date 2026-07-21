@@ -78,6 +78,7 @@ import {
 } from "@/utils/aspectRatioUtils";
 import { EditorEmptyState } from "./EditorEmptyState";
 import { ExportDialog } from "./ExportDialog";
+import { ExportOptionsDialog } from "./ExportOptionsDialog";
 import {
 	DEFAULT_CURSOR_SETTINGS,
 	DEFAULT_EXPORT_SETTINGS,
@@ -207,6 +208,8 @@ const CAPTION_WORD_CHOICES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 // width by default; the left column (preview stacked over the timeline) gets
 // the rest. Double-clicking the divider restores this split.
 const RAIL_DEFAULT_SIZE = 27;
+/** Default height (%) of the timeline panel in the left column. */
+const TIMELINE_DEFAULT_SIZE = 36;
 
 export default function VideoEditor() {
 	const {
@@ -271,6 +274,8 @@ export default function VideoEditor() {
 	const [exportProgress, setExportProgress] = useState<ExportProgress | null>(null);
 	const [exportError, setExportError] = useState<string | null>(null);
 	const [showExportDialog, setShowExportDialog] = useState(false);
+	// Top-bar export button: options modal (resolution/captions) shown first.
+	const [showExportOptionsDialog, setShowExportOptionsDialog] = useState(false);
 	const [showNewRecordingDialog, setShowNewRecordingDialog] = useState(false);
 	const [exportQuality, setExportQuality] = useState<ExportQuality>(
 		DEFAULT_EXPORT_SETTINGS.quality,
@@ -382,6 +387,7 @@ export default function VideoEditor() {
 		(webcamVideoPath ? fromFileUrl(webcamVideoPath) : null);
 	const [railTab, setRailTab] = useState<"settings" | "ai">("ai");
 	const railPanelRef = useRef<ImperativePanelHandle>(null);
+	const timelinePanelRef = useRef<ImperativePanelHandle>(null);
 
 	// "@" on a timeline block (or a future range selection) pushes its lane +
 	// range into the AI chat input. The nonce lets the composer append even when
@@ -3091,7 +3097,11 @@ export default function VideoEditor() {
 					>
 						<button
 							type="button"
-							onClick={handleOpenExportDialog}
+							// The top-bar button opens the options modal first (resolution +
+							// caption toggles) — jumping straight to the save dialog skipped
+							// the settings review. The Settings → Export panel keeps its
+							// direct button since the options are visible right there.
+							onClick={() => setShowExportOptionsDialog(true)}
 							disabled={isExporting}
 							className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#7C5CFF] hover:bg-[#9B84FF] disabled:opacity-50 disabled:cursor-not-allowed text-white transition-all duration-150 text-[11px] font-semibold shadow-[0_2px_10px_rgba(124,92,255,0.35)]"
 						>
@@ -3235,11 +3245,24 @@ export default function VideoEditor() {
 									</div>
 								</Panel>
 								<PanelResizeHandle className="editor-resize-handle group">
-									<div className="w-10 h-1 bg-white/20 rounded-full transition-colors group-hover:bg-[#7C5CFF]/70"></div>
+									{/* Double-click anywhere on the strip snaps the timeline back to
+									    its default height (same affordance as the rail divider). */}
+									<div
+										onDoubleClick={() => timelinePanelRef.current?.resize(TIMELINE_DEFAULT_SIZE)}
+										className="flex h-full w-full items-center justify-center"
+									>
+										<div className="w-10 h-1 bg-white/20 rounded-full transition-colors group-hover:bg-[#7C5CFF]/70"></div>
+									</div>
 								</PanelResizeHandle>
 
 								{/* Timeline (bottom of the left column). */}
-								<Panel defaultSize={36} maxSize={62} minSize={22} className="min-h-[190px]">
+								<Panel
+									ref={timelinePanelRef}
+									defaultSize={TIMELINE_DEFAULT_SIZE}
+									maxSize={62}
+									minSize={22}
+									className="min-h-[190px]"
+								>
 									<div className="editor-timeline-panel h-full overflow-hidden flex flex-col">
 										<TimelineEditor
 											videoDuration={duration}
@@ -3608,6 +3631,22 @@ export default function VideoEditor() {
 					</PanelGroup>
 				</div>
 			)}
+
+			<ExportOptionsDialog
+				isOpen={showExportOptionsDialog}
+				onClose={() => setShowExportOptionsDialog(false)}
+				onExport={handleOpenExportDialog}
+				exportFormat={exportFormat}
+				exportQuality={exportQuality}
+				onExportQualityChange={setExportQuality}
+				hasCaptions={annotationRegions.some((region) => region.annotationSource === "auto-caption")}
+				burnCaptions={burnCaptions}
+				onBurnCaptionsChange={setBurnCaptions}
+				saveSrtSidecar={saveSrtSidecar}
+				onSaveSrtSidecarChange={setSaveSrtSidecar}
+				videoElement={videoPlaybackRef.current?.video || null}
+				cropRegion={cropRegion}
+			/>
 
 			<ExportDialog
 				isOpen={showExportDialog}

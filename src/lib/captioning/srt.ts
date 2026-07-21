@@ -1,4 +1,5 @@
 import type { AnnotationRegion } from "@/components/video-editor/types";
+import { stripCaptionMarkup } from "./captionRichText";
 
 /**
  * Serializes caption annotations to SubRip (.srt) — the de-facto interchange
@@ -32,7 +33,8 @@ export function captionsToSrt(regions: AnnotationRegion[]): string {
 	const captions = extractCaptionRegions(regions);
 	return captions
 		.map((caption, index) => {
-			const text = (caption.content ?? "").trim();
+			// SRT has no color markup — export the plain text.
+			const text = stripCaptionMarkup((caption.content ?? "").trim());
 			return `${index + 1}\n${srtTimestamp(caption.startMs)} --> ${srtTimestamp(caption.endMs)}\n${text}\n`;
 		})
 		.join("\n");

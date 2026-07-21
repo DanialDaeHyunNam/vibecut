@@ -178,7 +178,8 @@
 		"fontWeight": "Độ đậm",
 		"boxPaddingX": "Đệm ngang của hộp",
 		"boxPaddingY": "Đệm dọc của hộp",
-		"boxRadius": "Bo góc hộp"
+		"boxRadius": "Bo góc hộp",
+		"boxShadow": "Bóng của hộp"
 	},
 	"fontStyles": {
 		"classic": "Cổ điển",

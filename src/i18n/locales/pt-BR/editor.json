@@ -88,7 +88,8 @@
 			"couldNotOpenMessage": "O arquivo de projeto não pôde ser aberto. O vídeo referenciado pode ter sido movido ou excluído.",
 			"unsupportedFormatTitle": "Formato não compatível",
 			"unsupportedFormatMessage": "Somente arquivos de projeto .openscreen podem ser soltos aqui. Para importar um arquivo de vídeo, use o botão \"Importar arquivo de vídeo…\" nesta tela."
-		}
+		},
+		"recentProjects": "Projetos recentes"
 	},
 	"loadingEditor": "Carregando editor..."
 }

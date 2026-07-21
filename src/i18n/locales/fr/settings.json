@@ -178,7 +178,8 @@
 		"fontWeight": "Graisse",
 		"boxPaddingX": "Marge horizontale de la boîte",
 		"boxPaddingY": "Marge verticale de la boîte",
-		"boxRadius": "Arrondi de la boîte"
+		"boxRadius": "Arrondi de la boîte",
+		"boxShadow": "Ombre de la boîte"
 	},
 	"fontStyles": {
 		"classic": "Classique",

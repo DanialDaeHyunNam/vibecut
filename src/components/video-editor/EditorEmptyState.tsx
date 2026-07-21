@@ -1,5 +1,5 @@
-import { AlertCircle, Film, FolderOpen, Upload, X } from "lucide-react";
-import { useCallback, useRef, useState } from "react";
+import { AlertCircle, Clock, Film, FolderOpen, Upload, X } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useScopedT } from "@/contexts/I18nContext";
 import { getProjectFolder, parentDirectoryOf, saveUserPreferences } from "@/lib/userPreferences";
@@ -13,10 +13,47 @@ interface EditorEmptyStateProps {
 
 type DropError = "unsupported-format" | "load-failed" | null;
 
+interface RecentProject {
+	path: string;
+	name: string;
+	lastOpenedAt: number;
+}
+
 export function EditorEmptyState({ onVideoImported, onProjectOpened }: EditorEmptyStateProps) {
 	const te = useScopedT("editor");
 	const tc = useScopedT("common");
 	const [isDraggingOver, setIsDraggingOver] = useState(false);
+	const [recentProjects, setRecentProjects] = useState<RecentProject[]>([]);
+
+	// Recents come from the main process (userData JSON, dead paths pruned).
+	useEffect(() => {
+		let cancelled = false;
+		void nativeBridgeClient.project
+			.listRecentProjects()
+			.then((projects) => {
+				if (!cancelled) setRecentProjects(projects.slice(0, 5));
+			})
+			.catch(() => {
+				// No recents is a fine state — the buttons above still work.
+			});
+		return () => {
+			cancelled = true;
+		};
+	}, []);
+
+	const handleOpenRecent = useCallback(
+		async (projectPath: string) => {
+			const result = await nativeBridgeClient.project.loadProjectFileFromPath(projectPath);
+			if (!result.success || !result.project) {
+				// Stale entry (moved/corrupt) — drop it from the list so a retry
+				// doesn't hit the same wall.
+				setRecentProjects((prev) => prev.filter((p) => p.path !== projectPath));
+				return;
+			}
+			onProjectOpened(result.project, result.path ?? null);
+		},
+		[onProjectOpened],
+	);
 	const [dropError, setDropError] = useState<DropError>(null);
 	// Freeze the last non-null error type so dialog content doesn't snap to the else-branch
 	// during the closing animation (same pattern as UnsavedChangesDialog).
@@ -195,6 +232,38 @@ export function EditorEmptyState({ onVideoImported, onProjectOpened }: EditorEmp
 						{te("emptyState.loadProjectButton")}
 					</button>
 				</div>
+
+				{/* One-click reopening of recent projects (newest first). */}
+				{recentProjects.length > 0 && (
+					<div className="w-full max-w-xs text-left">
+						<div className="mb-2 flex items-center gap-1.5 px-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+							<Clock className="h-3 w-3" />
+							{te("emptyState.recentProjects")}
+						</div>
+						<div className="flex flex-col gap-1">
+							{recentProjects.map((project) => (
+								<button
+									key={project.path}
+									type="button"
+									onClick={() => void handleOpenRecent(project.path)}
+									title={project.path}
+									className="group flex w-full items-center gap-2.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-left transition-colors hover:border-[#7C5CFF]/40 hover:bg-[#7C5CFF]/10 outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/50"
+								>
+									<Film className="h-3.5 w-3.5 shrink-0 text-slate-500 group-hover:text-[#9B84FF]" />
+									<span className="min-w-0 flex-1 truncate text-sm text-slate-300 group-hover:text-white">
+										{project.name}
+									</span>
+									<span className="shrink-0 text-[10px] tabular-nums text-slate-600">
+										{new Date(project.lastOpenedAt).toLocaleDateString(undefined, {
+											month: "short",
+											day: "numeric",
+										})}
+									</span>
+								</button>
+							))}
+						</div>
+					</div>
+				)}
 
 				<div className="flex flex-col items-center gap-2">
 					<p className="text-xs text-slate-600">{te("emptyState.supportedFormats")}</p>

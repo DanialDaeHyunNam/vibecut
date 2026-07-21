@@ -77,7 +77,8 @@
 			"unsupportedFormatMessage": "Seuls les fichiers .openscreen peuvent être déposés ici. Pour importer une vidéo, utilisez plutôt le bouton \"Importer un fichier vidéo...\".",
 			"couldNotOpenTitle": "Impossible d'ouvrir le fichier",
 			"couldNotOpenMessage": "Le fichier de projet n'a pas pu être ouvert. La vidéo qu'il référence a peut-être été déplacée ou supprimée."
-		}
+		},
+		"recentProjects": "Projets récents"
 	},
 	"regionClipboard": {
 		"copied": "Attributs de {{region}} copiés",

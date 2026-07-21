@@ -67,7 +67,22 @@
 
 **Learned**: "레인 아래에 배치"는 top-0/bottom-0 오버레이 안 절대배치로는 계속 어긋남(레인 스택 높이와 무관한 기준점) — DOM 순서상 마지막 레인 *다음*의 normal flow 블록이 구조적으로 정확. 스냅 임계값은 ms 고정이면 축소 시 안 걸리고 확대 시 과함 — px→ms 환산이 정답. UI 배치 피드백은 스크린샷 왕복보다 "어느 요소 기준, 어느 쪽"을 먼저 합의하는 게 빠르다.
 
+### 2026-07-20 (심야 연속 세션)
+**Focus**: 타임라인 분할 바 더블클릭 리셋 + 최초 화면 최근 프로젝트
+- **분할 바 리셋**: 영상↔타임라인 가로 분할 바에 더블클릭 원복이 없던 것(레일 세로 바에만 있었음) → 기본 높이 36%로 스냅. 타깃은 알약이 아니라 **스트립 전체**
+- **최근 프로젝트**: 빈 화면 버튼 아래 최근 프로젝트 목록(최대 5, 최신순, 이름+날짜+경로 툴팁) → 클릭 1회로 오픈. main이 저장/열기 성공 시마다 `<userData>/recent-projects.json` 기록(최대 8, 중복 제거, localStorage 아님) — native-bridge 패턴(contracts→client→ProjectService 래핑)으로 `listRecentProjects` 액션 추가. 죽은 경로는 목록에서 lazy 정리, 열기 실패 항목은 즉석 제거. 13로케일 라벨
+
+**Learned**: 프로젝트 저장/열기의 단일 초크포인트가 nativeBridge.ts의 ProjectService 옵션 주입부라, 거기서 결과를 래핑하면 다이얼로그·드래그드롭·경로 직접 오픈 세 경로가 공짜로 recents에 잡힘.
+
+### 2026-07-21
+**Focus**: Export 옵션 모달 + export 실패 진단(환경)
+- **Export 옵션 모달**: 상단 바 Export 버튼이 저장 다이얼로그 직행 대신 **옵션 모달**(해상도 720p/1080p/Source+업스케일 뱃지, 자막 굽기/SRT 토글) → Export로 진행. `ExportOptionsDialog` 신규 — SettingsPanel의 `formatSourceDimensions`/`MP4_EXPORT_SHORT_SIDES` export해 재사용, 상태는 VideoEditor의 exportQuality/burnCaptions/saveSrtSidecar 그대로 공유(패널과 상시 동기화). Settings→Export 패널 버튼은 직행 유지(옵션이 바로 옆이라)
+- **export "Failed to fetch" 진단**: vite dev 서버(3732)가 죽고 Electron만 생존한 상태 — export가 demuxer wasm을 dev 서버에서 **지연 fetch**해서 실패. 코드 아닌 환경 문제로 판정, Save→종료→`make rec` 안내(임의로 vite 재기동 시 열린 창 강제 리로드로 미저장 유실 위험이라 미실행)
+
+**Learned**: dev에서 렌더러는 살아 보여도 지연 로드 자산(wasm 등)은 dev 서버 생존에 의존 — "일부 기능만 실패"는 dev 서버 사망 신호. 열려 있는 미저장 앱이 물려 있는 dev 서버는 함부로 재기동하지 말 것(강제 리로드).
+
 ## Pending
+- [ ] 재시작 후 확인: 분할 바 더블클릭 원복, 프로젝트 1회 열기/저장 후 빈 화면 최근 목록 노출, 상단 바 Export → 옵션 모달 → 저장 흐름
 - [x] **구간 선택 두-핸들 UX** (2026-07-20 밤 완료: "+"→두 핸들+스냅→"@" 필 주입, shift+드래그 제거, 에메랄드 그린 계열)
 - [ ] 효과 강도/램프 수동 슬라이더는 AI 유닛 Pending 참조(Setting 패널 인스펙터)
 - [ ] 라이트 모드/추가 테마 변형 검토 ("테마들 여러가지 섞어줘"의 확장 — 테마 프리셋 시스템)

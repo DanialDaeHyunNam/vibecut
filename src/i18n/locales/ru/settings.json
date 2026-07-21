@@ -178,7 +178,8 @@
 		"fontWeight": "Насыщенность",
 		"boxPaddingX": "Отступ рамки по X",
 		"boxPaddingY": "Отступ рамки по Y",
-		"boxRadius": "Скругление рамки"
+		"boxRadius": "Скругление рамки",
+		"boxShadow": "Тень рамки"
 	},
 	"fontStyles": {
 		"classic": "Классический",

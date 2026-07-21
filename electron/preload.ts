@@ -329,6 +329,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
 	aiChatReadBackup: (videoPath: string) => {
 		return ipcRenderer.invoke("ai-chat-read-backup", videoPath);
 	},
+	aiChatWriteBackup: (
+		videoPath: string,
+		payload: { items: unknown[]; sessionId: string | null },
+	) => {
+		return ipcRenderer.invoke("ai-chat-write-backup", videoPath, payload);
+	},
 	onAiChatEvent: (callback: (event: unknown) => void) => {
 		const listener = (_event: unknown, chatEvent: unknown) => callback(chatEvent);
 		ipcRenderer.on("ai:chat-event", listener);
