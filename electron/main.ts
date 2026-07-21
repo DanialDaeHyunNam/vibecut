@@ -122,6 +122,10 @@ const hasSingleInstanceLock = Boolean(stableInstanceLock && hasElectronSingleIns
 
 if (hasSingleInstanceLock) {
 	app.on("second-instance", () => {
+		// Can fire before "ready" when the user re-launches during a slow first
+		// start (e.g. Gatekeeper scanning the bundle) — the screen module used by
+		// window creation would throw. Startup shows the window anyway, so skip.
+		if (!app.isReady()) return;
 		showMainWindow();
 	});
 } else {
