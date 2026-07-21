@@ -73,7 +73,10 @@ async function ensureRecordingsDir() {
 process.env.APP_ROOT = path.join(__dirname, "..");
 
 // Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
-export const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+// Packaged builds must ignore this: a VITE_DEV_SERVER_URL leaked into the
+// session environment (e.g. `launchctl setenv` from a dev run) would make the
+// installed app load a dead localhost URL and never show a window.
+export const VITE_DEV_SERVER_URL = app.isPackaged ? undefined : process.env["VITE_DEV_SERVER_URL"];
 export const MAIN_DIST = path.join(process.env.APP_ROOT, "dist-electron");
 export const RENDERER_DIST = path.join(process.env.APP_ROOT, "dist");
 

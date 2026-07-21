@@ -1,11 +1,12 @@
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { BrowserWindow, ipcMain, screen } from "electron";
+import { app, BrowserWindow, ipcMain, screen } from "electron";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const APP_ROOT = path.join(__dirname, "..");
-const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+// Packaged builds ignore a leaked dev-server URL — see electron/main.ts.
+const VITE_DEV_SERVER_URL = app.isPackaged ? undefined : process.env["VITE_DEV_SERVER_URL"];
 const RENDERER_DIST = path.join(APP_ROOT, "dist");
 const HEADLESS = process.env["HEADLESS"] === "true";
 
