@@ -58,21 +58,18 @@ Get the latest build from the [Releases page](https://github.com/DanialDaeHyunNa
 
 | Platform | File |
 |---|---|
-| macOS (Apple Silicon) | `Vibecut-Mac-arm64-<version>-Installer.dmg` |
-| macOS (Intel) | `Vibecut-Mac-x64-<version>-Installer.dmg` |
+| macOS — Apple Silicon (every Mac sold since late 2020: M1 · M2 · M3 · M4) | `Vibecut-Mac-arm64-<version>.dmg` |
+| macOS — Intel | `Vibecut-Mac-x64-<version>.dmg` |
 | Windows 10/11 | `Vibecut.Setup.<version>.exe` |
-| Linux | Build from source (AppImage/deb/pacman targets) — see Development below |
+| Linux | `Vibecut-Linux-<version>.AppImage` / `.deb` / `.pacman` |
 
+> **Not sure which Mac you have?** Apple menu  → About This Mac — the **Chip** line says Apple M-something or Intel. The Intel build does run on Apple Silicon via Rosetta, but it's slower and macOS shows an "app needs to be updated" warning on every launch.
 
-### About the "unverified developer" warning
+### About the Windows SmartScreen notice
 
-When you first open Vibecut, your OS will warn that the app is from an unverified/unidentified developer. **This message means the app hasn't been code-signed with a paid developer certificate (Apple Developer Program / Windows EV certificate) — it is not a malware detection.** Vibecut is fully open source: you can read every line of what you're running, compare the release to the tagged source, or build it yourself.
+**macOS builds are signed and notarized by Apple** — they open right away, with no warnings and no Privacy & Security steps.
 
-To open it anyway:
-
-- **macOS 15 (Sequoia) and later**: open the app once (the warning appears), then go to **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**.
-- **Older macOS**: right-click (Control-click) `Vibecut.app` → **Open** → **Open**.
-- **Windows**: when SmartScreen shows "Windows protected your PC", click **More info** → **Run anyway**.
+The Windows installer isn't code-signed yet, so the first run shows "Windows protected your PC". **That's a missing-signature notice, not a malware detection** — Vibecut is fully open source: you can read every line of what you're running, compare the release to the tagged source, or build it yourself. To continue, click **More info** → **Run anyway**; Windows remembers your choice.
 
 Only download Vibecut from this repository's Releases page. If you got it anywhere else, don't trust it — build from source instead.
 
