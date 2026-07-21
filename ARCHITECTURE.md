@@ -123,12 +123,45 @@ The right-rail chat panel drives a tool-using agent. Key design decisions:
    GET; nothing about the user is transmitted. Subscription providers also
    show a one-time informed-consent note in the panel.
 
+### The pure-helper pattern (preview/export parity)
+
+Anything rendered both in the live preview and in the exported file goes
+through **one pure function** consumed by both sides — this is what keeps the
+preview honest. Current members: `expandSpeedRamps` (speed ramps),
+`computeVideoEffectState` (fade/blur/dim), `getCaptionRenderState` (caption
+motion), `parseCaptionSegments` (inline caption colors). If you add a visual
+feature, extract the math the same way; never implement it twice.
+
 ### Captions & transcription
 
 On-device Whisper produces timed segments (`get_transcript` caches results).
 Captions are `AnnotationRegion`s identical to auto-captions; SRT export lives
 in `src/lib/captioning/srt.ts` and is reachable both from the export panel and
-the `export_captions_srt` tool.
+the `export_captions_srt` tool. Sizing and styling rules:
+
+- **`fontSize` is "px at a 1080p-tall reference frame"** — every renderer
+  scales it by `surfaceHeight / 1080` (`CAPTION_FONT_REFERENCE_HEIGHT`), so a
+  caption keeps the same proportion of the frame at any preview size and any
+  export resolution. Never compensate for surface size anywhere else.
+- Inline color spans use `{#hex|words}` markup, parsed by
+  `src/lib/captioning/captionRichText.ts` and honored by the preview (DOM
+  spans), the exporter (per-run canvas fills across line wraps), and stripped
+  for SRT/labels.
+- Box styling (`boxPaddingX/Y` in em, `boxRadius`/`boxShadow`) and caption
+  motion (`toAnchor: top|middle|bottom` preferred over raw coordinates; screen
+  coords are y-down) live on `AnnotationTextStyle` / `CaptionMotion`.
+
+### Chat persistence (three layers)
+
+The AI transcript survives via, in restore-priority order of whichever holds
+more items: per-project `localStorage` (keyed by the *recording* path, not the
+project path), a debounced write-through file backup at `<video>.chat.json`
+next to the recording, and — last resort — the agent's own Claude Code session
+JSONL under `~/.claude/projects/`. A guard skips the one stale persist that
+runs in the same React commit as a transcript load; never remove it, it is
+what prevents the empty-overwrite race. Recent projects are tracked by main in
+`<userData>/recent-projects.json` (all save/load paths funnel through the
+`ProjectService` wrappers in `electron/ipc/nativeBridge.ts`).
 
 ## i18n
 
