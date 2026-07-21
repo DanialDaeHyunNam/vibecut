@@ -123,7 +123,12 @@ jobs:
 
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
           security list-keychains -d user -s "$KEYCHAIN_PATH" $(security list-keychains -d user | tr -d '"')
+          security default-keychain -d user -s "$KEYCHAIN_PATH"
           security find-identity -v -p codesigning "$KEYCHAIN_PATH"
+          # Later steps (electron-builder, raw codesign) must reference this
+          # keychain explicitly — the search-list update alone has proven
+          # unreliable on hosted runners.
+          echo "CSC_KEYCHAIN=$KEYCHAIN_PATH" >> "$GITHUB_ENV"
           rm -f "$RUNNER_TEMP/certificate.p12"
 
       - name: Build Vite + Electron
@@ -160,7 +165,11 @@ jobs:
 
       - name: Verify .app code signature
         if: steps.signing.outputs.enabled == 'true'
-        run: codesign --verify --deep --strict "${{ steps.find_app.outputs.app_bundle }}"
+        run: |
+          codesign --verify --deep --strict "${{ steps.find_app.outputs.app_bundle }}"
+          # An ad-hoc fallback signature must fail the build, not ship.
+          codesign -dv "${{ steps.find_app.outputs.app_bundle }}" 2>&1 | tee /tmp/sig.txt
+          grep -q "Authority=Developer ID Application" /tmp/sig.txt
 
       - name: Create DMG
         id: dmg
@@ -193,6 +202,7 @@ jobs:
         if: steps.signing.outputs.enabled == 'true' && !contains(github.ref_name, '-')
         run: |
           codesign --force \
+            --keychain "$RUNNER_TEMP/build.keychain-db" \
             --sign "Developer ID Application: ${{ secrets.MAC_CSC_NAME }}" \
             --timestamp \
             "${{ steps.dmg.outputs.dmg_path }}"
