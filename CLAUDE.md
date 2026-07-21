@@ -57,7 +57,8 @@ npm test                                    # vitest
    `open -n node_modules/electron/dist/Electron.app --args {cinerec 절대경로}` 로
    **launchd 직속** 실행 (루트 Makefile `make rec`/`make all`이 이 구조).
 2. **adhoc 서명**: 개발용 Electron은 adhoc 서명이라 TCC가 허용을 붙일 안정적 신원이 없다.
-   → 해결: `codesign --force --deep --sign "Apple Development: DaeHyun Nam (PP2Q4D47YY)" node_modules/electron/dist/Electron.app`
+   → 해결: `codesign --force --deep --sign "Apple Development: <본인 인증서>" node_modules/electron/dist/Electron.app`
+   (인증서 이름은 `security find-identity -v -p codesigning`으로 확인)
 
 **진단법** (팝업 없이 즉시 확인): Electron으로 `getMediaAccessStatus("screen")` 출력하는
 프로브 스크립트를 ① 셸에서 ② `open -n`으로 각각 실행해 비교. ①denied·②granted면 원인 1.
@@ -74,19 +75,27 @@ npm test                                    # vitest
 
 ## AI 채팅 패널 (자연어 편집)
 
-에디터 우측 레일 [설정|AI] 탭에서 LLM에게 자연어로 편집 지시 ("0:03에 줌 추가해줘").
+에디터 우측 레일 [AI|설정] 탭에서 LLM에게 자연어로 편집 지시 ("0:03에 줌 추가해줘").
 - **Claude Code 구독 연동** (API key 불필요): `@anthropic-ai/claude-agent-sdk`가 main 프로세스에서
   네이티브 `claude` 바이너리(`@anthropic-ai/claude-agent-sdk-darwin-arm64` 패키지에 내장, ~240MB)를
-  spawn — PATH 불필요, 인증은 `~/.claude` 로그인 재사용. OpenAI/Gemini/Grok은 인터페이스만 준비됨.
-- 구조: main `electron/ai/` (프로바이더/툴 정의/브리지) ↔ 렌더러 `src/components/ai-chat/` +
-  `useAiToolHost` (툴콜을 `aiCommandExecutor`로 실행 → `pushState` = 변이 툴콜 1회당 undo 1스텝).
-- 에이전트는 파일/셸 접근 불가 (`tools: []` + cinerec MCP 툴만 허용), maxTurns 12, 툴당 15s 타임아웃.
-- 클릭 텔레메트리(`get_click_events`)로 "버튼 클릭할 때 확대" 같은 지시를 실제 클릭 좌표에 정렬.
-- 멀티모달 툴: `get_video_frames`(프레임 캡처→비전), `get_transcript`(로컬 Whisper 나레이션),
-  `add_captions`(자동 자막과 동일 스타일), `set_style`(배경/패딩/그림자/웹캠 PIP).
-- 대화는 프로젝트별 localStorage 저장 + SDK `resume`으로 앱 재시작 후에도 세션 이어감.
-  에이전트 트랜스크립트는 `~/.claude/projects/-/`(cwd 기준)에 JSONL로 남음 — 날린 문구 복구 가능.
-- 설정: `<userData>/ai-settings.json` (API key는 safeStorage 암호화). 테스트: `aiCommandExecutor.test.ts`.
+  spawn — PATH 불필요, 인증은 `~/.claude` 로그인 재사용. **OpenAI=Codex CLI·Gemini=AI Studio 키**도
+  실동작 (공용 stdio MCP 브리지 `mcpBridge.cjs` + 유닉스 소켓 툴 호스트); Grok은 coming-soon.
+- 구조: main `electron/ai/` (프로바이더/툴 정의/브리지/원격 정책 킬스위치) ↔ 렌더러
+  `src/components/ai-chat/` + `useAiToolHost` (툴콜을 `aiCommandExecutor`로 실행 → `pushState` =
+  변이 툴콜 1회당 undo 1스텝). 에이전트는 파일/셸 접근 불가(`tools: []` + MCP allowlist), maxTurns 12.
+- 멀티모달: 입력 첨부(이미지/영상→키프레임 콘택트 시트, `keyframeExtraction.ts` 단일 파이프라인),
+  `get_video_frames`(무인자 호출 시 scene-detect 스토리보드), `get_transcript`(로컬 Whisper),
+  클릭 텔레메트리(`get_click_events`)로 지시를 실제 클릭 좌표에 정렬.
+- **자막 시스템**: fontSize는 "1080p 기준 px"(프리뷰/export가 표면 높이에 비례 스케일 — 화면 비율 고정),
+  인라인 부분 색상 `{#hex|단어}`(`captionRichText.ts` 파서를 프리뷰·export·SRT·라벨 공유),
+  박스 스타일(boxPaddingX/Y em·boxRadius·boxShadow), motion `toAnchor: top|middle|bottom`
+  (시작=style.position, 도착=toAnchor 조합), 숫자 fontWeight(100–900)·fontFamily.
+- **대화 지속성 3중**: 프로젝트별 localStorage(키=녹화 경로) + `<video>.chat.json` 파일
+  write-through 백업(quota 무관) + SDK `resume`. 로드 시 아이템 많은 쪽 채택.
+  에이전트 트랜스크립트는 `~/.claude/projects/`(cwd 기준)에 JSONL로 남음 — 최후 복구 수단.
+- 설정: `<userData>/ai-settings.json` (API key는 safeStorage 암호화). 최근 프로젝트는
+  `<userData>/recent-projects.json`(main이 저장/열기 시 기록, 빈 화면에서 원클릭 오픈).
+  테스트: `aiCommandExecutor.test.ts` 등 vitest 425+.
 
 ## 로드맵 (Recorded 대비 갭)
 

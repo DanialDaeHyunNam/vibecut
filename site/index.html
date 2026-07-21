@@ -784,7 +784,7 @@
       card.innerHTML =
         (item.type === "youtube"
           ? `<div class="show-media"><iframe src="https://www.youtube-nocookie.com/embed/${item.id}" title="${item.title}" loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>`
-          : `<div class="show-media"><video src="${item.src}"${item.poster ? ` poster="${item.poster}"` : ""} controls preload="none" playsinline></video></div>`) +
+          : `<div class="show-media"><video src="${item.src}"${item.poster ? ` poster="${item.poster}"` : ""} autoplay muted loop controls preload="metadata" playsinline></video></div>`) +
         `<figcaption><strong>${item.title}</strong>${item.desc ? `<span>${item.desc}</span>` : ""}</figcaption>`;
       grid.appendChild(card);
     }
