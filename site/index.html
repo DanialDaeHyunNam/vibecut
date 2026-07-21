@@ -375,18 +375,6 @@
 
   .os-mock { border-radius: 12px; padding: 18px; margin-bottom: 14px; }
   .os-mock-label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
-  /* macOS Gatekeeper dialog replica */
-  .gk {
-    max-width: 270px; margin: 0 auto; background: #ececf0; color: #1d1d22; border-radius: 12px;
-    padding: 18px 16px 14px; text-align: center; font-size: 11.5px; line-height: 1.45;
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
-  }
-  .gk .gk-icon { width: 36px; height: 36px; border-radius: 9px; margin-bottom: 8px; }
-  .gk b { display: block; font-size: 12.5px; margin-bottom: 4px; }
-  .gk p { color: #55555e; margin-bottom: 12px; }
-  .gk .gk-btns { display: flex; flex-direction: column; gap: 5px; }
-  .gk .gk-btn { padding: 6px 0; border-radius: 7px; background: #fff; border: 1px solid #d5d5dc; font-weight: 500; }
-  .gk .gk-btn.blue { background: #2f6fed; color: #fff; border-color: #2f6fed; }
   /* Windows SmartScreen replica */
   .ss {
     max-width: 320px; margin: 0 auto; background: #0f3f8c; color: #fff; border-radius: 4px;
@@ -411,6 +399,7 @@
   }
   .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
   .modal-actions .btn { flex: 1; justify-content: center; font-size: 14px; padding: 11px 16px; }
+  .modal-actions.stack { flex-direction: column; }
   .modal-foot { margin-top: 14px; font-size: 12px; color: var(--faint); text-align: center; }
   .modal-foot a { text-decoration: underline; text-underline-offset: 3px; color: var(--muted); }
 
@@ -889,6 +878,27 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="mac-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mac-title">
+    <button class="modal-x" id="mac-close" aria-label="Close">✕</button>
+    <h3 id="mac-title" data-i18n="macTitle">Which Mac do you have?</h3>
+    <p class="modal-lead" data-i18n="macLead">
+      Apple Silicon and Intel Macs need different builds.
+      <strong>Every Mac sold since late 2020 is Apple Silicon.</strong>
+      The Intel build does run on Apple Silicon (via Rosetta), but it's slower and
+      macOS shows an "app needs to be updated" warning on launch.
+    </p>
+    <div class="modal-actions stack">
+      <a class="btn btn-primary js-mac-dl" id="mac-arm64" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest" target="_blank" rel="noopener" data-i18n="macArm">Apple Silicon — M1 · M2 · M3 · M4</a>
+      <a class="btn btn-ghost js-mac-dl" id="mac-x64" href="https://github.com/DanialDaeHyunNam/vibecut/releases/latest" target="_blank" rel="noopener" data-i18n="macIntel">Intel Mac (pre-2021)</a>
+    </div>
+    <p class="modal-foot" data-i18n="macFoot">
+      Not sure? Apple menu &#63743; → About This Mac — the <strong>Chip</strong> line
+      says Apple M-something or Intel.
+    </p>
+  </div>
+</div>
+
 <script>
   (() => {
     const modal = document.getElementById("dl-modal");
@@ -906,13 +916,44 @@
       document.body.style.overflow = "";
     }
 
+    const macModal = document.getElementById("mac-modal");
+
+    function openMacModal() {
+      macModal.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+    function closeMacModal() {
+      macModal.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    // Point the arch buttons at the exact DMG assets of the latest release so
+    // Apple Silicon users can't grab the Intel build by accident. Falls back to
+    // the Releases page (initial href) if the API is unreachable/rate-limited.
+    fetch("https://api.github.com/repos/DanialDaeHyunNam/vibecut/releases/latest")
+      .then((response) => (response.ok ? response.json() : null))
+      .then((release) => {
+        if (!release || !Array.isArray(release.assets)) return;
+        const asset = (pattern) => release.assets.find((a) => pattern.test(a.name));
+        const arm64 = asset(/Mac-arm64.*\.dmg$/);
+        const x64 = asset(/Mac-x64.*\.dmg$/);
+        if (arm64) document.getElementById("mac-arm64").href = arm64.browser_download_url;
+        if (x64) document.getElementById("mac-x64").href = x64.browser_download_url;
+      })
+      .catch(() => {
+        // Offline / rate-limited — buttons keep their Releases-page fallback href.
+      });
+
     document.querySelectorAll(".js-download").forEach((link) => {
       link.addEventListener("click", (event) => {
         // Nav button has no data-os — guess from the platform.
         const os = link.dataset.os || (/win/i.test(navigator.platform) ? "win" : "mac");
-        if (os === "mac") return; // signed & notarized — no gate, go straight to Releases
         event.preventDefault();
-        openModal(os);
+        if (os === "mac") {
+          openMacModal(); // signed & notarized — no warning gate, just pick the chip
+        } else {
+          openModal(os);
+        }
       });
     });
     document.getElementById("dl-close").addEventListener("click", closeModal);
@@ -921,8 +962,17 @@
     modal.addEventListener("click", (event) => {
       if (event.target === modal) closeModal();
     });
+    document.getElementById("mac-close").addEventListener("click", closeMacModal);
+    document.querySelectorAll(".js-mac-dl").forEach((link) => {
+      link.addEventListener("click", closeMacModal);
+    });
+    macModal.addEventListener("click", (event) => {
+      if (event.target === macModal) closeMacModal();
+    });
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !modal.hidden) closeModal();
+      if (event.key !== "Escape") return;
+      if (!modal.hidden) closeModal();
+      if (!macModal.hidden) closeMacModal();
     });
   })();
 </script>
@@ -982,17 +1032,7 @@
       dlTitle: 'Windows용 다운로드 전에 한 가지만요',
       dlLead:
         'Vibecut은 무료 오픈소스입니다. macOS 빌드는 Apple 서명·공증이 완료됐지만, Windows 설치 파일은 아직 코드 서명이 없어 첫 실행 때 안내 창이 뜹니다. <strong>서명 부재 안내이지 악성코드 탐지가 아닙니다.</strong> 어떤 화면이 뜨는지 보여드릴게요:',
-      mockLabelMac: "처음 열면 이런 창이 뜹니다",
       mockLabelWin: "설치 파일을 실행하면 이런 창이 뜹니다",
-      gkTitle: "“Vibecut”이(가) 열리지 않았습니다",
-      gkBody:
-        "Apple에서 “Vibecut”에 Mac에 해를 끼치거나 개인정보를 침해할 수 있는 악성 코드가 없음을 확인할 수 없습니다.",
-      gkDone: "완료",
-      gkTrash: "휴지통으로 이동",
-      macStep1: "Vibecut을 한 번 열고 <strong>완료</strong>를 클릭하세요 (휴지통으로 이동 말고요).",
-      macStep2:
-        '<strong>시스템 설정 → 개인정보 보호 및 보안</strong>으로 가서 아래로 스크롤한 뒤 <strong>그래도 열기</strong>를 클릭하세요.<br /><span style="font-size:12px; color:var(--faint)">macOS 14 이하: Vibecut.app 우클릭 → 열기 → 열기면 끝납니다.</span>',
-      macStep3: "끝 — 이 경고는 다시 나타나지 않습니다.",
       ssTitle: "Windows의 PC 보호",
       ssBody:
         "Microsoft Defender SmartScreen에서 인식할 수 없는 앱의 시작을 차단했습니다. 이 앱을 실행하면 PC가 위험해질 수 있습니다.",
@@ -1003,6 +1043,13 @@
       winStep3: "끝 — Windows가 선택을 기억합니다.",
       dlContinue: "확인했어요 — 다운로드",
       dlCancel: "취소",
+      macTitle: "어떤 맥을 쓰고 계신가요?",
+      macLead:
+        'Apple Silicon 맥과 Intel 맥은 설치 파일이 다릅니다. <strong>2020년 말 이후 출시된 맥은 모두 Apple Silicon입니다.</strong> Intel 빌드도 Apple Silicon에서 실행은 되지만(Rosetta), 더 느리고 실행할 때마다 macOS가 "업데이트가 필요하다"는 경고를 띄웁니다.',
+      macArm: "Apple Silicon — M1 · M2 · M3 · M4",
+      macIntel: "Intel 맥 (2021년 이전)",
+      macFoot:
+        "잘 모르겠다면? Apple 메뉴 &#63743; → 이 Mac에 관하여 — <strong>칩</strong> 항목에 Apple M… 또는 Intel이 표시됩니다.",
       dlFoot:
         '다운로드는 GitHub Releases에서 제공됩니다 — 계정이 필요 없습니다. 못 믿으시겠다면 <a href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">소스를 읽어보거나</a> 직접 빌드하세요.',
     };

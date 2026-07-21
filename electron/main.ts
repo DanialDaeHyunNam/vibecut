@@ -73,7 +73,10 @@ async function ensureRecordingsDir() {
 process.env.APP_ROOT = path.join(__dirname, "..");
 
 // Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
-export const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+// Packaged builds must ignore this: a VITE_DEV_SERVER_URL leaked into the
+// session environment (e.g. `launchctl setenv` from a dev run) would make the
+// installed app load a dead localhost URL and never show a window.
+export const VITE_DEV_SERVER_URL = app.isPackaged ? undefined : process.env["VITE_DEV_SERVER_URL"];
 export const MAIN_DIST = path.join(process.env.APP_ROOT, "dist-electron");
 export const RENDERER_DIST = path.join(process.env.APP_ROOT, "dist");
 
@@ -122,6 +125,10 @@ const hasSingleInstanceLock = Boolean(stableInstanceLock && hasElectronSingleIns
 
 if (hasSingleInstanceLock) {
 	app.on("second-instance", () => {
+		// Can fire before "ready" when the user re-launches during a slow first
+		// start (e.g. Gatekeeper scanning the bundle) — the screen module used by
+		// window creation would throw. Startup shows the window anyway, so skip.
+		if (!app.isReady()) return;
 		showMainWindow();
 	});
 } else {
