@@ -501,7 +501,7 @@
       </a>
     </div>
     <p class="cta-note" data-i18n="ctaNote">
-      Unsigned build — your OS will ask before the first launch. <a href="#trust">Why, and how to open it →</a>
+      macOS builds are signed &amp; notarized by Apple — they open right away. On Windows, SmartScreen asks once. <a href="#trust">What you'll see →</a>
     </p>
   </div>
 
@@ -794,18 +794,18 @@
 <section id="trust" style="padding-top:0">
   <div class="wrap">
     <div class="trust">
-      <h3 data-i18n="trustTitle">About the "unverified developer" warning</h3>
+      <h3 data-i18n="trustTitle">About the Windows SmartScreen notice</h3>
       <p data-i18n="trustP1">
-        The first time you open Vibecut, macOS or Windows will warn that it comes from an
-        <strong>unverified developer</strong>. That message means the app isn't code-signed with a paid
-        developer certificate — <strong>it is not a malware detection</strong>. Vibecut is fully open source:
+        <strong>macOS builds are code-signed with a Developer ID and notarized by Apple</strong> (v1.7.1+),
+        so they open without any warning. The <strong>Windows installer</strong> isn't code-signed yet, so
+        Microsoft Defender SmartScreen shows a notice on first run — that's a missing-signature note,
+        <strong>not a malware detection</strong>. Vibecut is fully open source:
         every line you run is <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">public on GitHub</a>,
         and you can build it from source yourself.
       </p>
       <p data-i18n="trustP2">
-        To open it: on <strong>macOS 15+</strong> go to System Settings → Privacy &amp; Security → <em>Open Anyway</em>
-        (older macOS: right-click the app → Open). On <strong>Windows</strong>, click <em>More info</em> → <em>Run anyway</em>
-        on the SmartScreen prompt.
+        To run it on <strong>Windows</strong>: click <em>More info</em> → <em>Run anyway</em>
+        on the SmartScreen prompt — Windows remembers your choice after that.
       </p>
       <p data-i18n="trustP3">Download only from the official <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/DanialDaeHyunNam/vibecut/releases" target="_blank" rel="noopener">GitHub Releases page</a>. Vibecut is provided under the MIT license, as is.</p>
     </div>
@@ -853,32 +853,12 @@
 <div class="modal-overlay" id="dl-modal" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="dl-title">
     <button class="modal-x" id="dl-close" aria-label="Close">✕</button>
-    <h3 id="dl-title" data-i18n="dlTitle">One thing before you download</h3>
+    <h3 id="dl-title" data-i18n="dlTitle">One thing before you download for Windows</h3>
     <p class="modal-lead" data-i18n="dlLead">
-      Vibecut is free and open source, but it isn't code-signed with a paid developer certificate yet —
-      so your OS shows a warning on first launch. <strong>It's a missing-signature notice, not a malware
-      detection.</strong> Here's exactly what you'll see, and what to do:
+      Vibecut is free and open source. macOS builds are signed &amp; notarized by Apple, but the
+      Windows installer isn't code-signed yet — so Windows shows a notice on first run.
+      <strong>It's a missing-signature notice, not a malware detection.</strong> Here's what you'll see:
     </p>
-
-    <div class="os-block" data-os="mac">
-      <div class="os-mock" style="background:radial-gradient(90% 130% at 50% 0%, #2a2438, #191521)">
-        <div class="os-mock-label" data-i18n="mockLabelMac">You'll see this on first open</div>
-        <div class="gk">
-          <img class="gk-icon" src="logo.png" alt="" />
-          <b data-i18n="gkTitle">"Vibecut" Not Opened</b>
-          <p data-i18n="gkBody">Apple could not verify "Vibecut" is free of malware that may harm your Mac or compromise your privacy.</p>
-          <div class="gk-btns">
-            <span class="gk-btn blue" data-i18n="gkDone">Done</span>
-            <span class="gk-btn" data-i18n="gkTrash">Move to Trash</span>
-          </div>
-        </div>
-      </div>
-      <ol class="os-steps">
-        <li data-i18n="macStep1">Open Vibecut once and click <strong>Done</strong> (not Move to Trash).</li>
-        <li data-i18n="macStep2">Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll down, click <strong>Open Anyway</strong>.<br /><span style="font-size:12px; color:var(--faint)">On macOS 14 or older: just right-click Vibecut.app → Open → Open.</span></li>
-        <li data-i18n="macStep3">That's it — the warning never comes back.</li>
-      </ol>
-    </div>
 
     <div class="os-block" data-os="win">
       <div class="os-mock" style="background:radial-gradient(90% 130% at 50% 0%, #23283a, #171522)">
@@ -928,9 +908,10 @@
 
     document.querySelectorAll(".js-download").forEach((link) => {
       link.addEventListener("click", (event) => {
-        event.preventDefault();
         // Nav button has no data-os — guess from the platform.
         const os = link.dataset.os || (/win/i.test(navigator.platform) ? "win" : "mac");
+        if (os === "mac") return; // signed & notarized — no gate, go straight to Releases
+        event.preventDefault();
         openModal(os);
       });
     });
@@ -970,7 +951,7 @@
       sub: "Vibecut은 AI 편집기가 내장된 화면 녹화 앱입니다. 영상을 직접 보고, 나레이션을 듣고, 시네마틱 줌·컷·자막까지 알아서 편집합니다 — 이미 갖고 있는 AI로요. 키프레임은 영원히 만질 일 없습니다.",
       btnMac: "macOS용 다운로드",
       btnWin: "Windows용 다운로드",
-      ctaNote: '서명되지 않은 빌드라 첫 실행 때 OS가 한 번 확인을 요청합니다. <a href="#trust">왜 그런지, 여는 방법 →</a>',
+      ctaNote: 'macOS 빌드는 Apple 서명·공증이 완료되어 바로 열립니다. Windows에서는 SmartScreen이 한 번 확인을 요청합니다. <a href="#trust">어떤 화면이 뜨는지 →</a>',
       subsTitle: "이미 갖고 있는 AI로 돌아갑니다",
       subsDesc: "Claude와 ChatGPT는 기존 구독으로 연결됩니다 — Vibecut은 공식 에이전트 CLI만 구동하고 로그인 토큰은 절대 건드리지 않아요. Gemini는 서드파티 도구에 대한 Google 약관에 따라 무료 Google AI Studio API 키를 사용합니다.",
       subsNote: "로그인은 각 제공사 약관을 따릅니다. Vibecut은 하루 한 번 작은 정적 정책 파일만 확인하고(사용자에 대한 어떤 정보도 보내지 않아요), 제공사 정책이 바뀌면 앱 안에서 경고하거나 해당 로그인 방식을 일시 중지합니다.",
@@ -991,16 +972,16 @@
       showTitle: '<em style="font-style:normal; color:var(--violet)">Vibecut</em>으로 만들었습니다',
       showDesc: "Vibecut으로 녹화하고 편집한 영상들 — 자기 자신의 AI로 편집한 Vibecut 데모 포함.",
       showPlaceholder: "첫 쇼케이스 영상을 만드는 중 — 물론 Vibecut으로요",
-      trustTitle: "“확인되지 않은 개발자” 경고에 대하여",
+      trustTitle: 'Windows SmartScreen 안내에 대하여',
       trustP1:
-        'Vibecut을 처음 열면 macOS나 Windows가 <strong>확인되지 않은 개발자</strong>의 앱이라고 경고합니다. 이 메시지는 유료 개발자 인증서로 코드 서명이 되어 있지 않다는 뜻이며 — <strong>악성코드가 탐지됐다는 뜻이 아닙니다</strong>. Vibecut은 완전한 오픈소스입니다: 실행되는 모든 코드가 <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">GitHub에 공개</a>되어 있고, 직접 빌드할 수도 있습니다.',
+        '<strong>macOS 빌드는 Developer ID로 서명되고 Apple 공증을 받았습니다</strong>(v1.7.1+) — 아무 경고 없이 바로 열립니다. <strong>Windows 설치 파일</strong>은 아직 코드 서명이 적용되지 않아 첫 실행 때 SmartScreen 안내가 뜹니다 — 서명 부재 안내이지 <strong>악성코드 탐지가 아닙니다</strong>. Vibecut은 완전한 오픈소스입니다: 실행되는 모든 코드가 <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/DanialDaeHyunNam/vibecut" target="_blank" rel="noopener">GitHub에 공개</a>되어 있고, 직접 빌드할 수도 있습니다.',
       trustP2:
-        "여는 방법: <strong>macOS 15+</strong>는 시스템 설정 → 개인정보 보호 및 보안 → <em>그래도 열기</em> (이전 macOS: 앱 우클릭 → 열기). <strong>Windows</strong>는 SmartScreen 창에서 <em>추가 정보</em> → <em>실행</em>을 클릭하세요.",
+        '<strong>Windows</strong>에서 여는 법: SmartScreen 창에서 <em>추가 정보</em> → <em>실행</em>을 클릭하세요 — 이후에는 다시 묻지 않습니다.',
       trustP3:
         '공식 <a style="text-decoration:underline; text-underline-offset:3px" href="https://github.com/DanialDaeHyunNam/vibecut/releases" target="_blank" rel="noopener">GitHub Releases 페이지</a>에서만 받으세요. Vibecut은 MIT 라이선스로, 있는 그대로 제공됩니다.',
-      dlTitle: "다운로드 전에 한 가지만요",
+      dlTitle: 'Windows용 다운로드 전에 한 가지만요',
       dlLead:
-        "Vibecut은 무료 오픈소스지만 아직 유료 개발자 인증서로 서명되어 있지 않아, 첫 실행 때 OS가 경고를 띄웁니다. <strong>서명이 없다는 안내이지, 악성코드 탐지가 아닙니다.</strong> 정확히 어떤 화면이 뜨고 어떻게 하면 되는지 보여드릴게요:",
+        'Vibecut은 무료 오픈소스입니다. macOS 빌드는 Apple 서명·공증이 완료됐지만, Windows 설치 파일은 아직 코드 서명이 없어 첫 실행 때 안내 창이 뜹니다. <strong>서명 부재 안내이지 악성코드 탐지가 아닙니다.</strong> 어떤 화면이 뜨는지 보여드릴게요:',
       mockLabelMac: "처음 열면 이런 창이 뜹니다",
       mockLabelWin: "설치 파일을 실행하면 이런 창이 뜹니다",
       gkTitle: "“Vibecut”이(가) 열리지 않았습니다",
