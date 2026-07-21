@@ -375,18 +375,6 @@
 
   .os-mock { border-radius: 12px; padding: 18px; margin-bottom: 14px; }
   .os-mock-label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
-  /* macOS Gatekeeper dialog replica */
-  .gk {
-    max-width: 270px; margin: 0 auto; background: #ececf0; color: #1d1d22; border-radius: 12px;
-    padding: 18px 16px 14px; text-align: center; font-size: 11.5px; line-height: 1.45;
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
-  }
-  .gk .gk-icon { width: 36px; height: 36px; border-radius: 9px; margin-bottom: 8px; }
-  .gk b { display: block; font-size: 12.5px; margin-bottom: 4px; }
-  .gk p { color: #55555e; margin-bottom: 12px; }
-  .gk .gk-btns { display: flex; flex-direction: column; gap: 5px; }
-  .gk .gk-btn { padding: 6px 0; border-radius: 7px; background: #fff; border: 1px solid #d5d5dc; font-weight: 500; }
-  .gk .gk-btn.blue { background: #2f6fed; color: #fff; border-color: #2f6fed; }
   /* Windows SmartScreen replica */
   .ss {
     max-width: 320px; margin: 0 auto; background: #0f3f8c; color: #fff; border-radius: 4px;
@@ -1044,17 +1032,7 @@
       dlTitle: 'Windows용 다운로드 전에 한 가지만요',
       dlLead:
         'Vibecut은 무료 오픈소스입니다. macOS 빌드는 Apple 서명·공증이 완료됐지만, Windows 설치 파일은 아직 코드 서명이 없어 첫 실행 때 안내 창이 뜹니다. <strong>서명 부재 안내이지 악성코드 탐지가 아닙니다.</strong> 어떤 화면이 뜨는지 보여드릴게요:',
-      mockLabelMac: "처음 열면 이런 창이 뜹니다",
       mockLabelWin: "설치 파일을 실행하면 이런 창이 뜹니다",
-      gkTitle: "“Vibecut”이(가) 열리지 않았습니다",
-      gkBody:
-        "Apple에서 “Vibecut”에 Mac에 해를 끼치거나 개인정보를 침해할 수 있는 악성 코드가 없음을 확인할 수 없습니다.",
-      gkDone: "완료",
-      gkTrash: "휴지통으로 이동",
-      macStep1: "Vibecut을 한 번 열고 <strong>완료</strong>를 클릭하세요 (휴지통으로 이동 말고요).",
-      macStep2:
-        '<strong>시스템 설정 → 개인정보 보호 및 보안</strong>으로 가서 아래로 스크롤한 뒤 <strong>그래도 열기</strong>를 클릭하세요.<br /><span style="font-size:12px; color:var(--faint)">macOS 14 이하: Vibecut.app 우클릭 → 열기 → 열기면 끝납니다.</span>',
-      macStep3: "끝 — 이 경고는 다시 나타나지 않습니다.",
       ssTitle: "Windows의 PC 보호",
       ssBody:
         "Microsoft Defender SmartScreen에서 인식할 수 없는 앱의 시작을 차단했습니다. 이 앱을 실행하면 PC가 위험해질 수 있습니다.",
