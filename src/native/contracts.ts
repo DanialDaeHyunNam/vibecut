@@ -73,6 +73,13 @@ export interface ProjectContext {
 	currentVideoPath: string | null;
 }
 
+export interface RecentProjectEntry {
+	path: string;
+	/** Project file basename without the .openscreen extension. */
+	name: string;
+	lastOpenedAt: number;
+}
+
 export interface ProjectPathResult {
 	success: boolean;
 	path?: string;
@@ -182,6 +189,12 @@ export type NativeBridgeRequest =
 			domain: "project";
 			action: "loadProjectFileFromPath";
 			payload: { path: string };
+			requestId?: string;
+	  }
+	| {
+			domain: "project";
+			action: "listRecentProjects";
+			payload?: EmptyPayload;
 			requestId?: string;
 	  }
 	| {

@@ -178,7 +178,8 @@
 		"fontWeight": "Grosor",
 		"boxPaddingX": "Relleno horizontal de caja",
 		"boxPaddingY": "Relleno vertical de caja",
-		"boxRadius": "Radio de esquinas de caja"
+		"boxRadius": "Radio de esquinas de caja",
+		"boxShadow": "Sombra de caja"
 	},
 	"fontStyles": {
 		"classic": "Clásico",

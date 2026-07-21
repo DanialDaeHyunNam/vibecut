@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T13:23:35.314Z
+updated: 2026-07-20T15:19:34.672Z
 
 files:
   "src/lib/__tests__/frameStepNavigation.test.ts":
@@ -156,10 +156,13 @@ files:
     status: active
     source: "user:parse-nip"
     created: 2026-05-13
-    last_modified: 2026-07-20T06:27:43.815Z
-    change_count: 10
+    last_modified: 2026-07-20T14:47:27.988Z
+    change_count: 11
     purpose: "AI captions (local Whisper STT) — annotationsFromCaptions.ts."
     change_log:
+      - date: 2026-07-20T14:47:27.988Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T06:27:43.815Z
         action: edit
         source: "claude:Dan"
@@ -603,10 +606,22 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-12-01
-    last_modified: 2026-07-20T13:23:35.314Z
-    change_count: 19
+    last_modified: 2026-07-20T15:18:17.538Z
+    change_count: 23
     purpose: "Export/encoding pipeline — annotationRenderer.ts."
     change_log:
+      - date: 2026-07-20T15:18:17.538Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:17:57.367Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:20.006Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:16.513Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:23:35.314Z
         action: edit
         source: "claude:Dan"
@@ -1772,10 +1787,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-16T09:03:38.866Z
-    change_count: 1
+    last_modified: 2026-07-20T15:18:48.063Z
+    change_count: 3
     purpose: "자막 annotation → SubRip(.srt) 직렬화 (캡션 트랙 필터/정렬/타임코드)"
     change_log:
+      - date: 2026-07-20T15:18:48.063Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:18:35.056Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:03:38.866Z
         action: write
         source: "claude:Dan"
@@ -1854,5 +1875,27 @@ files:
     purpose: "getCaptionRenderState 단위 테스트(보간·서브윈도우·미지정 필드 유지)"
     change_log:
       - date: 2026-07-20T12:04:17.589Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/captioning/captionRichText.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T15:14:20.544Z
+    change_count: 1
+    purpose: "자막 인라인 색상 마크업 {#hex|텍스트} 파서 — parse/strip/has, 프리뷰·export·SRT·라벨 공유"
+    change_log:
+      - date: 2026-07-20T15:14:20.544Z
+        action: write
+        source: "claude:Dan"
+  "src/lib/captioning/captionRichText.test.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T15:19:34.672Z
+    change_count: 1
+    purpose: "captionRichText 파서 테스트 — 다중 스팬·8자리 hex·비정상 마크업 리터럴 처리·strip"
+    change_log:
+      - date: 2026-07-20T15:19:34.672Z
         action: write
         source: "claude:Dan"

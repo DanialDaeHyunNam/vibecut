@@ -345,6 +345,11 @@ interface Window {
 		aiChatReadBackup: (
 			videoPath: string,
 		) => Promise<{ items: unknown[]; sessionId: string | null } | null>;
+		/** Mirror the transcript to the `<video>.chat.json` sidecar (write-through backup). */
+		aiChatWriteBackup: (
+			videoPath: string,
+			payload: { items: unknown[]; sessionId: string | null },
+		) => Promise<boolean>;
 		onAiChatEvent: (callback: (event: AiChatEvent) => void) => () => void;
 		onAiToolCall: (
 			callback: (call: { callId: string; name: string; input: unknown }) => void,

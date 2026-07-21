@@ -27,7 +27,7 @@ export const AI_CAPTION_SIZE = CAPTION_SIZE;
 const CAPTION_STYLE: AnnotationTextStyle = {
 	color: "#ffffff",
 	backgroundColor: "rgba(0, 0, 0, 0.7)",
-	fontSize: 24,
+	fontSize: 48, // px @1080p reference (~4.5% of frame height)
 	fontFamily: "Inter",
 	fontWeight: "bold",
 	fontStyle: "normal",

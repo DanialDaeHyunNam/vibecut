@@ -12,8 +12,8 @@ units:
     domain: native
     status: open
     created: "2026-07-16"
-    last_updated: "2026-07-20"
-    session_count: 6
+    last_updated: "2026-07-21"
+    session_count: 8
     title: "AI 편집 어시스턴트 — 자연어 비디오 편집 패널"
     file: "native/2026-07-16-ai-editing-assistant.md"
   - id: 2026-07-16-webcam-self-view
@@ -28,8 +28,8 @@ units:
     domain: native
     status: open
     created: "2026-07-16"
-    last_updated: "2026-07-20"
-    session_count: 6
+    last_updated: "2026-07-21"
+    session_count: 8
     title: "브랜드 테마 + 에디터 UX — 오픈스크린 티 벗기기"
     file: "native/2026-07-16-brand-theme-editor-ux.md"
   - id: 2026-07-16-open-source-release-plan

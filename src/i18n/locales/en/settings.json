@@ -178,7 +178,8 @@
 		"fontWeight": "Weight",
 		"boxPaddingX": "Box Padding X",
 		"boxPaddingY": "Box Padding Y",
-		"boxRadius": "Box Corner Radius"
+		"boxRadius": "Box Corner Radius",
+		"boxShadow": "Box Shadow"
 	},
 	"fontStyles": {
 		"classic": "Classic",

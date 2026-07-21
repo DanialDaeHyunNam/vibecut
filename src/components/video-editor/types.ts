@@ -288,7 +288,18 @@ export interface AnnotationTextStyle {
 	boxPaddingY?: number;
 	/** Text box corner radius in px. Default 4. */
 	boxRadius?: number;
+	/** Drop-shadow strength behind the text box, 0 (none, default) to 1. */
+	boxShadow?: number;
 }
+
+/**
+ * Text/caption font sizes are stored as "px at a 1080p-tall frame" and every
+ * renderer scales them by (surface height / 1080) — so a caption keeps the same
+ * proportion of the frame in the preview at any panel size AND in the export at
+ * any resolution. (Previously fontSize was raw preview px, so the ratio changed
+ * whenever the preview pane was resized.)
+ */
+export const CAPTION_FONT_REFERENCE_HEIGHT = 1080;
 
 export const DEFAULT_CAPTION_BOX_PADDING_X_EM = 0.2;
 export const DEFAULT_CAPTION_BOX_PADDING_Y_EM = 0.1;
@@ -349,7 +360,7 @@ export const DEFAULT_ANNOTATION_SIZE: AnnotationSize = {
 export const DEFAULT_ANNOTATION_STYLE: AnnotationTextStyle = {
 	color: "#ffffff",
 	backgroundColor: "transparent",
-	fontSize: 32,
+	fontSize: 64, // px @1080p reference (~6% of frame height)
 	fontFamily: "Inter",
 	fontWeight: "bold",
 	fontStyle: "normal",

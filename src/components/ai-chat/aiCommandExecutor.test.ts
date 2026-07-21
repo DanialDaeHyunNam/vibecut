@@ -300,7 +300,7 @@ describe("aiCommandExecutor", () => {
 		const region = added.partial?.annotationRegions?.[0];
 		expect(region?.style).toMatchObject({
 			backgroundColor: "rgba(0,0,0,0.75)",
-			fontSize: 96, // clamped
+			fontSize: 192, // clamped
 			textAnimation: "pop",
 			// Unsafe color rejected — default (white) kept.
 			color: "#ffffff",

@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T13:25:40.374Z
+updated: 2026-07-20T15:19:28.822Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -30,10 +30,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T11:11:24.488Z
-    change_count: 69
+    last_modified: 2026-07-20T14:38:50.704Z
+    change_count: 70
     purpose: "Electron main process — electron-env.d.ts."
     change_log:
+      - date: 2026-07-20T14:38:50.704Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T11:11:24.488Z
         action: edit
         source: "claude:Dan"
@@ -208,10 +211,19 @@ files:
     status: active
     source: "user:Etienne Lescot"
     created: 2026-03-16
-    last_modified: 2026-05-31
-    change_count: 5
+    last_modified: 2026-07-20T14:53:53.496Z
+    change_count: 8
     purpose: "Main-process IPC — nativeBridge.ts."
     change_log:
+      - date: 2026-07-20T14:53:53.496Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:53:43.303Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:53:41.011Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-05-31"
         action: edit
         source: "user"
@@ -1095,10 +1107,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T11:11:21.921Z
-    change_count: 63
+    last_modified: 2026-07-20T14:38:47.864Z
+    change_count: 64
     purpose: "Preload bridge — exposes native APIs to the renderer."
     change_log:
+      - date: 2026-07-20T14:38:47.864Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T11:11:21.921Z
         action: edit
         source: "claude:Dan"
@@ -1347,10 +1362,22 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T13:25:40.374Z
-    change_count: 25
+    last_modified: 2026-07-20T15:19:13.942Z
+    change_count: 29
     purpose: "cinerec MCP 툴 정의(zod) — 줌/트림/배속/자막/스타일/프레임/트랜스크립트/ask_user"
     change_log:
+      - date: 2026-07-20T15:19:13.942Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:19:11.084Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:36.675Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:35.005Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:25:40.374Z
         action: edit
         source: "claude:Dan"
@@ -1430,10 +1457,16 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T13:25:37.877Z
-    change_count: 19
+    last_modified: 2026-07-20T15:19:28.822Z
+    change_count: 21
     purpose: "편집 에이전트 시스템 프롬프트 + 턴별 프로젝트 스냅샷 프리픽스"
     change_log:
+      - date: 2026-07-20T15:19:28.822Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:48:00.369Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:25:37.877Z
         action: edit
         source: "claude:Dan"
@@ -1547,10 +1580,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T11:11:14.968Z
-    change_count: 13
+    last_modified: 2026-07-20T14:38:44.808Z
+    change_count: 14
     purpose: "AI 채팅 IPC — 프로바이더 상태/설정, 세션 생성·재개·중단, 이벤트 릴레이"
     change_log:
+      - date: 2026-07-20T14:38:44.808Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T11:11:14.968Z
         action: edit
         source: "claude:Dan"
@@ -1771,5 +1807,16 @@ files:
     purpose: "웹캠 생성형 변신(Decart Lucy 큐 API) — main 전용, 키 렌더러 미노출"
     change_log:
       - date: 2026-07-19T04:16:43.202Z
+        action: write
+        source: "claude:Dan"
+  "electron/recentProjects.ts":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T14:52:52.273Z
+    change_count: 1
+    purpose: "최근 프로젝트 목록 저장소 — <userData>/recent-projects.json에 기록(최대 8, 중복 제거)·죽은 경로 lazy 정리, 빈 화면 원클릭 재오픈용"
+    change_log:
+      - date: 2026-07-20T14:52:52.273Z
         action: write
         source: "claude:Dan"

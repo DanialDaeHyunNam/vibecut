@@ -31,6 +31,7 @@ import {
 import { useScopedT } from "@/contexts/I18nContext";
 import { useShortcuts } from "@/contexts/ShortcutsContext";
 import { useAudioPeaks } from "@/hooks/useAudioPeaks";
+import { stripCaptionMarkup } from "@/lib/captioning/captionRichText";
 import { isTextEditingTarget, matchesShortcut } from "@/lib/shortcuts";
 import { cn } from "@/lib/utils";
 import { ASPECT_RATIOS, type AspectRatio, getAspectRatioLabel } from "@/utils/aspectRatioUtils";
@@ -1801,7 +1802,7 @@ export default function TimelineEditor({
 			let label: string;
 
 			if (region.type === "text") {
-				const preview = region.content.trim() || t("labels.emptyText");
+				const preview = stripCaptionMarkup(region.content).trim() || t("labels.emptyText");
 				label = preview.length > 20 ? `${preview.substring(0, 20)}...` : preview;
 			} else if (region.type === "image") {
 				label = t("labels.imageItem");

@@ -77,7 +77,8 @@
 			"unsupportedFormatMessage": "يمكن إسقاط ملفات مشروع .openscreen فقط هنا. لاستيراد مقطع فيديو، استخدم زر \"استيراد ملف فيديو...\" بدلاً من ذلك.",
 			"couldNotOpenTitle": "تعذّر فتح الملف",
 			"couldNotOpenMessage": "تعذّر فتح ملف المشروع. ربما تم نقل الفيديو المرجعي أو حذفه."
-		}
+		},
+		"recentProjects": "المشاريع الأخيرة"
 	},
 	"regionClipboard": {
 		"copied": "تم نسخ سمات {{region}}",

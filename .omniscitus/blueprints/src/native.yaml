@@ -1,15 +1,21 @@
 version: 1
-updated: "2026-07-14"
+updated: 2026-07-20T14:53:27.406Z
 
 files:
   "src/native/client.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-31"
-    change_count: 4
+    created: 2026-03-16
+    last_modified: 2026-07-20T14:53:27.406Z
+    change_count: 6
     purpose: "Renderer-side native API typings/glue — client.ts."
     change_log:
+      - date: 2026-07-20T14:53:27.406Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:53:24.799Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-05-31"
         action: edit
         source: "user"
@@ -29,11 +35,17 @@ files:
   "src/native/contracts.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-06-05"
-    change_count: 8
+    created: 2026-03-16
+    last_modified: 2026-07-20T14:53:12.245Z
+    change_count: 10
     purpose: "Renderer-side native API typings/glue — contracts.ts."
     change_log:
+      - date: 2026-07-20T14:53:12.245Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:53:00.295Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-05"
         action: edit
         source: "user"
@@ -57,8 +69,8 @@ files:
   "src/native/hooks/useCursorRecordingData.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Renderer-side native API typings/glue — useCursorRecordingData.ts."
     change_log:
@@ -73,8 +85,8 @@ files:
   "src/native/hooks/useCursorTelemetry.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Renderer-side native API typings/glue — useCursorTelemetry.ts."
     change_log:
@@ -89,8 +101,8 @@ files:
   "src/native/index.ts":
     status: active
     source: "user:Etienne Lescot"
-    created: "2026-03-16"
-    last_modified: "2026-05-24"
+    created: 2026-03-16
+    last_modified: 2026-05-24
     change_count: 2
     purpose: "Renderer-side native API typings/glue — index.ts."
     change_log:

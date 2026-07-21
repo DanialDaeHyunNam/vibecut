@@ -111,10 +111,18 @@ export function ChatMessageList({
 	if (!busy && turnStartRef.current !== null) turnStartRef.current = null;
 	const turnElapsedMs = busy && turnStartRef.current !== null ? now - turnStartRef.current : 0;
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: items is the scroll trigger, not a read dependency
+	const prevItemCountRef = useRef(0);
 	useEffect(() => {
 		const el = containerRef.current;
-		if (el && stickToBottomRef.current) {
+		if (!el) return;
+		// Sending a message (typed, quick action, or context inject) re-engages
+		// bottom-following even if the user had scrolled up to read something.
+		const grew = items.length > prevItemCountRef.current;
+		prevItemCountRef.current = items.length;
+		if (grew && items[items.length - 1]?.kind === "user") {
+			stickToBottomRef.current = true;
+		}
+		if (stickToBottomRef.current) {
 			el.scrollTop = el.scrollHeight;
 		}
 	}, [items]);

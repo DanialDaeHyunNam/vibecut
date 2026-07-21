@@ -1,6 +1,7 @@
 import {
 	type AnnotationRegion,
 	type ArrowDirection,
+	CAPTION_FONT_REFERENCE_HEIGHT,
 	DEFAULT_CAPTION_BOX_PADDING_X_EM,
 	DEFAULT_CAPTION_BOX_PADDING_Y_EM,
 	DEFAULT_CAPTION_BOX_RADIUS_PX,
@@ -14,6 +15,7 @@ import {
 	getNormalizedMosaicBlockSize,
 	normalizeBlurType,
 } from "@/lib/blurEffects";
+import { parseCaptionSegments } from "@/lib/captioning/captionRichText";
 import { getCaptionRenderState } from "@/lib/captionMotion";
 
 let blurScratchCanvas: HTMLCanvasElement | null = null;
@@ -311,30 +313,44 @@ function renderText(
 
 	const availableWidth = width - containerPadding * 2;
 	const rawLines = annotation.content.split("\n");
-	const lines: string[] = [];
+	// Inline {#hex|word} color spans: tokens carry their run color through the
+	// wrap so a highlighted word keeps its color across line breaks.
+	const lines: Array<Array<{ text: string; color?: string }>> = [];
 	for (const rawLine of rawLines) {
 		if (!rawLine) {
-			lines.push("");
+			lines.push([]);
 			continue;
 		}
-		const tokens = tokenizeForWrap(rawLine);
-		let current = "";
+		const tokens = parseCaptionSegments(rawLine).flatMap((segment) =>
+			tokenizeForWrap(segment.text).map((text) => ({ text, color: segment.color })),
+		);
+		let current: Array<{ text: string; color?: string }> = [];
+		let currentText = "";
 		for (const token of tokens) {
-			const test = current + token;
-			if (current && ctx.measureText(test).width > availableWidth) {
-				lines.push(current);
-				current = token.trimStart();
+			const test = currentText + token.text;
+			if (currentText && ctx.measureText(test).width > availableWidth) {
+				if (current.length > 0) lines.push(current);
+				const trimmed = token.text.trimStart();
+				current = trimmed ? [{ text: trimmed, color: token.color }] : [];
+				currentText = trimmed;
 			} else {
-				current = test;
+				const last = current[current.length - 1];
+				if (last && last.color === token.color) {
+					last.text += token.text;
+				} else {
+					current.push({ ...token });
+				}
+				currentText = test;
 			}
 		}
-		if (current) lines.push(current);
+		if (current.length > 0) lines.push(current);
 	}
 	const lineHeight = scaledFontSize * 1.4;
 
 	const startY = textY - ((lines.length - 1) * lineHeight) / 2;
 
-	lines.forEach((line, index) => {
+	lines.forEach((runs, index) => {
+		const line = runs.map((run) => run.text).join("");
 		const currentY = startY + index * lineHeight;
 		const revealProgress = animationState.revealProgress;
 		const graphemes = splitGraphemes(line);
@@ -373,14 +389,36 @@ function renderText(
 				bgX = textX - horizontalPadding;
 			}
 
+			ctx.save();
+			const boxShadow = style.boxShadow ?? 0;
+			if (boxShadow > 0) {
+				// Same recipe as the preview's CSS box-shadow (0 0.08em 0.4em).
+				ctx.shadowColor = `rgba(0,0,0,${boxShadow})`;
+				ctx.shadowBlur = scaledFontSize * 0.4;
+				ctx.shadowOffsetY = scaledFontSize * 0.08;
+			}
 			ctx.fillStyle = style.backgroundColor;
 			ctx.beginPath();
 			ctx.roundRect(bgX, bgY, bgWidth, bgHeight, borderRadius);
 			ctx.fill();
+			ctx.restore();
 		}
 
-		ctx.fillStyle = style.color;
-		ctx.fillText(visibleLine, startX, currentY);
+		// Draw run by run so inline color spans render; typewriter reveal
+		// consumes graphemes across runs in order.
+		let remaining = revealProgress >= 1 ? Number.POSITIVE_INFINITY : visibleCount;
+		let runX = startX;
+		for (const run of runs) {
+			if (remaining <= 0) break;
+			const runGraphemes = splitGraphemes(run.text);
+			const visibleRunText =
+				remaining >= runGraphemes.length ? run.text : runGraphemes.slice(0, remaining).join("");
+			remaining -= runGraphemes.length;
+			if (!visibleRunText) continue;
+			ctx.fillStyle = run.color ?? style.color;
+			ctx.fillText(visibleRunText, runX, currentY);
+			runX += ctx.measureText(visibleRunText).width;
+		}
 
 		if (style.textDecoration === "underline") {
 			const metrics = ctx.measureText(visibleLine);
@@ -480,6 +518,9 @@ export async function renderAnnotations(
 
 		switch (annotation.type) {
 			case "text":
+				// Text scales against the output frame itself (px @1080p reference),
+				// NOT against the preview-to-export ratio — same rule as the preview
+				// overlay, so the caption's proportion of the frame is identical.
 				renderText(
 					ctx,
 					annotation,
@@ -487,7 +528,7 @@ export async function renderAnnotations(
 					y,
 					width,
 					height,
-					scaleFactor,
+					canvasHeight / CAPTION_FONT_REFERENCE_HEIGHT,
 					currentTimeMs,
 					layout.fontSize,
 				);

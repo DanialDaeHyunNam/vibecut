@@ -9,6 +9,7 @@ import {
 	type ProjectContext,
 	type ProjectFileResult,
 	type ProjectPathResult,
+	type RecentProjectEntry,
 	type SystemCapabilities,
 } from "./contracts";
 
@@ -100,6 +101,11 @@ export const nativeBridgeClient = {
 				domain: "project",
 				action: "loadProjectFileFromPath",
 				payload: { path },
+			}),
+		listRecentProjects: () =>
+			requireNativeBridgeData<RecentProjectEntry[]>({
+				domain: "project",
+				action: "listRecentProjects",
 			}),
 		setCurrentVideoPath: (path: string) =>
 			requireNativeBridgeData<ProjectPathResult>({

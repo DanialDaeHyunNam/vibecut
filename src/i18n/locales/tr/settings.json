@@ -178,7 +178,8 @@
 		"fontWeight": "Kalınlık",
 		"boxPaddingX": "Kutu yatay dolgu",
 		"boxPaddingY": "Kutu dikey dolgu",
-		"boxRadius": "Kutu köşe yuvarlaklığı"
+		"boxRadius": "Kutu köşe yuvarlaklığı",
+		"boxShadow": "Kutu gölgesi"
 	},
 	"fontStyles": {
 		"classic": "Klasik",

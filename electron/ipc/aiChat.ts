@@ -87,6 +87,28 @@ export function registerAiChatHandlers(
 		}
 	});
 
+	// Write-through transcript backup: the renderer mirrors its localStorage copy
+	// here so the chat survives quota failures and storage wipes. Same sidecar
+	// the recovery path reads.
+	ipcMain.handle("ai-chat-write-backup", async (_event, videoPath: unknown, payload: unknown) => {
+		if (typeof videoPath !== "string" || !videoPath) return false;
+		const data = payload as { items?: unknown; sessionId?: unknown } | null;
+		if (!data || !Array.isArray(data.items)) return false;
+		try {
+			await fs.writeFile(
+				`${videoPath}.chat.json`,
+				JSON.stringify({
+					items: data.items,
+					sessionId: typeof data.sessionId === "string" ? data.sessionId : null,
+				}),
+				"utf-8",
+			);
+			return true;
+		} catch {
+			return false; // best-effort — localStorage still has the primary copy
+		}
+	});
+
 	ipcMain.handle(
 		"ai-restyle-webcam",
 		async (_event, payload: { sourcePath?: unknown; prompt?: unknown }) => {

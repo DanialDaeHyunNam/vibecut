@@ -179,7 +179,8 @@
 		"fontWeight": "字重",
 		"boxPaddingX": "文字框水平內邊距",
 		"boxPaddingY": "文字框垂直內邊距",
-		"boxRadius": "文字框圓角"
+		"boxRadius": "文字框圓角",
+		"boxShadow": "文字框陰影"
 	},
 	"fontStyles": {
 		"classic": "經典",

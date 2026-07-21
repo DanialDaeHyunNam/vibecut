@@ -80,6 +80,12 @@ export function AiChatPanel({
 	useEffect(() => {
 		if (!chatStarted) setUsedActions({ understand: false, autoEdit: false });
 	}, [chatStarted]);
+	// A transcript restored from a previous session means this project has been
+	// worked on before — treat both one-time CTAs as used so they sit in the ⋮
+	// menu instead of re-appearing as big buttons above the input.
+	useEffect(() => {
+		if (chat.restoredFromStorage) setUsedActions({ understand: true, autoEdit: true });
+	}, [chat.restoredFromStorage]);
 
 	const runUnderstand = () => {
 		setUsedActions((prev) => ({ ...prev, understand: true }));

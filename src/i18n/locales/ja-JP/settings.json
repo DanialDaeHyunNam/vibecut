@@ -178,7 +178,8 @@
 		"fontWeight": "太さ",
 		"boxPaddingX": "ボックス左右パディング",
 		"boxPaddingY": "ボックス上下パディング",
-		"boxRadius": "ボックス角丸"
+		"boxRadius": "ボックス角丸",
+		"boxShadow": "ボックスの影"
 	},
 	"fontStyles": {
 		"classic": "クラシック",

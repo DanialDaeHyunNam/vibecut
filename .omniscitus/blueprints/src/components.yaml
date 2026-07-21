@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T13:26:09.553Z
+updated: 2026-07-20T15:21:51.376Z
 
 files:
   "src/components/launch/CountdownOverlay.tsx":
@@ -805,10 +805,34 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-12-01
-    last_modified: 2026-07-20T13:23:22.522Z
-    change_count: 15
+    last_modified: 2026-07-20T15:21:20.501Z
+    change_count: 23
     purpose: "Video editor — AnnotationOverlay.tsx."
     change_log:
+      - date: 2026-07-20T15:21:20.501Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:19:00.286Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:14:47.597Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:14:44.811Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:10.967Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:09.335Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:05.329Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:46:59.820Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:23:22.522Z
         action: edit
         source: "claude:Dan"
@@ -848,10 +872,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-12-01
-    last_modified: 2026-07-20T13:24:40.280Z
-    change_count: 25
+    last_modified: 2026-07-20T15:19:04.301Z
+    change_count: 27
     purpose: "Video editor — AnnotationSettingsPanel.tsx."
     change_log:
+      - date: 2026-07-20T15:19:04.301Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:50.811Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:24:40.280Z
         action: edit
         source: "claude:Dan"
@@ -968,10 +998,19 @@ files:
     status: active
     source: "user:makaradam"
     created: 2026-05-31
-    last_modified: 2026-06-05
-    change_count: 3
+    last_modified: 2026-07-20T14:54:27.876Z
+    change_count: 6
     purpose: "Video editor — EditorEmptyState.tsx."
     change_log:
+      - date: 2026-07-20T14:54:27.876Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:54:12.975Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:54:05.610Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-06-05"
         action: edit
         source: "user"
@@ -1134,10 +1173,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T12:38:43.229Z
-    change_count: 114
+    last_modified: 2026-07-20T15:15:57.126Z
+    change_count: 115
     purpose: "Video editor — SettingsPanel.tsx."
     change_log:
+      - date: 2026-07-20T15:15:57.126Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T12:38:43.229Z
         action: edit
         source: "claude:Dan"
@@ -1278,10 +1320,34 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T13:07:59.085Z
-    change_count: 215
+    last_modified: 2026-07-20T15:17:03.084Z
+    change_count: 223
     purpose: "Video editor — VideoEditor.tsx."
     change_log:
+      - date: 2026-07-20T15:17:03.084Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:16:58.938Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:16:57.490Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:16:46.814Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:52:33.823Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:52:15.270Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:52:11.130Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:52:09.222Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:07:59.085Z
         action: edit
         source: "claude:Dan"
@@ -2134,10 +2200,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T13:11:26.942Z
-    change_count: 117
+    last_modified: 2026-07-20T15:18:49.645Z
+    change_count: 119
     purpose: "Video editor — TimelineEditor.tsx."
     change_log:
+      - date: 2026-07-20T15:18:49.645Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:18:37.273Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:11:26.942Z
         action: edit
         source: "claude:Dan"
@@ -2437,10 +2509,19 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-20T13:22:58.534Z
-    change_count: 37
+    last_modified: 2026-07-20T15:14:29.064Z
+    change_count: 40
     purpose: "Video editor — types.ts."
     change_log:
+      - date: 2026-07-20T15:14:29.064Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:46:53.785Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:46:51.630Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:22:58.534Z
         action: edit
         source: "claude:Dan"
@@ -2890,10 +2971,19 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T08:04:22.053Z
-    change_count: 22
+    last_modified: 2026-07-20T15:21:51.376Z
+    change_count: 25
     purpose: "대화 목록 — 마크다운 렌더, 툴 칩, 질문 카드, 자동 스크롤, CTA 버튼 2종"
     change_log:
+      - date: 2026-07-20T15:21:51.376Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:21:15.891Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:14:04.654Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T08:04:22.053Z
         action: edit
         source: "claude:Dan"
@@ -3040,10 +3130,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T10:10:16.225Z
-    change_count: 22
+    last_modified: 2026-07-20T14:48:57.643Z
+    change_count: 23
     purpose: "AI 탭 루트 — 미설치/미로그인 게이트 + 대화 UI 조립"
     change_log:
+      - date: 2026-07-20T14:48:57.643Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T10:10:16.225Z
         action: edit
         source: "claude:Dan"
@@ -3114,10 +3207,25 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T13:25:29.350Z
-    change_count: 30
+    last_modified: 2026-07-20T15:20:33.468Z
+    change_count: 35
     purpose: "AI 편집 커맨드 순수 실행기 — 검증·클램핑 후 Partial<EditorState> 산출 (undo 1스텝)"
     change_log:
+      - date: 2026-07-20T15:20:33.468Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:20:06.348Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T15:19:20.231Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:32.165Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:47:30.266Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:25:29.350Z
         action: edit
         source: "claude:Dan"
@@ -3212,10 +3320,13 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T13:26:09.553Z
-    change_count: 12
+    last_modified: 2026-07-20T14:47:51.813Z
+    change_count: 13
     purpose: "executor 단위 테스트 — 클램핑/배치/겹침/자막/스타일 14케이스"
     change_log:
+      - date: 2026-07-20T14:47:51.813Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T13:26:09.553Z
         action: edit
         source: "claude:Dan"
@@ -3342,5 +3453,16 @@ files:
     purpose: "AI 턴 경과시간 언어중립 포맷(formatElapsed: 8s/1m 12s)"
     change_log:
       - date: 2026-07-20T08:04:12.511Z
+        action: write
+        source: "claude:Dan"
+  "src/components/video-editor/ExportOptionsDialog.tsx":
+    status: active
+    source: "claude:Dan"
+    created: 2026-07-20
+    last_modified: 2026-07-20T15:16:31.363Z
+    change_count: 1
+    purpose: "상단 바 Export용 옵션 모달 — 해상도(720p/1080p/Source)·자막 굽기/SRT 토글 확인 후 export 시작, SettingsPanel 상태 공유"
+    change_log:
+      - date: 2026-07-20T15:16:31.363Z
         action: write
         source: "claude:Dan"

@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T11:23:31.511Z
+updated: 2026-07-20T14:48:49.902Z
 
 files:
   "src/hooks/audioPeaksWorker.ts":
@@ -289,10 +289,25 @@ files:
     status: active
     source: "claude:Dan"
     created: 2026-07-16
-    last_modified: 2026-07-20T11:11:34.192Z
-    change_count: 25
+    last_modified: 2026-07-20T14:48:49.902Z
+    change_count: 30
     purpose: "채팅 상태 훅 — 이벤트 구독, 프로젝트별 localStorage 저장, 세션 resume, ask_user 응답"
     change_log:
+      - date: 2026-07-20T14:48:49.902Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:48:48.297Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:48:45.893Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:48:43.521Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-20T14:39:23.479Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-20T11:11:34.192Z
         action: edit
         source: "claude:Dan"

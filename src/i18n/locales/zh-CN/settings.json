@@ -178,7 +178,8 @@
 		"fontWeight": "字重",
 		"boxPaddingX": "文本框水平内边距",
 		"boxPaddingY": "文本框垂直内边距",
-		"boxRadius": "文本框圆角"
+		"boxRadius": "文本框圆角",
+		"boxShadow": "文本框阴影"
 	},
 	"fontStyles": {
 		"classic": "经典",

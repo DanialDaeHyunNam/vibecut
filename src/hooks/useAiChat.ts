@@ -107,15 +107,28 @@ export function useAiChat(
 	const [items, setItems] = useState<AiChatItem[]>([]);
 	const [sessionId, setSessionId] = useState<string | null>(null);
 	const [busy, setBusy] = useState(false);
+	// True when this project's transcript was hydrated from storage (localStorage
+	// or the file backup) — i.e. past sessions already happened. Lets the panel
+	// treat one-time CTAs (understand/auto-edit) as already used.
+	const [restoredFromStorage, setRestoredFromStorage] = useState(false);
 	const nextIdRef = useRef(1);
 	const sessionIdRef = useRef<string | null>(null);
 	sessionIdRef.current = sessionId;
 
 	const allocId = useCallback(() => nextIdRef.current++, []);
 
+	// The persist effect runs in the same commit as the load effect below, while
+	// `items` still holds the PREVIOUS state (empty on mount, or the previous
+	// project's transcript on a key switch). Writing that stale state would wipe
+	// or cross-contaminate the saved chat — and if the follow-up re-save then
+	// fails (quota), the wipe sticks. The load effect arms this flag so the
+	// persist effect skips exactly that one stale run.
+	const skipNextPersistRef = useRef(false);
+
 	// Load the project's saved transcript on project switch; drop any live
 	// main-process session so the next send resumes this project's session.
 	useEffect(() => {
+		skipNextPersistRef.current = true;
 		let saved = loadPersistedChat(storage);
 		// Recover a chat stranded under the legacy (project-path) key: adopt it and
 		// re-save under the current key so this migration only ever runs once.
@@ -140,20 +153,25 @@ export function useAiChat(
 		}
 		setItems(saved.items);
 		setSessionId(saved.sessionId);
+		setRestoredFromStorage(saved.items.length > 0);
 		nextIdRef.current = saved.items.reduce((max, item) => Math.max(max, item.id), 0) + 1;
 		setBusy(false);
 		void window.electronAPI.aiChatReset();
 
-		// Last-resort recovery: a `<video>.chat.json` sidecar (rebuilt from a Claude
-		// Code session log) is imported only when nothing else had a transcript, so
-		// the panel shows the recovered chat and the next message resumes its session.
-		if (saved.items.length === 0 && storageKey) {
+		// Recovery: the `<video>.chat.json` sidecar is the write-through file backup
+		// (also rebuilt from Claude Code session logs after a loss). Adopt it
+		// whenever it holds MORE of the conversation than localStorage — that means
+		// localStorage fell behind (quota failure, storage wipe, stale-write race).
+		if (storageKey) {
+			const savedCount = saved.items.length;
 			let cancelled = false;
 			void window.electronAPI.aiChatReadBackup(storageKey).then((backup) => {
-				if (cancelled || !backup || backup.items.length === 0) return;
+				if (cancelled || !backup || !Array.isArray(backup.items)) return;
+				if (backup.items.length <= savedCount) return;
 				const items = backup.items as AiChatItem[];
 				setItems(items);
 				setSessionId(backup.sessionId);
+				setRestoredFromStorage(true);
 				nextIdRef.current = items.reduce((max, item) => Math.max(max, item.id), 0) + 1;
 			});
 			return () => {
@@ -162,18 +180,34 @@ export function useAiChat(
 		}
 	}, [storage, legacyStorage, storageKey]);
 
-	// Persist transcript + session id (skips while nothing is loaded).
+	// Persist transcript + session id (skips the stale same-commit run after a
+	// load — see skipNextPersistRef above).
 	useEffect(() => {
 		if (!storage) return;
+		if (skipNextPersistRef.current) {
+			skipNextPersistRef.current = false;
+			return;
+		}
 		try {
 			localStorage.setItem(
 				storage,
 				JSON.stringify({ items: items.slice(-MAX_PERSISTED_ITEMS), sessionId }),
 			);
 		} catch {
-			// Quota/serialization errors just lose persistence, not the session.
+			// Quota/serialization errors lose the localStorage copy only — the
+			// file backup below still captures the transcript.
 		}
-	}, [storage, items, sessionId]);
+		// Write-through file backup (debounced): survives localStorage loss.
+		// Never mirror an empty transcript — that would clobber a recovery sidecar.
+		if (!storageKey || items.length === 0) return;
+		const timer = setTimeout(() => {
+			void window.electronAPI.aiChatWriteBackup(storageKey, {
+				items: items.slice(-MAX_PERSISTED_ITEMS),
+				sessionId,
+			});
+		}, 800);
+		return () => clearTimeout(timer);
+	}, [storage, storageKey, items, sessionId]);
 
 	// Initial load: providers, persisted selection, provider status.
 	useEffect(() => {
@@ -444,6 +478,7 @@ export function useAiChat(
 		refreshStatus,
 		items,
 		busy,
+		restoredFromStorage,
 		send,
 		stop,
 		answerQuestion,
