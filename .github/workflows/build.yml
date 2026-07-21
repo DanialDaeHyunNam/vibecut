@@ -162,7 +162,6 @@ jobs:
           # path (imports the p12 into its own temp keychain); if it resolves
           # empty for any reason, CSC_KEYCHAIN points identity discovery at the
           # keychain our import step provably populated.
-          DEBUG: electron-builder
           CSC_LINK: ${{ secrets.MAC_CERTIFICATE_P12 }}
           CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTIFICATE_PASSWORD }}
           CSC_NAME: ${{ secrets.MAC_CSC_NAME }}
@@ -192,7 +191,7 @@ jobs:
         run: |
           codesign --verify --deep --strict "${{ steps.find_app.outputs.app_bundle }}"
           # An ad-hoc fallback signature must fail the build, not ship.
-          codesign -dv "${{ steps.find_app.outputs.app_bundle }}" 2>&1 | tee /tmp/sig.txt
+          codesign -dvv "${{ steps.find_app.outputs.app_bundle }}" 2>&1 | tee /tmp/sig.txt
           grep -q "Authority=Developer ID Application" /tmp/sig.txt
 
       - name: Create DMG
