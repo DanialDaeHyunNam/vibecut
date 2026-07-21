@@ -142,6 +142,11 @@ jobs:
       - name: Package .app bundle
         run: npx electron-builder --mac --${{ matrix.arch }} --dir --publish never
         env:
+          # CSC_LINK/KEY_PASSWORD is electron-builder's canonical CI path: it
+          # imports the p12 into its own temp keychain and signs from there —
+          # runner keychain search-list quirks stop mattering.
+          CSC_LINK: ${{ secrets.MAC_CERTIFICATE_P12 }}
+          CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTIFICATE_PASSWORD }}
           CSC_NAME: ${{ secrets.MAC_CSC_NAME }}
           CSC_IDENTITY_AUTO_DISCOVERY: ${{ steps.signing.outputs.enabled == 'true' && 'true' || 'false' }}
 
