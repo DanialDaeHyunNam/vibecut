@@ -193,7 +193,7 @@ jobs:
         if: steps.signing.outputs.enabled == 'true' && !contains(github.ref_name, '-')
         run: |
           codesign --force \
-            --sign "${{ secrets.MAC_CSC_NAME }}" \
+            --sign "Developer ID Application: ${{ secrets.MAC_CSC_NAME }}" \
             --timestamp \
             "${{ steps.dmg.outputs.dmg_path }}"
 
