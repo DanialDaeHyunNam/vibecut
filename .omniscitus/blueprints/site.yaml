@@ -150,7 +150,7 @@ files:
     created: 2026-07-21
     last_modified: 2026-07-21T01:49:37.093Z
     change_count: 1
-    purpose: ""
+    purpose: "검색엔진용 사이트맵 — 랜딩 단일 URL, robots.txt에서 참조"
     change_log:
       - date: 2026-07-21T01:49:37.093Z
         action: write
@@ -161,7 +161,7 @@ files:
     created: 2026-07-21
     last_modified: 2026-07-21T01:49:37.787Z
     change_count: 1
-    purpose: ""
+    purpose: "크롤러 허용 + sitemap.xml 위치 안내"
     change_log:
       - date: 2026-07-21T01:49:37.787Z
         action: write

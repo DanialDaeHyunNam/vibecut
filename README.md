@@ -63,7 +63,6 @@ Get the latest build from the [Releases page](https://github.com/DanialDaeHyunNa
 | Windows 10/11 | `Vibecut.Setup.<version>.exe` |
 | Linux | Build from source (AppImage/deb/pacman targets) — see Development below |
 
-> If no release is listed yet, the first packaged build is still on its way — build from source in the meantime (see Development below).
 
 ### About the "unverified developer" warning
 

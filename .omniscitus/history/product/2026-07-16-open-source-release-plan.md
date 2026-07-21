@@ -40,13 +40,26 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 
 **Learned**: 정적 파일(랜딩) 배포 인프라를 정책 매니페스트 호스팅에 재활용하면 데스크톱 앱에 재배포 없는 킬스위치를 공짜로 얻는다. 라이선스 리스크는 포크 코드가 아니라 나중에 얹은 의존성에서 오므로 공개 전 스윕이 필수(예상대로 GPL 계열 0). 스크린 레코더의 자기 UI 녹화는 구조적 제약(단일 윈도우) — 데모는 OS 네이티브 캡처 우회가 표준.
 
+### 2026-07-21
+**Focus**: 랜딩 "살아있는 데모" 재구축 + 공개 전 점검 + **v1.7.0/v1.7.1 첫 공개 릴리즈(서명·공증)**
+- **랜딩 v3**: 히어로 목업을 실제 에디터 1:1 레플리카로(상단바·재생 필·타임라인 툴바·5레인 컬러 핸들·AI 레일) + 시나리오 루프 애니메이션(타이핑→툴 칩→레인 블록 팝→재생·오토줌·인라인 컬러 자막). Electron 오프스크린 캡처로 검증 반복. **B6 데모 영상 완성**: Vibecut로 만든 28s 프로모를 37MB→4MB(1080p30 CRF26 faststart) 재인코딩+포스터로 쇼케이스 등록(자동재생 muted loop). 3열 footer(프로젝트/팔로우), sitemap/robots/OG/canonical. Vercel 배포 ×3
+- **공개 전 스윕**: 시크릿 0·LICENSE 듀얼 카피라이트 유지 ✓·CLAUDE.md 개인 인증서 식별자 제네릭화. contributors 112명 = git 히스토리 유지 포크의 관례(Brave/VSCodium 동례)로 유지 결정. omniscitus 필수화는 비추천(기여 장벽) — "권장 + 메인테이너 /blueprint-sync" 모델 제안
+- **문서 갱신**: CLAUDE.md AI 섹션 전면(멀티 프로바이더 실동작·자막 시스템·대화 3중 지속성), ARCHITECTURE.md에 순수 헬퍼 패턴·자막 1080p 규약·채팅 지속성 계층 추가
+- **v1.7.0**: 태그 CI 경로 채택(로컬은 Windows WGC 헬퍼 빌드 불가). CI 리브랜딩 잔재 수정(아티팩트 글롭·DMG명 Openscreen→Vibecut, winget/homebrew 자동 트리거 비활성), 발행 토큰 폴백(github.token). 첫 발행은 아티팩트 수동 업로드로
+- **v1.7.1 서명·공증 7차전**: Apple Developer(iOS 가입) 계정으로 Developer ID Application 인증서 발급 가이드 → 시크릿 6종 → ①CSC_NAME 접두사(eb는 무접두사/raw codesign은 풀네임 — 상충을 워크플로에서 접두사 부착으로 해소) ②키체인 가시성(러너에서 명시 경로 조회만 성공) ③CSC_LINK 정식 경로+adhoc 차단 게이트 ④진단 계측(env 길이·identity 조회·DEBUG) → **진범: 시크릿 p12가 옛 Apple Development 인증서**(진단 로그로 확정) ⑤올바른 p12 교체 → 서명 성공 ⑥게이트 버그(-dv는 Authority 미출력→-dvv) 수정 → **전 잡 성공, spctl 검증 포함 자동 발행**. 랜딩 경고 안내를 Windows 전용으로 교체·배포
+- 설치 용량 1.19GB 정상 판정(Claude 바이너리 240MB+Electron+Whisper 번들)
+
+**Learned**: 서명 실패 5연속의 교훈 — "1 valid identities found"는 **어떤** identity인지 봐야 한다(진단 스텝이 곧바로 진범을 찍음). CI 반복 대신 처음부터 계측(env 길이·identity 덤프·DEBUG)을 넣는 게 총비용이 싸다. electron-builder(무접두사)와 raw codesign(공통명 접두사 매칭)의 CSC_NAME 요구가 다르므로 한 시크릿을 양쪽에 쓰려면 워크플로에서 변환해야 한다. 포크의 릴리즈 CI는 브랜딩 문자열이 아티팩트 글롭·재패킹 스텝·패키지 채널에 숨어 있어 태그 한 번 태워보기 전엔 안 드러난다.
+
 ## Pending
+- [ ] **Agent SDK 동봉 재배포 약관 확인 (B4 — 우선순위 상승)**: v1.7.1부터 claude 바이너리(240MB)가 실제로 배포되기 시작함. code.claude.com/docs/en/legal-and-compliance 확인 필요
+- [ ] mac DMG 실설치 확인(사용자 진행 중 — 용량 확인함, 무경고 오픈 여부 확인 대기) + Windows Setup 실기기 스모크
 - [x] 브랜드명 확정: **Vibecut** (2026-07-16 — "바이브 편집", 말로 시키는 AI 편집이라는 차별점을 이름에 담음. CapCut 연상/상표 충돌은 공개 전 확인)
 - [x] Vibecut 리브랜딩 적용 (2026-07-17): productName/appId(app.vibecut)/package명/창 타이틀/메뉴/트레이·로고 에셋/전 로케일 103곳 + LICENSE 저작권 줄 + README 재작성(AI 중심, OpenScreen 크레딧)
 - [ ] 리브랜딩 후속: .openscreen 프로젝트 확장자(.vibecut 병행 지원), localStorage 키/OPENSCREEN_* env 정리, SettingsPanel의 버그리포트 링크(현재 upstream repo로 향함 — 자체 repo 생성 후 교체), 데모 GIF를 README에 추가
-- [ ] 첫 릴리스 발행 시 README 정리: 다운로드 섹션의 "first packaged build is still on its way" 안내 문구 제거 (2026-07-17에 다운로드 버튼/미서명 경고 안내/Getting started 추가 — 버튼은 releases/latest로 연결, 릴리스 생성 전에는 404 대신 릴리스 목록으로 감). 릴리스 자산 파일명은 electron-builder artifactName 그대로여야 표의 파일명과 일치
+- [x] 첫 릴리스 발행 시 README 정리 (2026-07-21 v1.7.1 발행과 함께 문구 제거): 다운로드 섹션의 "first packaged build is still on its way" 안내 문구 제거 (2026-07-17에 다운로드 버튼/미서명 경고 안내/Getting started 추가 — 버튼은 releases/latest로 연결, 릴리스 생성 전에는 404 대신 릴리스 목록으로 감). 릴리스 자산 파일명은 electron-builder artifactName 그대로여야 표의 파일명과 일치
 - [x] `npx license-checker` 의존성 스윕 (2026-07-17): GPL/AGPL 없음 ✅. 결과: MIT 470·ISC 21·BSD 18·Apache 17 등 전부 무해. 플래그 항목 판정 — mediabunny(MPL-2.0: 파일단위 약한 카피레프트, 미수정 사용이라 문제없음), gsap(Custom: Webflow 인수 후 상업 포함 전면 무료), web-demuxer/flatbuffers(휴리스틱 별표, 실제 MIT/Apache-2.0), 루트 package.json UNLICENSED→"license": "MIT" 수정 완료. **Agent SDK(Anthropic 약관)만 남은 쟁점 — B4 패키징 때 동봉 재배포 약관 확인**
-- [ ] 데모 영상(B6): cinerec으로 cinerec 홍보 영상을 찍기 (AI 자동편집 사용 — 도그푸딩 스토리가 곧 마케팅). **촬영 방식 결정(2026-07-19)**: Vibecut은 HUD(녹화 툴바)↔에디터가 단일 메인 윈도우를 번갈아 쓰는 구조라(`switch-to-editor`가 HUD를 닫음) + 단일 인스턴스 락 → 한 인스턴스로 "녹화 중 + 에디터 사용" 동시 불가. **권장: macOS Cmd+Shift+5로 에디터 사용 화면을 영역 녹화 → Vibecut에 Import Video로 불러와 편집**(EditorEmptyState "Import Video File…", showOpenDialog 이미 지원). **주의**: 임포트한 macOS 녹화본은 Vibecut 네이티브 클릭 텔레메트리가 없어 자동 줌이 안 뜸 → 수동 줌 또는 AI(프레임 비전)로 배치. 문서: docs/ai-providers.md
+- [x] 데모 영상(B6) (2026-07-21 완성 — Vibecut 도그푸딩 프로모 28s, 랜딩 쇼케이스 자동재생 게시): cinerec으로 cinerec 홍보 영상을 찍기 (AI 자동편집 사용 — 도그푸딩 스토리가 곧 마케팅). **촬영 방식 결정(2026-07-19)**: Vibecut은 HUD(녹화 툴바)↔에디터가 단일 메인 윈도우를 번갈아 쓰는 구조라(`switch-to-editor`가 HUD를 닫음) + 단일 인스턴스 락 → 한 인스턴스로 "녹화 중 + 에디터 사용" 동시 불가. **권장: macOS Cmd+Shift+5로 에디터 사용 화면을 영역 녹화 → Vibecut에 Import Video로 불러와 편집**(EditorEmptyState "Import Video File…", showOpenDialog 이미 지원). **주의**: 임포트한 macOS 녹화본은 Vibecut 네이티브 클릭 텔레메트리가 없어 자동 줌이 안 뜸 → 수동 줌 또는 AI(프레임 비전)로 배치. 문서: docs/ai-providers.md
 - [ ] (보류, 릴리스 후) 녹화+에디터 동시 사용 지원 검토 — 단일 윈도우 HUD↔에디터 스왑 + 단일 인스턴스 락을 풀어야 하는 실제 아키텍처 변경. 일반 사용자는 거의 불필요하나 셀프-도그푸딩 녹화엔 유용. 릴리스 전엔 리스크가 커서 보류, B6는 위 Cmd+Shift+5 우회로 해결
 - [x] 자체 git repo 분리 + GitHub 공개 (2026-07-17: https://github.com/DanialDaeHyunNam/vibecut — public, main 푸시 완료. shallow clone이라 `git fetch --unshallow upstream` 후 푸시. upstream 태그는 의도적으로 미푸시, upstream remote는 유지)
 - [ ] 홍보: Show HN / Product Hunt / X·Threads 데모 클립 / GeekNews·disquiet(한국) / r/opensource / awesome-electron 류 리스트 PR
