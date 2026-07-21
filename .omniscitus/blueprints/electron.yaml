@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-20T15:19:28.822Z
+updated: 2026-07-21T07:29:50.991Z
 
 files:
   "electron/diagnostics/main-log-buffer.test.ts":
@@ -276,10 +276,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T09:23:37.946Z
-    change_count: 48
+    last_modified: 2026-07-21T07:29:45.123Z
+    change_count: 50
     purpose: "Electron main process — window lifecycle, recording orchestration."
     change_log:
+      - date: 2026-07-21T07:29:45.123Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-21T07:17:06.929Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:23:37.946Z
         action: edit
         source: "claude:Dan"
@@ -1223,10 +1229,16 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-16T09:30:05.527Z
-    change_count: 28
+    last_modified: 2026-07-21T07:29:50.991Z
+    change_count: 30
     purpose: "BrowserWindow creation/management."
     change_log:
+      - date: 2026-07-21T07:29:50.991Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-21T07:29:46.516Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-16T09:30:05.527Z
         action: edit
         source: "claude:Dan"

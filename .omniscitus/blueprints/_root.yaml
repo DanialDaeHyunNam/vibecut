@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-07-21T06:51:11.310Z
+updated: 2026-07-21T07:34:21.511Z
 
 files:
   ".editorconfig":
@@ -216,10 +216,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-21T06:51:11.310Z
-    change_count: 48
+    last_modified: 2026-07-21T07:24:14.394Z
+    change_count: 49
     purpose: "Upstream OpenScreen README — install, platform capture notes, community links."
     change_log:
+      - date: 2026-07-21T07:24:14.394Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-21T06:51:11.310Z
         action: edit
         source: "claude:Dan"
@@ -501,10 +504,13 @@ files:
     status: active
     source: "user:Siddharth"
     created: 2025-11-28
-    last_modified: 2026-07-05
-    change_count: 80
+    last_modified: 2026-07-21T07:34:21.511Z
+    change_count: 81
     purpose: "npm manifest — dev/build scripts incl. native helper builds (build:native:mac/win)."
     change_log:
+      - date: 2026-07-21T07:34:21.511Z
+        action: edit
+        source: "claude:Dan"
       - date: "2026-07-05"
         action: edit
         source: "user"
