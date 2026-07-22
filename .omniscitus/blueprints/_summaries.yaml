@@ -9,10 +9,10 @@ summaries:
     stale: false
     file_count: 9
   electron:
-    description: "Electron main — 윈도우, IPC, 녹화, 네이티브 브리지, AI 에이전트 레이어(자막 인라인 색상·boxShadow·1080p 폰트 단위 스키마), 채팅 사이드카 백업, 최근 프로젝트 저장소"
-    generated_at: 2026-07-21
+    description: "Electron main — 윈도우, IPC, 녹화, 네이티브 브리지, AI 에이전트 레이어(자막 인라인 색상·boxShadow·1080p 폰트 단위 스키마), 채팅 사이드카 백업, 최근 프로젝트 저장소. 시작 안전장치: second-instance ready 가드, 패키지 빌드는 VITE_DEV_SERVER_URL 무시"
+    generated_at: 2026-07-22
     generated_by: wrap-up
-    stale: true
+    stale: false
     file_count: 69
   "electron/ipc":
     description: "IPC 핸들러 — 네이티브 브리지 디스패치(recents 래핑), AI 채팅(백업 읽기/쓰기), 녹화 스트림, 웹캠 프리뷰"

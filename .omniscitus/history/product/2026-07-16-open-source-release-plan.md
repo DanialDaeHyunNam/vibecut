@@ -11,6 +11,7 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 - **Requirements**: MIT 의무 준수, upstream(EtienneLescot/openscreen) 개선사항 계속 수용 가능한 구조 유지
 - **Decisions**: ① 재공개 가능 확정 — MIT 조건은 원저작자 고지(Siddharth Vaddem) + 라이선스 전문 유지뿐, 그 위에 자체 저작권 줄 추가 ② README에 "based on OpenScreen" 크레딧 명시(관례+upstream 머지 용이) ③ 자체 브랜드명 사용(혼동 방지)
 - **Constraints**: `@anthropic-ai/claude-agent-sdk`는 MIT 아님(© Anthropic PBC, 약관 적용) — **소스 공개는 무관**(의존성 참조일 뿐), **패키징 앱(dmg) 배포 시** SDK+claude 바이너리(240MB) 동봉 약관 확인 필요. 대안: 첫 실행 시 다운로드
+- **Decisions(추가 2026-07-22)**: ④ 통합 SNS 계정 `@build_useful`(Threads/X, 표시명 dan.builder/dan builder)로 전 도구 홍보 일원화 — langtwo 제외, 구 @all.libertas/@danialnamkr 전 서비스 footer 교체 ⑤ 홍보 카피는 "데모 영상 고통 → AI가 대신" 스토리 + OpenScreen 크레딧 명시, em dash/middle dot/콜론 금지(Dan 취향) ⑥ X 반복 댓글은 스팸 판정 위험 — 변주 6종·링크는 2~3회당 1번·첫 문장은 상대 포스트 언급
 
 ## Timeline
 
@@ -51,9 +52,20 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 
 **Learned**: 서명 실패 5연속의 교훈 — "1 valid identities found"는 **어떤** identity인지 봐야 한다(진단 스텝이 곧바로 진범을 찍음). CI 반복 대신 처음부터 계측(env 길이·identity 덤프·DEBUG)을 넣는 게 총비용이 싸다. electron-builder(무접두사)와 raw codesign(공통명 접두사 매칭)의 CSC_NAME 요구가 다르므로 한 시크릿을 양쪽에 쓰려면 워크플로에서 변환해야 한다. 포크의 릴리즈 CI는 브랜딩 문자열이 아티팩트 글롭·재패킹 스텝·패키지 채널에 숨어 있어 태그 한 번 태워보기 전엔 안 드러난다.
 
+### 2026-07-22
+**Focus**: 실설치 피드백 3종 수정 → **v1.7.2 릴리스** + 계정 통합 전 서비스 배포 + **SNS 첫 홍보 게시**
+- **실설치 버그 3종** (Dan의 arm64 맥 실설치에서 발견): ① `second-instance`가 ready 전 발화 시 screen 모듈 크래시 다이얼로그(느린 첫 실행 중 재클릭 시나리오) → `app.isReady()` 가드 ② Apple Silicon에서 x64 DMG 오설치(macOS 26 "업데이트 필요" 경고 유발) → 랜딩 맥 다운로드에 아키텍처 선택 모달(GitHub API로 최신 DMG 직접 링크, 오프라인 폴백) ③ dev 세션의 `launchctl setenv VITE_DEV_SERVER_URL` 잔류로 설치본이 죽은 localhost를 열어 창 안 뜸 → 패키지 빌드는 `app.isPackaged`로 env 무시. PR #15 머지
+- README 낡은 "unverified developer" 섹션 제거(서명 완료 반영), 다운로드 표를 실제 자산명으로 정정, 랜딩 죽은 macOS 게이트 KO 문자열 8종+`.gk` CSS 제거
+- **v1.7.2**: 버전 범프+태그 → CI 전 잡 성공(서명·공증 포함), 자산 6종 발행. 랜딩 다운로드 모달은 API 조회라 자동으로 새 버전 서빙
+- **계정 통합 배포**: cinerec 랜딩 + card-news + zclip + jibowner footer를 @build_useful로 교체·전부 라이브 검증. **핵심 발견: 이 워크스페이스 Vercel 프로젝트는 전부 git 연동 없는 CLI 배포**(푸시만으론 라이브 불변) — jibowner는 모노레포 루트에서만 배포됨(apps/web엔 잘못된 "web" 프로젝트 링크 잔존)
+- **홍보 실행**: LinkedIn·X 게시 완료(Dan 본인 카피 확정본), Threads 카피 준비, X 리플라이 전략 수립(변주 6종+스팸 회피 규칙), Reddit r/OpenAI 댓글, Starter Story 리플라이 카피
+- 신규 프로젝트 파생: `workspace/giveback/` — 부모님 대신 폰 조작하는 Android AI 비서(clicky 모바일판) 컨셉 문서화
+
+**Learned**: 실설치 버그 3종은 전부 "개발 머신에서 자기 앱을 처음 설치하는" 순간에만 드러나는 부류 — 릴리스 체크리스트에 클린 유저 관점 실설치가 필수인 이유. Vercel Web Analytics는 API enable 불가(대시보드 전용) 재확인. X는 CJK 2배 가중이라 한글 트윗 실질 한도 140자.
+
 ## Pending
 - [ ] **Agent SDK 동봉 재배포 약관 확인 (B4 — 우선순위 상승)**: v1.7.1부터 claude 바이너리(240MB)가 실제로 배포되기 시작함. code.claude.com/docs/en/legal-and-compliance 확인 필요
-- [ ] mac DMG 실설치 확인(사용자 진행 중 — 용량 확인함, 무경고 오픈 여부 확인 대기) + Windows Setup 실기기 스모크
+- [x] mac DMG 실설치 확인 (2026-07-22 완료 — 버그 3종 발견·전부 v1.7.2로 수정: second-instance 크래시/x64 오설치/dev URL 잔류. 상세는 07-22 타임라인) / Windows Setup 실기기 스모크는 여전히 미완
 - [x] 브랜드명 확정: **Vibecut** (2026-07-16 — "바이브 편집", 말로 시키는 AI 편집이라는 차별점을 이름에 담음. CapCut 연상/상표 충돌은 공개 전 확인)
 - [x] Vibecut 리브랜딩 적용 (2026-07-17): productName/appId(app.vibecut)/package명/창 타이틀/메뉴/트레이·로고 에셋/전 로케일 103곳 + LICENSE 저작권 줄 + README 재작성(AI 중심, OpenScreen 크레딧)
 - [ ] 리브랜딩 후속: .openscreen 프로젝트 확장자(.vibecut 병행 지원), localStorage 키/OPENSCREEN_* env 정리, SettingsPanel의 버그리포트 링크(현재 upstream repo로 향함 — 자체 repo 생성 후 교체), 데모 GIF를 README에 추가
@@ -62,7 +74,7 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 - [x] 데모 영상(B6) (2026-07-21 완성 — Vibecut 도그푸딩 프로모 28s, 랜딩 쇼케이스 자동재생 게시): cinerec으로 cinerec 홍보 영상을 찍기 (AI 자동편집 사용 — 도그푸딩 스토리가 곧 마케팅). **촬영 방식 결정(2026-07-19)**: Vibecut은 HUD(녹화 툴바)↔에디터가 단일 메인 윈도우를 번갈아 쓰는 구조라(`switch-to-editor`가 HUD를 닫음) + 단일 인스턴스 락 → 한 인스턴스로 "녹화 중 + 에디터 사용" 동시 불가. **권장: macOS Cmd+Shift+5로 에디터 사용 화면을 영역 녹화 → Vibecut에 Import Video로 불러와 편집**(EditorEmptyState "Import Video File…", showOpenDialog 이미 지원). **주의**: 임포트한 macOS 녹화본은 Vibecut 네이티브 클릭 텔레메트리가 없어 자동 줌이 안 뜸 → 수동 줌 또는 AI(프레임 비전)로 배치. 문서: docs/ai-providers.md
 - [ ] (보류, 릴리스 후) 녹화+에디터 동시 사용 지원 검토 — 단일 윈도우 HUD↔에디터 스왑 + 단일 인스턴스 락을 풀어야 하는 실제 아키텍처 변경. 일반 사용자는 거의 불필요하나 셀프-도그푸딩 녹화엔 유용. 릴리스 전엔 리스크가 커서 보류, B6는 위 Cmd+Shift+5 우회로 해결
 - [x] 자체 git repo 분리 + GitHub 공개 (2026-07-17: https://github.com/DanialDaeHyunNam/vibecut — public, main 푸시 완료. shallow clone이라 `git fetch --unshallow upstream` 후 푸시. upstream 태그는 의도적으로 미푸시, upstream remote는 유지)
-- [ ] 홍보: Show HN / Product Hunt / X·Threads 데모 클립 / GeekNews·disquiet(한국) / r/opensource / awesome-electron 류 리스트 PR
+- [ ] 홍보: **LinkedIn·X 게시 완료(2026-07-22)**, Threads 카피 준비됨(게시 대기). 남은 채널: Show HN / Product Hunt / GeekNews·disquiet(한국) / r/opensource / awesome-electron 류 리스트 PR. X 리플라이 전략은 변주 6종 + 스팸 회피 규칙(07-22 Decisions ⑥)으로 운용 중
 - [ ] 패키지 배포 단계에서 Agent SDK 동봉 약관 확인 (code.claude.com/docs/en/legal-and-compliance)
 - [ ] Windows 스모크 테스트 (AI 패널·셀프뷰·SRT — Agent SDK는 win32 바이너리 내장 확인됨, 실기기 미검증)
 - [x] 자체 앱 아이콘 제작 (2026-07-16, icons/cinerec-icon.svg + icns/ico/png 세트)
@@ -70,7 +82,9 @@ cinerec을 자체 브랜드 오픈소스로 재공개하는 것의 라이선스 
 
 - [x] 랜딩페이지 (2026-07-17: https://vibecut-orcin.vercel.app — `site/` 단일 HTML, Vercel 프로젝트 `vibecut`(팀 dans-projects). daydreamvideo.com 참고: 히어로+CSS 에디터 목업+구독 3종+기능 그리드+미서명 경고 신뢰 섹션. 데모 영상 슬롯은 placeholder — B6 완료 시 `#demo` 섹션에 삽입. 배포: `vercel deploy --cwd site --prod --yes`)
 - [x] 구독 인증 약관 후속 조치 완료 (2026-07-17 조사→구현): ① **Claude**: 라벨 "Claude Code"→"Claude" 개명(브랜딩 가이드 준수), Anthropic API key 대안 입력 추가(SDK env 옵션으로 주입). 정책 유동적(2월 금지→5월 SDK 크레딧→6/15 일시중단, 현재 구독 허용·한도 차감) — **공개 전 support.claude.com/en/articles/15036540 재확인 필요** ② **Codex**: 변경 없음(공식 CLI+ChatGPT 로그인, OPENAI_API_KEY 이미 지원) ③ **Gemini**: Google 로그인 감지 전면 제거, AI Studio API key 필수(requiresApiKey, GEMINI_API_KEY 주입 — Google 명시 금지("서드파티 SW의 Gemini CLI OAuth", 계정 정지 사례) 대응). UI: 피커 하단 범용 API key 행 + 게이트에서도 피커 노출. 로케일 13종/README/ARCHITECTURE/랜딩 반영
-- [ ] Vercel Web Analytics 활성화 — 대시보드 → vibecut 프로젝트 → Analytics 탭 → Enable (스크립트 태그는 페이지에 이미 있음, API로는 enable 불가였음). 방문자 집계는 이걸로, 다운로드 집계는 GitHub release download_count로
+- [ ] Vercel Web Analytics 활성화 — **Enable 클릭만 남음**: https://vercel.com/dans-projects-a6ddc63c/vibecut/analytics (2026-07-22 재확인: API enable 불가 공식 확인, 대시보드 전용. 스크립트 태그는 배포돼 있어 클릭 즉시 수집 시작). 다운로드 집계는 GitHub release download_count로
+- [ ] 앱 내 "제작자에게 의견 보내기" — jibowner처럼 Slack으로 받되, **오픈소스 데스크톱이라 webhook을 앱에 직접 넣으면 노출됨** → 랜딩 Vercel에 릴레이 함수(`/api/feedback`, 서버측 시크릿+레이트리밋) 두고 앱이 호출하는 구조 권장. GitHub Issues 링크는 개발자용으로 병행
+- [ ] jibowner-mono `apps/web/.vercel`(잘못된 "web" 프로젝트 링크) 삭제 검토 — 여기서 배포하면 실패, 루트가 정답 (2026-07-22 두 번 확인)
 - [ ] 커스텀 도메인 검토 — vibecut.vercel.app은 선점됨(현재 vibecut-orcin.vercel.app). vibecut.app 등 구매 시 Vercel 도메인 연결 + README/og:image URL 교체
 
 - [x] 원격 정책 매니페스트(킬스위치) 구축 (2026-07-17): `site/provider-policy.json` → 앱이 하루 1회 fetch(userData 캐시, fail-open). **운영법**: 제공사 약관 변경 감지 시 JSON에서 해당 프로바이더를 `"notice"`(+message {en,ko,...}, link) 또는 `"disabled"`로 바꾸고 `vercel deploy --cwd site --prod --yes` — 설치된 전 앱이 24시간 내 반응(notice=호박색 배너, disabled=게이트+API key 안내). 구독 프로바이더(Claude/ChatGPT) 첫 사용 시 1회 고지 카드. 프라이버시 공개는 README/랜딩에 명시

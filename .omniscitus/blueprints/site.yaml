@@ -1,15 +1,21 @@
 version: 1
-updated: 2026-07-21T07:30:31.684Z
+updated: 2026-07-21T07:43:27.738Z
 
 files:
   "site/index.html":
     status: active
     source: "claude:Dan"
     created: 2026-07-17
-    last_modified: 2026-07-21T07:30:31.684Z
-    change_count: 48
+    last_modified: 2026-07-21T07:43:27.738Z
+    change_count: 50
     purpose: "Vibecut 랜딩페이지(단일 HTML, 무빌드) — 히어로·CSS 에디터 목업·구독 3종·기능 그리드·쇼케이스·미서명 경고 안내·다운로드 모달, 한/영 i18n 토글. Vercel 배포"
     change_log:
+      - date: 2026-07-21T07:43:27.738Z
+        action: edit
+        source: "claude:Dan"
+      - date: 2026-07-21T07:43:25.117Z
+        action: edit
+        source: "claude:Dan"
       - date: 2026-07-21T07:30:31.684Z
         action: edit
         source: "claude:Dan"

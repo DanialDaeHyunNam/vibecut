@@ -36,8 +36,8 @@ units:
     domain: product
     status: open
     created: "2026-07-16"
-    last_updated: "2026-07-21"
-    session_count: 4
+    last_updated: "2026-07-22"
+    session_count: 5
     title: "오픈소스 공개 + 홍보 전략"
     file: "product/2026-07-16-open-source-release-plan.md"
 weekly_summaries:
